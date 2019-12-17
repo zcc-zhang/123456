@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.hyj.mapper.EvaluationMapper">
+    <resultMap id="BaseResultMap" type="cn.hyj.entity.Evaluation">
+        <id column="evaluation_Id" property="evaluationId" jdbcType="INTEGER"/>
+        <result column="user_Id" property="userId" jdbcType="INTEGER"/>
+        <result column="commodity_Id" property="commodityId" jdbcType="INTEGER"/>
+        <result column="user_name" property="userName" jdbcType="VARCHAR"/>
+        <result column="evaluation_content" property="evaluationContent" jdbcType="VARCHAR"/>
+        <result column="evaluation_time" property="evaluationTime" jdbcType="TIMESTAMP"/>
+        <result column="evaluation_status" property="evaluationStatus" jdbcType="INTEGER"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    evaluation_Id, user_Id, commodity_Id, user_name, evaluation_content, evaluation_time, 
+    evaluation_status
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from t_evaluation
+        where evaluation_Id = #{evaluationId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_evaluation
+    where evaluation_Id = #{evaluationId,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="cn.hyj.entity.Evaluation">
+    insert into t_evaluation (evaluation_Id, user_Id, commodity_Id, 
+      user_name, evaluation_content, evaluation_time, 
+      evaluation_status)
+    values (#{evaluationId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{commodityId,jdbcType=INTEGER}, 
+      #{userName,jdbcType=VARCHAR}, #{evaluationContent,jdbcType=VARCHAR}, #{evaluationTime,jdbcType=TIMESTAMP}, 
+      #{evaluationStatus,jdbcType=INTEGER})
+  </insert>
+    <insert id="insertSelective" parameterType="cn.hyj.entity.Evaluation">
+        insert into t_evaluation
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="evaluationId != null">
+                evaluation_Id,
+            </if>
+            <if test="userId != null">
+                user_Id,
+            </if>
+            <if test="commodityId != null">
+                commodity_Id,
+            </if>
+            <if test="userName != null">
+                user_name,
+            </if>
+            <if test="evaluationContent != null">
+                evaluation_content,
+            </if>
+            <if test="evaluationTime != null">
+                evaluation_time,
+            </if>
+            <if test="evaluationStatus != null">
+                evaluation_status,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="evaluationId != null">
+                #{evaluationId,jdbcType=INTEGER},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="commodityId != null">
+                #{commodityId,jdbcType=INTEGER},
+            </if>
+            <if test="userName != null">
+                #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="evaluationContent != null">
+                #{evaluationContent,jdbcType=VARCHAR},
+            </if>
+            <if test="evaluationTime != null">
+                #{evaluationTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="evaluationStatus != null">
+                #{evaluationStatus,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="cn.hyj.entity.Evaluation">
+        update t_evaluation
+        <set>
+            <if test="userId != null">
+                user_Id = #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="commodityId != null">
+                commodity_Id = #{commodityId,jdbcType=INTEGER},
+            </if>
+            <if test="userName != null">
+                user_name = #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="evaluationContent != null">
+                evaluation_content = #{evaluationContent,jdbcType=VARCHAR},
+            </if>
+            <if test="evaluationTime != null">
+                evaluation_time = #{evaluationTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="evaluationStatus != null">
+                evaluation_status = #{evaluationStatus,jdbcType=INTEGER},
+            </if>
+        </set>
+        where evaluation_Id = #{evaluationId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="cn.hyj.entity.Evaluation">
+    update t_evaluation
+    set user_Id = #{userId,jdbcType=INTEGER},
+      commodity_Id = #{commodityId,jdbcType=INTEGER},
+      user_name = #{userName,jdbcType=VARCHAR},
+      evaluation_content = #{evaluationContent,jdbcType=VARCHAR},
+      evaluation_time = #{evaluationTime,jdbcType=TIMESTAMP},
+      evaluation_status = #{evaluationStatus,jdbcType=INTEGER}
+    where evaluation_Id = #{evaluationId,jdbcType=INTEGER}
+  </update>
+</mapper>

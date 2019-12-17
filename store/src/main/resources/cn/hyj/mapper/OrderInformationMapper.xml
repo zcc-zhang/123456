@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.hyj.mapper.OrderInformationMapper">
+    <resultMap id="BaseResultMap" type="cn.hyj.entity.OrderInformation">
+        <id column="order_form_Id" property="orderFormId" jdbcType="INTEGER"/>
+        <result column="id" property="id" jdbcType="INTEGER"/>
+        <result column="product_name" property="productName" jdbcType="VARCHAR"/>
+        <result column="commodity_attribute" property="commodityAttribute" jdbcType="VARCHAR"/>
+        <result column="commodity_price" property="commodityPrice" jdbcType="DECIMAL"/>
+        <result column="commodity_count" property="commodityCount" jdbcType="INTEGER"/>
+        <result column="commodity_freight" property="commodityFreight" jdbcType="DECIMAL"/>
+        <result column="subtotal" property="subtotal" jdbcType="DECIMAL"/>
+        <result column="price" property="price" jdbcType="DECIMAL"/>
+        <result column="place_an_order_date" property="placeAnOrderDate" jdbcType="TIMESTAMP"/>
+        <result column="payment_time" property="paymentTime" jdbcType="TIMESTAMP"/>
+        <result column="affirm_date" property="affirmDate" jdbcType="TIMESTAMP"/>
+        <result column="logistics_Id" property="logisticsId" jdbcType="VARCHAR"/>
+        <result column="STATUS" property="status" jdbcType="INTEGER"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    order_form_Id, id, product_name, commodity_attribute, commodity_price, commodity_count, 
+    commodity_freight, subtotal, price, place_an_order_date, payment_time, affirm_date, 
+    logistics_Id, STATUS
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from t_order_information
+        where order_form_Id = #{orderFormId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_order_information
+    where order_form_Id = #{orderFormId,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="cn.hyj.entity.OrderInformation">
+    insert into t_order_information (order_form_Id, id, product_name, 
+      commodity_attribute, commodity_price, commodity_count, 
+      commodity_freight, subtotal, price, 
+      place_an_order_date, payment_time, affirm_date, 
+      logistics_Id, STATUS)
+    values (#{orderFormId,jdbcType=INTEGER}, #{id,jdbcType=INTEGER}, #{productName,jdbcType=VARCHAR}, 
+      #{commodityAttribute,jdbcType=VARCHAR}, #{commodityPrice,jdbcType=DECIMAL}, #{commodityCount,jdbcType=INTEGER}, 
+      #{commodityFreight,jdbcType=DECIMAL}, #{subtotal,jdbcType=DECIMAL}, #{price,jdbcType=DECIMAL}, 
+      #{placeAnOrderDate,jdbcType=TIMESTAMP}, #{paymentTime,jdbcType=TIMESTAMP}, #{affirmDate,jdbcType=TIMESTAMP}, 
+      #{logisticsId,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER})
+  </insert>
+    <insert id="insertSelective" parameterType="cn.hyj.entity.OrderInformation">
+        insert into t_order_information
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="orderFormId != null">
+                order_form_Id,
+            </if>
+            <if test="id != null">
+                id,
+            </if>
+            <if test="productName != null">
+                product_name,
+            </if>
+            <if test="commodityAttribute != null">
+                commodity_attribute,
+            </if>
+            <if test="commodityPrice != null">
+                commodity_price,
+            </if>
+            <if test="commodityCount != null">
+                commodity_count,
+            </if>
+            <if test="commodityFreight != null">
+                commodity_freight,
+            </if>
+            <if test="subtotal != null">
+                subtotal,
+            </if>
+            <if test="price != null">
+                price,
+            </if>
+            <if test="placeAnOrderDate != null">
+                place_an_order_date,
+            </if>
+            <if test="paymentTime != null">
+                payment_time,
+            </if>
+            <if test="affirmDate != null">
+                affirm_date,
+            </if>
+            <if test="logisticsId != null">
+                logistics_Id,
+            </if>
+            <if test="status != null">
+                STATUS,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="orderFormId != null">
+                #{orderFormId,jdbcType=INTEGER},
+            </if>
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="productName != null">
+                #{productName,jdbcType=VARCHAR},
+            </if>
+            <if test="commodityAttribute != null">
+                #{commodityAttribute,jdbcType=VARCHAR},
+            </if>
+            <if test="commodityPrice != null">
+                #{commodityPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="commodityCount != null">
+                #{commodityCount,jdbcType=INTEGER},
+            </if>
+            <if test="commodityFreight != null">
+                #{commodityFreight,jdbcType=DECIMAL},
+            </if>
+            <if test="subtotal != null">
+                #{subtotal,jdbcType=DECIMAL},
+            </if>
+            <if test="price != null">
+                #{price,jdbcType=DECIMAL},
+            </if>
+            <if test="placeAnOrderDate != null">
+                #{placeAnOrderDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="paymentTime != null">
+                #{paymentTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="affirmDate != null">
+                #{affirmDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="logisticsId != null">
+                #{logisticsId,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="cn.hyj.entity.OrderInformation">
+        update t_order_information
+        <set>
+            <if test="id != null">
+                id = #{id,jdbcType=INTEGER},
+            </if>
+            <if test="productName != null">
+                product_name = #{productName,jdbcType=VARCHAR},
+            </if>
+            <if test="commodityAttribute != null">
+                commodity_attribute = #{commodityAttribute,jdbcType=VARCHAR},
+            </if>
+            <if test="commodityPrice != null">
+                commodity_price = #{commodityPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="commodityCount != null">
+                commodity_count = #{commodityCount,jdbcType=INTEGER},
+            </if>
+            <if test="commodityFreight != null">
+                commodity_freight = #{commodityFreight,jdbcType=DECIMAL},
+            </if>
+            <if test="subtotal != null">
+                subtotal = #{subtotal,jdbcType=DECIMAL},
+            </if>
+            <if test="price != null">
+                price = #{price,jdbcType=DECIMAL},
+            </if>
+            <if test="placeAnOrderDate != null">
+                place_an_order_date = #{placeAnOrderDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="paymentTime != null">
+                payment_time = #{paymentTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="affirmDate != null">
+                affirm_date = #{affirmDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="logisticsId != null">
+                logistics_Id = #{logisticsId,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                STATUS = #{status,jdbcType=INTEGER},
+            </if>
+        </set>
+        where order_form_Id = #{orderFormId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="cn.hyj.entity.OrderInformation">
+    update t_order_information
+    set id = #{id,jdbcType=INTEGER},
+      product_name = #{productName,jdbcType=VARCHAR},
+      commodity_attribute = #{commodityAttribute,jdbcType=VARCHAR},
+      commodity_price = #{commodityPrice,jdbcType=DECIMAL},
+      commodity_count = #{commodityCount,jdbcType=INTEGER},
+      commodity_freight = #{commodityFreight,jdbcType=DECIMAL},
+      subtotal = #{subtotal,jdbcType=DECIMAL},
+      price = #{price,jdbcType=DECIMAL},
+      place_an_order_date = #{placeAnOrderDate,jdbcType=TIMESTAMP},
+      payment_time = #{paymentTime,jdbcType=TIMESTAMP},
+      affirm_date = #{affirmDate,jdbcType=TIMESTAMP},
+      logistics_Id = #{logisticsId,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=INTEGER}
+    where order_form_Id = #{orderFormId,jdbcType=INTEGER}
+  </update>
+</mapper>

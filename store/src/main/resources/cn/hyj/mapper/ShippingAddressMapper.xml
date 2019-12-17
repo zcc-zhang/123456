@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.hyj.mapper.ShippingAddressMapper">
+    <resultMap id="BaseResultMap" type="cn.hyj.entity.ShippingAddress">
+        <id column="shipping_address_Id" property="shippingAddressId" jdbcType="INTEGER"/>
+        <result column="NAME" property="name" jdbcType="VARCHAR"/>
+        <result column="moblie" property="moblie" jdbcType="VARCHAR"/>
+        <result column="address" property="address" jdbcType="VARCHAR"/>
+        <result column="postal" property="postal" jdbcType="VARCHAR"/>
+        <result column="id" property="id" jdbcType="INTEGER"/>
+        <result column="STATUS" property="status" jdbcType="INTEGER"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    shipping_address_Id, NAME, moblie, address, postal, id, STATUS
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from t_shipping_address
+        where shipping_address_Id = #{shippingAddressId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_shipping_address
+    where shipping_address_Id = #{shippingAddressId,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="cn.hyj.entity.ShippingAddress">
+    insert into t_shipping_address (shipping_address_Id, NAME, moblie, 
+      address, postal, id, 
+      STATUS)
+    values (#{shippingAddressId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{moblie,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{postal,jdbcType=VARCHAR}, #{id,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER})
+  </insert>
+    <insert id="insertSelective" parameterType="cn.hyj.entity.ShippingAddress">
+        insert into t_shipping_address
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="shippingAddressId != null">
+                shipping_address_Id,
+            </if>
+            <if test="name != null">
+                NAME,
+            </if>
+            <if test="moblie != null">
+                moblie,
+            </if>
+            <if test="address != null">
+                address,
+            </if>
+            <if test="postal != null">
+                postal,
+            </if>
+            <if test="id != null">
+                id,
+            </if>
+            <if test="status != null">
+                STATUS,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="shippingAddressId != null">
+                #{shippingAddressId,jdbcType=INTEGER},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="moblie != null">
+                #{moblie,jdbcType=VARCHAR},
+            </if>
+            <if test="address != null">
+                #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="postal != null">
+                #{postal,jdbcType=VARCHAR},
+            </if>
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="cn.hyj.entity.ShippingAddress">
+        update t_shipping_address
+        <set>
+            <if test="name != null">
+                NAME = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="moblie != null">
+                moblie = #{moblie,jdbcType=VARCHAR},
+            </if>
+            <if test="address != null">
+                address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="postal != null">
+                postal = #{postal,jdbcType=VARCHAR},
+            </if>
+            <if test="id != null">
+                id = #{id,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                STATUS = #{status,jdbcType=INTEGER},
+            </if>
+        </set>
+        where shipping_address_Id = #{shippingAddressId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="cn.hyj.entity.ShippingAddress">
+    update t_shipping_address
+    set NAME = #{name,jdbcType=VARCHAR},
+      moblie = #{moblie,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      postal = #{postal,jdbcType=VARCHAR},
+      id = #{id,jdbcType=INTEGER},
+      STATUS = #{status,jdbcType=INTEGER}
+    where shipping_address_Id = #{shippingAddressId,jdbcType=INTEGER}
+  </update>
+</mapper>

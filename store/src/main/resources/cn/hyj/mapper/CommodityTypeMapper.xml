@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.hyj.mapper.CommodityTypeMapper">
+    <resultMap id="BaseResultMap" type="cn.hyj.entity.CommodityType">
+        <id column="commodity_type_Id" property="commodityTypeId" jdbcType="INTEGER"/>
+        <result column="commodity_type" property="commodityType" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    commodity_type_Id, commodity_type
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from t_commodity_type
+        where commodity_type_Id = #{commodityTypeId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_commodity_type
+    where commodity_type_Id = #{commodityTypeId,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="cn.hyj.entity.CommodityType">
+    insert into t_commodity_type (commodity_type_Id, commodity_type)
+    values (#{commodityTypeId,jdbcType=INTEGER}, #{commodityType,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="cn.hyj.entity.CommodityType">
+        insert into t_commodity_type
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="commodityTypeId != null">
+                commodity_type_Id,
+            </if>
+            <if test="commodityType != null">
+                commodity_type,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="commodityTypeId != null">
+                #{commodityTypeId,jdbcType=INTEGER},
+            </if>
+            <if test="commodityType != null">
+                #{commodityType,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="cn.hyj.entity.CommodityType">
+        update t_commodity_type
+        <set>
+            <if test="commodityType != null">
+                commodity_type = #{commodityType,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where commodity_type_Id = #{commodityTypeId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="cn.hyj.entity.CommodityType">
+    update t_commodity_type
+    set commodity_type = #{commodityType,jdbcType=VARCHAR}
+    where commodity_type_Id = #{commodityTypeId,jdbcType=INTEGER}
+  </update>
+</mapper>

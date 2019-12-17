@@ -1,0 +1,45 @@
+.content-section-page,
+.x247 {
+	padding: 40px !important;
+	margin-top: 0 !important;
+	border-radius: 8px 8px 0 0;
+	border-color: #ccc;
+	border: none;
+	padding-right: 10px;
+	margin: 85px auto 0 !important;
+	max-width: 642px;
+	box-shadow: none
+}
+
+.content-section-page .xuk,
+.x247 .xuk {
+	background-color: transparent !important;
+	height: 0px !important
+}
+
+
+.content-section-text, .x24h {
+    text-align: center !important;
+    font-size: 35px;
+    color: #333 !important;
+    font-weight: normal !important;
+    margin: 0 auto;
+    display: block;
+}
+
+.sso-footer-wrap, .x28a {
+    color: rgb(41, 38, 35);
+    width: 100%;
+    min-width: 320px;
+    max-width: 642px;
+    text-align: center;
+    font-size: 13px;
+    border-radius: 0px 0px 8px 8px;
+    border-width: 0px;
+    border-style: initial;
+    border-color: initial;
+    border-image: initial;
+    background: rgb(252, 251, 250) !important;
+    padding: 0px 40px 50px !important;
+    margin: -15px auto 60px !important;
+}

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.hyj.mapper.ShoppingTrolleyMapper" >
+  <resultMap id="BaseResultMap" type="cn.hyj.entity.ShoppingTrolley" >
+    <id column="shopping_trolley_Id" property="shoppingTrolleyId" jdbcType="INTEGER" />
+    <result column="commodity_Id" property="commodityId" jdbcType="INTEGER" />
+    <result column="user_Id" property="userId" jdbcType="INTEGER" />
+    <result column="STATUS" property="status" jdbcType="INTEGER" />
+  </resultMap>
+
+  <resultMap id="cartResultMap" type="cn.hyj.entity.ShoppingTrolley">
+    <id column="shopping_trolley_Id" property="shoppingTrolleyId" jdbcType="INTEGER" />
+    <result column="commodity_Id" property="commodityId" jdbcType="INTEGER" />
+    <result column="user_Id" property="userId" jdbcType="INTEGER" />
+    <result column="STATUS" property="status" jdbcType="INTEGER" />
+    <collection property="commodities" javaType="cn.hyj.entity.Commodity">
+      <id column="commodity_ID" property="commodityId" jdbcType="INTEGER"/>
+      <result column="product_name" property="productName" jdbcType="VARCHAR"/>
+      <result column="commodity_type_ID" property="commodityTypeId" jdbcType="INTEGER"/>
+      <result column="commodity_attribute" property="commodityAttribute" jdbcType="VARCHAR"/>
+      <result column="commodity_price" property="commodityPrice" jdbcType="DECIMAL"/>
+      <result column="commodity_freight" property="commodityFreight" jdbcType="DECIMAL"/>
+      <result column="merchant_id" property="merchantId" jdbcType="INTEGER"/>
+      <result column="commodity_status" property="commodityStatus" jdbcType="INTEGER"/>
+      <result column="shelf_time" property="shelfTime" jdbcType="TIMESTAMP"/>
+      <result column="commodity_weight" property="commodityWeight" jdbcType="INTEGER"/>
+      <result column="commodity_evaluation" property="commodityEvaluation" jdbcType="INTEGER"/>
+      <result column="commodity_number" property="commodityNumber" jdbcType="INTEGER"/>
+      <result column="inventory" property="inventory" jdbcType="INTEGER"/>
+      <result column="collect_number" property="collectNumber" jdbcType="INTEGER"/>
+    </collection>
+  </resultMap>
+
+
+  <sql id="Base_Column_List" >
+    shopping_trolley_Id, commodity_Id, user_Id, STATUS
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_shopping_trolley
+    where shopping_trolley_Id = #{shoppingTrolleyId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_shopping_trolley
+    where shopping_trolley_Id = #{shoppingTrolleyId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.hyj.entity.ShoppingTrolley" >
+    insert into t_shopping_trolley (shopping_trolley_Id, commodity_Id, user_Id, 
+      STATUS)
+    values (#{shoppingTrolleyId,jdbcType=INTEGER}, #{commodityId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.hyj.entity.ShoppingTrolley" >
+    insert into t_shopping_trolley
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="shoppingTrolleyId != null" >
+        shopping_trolley_Id,
+      </if>
+      <if test="commodityId != null" >
+        commodity_Id,
+      </if>
+      <if test="userId != null" >
+        user_Id,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="shoppingTrolleyId != null" >
+        #{shoppingTrolleyId,jdbcType=INTEGER},
+      </if>
+      <if test="commodityId != null" >
+        #{commodityId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.hyj.entity.ShoppingTrolley" >
+    update t_shopping_trolley
+    <set >
+      <if test="commodityId != null" >
+        commodity_Id = #{commodityId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        user_Id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+    </set>
+    where shopping_trolley_Id = #{shoppingTrolleyId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.hyj.entity.ShoppingTrolley" >
+    update t_shopping_trolley
+    set commodity_Id = #{commodityId,jdbcType=INTEGER},
+      user_Id = #{userId,jdbcType=INTEGER},
+      STATUS = #{status,jdbcType=INTEGER}
+    where shopping_trolley_Id = #{shoppingTrolleyId,jdbcType=INTEGER}
+  </update>
+
+  <!--根据用户id查询用户的购物车-->
+  <select id="selectByUserId" resultMap="cartResultMap">
+    select
+    t_shopping_trolley.shopping_trolley_Id
+    , t_shopping_trolley.commodity_Id
+    , t_shopping_trolley.user_Id
+    , t_shopping_trolley.STATUS
+    , t_commodity.commodity_ID
+    , t_commodity.product_name
+    , t_commodity.commodity_type_ID
+    , t_commodity.commodity_attribute
+    , t_commodity.commodity_price
+    , t_commodity.commodity_freight
+    , t_commodity.merchant_id
+    , t_commodity.commodity_status
+    , t_commodity.shelf_time
+    , t_commodity.commodity_weight
+    , t_commodity.commodity_evaluation
+    , t_commodity.commodity_number
+    , t_commodity.inventory, collect_number
+    from t_shopping_trolley ,t_commodity
+    where t_shopping_trolley.commodity_Id = t_commodity.commodity_ID and t_shopping_trolley.user_Id=#{userId};
+  </select>
+</mapper>

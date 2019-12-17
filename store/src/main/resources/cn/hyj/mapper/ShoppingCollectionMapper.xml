@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.hyj.mapper.ShoppingCollectionMapper" >
+  <resultMap id="BaseResultMap" type="cn.hyj.entity.ShoppingCollection" >
+    <id column="shopping_collection_Id" property="shoppingCollectionId" jdbcType="INTEGER" />
+    <result column="commodity_Id" property="commodityId" jdbcType="INTEGER" />
+    <result column="user_Id" property="userId" jdbcType="INTEGER" />
+    <result column="STATUS" property="status" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    shopping_collection_Id, commodity_Id, user_Id, STATUS
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_shopping_collection
+    where shopping_collection_Id = #{shoppingCollectionId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_shopping_collection
+    where shopping_collection_Id = #{shoppingCollectionId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.hyj.entity.ShoppingCollection" >
+    insert into t_shopping_collection (shopping_collection_Id, commodity_Id, 
+      user_Id, STATUS)
+    values (#{shoppingCollectionId,jdbcType=INTEGER}, #{commodityId,jdbcType=INTEGER}, 
+      #{userId,jdbcType=INTEGER}, #{status,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.hyj.entity.ShoppingCollection" >
+    insert into t_shopping_collection
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="shoppingCollectionId != null" >
+        shopping_collection_Id,
+      </if>
+      <if test="commodityId != null" >
+        commodity_Id,
+      </if>
+      <if test="userId != null" >
+        user_Id,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="shoppingCollectionId != null" >
+        #{shoppingCollectionId,jdbcType=INTEGER},
+      </if>
+      <if test="commodityId != null" >
+        #{commodityId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.hyj.entity.ShoppingCollection" >
+    update t_shopping_collection
+    <set >
+      <if test="commodityId != null" >
+        commodity_Id = #{commodityId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        user_Id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+    </set>
+    where shopping_collection_Id = #{shoppingCollectionId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.hyj.entity.ShoppingCollection" >
+    update t_shopping_collection
+    set commodity_Id = #{commodityId,jdbcType=INTEGER},
+      user_Id = #{userId,jdbcType=INTEGER},
+      STATUS = #{status,jdbcType=INTEGER}
+    where shopping_collection_Id = #{shoppingCollectionId,jdbcType=INTEGER}
+  </update>
+</mapper>

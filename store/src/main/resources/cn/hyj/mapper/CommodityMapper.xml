@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.hyj.mapper.CommodityMapper">
+    <resultMap id="BaseResultMap" type="cn.hyj.entity.Commodity">
+        <id column="commodity_ID" property="commodityId" jdbcType="INTEGER"/>
+        <result column="product_name" property="productName" jdbcType="VARCHAR"/>
+        <result column="commodity_type_ID" property="commodityTypeId" jdbcType="INTEGER"/>
+        <result column="commodity_attribute" property="commodityAttribute" jdbcType="VARCHAR"/>
+        <result column="commodity_price" property="commodityPrice" jdbcType="DECIMAL"/>
+        <result column="commodity_freight" property="commodityFreight" jdbcType="DECIMAL"/>
+        <result column="merchant_id" property="merchantId" jdbcType="INTEGER"/>
+        <result column="commodity_status" property="commodityStatus" jdbcType="INTEGER"/>
+        <result column="shelf_time" property="shelfTime" jdbcType="TIMESTAMP"/>
+        <result column="commodity_weight" property="commodityWeight" jdbcType="INTEGER"/>
+        <result column="commodity_evaluation" property="commodityEvaluation" jdbcType="INTEGER"/>
+        <result column="commodity_number" property="commodityNumber" jdbcType="INTEGER"/>
+        <result column="inventory" property="inventory" jdbcType="INTEGER"/>
+        <result column="collect_number" property="collectNumber" jdbcType="INTEGER"/>
+    </resultMap>
+    <resultMap id="ResultMapWithBLOBs" type="cn.hyj.entity.Commodity" extends="BaseResultMap">
+        <result column="commodity_img" property="commodityImg" jdbcType="LONGVARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    commodity_ID, product_name, commodity_type_ID, commodity_attribute, commodity_price, 
+    commodity_freight, merchant_id, commodity_status, shelf_time, commodity_weight, commodity_evaluation, 
+    commodity_number, inventory, collect_number
+  </sql>
+    <sql id="Blob_Column_List">
+    commodity_img
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from t_commodity
+        where commodity_ID = #{commodityId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_commodity
+    where commodity_ID = #{commodityId,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="cn.hyj.entity.Commodity">
+    insert into t_commodity (commodity_ID, product_name, commodity_type_ID, 
+      commodity_attribute, commodity_price, commodity_freight, 
+      merchant_id, commodity_status, shelf_time, 
+      commodity_weight, commodity_evaluation, commodity_number, 
+      inventory, collect_number, commodity_img
+      )
+    values (#{commodityId,jdbcType=INTEGER}, #{productName,jdbcType=VARCHAR}, #{commodityTypeId,jdbcType=INTEGER}, 
+      #{commodityAttribute,jdbcType=VARCHAR}, #{commodityPrice,jdbcType=DECIMAL}, #{commodityFreight,jdbcType=DECIMAL}, 
+      #{merchantId,jdbcType=INTEGER}, #{commodityStatus,jdbcType=INTEGER}, #{shelfTime,jdbcType=TIMESTAMP}, 
+      #{commodityWeight,jdbcType=INTEGER}, #{commodityEvaluation,jdbcType=INTEGER}, #{commodityNumber,jdbcType=INTEGER}, 
+      #{inventory,jdbcType=INTEGER}, #{collectNumber,jdbcType=INTEGER}, #{commodityImg,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+    <insert id="insertSelective" parameterType="cn.hyj.entity.Commodity">
+        insert into t_commodity
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="commodityId != null">
+                commodity_ID,
+            </if>
+            <if test="productName != null">
+                product_name,
+            </if>
+            <if test="commodityTypeId != null">
+                commodity_type_ID,
+            </if>
+            <if test="commodityAttribute != null">
+                commodity_attribute,
+            </if>
+            <if test="commodityPrice != null">
+                commodity_price,
+            </if>
+            <if test="commodityFreight != null">
+                commodity_freight,
+            </if>
+            <if test="merchantId != null">
+                merchant_id,
+            </if>
+            <if test="commodityStatus != null">
+                commodity_status,
+            </if>
+            <if test="shelfTime != null">
+                shelf_time,
+            </if>
+            <if test="commodityWeight != null">
+                commodity_weight,
+            </if>
+            <if test="commodityEvaluation != null">
+                commodity_evaluation,
+            </if>
+            <if test="commodityNumber != null">
+                commodity_number,
+            </if>
+            <if test="inventory != null">
+                inventory,
+            </if>
+            <if test="collectNumber != null">
+                collect_number,
+            </if>
+            <if test="commodityImg != null">
+                commodity_img,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="commodityId != null">
+                #{commodityId,jdbcType=INTEGER},
+            </if>
+            <if test="productName != null">
+                #{productName,jdbcType=VARCHAR},
+            </if>
+            <if test="commodityTypeId != null">
+                #{commodityTypeId,jdbcType=INTEGER},
+            </if>
+            <if test="commodityAttribute != null">
+                #{commodityAttribute,jdbcType=VARCHAR},
+            </if>
+            <if test="commodityPrice != null">
+                #{commodityPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="commodityFreight != null">
+                #{commodityFreight,jdbcType=DECIMAL},
+            </if>
+            <if test="merchantId != null">
+                #{merchantId,jdbcType=INTEGER},
+            </if>
+            <if test="commodityStatus != null">
+                #{commodityStatus,jdbcType=INTEGER},
+            </if>
+            <if test="shelfTime != null">
+                #{shelfTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="commodityWeight != null">
+                #{commodityWeight,jdbcType=INTEGER},
+            </if>
+            <if test="commodityEvaluation != null">
+                #{commodityEvaluation,jdbcType=INTEGER},
+            </if>
+            <if test="commodityNumber != null">
+                #{commodityNumber,jdbcType=INTEGER},
+            </if>
+            <if test="inventory != null">
+                #{inventory,jdbcType=INTEGER},
+            </if>
+            <if test="collectNumber != null">
+                #{collectNumber,jdbcType=INTEGER},
+            </if>
+            <if test="commodityImg != null">
+                #{commodityImg,jdbcType=LONGVARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="cn.hyj.entity.Commodity">
+        update t_commodity
+        <set>
+            <if test="productName != null">
+                product_name = #{productName,jdbcType=VARCHAR},
+            </if>
+            <if test="commodityTypeId != null">
+                commodity_type_ID = #{commodityTypeId,jdbcType=INTEGER},
+            </if>
+            <if test="commodityAttribute != null">
+                commodity_attribute = #{commodityAttribute,jdbcType=VARCHAR},
+            </if>
+            <if test="commodityPrice != null">
+                commodity_price = #{commodityPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="commodityFreight != null">
+                commodity_freight = #{commodityFreight,jdbcType=DECIMAL},
+            </if>
+            <if test="merchantId != null">
+                merchant_id = #{merchantId,jdbcType=INTEGER},
+            </if>
+            <if test="commodityStatus != null">
+                commodity_status = #{commodityStatus,jdbcType=INTEGER},
+            </if>
+            <if test="shelfTime != null">
+                shelf_time = #{shelfTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="commodityWeight != null">
+                commodity_weight = #{commodityWeight,jdbcType=INTEGER},
+            </if>
+            <if test="commodityEvaluation != null">
+                commodity_evaluation = #{commodityEvaluation,jdbcType=INTEGER},
+            </if>
+            <if test="commodityNumber != null">
+                commodity_number = #{commodityNumber,jdbcType=INTEGER},
+            </if>
+            <if test="inventory != null">
+                inventory = #{inventory,jdbcType=INTEGER},
+            </if>
+            <if test="collectNumber != null">
+                collect_number = #{collectNumber,jdbcType=INTEGER},
+            </if>
+            <if test="commodityImg != null">
+                commodity_img = #{commodityImg,jdbcType=LONGVARCHAR},
+            </if>
+        </set>
+        where commodity_ID = #{commodityId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.hyj.entity.Commodity">
+    update t_commodity
+    set product_name = #{productName,jdbcType=VARCHAR},
+      commodity_type_ID = #{commodityTypeId,jdbcType=INTEGER},
+      commodity_attribute = #{commodityAttribute,jdbcType=VARCHAR},
+      commodity_price = #{commodityPrice,jdbcType=DECIMAL},
+      commodity_freight = #{commodityFreight,jdbcType=DECIMAL},
+      merchant_id = #{merchantId,jdbcType=INTEGER},
+      commodity_status = #{commodityStatus,jdbcType=INTEGER},
+      shelf_time = #{shelfTime,jdbcType=TIMESTAMP},
+      commodity_weight = #{commodityWeight,jdbcType=INTEGER},
+      commodity_evaluation = #{commodityEvaluation,jdbcType=INTEGER},
+      commodity_number = #{commodityNumber,jdbcType=INTEGER},
+      inventory = #{inventory,jdbcType=INTEGER},
+      collect_number = #{collectNumber,jdbcType=INTEGER},
+      commodity_img = #{commodityImg,jdbcType=LONGVARCHAR}
+    where commodity_ID = #{commodityId,jdbcType=INTEGER}
+  </update>
+    <update id="updateByPrimaryKey" parameterType="cn.hyj.entity.Commodity">
+    update t_commodity
+    set product_name = #{productName,jdbcType=VARCHAR},
+      commodity_type_ID = #{commodityTypeId,jdbcType=INTEGER},
+      commodity_attribute = #{commodityAttribute,jdbcType=VARCHAR},
+      commodity_price = #{commodityPrice,jdbcType=DECIMAL},
+      commodity_freight = #{commodityFreight,jdbcType=DECIMAL},
+      merchant_id = #{merchantId,jdbcType=INTEGER},
+      commodity_status = #{commodityStatus,jdbcType=INTEGER},
+      shelf_time = #{shelfTime,jdbcType=TIMESTAMP},
+      commodity_weight = #{commodityWeight,jdbcType=INTEGER},
+      commodity_evaluation = #{commodityEvaluation,jdbcType=INTEGER},
+      commodity_number = #{commodityNumber,jdbcType=INTEGER},
+      inventory = #{inventory,jdbcType=INTEGER},
+      collect_number = #{collectNumber,jdbcType=INTEGER}
+    where commodity_ID = #{commodityId,jdbcType=INTEGER}
+  </update>
+    <select id="selectAll" resultMap="ResultMapWithBLOBs">
+        select
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from t_commodity
+        <trim prefix="where" suffixOverrides="and">
+            <if test="commodityPrice!=null and commodityPrice!='' ">
+                commodity_price between #{commodityPrice} and
+            </if>
+            <if test="commodityAttribute != null and commodityAttribute!=''">
+               commodity_attribute=#{commodityAttribute}
+            </if>
+
+        </trim>
+
+    </select>
+</mapper>

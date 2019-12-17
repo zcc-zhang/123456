@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.hyj.mapper.AdministratorMapper">
+    <resultMap id="BaseResultMap" type="cn.hyj.entity.Administrator">
+        <result column="Id" property="id" jdbcType="INTEGER"/>
+        <result column="head_portrait" property="headPortrait" jdbcType="VARCHAR"/>
+        <result column="username" property="username" jdbcType="VARCHAR"/>
+        <result column="PASSWORD" property="password" jdbcType="VARCHAR"/>
+        <result column="email" property="email" jdbcType="VARCHAR"/>
+    </resultMap>
+    <insert id="insert" parameterType="cn.hyj.entity.Administrator">
+    insert into t_administrator (Id, head_portrait, username, 
+      PASSWORD, email)
+    values (#{id,jdbcType=INTEGER}, #{headPortrait,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="cn.hyj.entity.Administrator">
+        insert into t_administrator
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                Id,
+            </if>
+            <if test="headPortrait != null">
+                head_portrait,
+            </if>
+            <if test="username != null">
+                username,
+            </if>
+            <if test="password != null">
+                PASSWORD,
+            </if>
+            <if test="email != null">
+                email,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="headPortrait != null">
+                #{headPortrait,jdbcType=VARCHAR},
+            </if>
+            <if test="username != null">
+                #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                #{email,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+</mapper>
