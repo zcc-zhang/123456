@@ -6,6 +6,7 @@
     <result column="commodity_Id" property="commodityId" jdbcType="INTEGER" />
     <result column="user_Id" property="userId" jdbcType="INTEGER" />
     <result column="STATUS" property="status" jdbcType="INTEGER" />
+    <result column="count" property="count"/>
   </resultMap>
 
   <resultMap id="cartResultMap" type="cn.hyj.entity.ShoppingTrolley">
@@ -13,7 +14,8 @@
     <result column="commodity_Id" property="commodityId" jdbcType="INTEGER" />
     <result column="user_Id" property="userId" jdbcType="INTEGER" />
     <result column="STATUS" property="status" jdbcType="INTEGER" />
-    <collection property="commodities" javaType="cn.hyj.entity.Commodity">
+    <result column="count" property="count"/>
+    <collection property="commodity" javaType="cn.hyj.entity.Commodity">
       <id column="commodity_ID" property="commodityId" jdbcType="INTEGER"/>
       <result column="product_name" property="productName" jdbcType="VARCHAR"/>
       <result column="commodity_type_ID" property="commodityTypeId" jdbcType="INTEGER"/>
@@ -28,6 +30,7 @@
       <result column="commodity_number" property="commodityNumber" jdbcType="INTEGER"/>
       <result column="inventory" property="inventory" jdbcType="INTEGER"/>
       <result column="collect_number" property="collectNumber" jdbcType="INTEGER"/>
+      <result column="commodity_img" property="commodityImg" jdbcType="LONGVARCHAR"/>
     </collection>
   </resultMap>
 
@@ -123,7 +126,10 @@
     , t_commodity.commodity_weight
     , t_commodity.commodity_evaluation
     , t_commodity.commodity_number
-    , t_commodity.inventory, collect_number
+    , t_commodity.inventory
+    , collect_number
+    , commodity_img
+    ,count
     from t_shopping_trolley ,t_commodity
     where t_shopping_trolley.commodity_Id = t_commodity.commodity_ID and t_shopping_trolley.user_Id=#{userId};
   </select>

@@ -4,11 +4,8 @@ import cn.hyj.entity.ShippingAddress;
 import cn.hyj.service.ShippingAddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-<<<<<<< HEAD
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@Controller
-=======
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -19,20 +16,18 @@ import java.util.Map;
 /**
  * 收货地址的controller
  */
->>>>>>> 2b0e3ebc4085f436b0e598c49edfc777d080c27b
 public class ShippingAddressController {
 
     @Autowired
     private ShippingAddressService shippingAddressService;
-<<<<<<< HEAD
 
     @RequestMapping("/insertShippingAddress")
-    public String insert(ShippingAddress address){
+    public String insert(ShippingAddress address) {
 
         shippingAddressService.insert(address);
 
         return "User_address";
-=======
+    }
     /**
      * 收货地址列表
      * @param model
@@ -81,6 +76,5 @@ public class ShippingAddressController {
     public String delete(Integer addressId){
 
         return "";
->>>>>>> 2b0e3ebc4085f436b0e598c49edfc777d080c27b
     }
 }

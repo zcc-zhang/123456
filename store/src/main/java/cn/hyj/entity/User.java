@@ -112,4 +112,21 @@ public class User {
     public void setStatus(Integer status) {
         this.status = status;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", headPortrait='" + headPortrait + '\'' +
+                ", name='" + name + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", sex='" + sex + '\'' +
+                ", moblie='" + moblie + '\'' +
+                ", idnumber='" + idnumber + '\'' +
+                ", email='" + email + '\'' +
+                ", register=" + register +
+                ", status=" + status +
+                '}';
+    }
 }

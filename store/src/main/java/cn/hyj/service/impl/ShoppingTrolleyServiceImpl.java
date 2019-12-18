@@ -6,6 +6,8 @@ import cn.hyj.service.ShoppingTrolleyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  *
  * 购物车业务逻辑实现层
@@ -19,9 +21,10 @@ public class ShoppingTrolleyServiceImpl implements ShoppingTrolleyService {
     @Autowired
     private ShoppingTrolleyMapper shoppingTrolleyMapper;
 
+
     @Override
-    public ShoppingTrolley selectByUserId(Integer userId) {
-        return  shoppingTrolleyMapper.selectByUserId(userId);
+    public List<ShoppingTrolley> selectByUserId(Integer userId) {
+        return shoppingTrolleyMapper.selectByUserId(userId);
     }
 
     @Override

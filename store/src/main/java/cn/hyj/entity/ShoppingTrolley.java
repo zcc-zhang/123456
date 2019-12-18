@@ -11,7 +11,9 @@ public class ShoppingTrolley {
 
     private Integer status;//商品状态
 
-    private List<Commodity> commodities;//商品列表
+    private Commodity commodity;//商品
+
+    private Integer count;//商品数量
 
     public Integer getShoppingTrolleyId() {
         return shoppingTrolleyId;
@@ -45,11 +47,31 @@ public class ShoppingTrolley {
         this.status = status;
     }
 
-    public List<Commodity> getCommodities() {
-        return commodities;
+    public Integer getCount() {
+        return count;
     }
 
-    public void setCommodities(List<Commodity> commodities) {
-        this.commodities = commodities;
+    public void setCount(Integer count) {
+        this.count = count;
+    }
+
+    public Commodity getCommodity() {
+        return commodity;
+    }
+
+    public void setCommodity(Commodity commodity) {
+        this.commodity = commodity;
+    }
+
+    @Override
+    public String toString() {
+        return "ShoppingTrolley{" +
+                "shoppingTrolleyId=" + shoppingTrolleyId +
+                ", commodityId=" + commodityId +
+                ", userId=" + userId +
+                ", status=" + status +
+                ", commodity=" + commodity +
+                ", count=" + count +
+                '}';
     }
 }

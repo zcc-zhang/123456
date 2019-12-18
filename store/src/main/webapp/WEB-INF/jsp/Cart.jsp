@@ -387,19 +387,19 @@
 				<td class="car_th" width="100">总价</td>
 				<td class="car_th" width="150">操作</td>
 			</tr>
-			<c:forEach items="${trolleys }" var="trolleys">
+			<c:forEach items="${shoppingTrolleys}" var="trolleys">
 				<tr class="car_tr">
 					<td>
 						<div class="c_s_img">
-							<img src="${trolleys.commdityImg }" width="73" height="73">
-						</div> ${trolleys.productName }
+							<img src="${trolleys.commodity.commodityImg}" width="73" height="73">
+						</div> ${trolleys.commodity.productName}
 					</td>
-					<td align="center">${trolleys.commodityAttribute }</td>
+					<td align="center">${trolleys.commodity.commodityAttribute }</td>
 					<td align="center">
 						<div class="c_num">
 							<input type="button" value="+" class="car_btn_1"> <input
 								type="hidden" name='commodityId'
-								value='${trolleys.commodityId}' /> <input type="hidden"
+								value='${trolleys.commodity.commodityId}' /> <input type="hidden"
 																		  name='userId' value="${trolleys.userId}" /> <input
 								type="text" value="${trolleys.count}" name="count"
 								class="car_ipt"> <input type="button" value="-"
@@ -407,11 +407,11 @@
 						</div>
 					</td>
 					<td align="center" style="color:#ff4e00;">￥<span
-							name="commodityPrice">${trolleys.commodityPrice }</span></td>
+							name="commodityPrice">${trolleys.commodity.commodityPrice }</span></td>
 					<td align="center">26R</td>
-					<td align="center" style="color:#ff4e00;">￥<span name="sum">${trolleys.commodityPrice }</span></td>
+					<td align="center" style="color:#ff4e00;">￥<span name="sum">${trolleys.commodity.commodityPrice }</span></td>
 					<td align="center"><input type="hidden"
-											  value="${trolleys.shoppingTrolleyID}" name='id' /> <a href="#"
+											  value="${trolleys.commodityId}" name='id' /> <a href="#"
 																									class='del'>删除</a>&nbsp; &nbsp;<a href="#">加入收藏</a></td>
 				</tr>
 
@@ -686,7 +686,7 @@
 		function ChangeCount(count,commodityID)
 		{
 			$.ajax({
-				url : "${pageContext.request.contextPath}/shoppingTrolleyList",
+				url : "${pageContext.request.contextPath}/shoppingTrolley/changeCount",
 				type : "post",
 				data : {
 					'count' : count,'commodityID':commodityID,'change':'change'

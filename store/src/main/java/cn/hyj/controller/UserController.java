@@ -1,7 +1,9 @@
 package cn.hyj.controller;
 
+import cn.hyj.entity.ShoppingTrolley;
 import cn.hyj.entity.User;
 import cn.hyj.exception.MailException;
+import cn.hyj.service.ShoppingTrolleyService;
 import cn.hyj.service.UserService;
 import cn.hyj.utils.MailUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +21,14 @@ import java.util.Date;
 
 @RequestMapping("/user/")
 @Controller
-@SessionAttributes(value = "user")
+@SessionAttributes(value = {"user","code","shoppingTrolley"})
 public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private ShoppingTrolleyService shoppingTrolleyService;
 
     /**
      * 登录
@@ -32,7 +37,8 @@ public class UserController {
      * @return
      */
     @RequestMapping("login")
-    public String login(@RequestParam("username") String username, @RequestParam("password") String password,Model model){
+    public String login(@RequestParam("username") String username, @RequestParam("password") String password,Model model,
+                        HttpServletRequest request){
 
         User user = userService.userLoginVerify(username,password);
         Integer message=0;
@@ -43,7 +49,7 @@ public class UserController {
         }else{
             model.addAttribute("user",user);
             //登录成功
-            return "index";
+            return "redirect:/index";
         }
         model.addAttribute("message",message);
         return "login";//转发

@@ -34,6 +34,8 @@ public class Commodity {
 
     private String commodityImg;
 
+
+
     public Integer getCommodityId() {
         return commodityId;
     }
