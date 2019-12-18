@@ -62,7 +62,7 @@
 			{
 				var dataStr=$(this).parent().siblings("#myFrom").serialize();
 				$.ajax({
-					url:"${pageContext.request.contextPath}/shoppingTrolleyServlet",
+					url:"${pageContext.request.contextPath}/shoppingTrolley/addCommodity",
 					data:dataStr,
 					type:"post",
 					success:callBack
@@ -73,8 +73,6 @@
 					{
 						$.sendSuccessToTop('成功将该商品加入购物车', 3000, function() {
 							console.log('sendSuccessToTop closed')});
-						var count=
-								$(".good_cart").text(parseInt($(".good_cart").text())+parseInt(1));
 					}else if(data=="0")
 					{
 						$.sendWarningToTop('出现未知错误请稍后重试!！', 3000, function() {

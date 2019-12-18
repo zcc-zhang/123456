@@ -84,24 +84,6 @@
 			$("#two").val("修改地址");
 		}
 	});
-	/**
-	function insertUpdate(){
-		var $name = $("input[name='name']").val();//姓名
-		var $moblie = $("input[name='moblie']").val();//手机号
-		var $address = $("input[name='address']").val();//详细地址
-		var $postal = $("input[name='postal']").val();//邮编
-		var $provid = $("input[name='province']").val();//省
-		var $cityid = $("input[name='city']").val();//市
-		var $areaid = $("input[name='county']").val();//县
-		if ($("#two").val() == "修改地址") {
-			var $shippingAddressID =$("#shipping_address_ID").text();
-			window.location.href="${pageContext.request.contextPath}/updateAddressServlet?name="+$name+"&moblie="+$moblie+"&address="+$address+"&postal="+$postal+"&id="+$shippingAddressID;
-		}else if($("#two").val() == "添加地址"){
-			$address = $provid+$cityid+$areaid+$address; //拼接
-			window.location.href="${pageContext.request.contextPath}/shippingAddressServlet?name="+$name+"&moblie="+$moblie+"&address="+$address+"&postal="+$postal+"&flag=flag";
-		}
-		
-	}**/
 	var defaults = {
 		s1 : 'provid',
 		s2 : 'cityid',
@@ -213,7 +195,7 @@
 				if(two=='添加地址')
 				{
 					$.ajax({
-						url : "${pageContext.request.contextPath}/shippingAddressServlet?flag=flag",
+						url : "${pageContext.request.contextPath}/shippingAddress/addAddress",
 						type : 'post',
 						data : str,
 						success:callBack
@@ -222,14 +204,14 @@
 				{//修改地址信息
 					var $shippingAddressID =$("#shipping_address_ID").text();
 					$.ajax({
-						url : "${pageContext.request.contextPath}/updateAddressServlet?id="+$shippingAddressID,
+						url : "${pageContext.request.contextPath}/shippingAddress/changeAddress",
 						type : 'post',
-						data : str,
+						data : {'id':$shippingAddressID},
 						success:function(data)
 						{
 							if(data=='1')
 							{
-								window.location.href="${pageContext.request.contextPath}/shippingAddressServlet";
+								window.location.href="${pageContext.request.contextPath}/shippingAddress/addAddress";
 							}else
 							{
 								$.sendWarningToTop('修改失败', 3000, function() {
@@ -239,21 +221,13 @@
 						}
 					});
 				}
-				
-			
 			}
 		});
 		function callBack()
 		{
 			window.location.reload();
 		}
-		
 	});
-	
-	
-		
-		
-	
 </script>
 <title>用户中心-地址管理</title>
 </head>
@@ -693,8 +667,7 @@
 					<link href="Threelinkage/linkage.css" rel="stylesheet"
 						type="text/css" />
 
-					<form action="shippingAddressServlet?flag=User_address"
-						method="post" class="layui-form">
+					<form method="post" class="layui-form" id="myFrom">
 						<div class="Add_Addresss">
 							<div class="title_name">
 								<i></i><span id="one">添加地址</span>
@@ -750,7 +723,7 @@
 									<td class="label_name">邮&nbsp;&nbsp;编</td>
 									<td><input name="postal" type="text" class="Add-text" value="${address.postal }" /><i>（选填）</i></td>
 									<td class="label_name">固定电话</td>
-									<td><input name="moblie" type="text" class="Add-text" /><i>（选填）</i></td>
+									<td><input name=" moblie" type="text" class="Add-text" /><i>（选填）</i></td>
 									
 								</tr>
 								<tr>

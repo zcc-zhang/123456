@@ -14,4 +14,5 @@ import java.util.List;
 public interface ShoppingTrolleyService {
 
     ShoppingTrolley selectByUserId(Integer userId);
+
 }

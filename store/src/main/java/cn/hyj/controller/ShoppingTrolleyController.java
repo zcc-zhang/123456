@@ -18,9 +18,9 @@ public class ShoppingTrolleyController {
     private ShoppingTrolleyService shoppingTrolleyService;
 
 
+    @RequestMapping("/addCommodity")
     public String addCommodity(Integer commodityID){
-        Commodity commodity = commodityService.queryByPrimaryKey(commodityID);
-
+        Commodity commodity = commodityService.queryByPrimaryKey(commodityID);//查询出该商品
         return "";
     }
 }

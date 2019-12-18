@@ -29,5 +29,11 @@
     <!--跳转到注册页面的controller-->
     <mvc:view-controller path="/login" view-name="login"></mvc:view-controller>
 
+    <!--跳转到用户中心-->
+    <mvc:view-controller path="/user_Center" view-name="User_Center"></mvc:view-controller>
+
+    <!--跳转收货地址-->
+    <mvc:view-controller path="/address" view-name="User_address"></mvc:view-controller>
+
 
 </beans>
