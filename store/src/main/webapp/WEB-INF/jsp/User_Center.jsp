@@ -427,7 +427,7 @@
                                     href="${pageContext.request.contextPath}/orderInformationServlet">
                                 我的订单</a></li>
                             <li><a
-                                    href="${pageContext.request.contextPath}/shippingAddressServlet">收货地址</a></li>
+                                    href="${pageContext.request.contextPath}/address">收货地址</a></li>
                             <li><a href="user.php?act=booking_list"> 缺货登记</a></li>
                         </ul>
                     </dd>

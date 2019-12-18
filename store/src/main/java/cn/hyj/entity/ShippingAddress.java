@@ -1,19 +1,19 @@
 package cn.hyj.entity;
 
 public class ShippingAddress {
-    private Integer shippingAddressId;
+    private Integer shippingAddressId;//逻辑主键
 
-    private String name;
+    private String name;//姓名
 
-    private String moblie;
+    private String moblie;//电话
 
-    private String address;
+    private String address;//地址
 
-    private String postal;
+    private String postal;//邮箱编码
 
-    private Integer id;
+    private Integer id;//用户id
 
-    private Integer status;
+    private Integer status;//收货地址状态
 
     public Integer getShippingAddressId() {
         return shippingAddressId;
@@ -69,5 +69,18 @@ public class ShippingAddress {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "ShippingAddress{" +
+                "shippingAddressId=" + shippingAddressId +
+                ", name='" + name + '\'' +
+                ", moblie='" + moblie + '\'' +
+                ", address='" + address + '\'' +
+                ", postal='" + postal + '\'' +
+                ", id=" + id +
+                ", status=" + status +
+                '}';
     }
 }

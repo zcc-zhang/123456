@@ -46,10 +46,9 @@
     where shopping_trolley_Id = #{shoppingTrolleyId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="cn.hyj.entity.ShoppingTrolley" >
-    insert into t_shopping_trolley (shopping_trolley_Id, commodity_Id, user_Id, 
+    insert into t_shopping_trolley (commodity_Id, user_Id,
       STATUS)
-    values (#{shoppingTrolleyId,jdbcType=INTEGER}, #{commodityId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, 
-      #{status,jdbcType=INTEGER})
+    values (#{commodityId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER},default )
   </insert>
   <insert id="insertSelective" parameterType="cn.hyj.entity.ShoppingTrolley" >
     insert into t_shopping_trolley
