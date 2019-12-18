@@ -39,7 +39,6 @@ public class CommodityController {
         Integer totalPage = commodityPageInfo.getPages();//总页数
         map.put("pageCode", pageCode);//当前页
         map.put("total", totalPage);//总页数
-        map.put("totals",new Integer(totalPage));
         map.put("CommodityList", commodities);//商品集合
         System.out.println(pageCode);
         return "product_list";

@@ -933,7 +933,7 @@
 								?currentPage=${pageCode - 1}"
 									class="pn-prev disabled">上一页</a>
 						</c:if>
-						<c:forEach begin="${pageCode}" end="${totals}" var='pageCode'>
+						<c:forEach begin="${total-4}" end="${total}" var='pageCode'>
 							<a href="${pageContext.request.contextPath}/commodity//toPage?currentPage=${pageCode}">${pageCode}</a>
 						</c:forEach>
 						<!--

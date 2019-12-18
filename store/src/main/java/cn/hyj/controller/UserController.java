@@ -10,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +19,7 @@ import java.util.Date;
 
 @RequestMapping("/user/")
 @Controller
+@SessionAttributes(value = "user")
 public class UserController {
 
     @Autowired
@@ -29,7 +32,7 @@ public class UserController {
      * @return
      */
     @RequestMapping("login")
-    public String login(HttpServletRequest request, @RequestParam("username") String username, @RequestParam("password") String password){
+    public String login(@RequestParam("username") String username, @RequestParam("password") String password,Model model){
 
         User user = userService.userLoginVerify(username,password);
         Integer message=0;
@@ -38,12 +41,12 @@ public class UserController {
         }else if(user==null){
             message=1;//为1，用户名或密码有错
         }else{
+            model.addAttribute("user",user);
             //登录成功
-            request.getSession().setAttribute("user",user);
             return "index";
         }
-        request.setAttribute("message",message);
-        return "forward:/WEB-INF/jsp/login.jsp";//转发
+        model.addAttribute("message",message);
+        return "login";//转发
     }
 
     @Autowired
