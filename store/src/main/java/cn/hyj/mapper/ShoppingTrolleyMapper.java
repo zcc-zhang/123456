@@ -3,6 +3,7 @@ package cn.hyj.mapper;
 import cn.hyj.entity.ShoppingTrolley;
 
 public interface ShoppingTrolleyMapper {
+
     int deleteByPrimaryKey(Integer shoppingTrolleyId);
 
     int insert(ShoppingTrolley record);

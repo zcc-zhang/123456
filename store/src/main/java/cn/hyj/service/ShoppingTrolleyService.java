@@ -13,5 +13,11 @@ import java.util.List;
  */
 public interface ShoppingTrolleyService {
 
+   // 根据id查询
     ShoppingTrolley selectByUserId(Integer userId);
+    //添加
+    int insert(ShoppingTrolley record);
+    //删除【更改状态】
+    int updateByPrimaryKey(ShoppingTrolley record);
+
 }

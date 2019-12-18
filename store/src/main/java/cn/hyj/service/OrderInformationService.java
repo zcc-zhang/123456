@@ -1,5 +1,7 @@
 package cn.hyj.service;
 
+import cn.hyj.entity.OrderInformation;
+
 import java.util.List;
 
 
@@ -11,5 +13,12 @@ import java.util.List;
  */
 public interface OrderInformationService {
 
+    //添加
+    int insertSelective(OrderInformation record);
 
+    //删除
+    int deleteByPrimaryKey(Integer orderFormId);
+
+    //查询
+    List<OrderInformation> queryByIdStatus(Integer id,Integer status);
 }

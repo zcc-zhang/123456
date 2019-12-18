@@ -31,7 +31,7 @@
 			type="text/javascript"></script>
 	<script type="text/javascript"
 			src="${pageContext.request.contextPath}/js/sweetalert-dev.js"></script>
-	<script type="text/javascript" src="src/jquery.dialog.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/src/jquery.dialog.min.js"></script>
 </head>
 
 <body>
@@ -584,7 +584,7 @@
 						</p>
 					</dd>
 				</dl>
-				<dl onclick="javascript:;">
+				<dl onclick="javascript:void (0);">
 					<dt>
 						<img src="${pageContext.request.contextPath}/images/Service1.png">
 					</dt>
@@ -758,11 +758,8 @@
 	/***********判断用户是否停留在当前页面***************/
 	function userStatus() {
 		// 监听 visibility change 事件
-
 		document.addEventListener('visibilitychange', function() {
-
 					var isHidden = document.hidden;
-
 					if (isHidden) {
 						$('.c_num').each(function(index, dom) {
 							//用户离开更新购物车状态
@@ -779,16 +776,11 @@
 								}
 							});
 						});
-
 					} else {
-
 						return;
 					}
-
 				}
-
 		);
-
 	}
 	userStatus();
 </script>

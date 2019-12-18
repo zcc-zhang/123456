@@ -933,15 +933,15 @@
 								?currentPage=${pageCode - 1}"
 									class="pn-prev disabled">上一页</a>
 						</c:if>
-						<c:forEach begin="${pageCode}" end="${total}" var='pageCode'>
+						<c:forEach begin="${total-4}" end="${total}" var='pageCode'>
 							<a href="${pageContext.request.contextPath}/commodity//toPage?currentPage=${pageCode}">${pageCode}</a>
 						</c:forEach>
 						<!--
                         <a href="#" class="on">1</a> <a href="#">2</a> <a href="#">3</a>
                         <a href="#">4</a>-->
-						<c:if test="${pageCode != totals &&  totals != 0}">
+						<c:if test="${pageCode != total &&  total != 0}">
 							<a href="${pageContext.request.contextPath}/commodity//toPage?currentPage=${pageCode + 1}">下一页</a>
-							<a href="${pageContext.request.contextPath}/commodity//toPage?currentPage=${totals}">尾页</a>
+							<a href="${pageContext.request.contextPath}/commodity//toPage?currentPage=${total}">尾页</a>
 						</c:if>
 
 					</div>

@@ -23,4 +23,15 @@ public class ShoppingTrolleyServiceImpl implements ShoppingTrolleyService {
     public ShoppingTrolley selectByUserId(Integer userId) {
         return  shoppingTrolleyMapper.selectByUserId(userId);
     }
+
+    @Override
+    public int insert(ShoppingTrolley record) {
+        return shoppingTrolleyMapper.insert(record);
+    }
+
+    @Override
+    public int updateByPrimaryKey(ShoppingTrolley record) {
+        return shoppingTrolleyMapper.updateByPrimaryKey(record);
+    }
+
 }
