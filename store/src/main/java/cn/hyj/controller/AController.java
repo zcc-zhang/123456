@@ -15,10 +15,10 @@ public class AController {
      *
      * 多岁的
      */
-    @RequestMapping("/login")
-    public String login(){
-        return "login";
-    }
+//    @RequestMapping("/login")
+//    public String login(){
+//        return "login";
+//    }
 
     /**
      * 注册

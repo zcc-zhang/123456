@@ -831,7 +831,7 @@
 					<li><a href="${pageContext.request.contextPath}/index.jsp">首页</a></li>
 					<li><a href="${pageContext.request.contextPath}/browsingHistoryServlet">我的足迹</a></li>
 					<li><a href="${pageContext.request.contextPath}/Must_see.jsp">每日必看</a></li>
-					<li><a href="${pageContext.request.contextPath}/showCommodityListServlet">产品列表</a></li>
+					<li><a href="${pageContext.request.contextPath}/commodity//toPage">产品列表</a></li>
 					<li><a href="${pageContext.request.contextPath}/Buy_Brands.jsp">限时团购</a></li>
 					<li><a href="${pageContext.request.contextPath}/Group_buy.jsp">品牌团购</a></li>
 					<li><a href="#">联系我们</a></li>

@@ -37,20 +37,11 @@ public class CommodityController {
         PageInfo<Commodity> commodityPageInfo = new PageInfo<Commodity>(commodities);
         commodities = commodityPageInfo.getList();//重新给集合赋值
         Integer totalPage = commodityPageInfo.getPages();//总页数
-        Integer totals=totalPage;
-        if (pageCode == 1) {//如果为第一页
-            totalPage = 4;//在页面生成4个页码
-        } else {
-            if (pageCode + 3 > totalPage) {//如果一组页码大于总页数则不继续扩充
-                pageCode = totalPage - 3;
-            }
-        }
         map.put("pageCode", pageCode);//当前页
-        map.put("total", totalPage);//假总页数
-        map.put("totals",totals);//真总页数
+        map.put("total", totalPage);//总页数
+        map.put("totals",new Integer(totalPage));
         map.put("CommodityList", commodities);//商品集合
         System.out.println(pageCode);
-        System.out.println(totals);
         return "product_list";
     }
 
