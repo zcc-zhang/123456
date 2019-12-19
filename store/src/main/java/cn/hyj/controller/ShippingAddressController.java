@@ -31,7 +31,7 @@ public class ShippingAddressController {
     public String addAddress(ShippingAddress shippingAddress,String province,String city,String county){
         StringBuilder address=new StringBuilder(province).append(city).append(county).append(shippingAddress.getAddress());//最终地址
         shippingAddress.setAddress(address.toString());
-        return "";
+        return "User_address";
     }
 
     /**

@@ -20,5 +20,5 @@ public interface OrderInformationService {
     int deleteByPrimaryKey(Integer orderFormId);
 
     //查询
-    List<OrderInformation> queryByIdStatus(Integer id,Integer status);
+    List<OrderInformation> queryByIdStatus(Integer id);
 }

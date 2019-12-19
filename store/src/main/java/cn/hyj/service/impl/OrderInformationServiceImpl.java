@@ -31,8 +31,8 @@ public class OrderInformationServiceImpl implements OrderInformationService {
     }
 
     @Override
-    public List<OrderInformation> queryByIdStatus(Integer id, Integer status) {
-        return orderInformationMapper.queryByIdStatus(id,status);
+    public List<OrderInformation> queryByIdStatus(Integer id) {
+        return orderInformationMapper.queryByIdStatus(id);
     }
 
 
