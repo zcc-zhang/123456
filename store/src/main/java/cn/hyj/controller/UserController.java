@@ -6,22 +6,26 @@ import cn.hyj.exception.MailException;
 import cn.hyj.service.ShoppingTrolleyService;
 import cn.hyj.service.UserService;
 import cn.hyj.utils.MailUtils;
+import cn.hyj.utils.SplitString;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttribute;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.support.MultipartFilter;
 
 import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @RequestMapping("/user/")
 @Controller
@@ -105,6 +109,43 @@ public class UserController {
         }
         return "login";
     }
+
+    /**
+     * 修改用户信息
+     * @param
+     * @return
+     */
+    @RequestMapping("/upload")
+    @ResponseBody
+    public void upload(MultipartFile fileField,HttpServletRequest request) throws IOException {
+        String path=request.getServletContext().getRealPath("/userHeadPortrait");//
+        File file=new File(path);
+        if(!file.exists()){
+            file.mkdirs();
+        }
+        String fileName=fileField.getName();//获得名字
+        // 获得原始名称
+        String originalFilename = fileField.getOriginalFilename();
+        System.out.println(originalFilename);
+        fileField.transferTo(new File(file,originalFilename));//保存
+    }
+
+    /**
+     * 修改用户信息
+     * @param user
+     * @return
+     */
+    @RequestMapping("/changeInfo")
+    @ResponseBody
+    public User changeInfo(User user,@RequestParam( value = "headImgPath",required = false) String fileField){
+        if(fileField!=null){
+            user.setHeadPortrait(SplitString.subPath(fileField,"jdbc"));
+        }
+        userService.userUpdateInformation(user);
+        return user;
+    }
+
+
 
 
 }
