@@ -404,6 +404,7 @@
 								type="text" value="${trolleys.count}" name="count"
 								class="car_ipt"> <input type="button" value="-"
 														class="car_btn_2">
+							<input type="hidden" name="shoppingTrolleyId" value="${trolleys.shoppingTrolleyId}"/>
 						</div>
 					</td>
 					<td align="center" style="color:#ff4e00;">￥<span
@@ -654,19 +655,23 @@
 							}, function() {
 
 								$.ajax({
-									url : "${pageContext.request.contextPath}/cartDelServlet",
+									url : "${pageContext.request.contextPath}/shoppingTrolley/removeCommodity",
 									data : {
-										'id' : id
+										'commodityId' : id
 									},
 									type : "post",
-									success:function()
+									success:function(data)
 									{
-										dom.remove();
-										$.ajax({
-											url:"${pageContext.request.contextPath}/shoppingTrolleyList",
-											type:"post",
-											data:{"change":"delete",'id':id}
-										});
+										if(data=='1'){
+											console.log("ppp");
+											dom.remove();
+											$.ajax({
+												url:"${pageContext.request.contextPath}/shoppingTrolley/queryShoppingTrolley",
+												type:"post",
+												data:{"change":"delete",'id':id}
+											});
+										}
+
 									}
 								});
 
@@ -686,7 +691,7 @@
 		function ChangeCount(count,commodityID)
 		{
 			$.ajax({
-				url : "${pageContext.request.contextPath}/shoppingTrolley/changeCount",
+				url : "${pageContext.request.contextPath}/shoppingTrolley/queryShoppingTrolley",
 				type : "post",
 				data : {
 					'count' : count,'commodityID':commodityID,'change':'change'
@@ -766,13 +771,15 @@
 							var commodityId = $(dom).children("input[name=commodityId]").val(); //商品id
 							var count = $(dom).children('input[name=count]').val(); //数量
 							var userId = $(dom).children('input[name=userId]').val(); //用户id
+							var shoppingTrolleyId=$(dom).children("input[name=shoppingTrolleyId]").val();//主键
 							$.ajax({
-								url : "${pageContext.request.contextPath}/renewalShoppingTrolleyServlet",
+								url : "${pageContext.request.contextPath}/shoppingTrolley/renewalCart",
 								type : "post",
 								data : {
 									'commodityId' : commodityId,
 									'count' : count,
-									'userId' : userId
+									'userId' : userId,
+									'shoppingTrolleyId':shoppingTrolleyId
 								}
 							});
 						});

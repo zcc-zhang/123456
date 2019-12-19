@@ -1,6 +1,7 @@
 package cn.hyj.entity;
 
 import java.util.List;
+import java.util.Objects;
 
 public class ShoppingTrolley {
     private Integer shoppingTrolleyId;//逻辑主键
@@ -74,4 +75,6 @@ public class ShoppingTrolley {
                 ", count=" + count +
                 '}';
     }
+
+
 }

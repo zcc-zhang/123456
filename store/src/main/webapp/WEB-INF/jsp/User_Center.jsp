@@ -402,8 +402,7 @@
                 <div class="user_title">用户中心</div>
                 <div class="user_Head">
                     <div class="user_portrait">
-                        <a href="#" title="修改头像" class="btn_link"></a> <img
-                            src="${user.headPortrait}">
+                        <a href="#" title="修改头像" class="btn_link"></a> <img src="${user.headPortrait}" />
                         <div class="background_img"></div>
                     </div>
                     <div class="user_name">
@@ -439,7 +438,7 @@
                     <dd>
                         <ul>
                             <li><a
-                                    href="${pageContext.request.contextPath}/skipUserPersonalinfoServlet">
+                                    href="${pageContext.request.contextPath}/profile">
                                 用户信息</a></li>
                             <li><a
                                     href="${pageContext.request.contextPath}/showCollectCommodityList">

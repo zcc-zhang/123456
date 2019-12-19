@@ -1,6 +1,7 @@
 <%@ page language="java" import="java.util.*"
 		 contentType="text/html;charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -554,7 +555,8 @@
 					</div>
 					<form enctype="multipart/form-data">
 						<ul class="xinxi">
-							<li><label>注册日期：</label> <span class="time">${user.register}</span>
+							<li><label>注册日期：</label> <span class="time"><fmt:formatDate value="${user.register}"
+																						pattern="yyyy-MM-dd HH:mm:ss" var="date"/>${date} </span>
 							</li>
 							<li><label>用户性别：</label> <span class="sex"> <input
 									type="radio" name="gender" value="男" checked="checked"
@@ -572,7 +574,7 @@
 									name="moblie" type="text" value="${user.moblie}"
 									class="text" /></span></li>
 							<li><label>身份证号：</label> <span><input
-									name="IDnumber" type="text" value="${user.IDnumber}"
+									name="IDnumber" type="text" value="${user.idnumber}"
 									class="text" /></span></li>
 							<div class="bottom">
 								<input type="button" value="修改信息" class="modify" /> <input

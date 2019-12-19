@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ShoppingTrolleyMapper {
 
-    int deleteByPrimaryKey(Integer shoppingTrolleyId);
+    int deleteByCommodityId(@Param("commodityId") Integer shoppingTrolleyId);
 
     int insert(ShoppingTrolley record);
 

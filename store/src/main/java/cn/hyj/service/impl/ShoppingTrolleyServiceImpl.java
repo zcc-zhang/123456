@@ -28,13 +28,31 @@ public class ShoppingTrolleyServiceImpl implements ShoppingTrolleyService {
     }
 
     @Override
-    public int insert(ShoppingTrolley record) {
-        return shoppingTrolleyMapper.insert(record);
+    public void insert(ShoppingTrolley record) {
+
+        List<ShoppingTrolley> trolleys = this.selectByUserId(record.getUserId());
+        boolean flag=true;
+            for (int i=0;i<trolleys.size();i++)
+            {
+                if(trolleys.get(i).getCommodityId().equals(record.getCommodityId())){
+                    trolleys.get(i).setCount(trolleys.get(i).getCount()+1);
+                    this.updateByPrimaryKey(trolleys.get(i));
+                    flag=false;
+                }
+            }
+            if(flag){
+                shoppingTrolleyMapper.insert(record);
+            }
     }
 
     @Override
     public int updateByPrimaryKey(ShoppingTrolley record) {
-        return shoppingTrolleyMapper.updateByPrimaryKey(record);
+        return shoppingTrolleyMapper.updateByPrimaryKeySelective(record);
+    }
+
+    @Override
+    public void deleteByPrimaryKey(Integer commodityId) {
+         shoppingTrolleyMapper.deleteByCommodityId(commodityId);
     }
 
 }
