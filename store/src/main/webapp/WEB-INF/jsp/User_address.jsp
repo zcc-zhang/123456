@@ -75,11 +75,11 @@
 				}
 			);
 		});
-		var $bool = false;
-		if ('${bool}'!=null && '${bool}'!='') {
-			$bool = '${bool}';
+		var flag = false;
+		if ('${flag}'!=null && '${flag}'!='') {
+			flag = '${flag}';
 		}
-		if ($bool) {
+		if (flag) {
 			$("#one").html("修改地址");
 			$("#two").val("修改地址");
 		}
@@ -189,7 +189,6 @@
 			}
 			if(flag)
 			{
-				message();
 				var str=$(".layui-form").serialize();
 				var two=$("#two").val();
 				if(two=='添加地址')
@@ -200,18 +199,18 @@
 						data : str,
 						success:callBack
 					});
+					message();
 				}else
 				{//修改地址信息
-					var $shippingAddressID =$("#shipping_address_ID").text();
 					$.ajax({
-						url : "${pageContext.request.contextPath}/shippingAddress/changeAddress",
+						url : "${pageContext.request.contextPath}/shippingAddress/updateAddress",
 						type : 'post',
-						data : {'id':$shippingAddressID},
+						data : str,
 						success:function(data)
 						{
 							if(data=='1')
 							{
-								window.location.href="${pageContext.request.contextPath}/shippingAddress/addAddress";
+								window.location.href="${pageContext.request.contextPath}/shippingAddress/addressList";
 							}else
 							{
 								$.sendWarningToTop('修改失败', 3000, function() {
@@ -278,7 +277,7 @@
 							href="#" class="hd_menu "><em class="iconfont icon-shouji"></em>手机版</a>
 							<div class="hd_menu_list erweima">
 								<ul>
-									<img src="images/erweima.png" width="100px" height="100" />
+									<img src="${pageContext.request.contextPath}/images/erweima.png" width="100px" height="100" />
 								</ul>
 							</div></li>
 					</ul>
@@ -289,7 +288,7 @@
 		<!--顶部样式2-->
 		<div id="header " class="header page_style">
 			<div class="logo">
-				<a href="index.html"><img src="images/logo.png" /></a>
+				<a href="index.html"><img src="${pageContext.request.contextPath}/images/logo.png" /></a>
 			</div>
 			<!--结束图层-->
 			<div class="Search">
@@ -314,7 +313,7 @@
 					<ul class="p_s_list">
 						<li>
 							<div class="img">
-								<img src="images/tianma.png">
+								<img src="${pageContext.request.contextPath}/images/tianma.png">
 							</div>
 							<div class="content">
 								<p>
@@ -570,12 +569,12 @@
 					<div class="user_Head">
 						<div class="user_portrait">
 							<a href="#" title="修改头像" class="btn_link"></a> <img
-								src="images/people.png">
+								src="${user.headPortrait}">
 								<div class="background_img"></div>
 						</div>
 						<div class="user_name">
 							<p>
-								<span class="name">化海天堂</span><a href="#">[修改密码]</a>
+								<span class="name">${user.username}</span><a href="#">[修改密码]</a>
 							</p>
 							<p>访问时间：2016-1-21 10:23</p>
 						</div>
@@ -649,9 +648,10 @@
 							<c:forEach var="list" items="${addresslist }">
 								<ul class="Address_info">
 									<div class="address_title">
-										<a href="${pageContext.request.contextPath}/updateAddressServlet?id=${list.id }" class="modify" title="修改信息">
+										<a href="${pageContext.request.contextPath}/shippingAddress/changeAddress?id=${list.shippingAddressId }" class="modify" title="修改信息">
 										</a>地址信息 <a href="javascript:over('0')" class="delete "><i class="iconfont icon-close"></i></a>
-										<a href="#" style="position:absolute; top:0; right:-50; width:380px;" title="删除信息" class="del"><img src="img/del.png"/></a>
+										<a href="#" style="position:absolute; top:0; right:-50; width:380px;" title="删除信息" class="del">
+											<img src="${pageContext.request.contextPath}/img/del.png"/></a>
 									</div>
 									
 									<p style="display: none">${list.id }</p>
@@ -668,10 +668,11 @@
 						type="text/css" />
 
 					<form method="post" class="layui-form" id="myFrom">
+						<input type="hidden" name="shippingAddressId" value="${address.shippingAddressId}"/>
 						<div class="Add_Addresss">
 							<div class="title_name">
 								<i></i><span id="one">添加地址</span>
-								<span id="shipping_address_ID" style="display: none;">${address.id }</span>
+								<span id="shipping_address_ID"  style="display: none;">${address.id }</span>
 							</div>
 							<table>
 								<tr>
@@ -698,7 +699,7 @@
 									<td class="label_name">收件人姓名</td>
 									<td><input name="name" type="text" class="Add-text" value="${address.name }" /><i>（必填）</i></td>
 									<td class="label_name">电子邮箱</td>
-									<td><input name="email" type="text" class="Add-text" /><i>（选填）</i></td>
+									<td><input name="email" type="text" class="Add-text" value="2050140@qq.com" /><i>（选填）</i></td>
 								</tr>
 								<tr>
 									<td class="label_name">手&nbsp;&nbsp;机</td>
@@ -706,17 +707,17 @@
 									<td class="label_name">性&nbsp;&nbsp;别</td>
 									
 									<td>
-										<c:if test="${address.sex }=='男'">
+										<%--<c:if test="${address }=='男'">--%>
 										<label class="sex"> 
 											<input type="radio"
 													name="RadioGroup1" value="1" id="RadioGroup1_0"
 													class="select" />男</label>
-										</c:if>	
-										<c:if test="${address.sex }=='女'">						
+										<%--</c:if>	--%>
+										<%--<c:if test="${address.sex }=='女'">						--%>
 											 <label class="sex"><input type="radio"
 													name="RadioGroup1" value="2" id="RadioGroup1_1"
 													class="select" />女</label><i>（选填）</i>
-										</c:if>
+										<%--</c:if>--%>
 									</td>
 								</tr>
 								<tr>
@@ -750,16 +751,16 @@
 	<div class="slogen">
 		<div class="index_style">
 			<ul class="wrap">
-				<li><a href="#"><img src="images/slogen_34.png"
+				<li><a href="#"><img src="${pageContext.request.contextPath}/images/slogen_34.png"
 						data-bd-imgshare-binded="1"></a> <b>安全保证</b> <span>多重保障机制
 						认证商城</span></li>
-				<li><a href="#"><img src="images/slogen_28.png"
+				<li><a href="#"><img src="${pageContext.request.contextPath}/images/slogen_28.png"
 						data-bd-imgshare-binded="2"></a> <b>正品保证</b> <span>正品行货
 						放心选购</span></li>
-				<li><a href="#"><img src="images/slogen_30.png"
+				<li><a href="#"><img src="${pageContext.request.contextPath}/images/slogen_30.png"
 						data-bd-imgshare-binded="3"></a> <b>七天无理由退换</b> <span>七天无理由保障消费权益</span>
 				</li>
-				<li><a href="#"><img src="images/slogen_31.png"
+				<li><a href="#"><img src="${pageContext.request.contextPath}/images/slogen_31.png"
 						data-bd-imgshare-binded="4"></a> <b>天天低价</b> <span>价格更低，质量更可靠</span>
 				</li>
 			</ul>
@@ -885,7 +886,7 @@
 					<div class="bjfffs"></div>
 					<dl onclick="javascript:;">
 						<dt>
-							<img src="images/Service1.png">
+							<img src="${pageContext.request.contextPath}/images/Service1.png">
 						</dt>
 						<dd>
 							<strong>QQ客服1</strong>
@@ -898,7 +899,7 @@
 					</dl>
 					<dl onclick="javascript:;">
 						<dt>
-							<img src="images/Service1.png">
+							<img src="${pageContext.request.contextPath}/images/Service1.png">
 						</dt>
 						<dd>
 							<strong>QQ客服1</strong>
@@ -917,7 +918,7 @@
 					<div class="bjfff"></div>
 					<div class="QR_code">
 						<p>
-							<img src="images/erweim.jpg" width="150px" height="150px"
+							<img src="${pageContext.request.contextPath}/images/erweim.jpg" width="150px" height="150px"
 								style=" margin-top:10px;" />
 						</p>
 						<p>微信扫一扫，关注我们</p>

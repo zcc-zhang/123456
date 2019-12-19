@@ -2,6 +2,8 @@ package cn.hyj.mapper;
 
 import cn.hyj.entity.ShippingAddress;
 
+import java.util.List;
+
 public interface ShippingAddressMapper {
     int deleteByPrimaryKey(Integer shippingAddressId);
 
@@ -9,7 +11,9 @@ public interface ShippingAddressMapper {
 
     int insertSelective(ShippingAddress record);
 
-    ShippingAddress selectByPrimaryKey(Integer shippingAddressId);
+    List<ShippingAddress> selectByUserId(Integer shippingAddressId);
+
+    ShippingAddress selectByPrimaryKey(Integer id);
 
     int updateByPrimaryKeySelective(ShippingAddress record);
 
