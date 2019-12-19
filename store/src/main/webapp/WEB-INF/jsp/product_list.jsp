@@ -69,7 +69,7 @@
 				});
 				function callBack(data)
 				{
-					if(data=="1")
+					if(data=== "1")
 					{
 						$.sendSuccessToTop('成功将该商品加入购物车', 3000, function() {
 							console.log('sendSuccessToTop closed')});
@@ -1069,11 +1069,11 @@
 <!--右侧菜单栏购物车样式-->
 <div class="fixedBox">
 	<ul class="fixedBoxList">
-		<li class="fixeBoxLi user"><a href="${pageContext.request.contextPath}/skipUserCenterServlet"> <span
+		<li class="fixeBoxLi user"><a href="${pageContext.request.contextPath}/user_Center"> <span
 				class="fixeBoxSpan iconfont icon-yonghu"></span> <strong>用户</strong></a>
 		</li>
 		<li class="fixeBoxLi cart_bd" style="display:block;" id="cartboxs">
-			<a href="${pageContext.request.contextPath}/shoppingTrolleyList"><p class="good_cart">${commodityCount}</p> <span
+			<a href="${pageContext.request.contextPath}/shoppingTrolley/queryShoppingTrolley"><p class="good_cart">${commodityCount}</p> <span
 					class="fixeBoxSpan iconfont icon-cart"></span> <strong>购物车</strong>
 				<div class="cartBox">
 					<div class="bjfff"></div>

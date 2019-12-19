@@ -387,31 +387,32 @@
 				<td class="car_th" width="100">总价</td>
 				<td class="car_th" width="150">操作</td>
 			</tr>
-			<c:forEach items="${trolleys }" var="trolleys">
+			<c:forEach items="${shoppingTrolleys}" var="trolleys">
 				<tr class="car_tr">
 					<td>
 						<div class="c_s_img">
-							<img src="${trolleys.commdityImg }" width="73" height="73">
-						</div> ${trolleys.productName }
+							<img src="${trolleys.commodity.commodityImg}" width="73" height="73">
+						</div> ${trolleys.commodity.productName}
 					</td>
-					<td align="center">${trolleys.commodityAttribute }</td>
+					<td align="center">${trolleys.commodity.commodityAttribute }</td>
 					<td align="center">
 						<div class="c_num">
 							<input type="button" value="+" class="car_btn_1"> <input
 								type="hidden" name='commodityId'
-								value='${trolleys.commodityId}' /> <input type="hidden"
+								value='${trolleys.commodity.commodityId}' /> <input type="hidden"
 																		  name='userId' value="${trolleys.userId}" /> <input
 								type="text" value="${trolleys.count}" name="count"
 								class="car_ipt"> <input type="button" value="-"
 														class="car_btn_2">
+							<input type="hidden" name="shoppingTrolleyId" value="${trolleys.shoppingTrolleyId}"/>
 						</div>
 					</td>
 					<td align="center" style="color:#ff4e00;">￥<span
-							name="commodityPrice">${trolleys.commodityPrice }</span></td>
+							name="commodityPrice">${trolleys.commodity.commodityPrice }</span></td>
 					<td align="center">26R</td>
-					<td align="center" style="color:#ff4e00;">￥<span name="sum">${trolleys.commodityPrice }</span></td>
+					<td align="center" style="color:#ff4e00;">￥<span name="sum">${trolleys.commodity.commodityPrice }</span></td>
 					<td align="center"><input type="hidden"
-											  value="${trolleys.shoppingTrolleyID}" name='id' /> <a href="#"
+											  value="${trolleys.commodityId}" name='id' /> <a href="#"
 																									class='del'>删除</a>&nbsp; &nbsp;<a href="#">加入收藏</a></td>
 				</tr>
 
@@ -654,19 +655,23 @@
 							}, function() {
 
 								$.ajax({
-									url : "${pageContext.request.contextPath}/cartDelServlet",
+									url : "${pageContext.request.contextPath}/shoppingTrolley/removeCommodity",
 									data : {
-										'id' : id
+										'commodityId' : id
 									},
 									type : "post",
-									success:function()
+									success:function(data)
 									{
-										dom.remove();
-										$.ajax({
-											url:"${pageContext.request.contextPath}/shoppingTrolleyList",
-											type:"post",
-											data:{"change":"delete",'id':id}
-										});
+										if(data=='1'){
+											console.log("ppp");
+											dom.remove();
+											$.ajax({
+												url:"${pageContext.request.contextPath}/shoppingTrolley/queryShoppingTrolley",
+												type:"post",
+												data:{"change":"delete",'id':id}
+											});
+										}
+
 									}
 								});
 
@@ -686,7 +691,7 @@
 		function ChangeCount(count,commodityID)
 		{
 			$.ajax({
-				url : "${pageContext.request.contextPath}/shoppingTrolleyList",
+				url : "${pageContext.request.contextPath}/shoppingTrolley/queryShoppingTrolley",
 				type : "post",
 				data : {
 					'count' : count,'commodityID':commodityID,'change':'change'
@@ -766,13 +771,15 @@
 							var commodityId = $(dom).children("input[name=commodityId]").val(); //商品id
 							var count = $(dom).children('input[name=count]').val(); //数量
 							var userId = $(dom).children('input[name=userId]').val(); //用户id
+							var shoppingTrolleyId=$(dom).children("input[name=shoppingTrolleyId]").val();//主键
 							$.ajax({
-								url : "${pageContext.request.contextPath}/renewalShoppingTrolleyServlet",
+								url : "${pageContext.request.contextPath}/shoppingTrolley/renewalCart",
 								type : "post",
 								data : {
 									'commodityId' : commodityId,
 									'count' : count,
-									'userId' : userId
+									'userId' : userId,
+									'shoppingTrolleyId':shoppingTrolleyId
 								}
 							});
 						});

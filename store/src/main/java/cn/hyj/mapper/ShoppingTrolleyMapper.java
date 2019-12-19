@@ -1,10 +1,13 @@
 package cn.hyj.mapper;
 
 import cn.hyj.entity.ShoppingTrolley;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface ShoppingTrolleyMapper {
 
-    int deleteByPrimaryKey(Integer shoppingTrolleyId);
+    int deleteByCommodityId(@Param("commodityId") Integer shoppingTrolleyId);
 
     int insert(ShoppingTrolley record);
 
@@ -16,5 +19,5 @@ public interface ShoppingTrolleyMapper {
 
     int updateByPrimaryKey(ShoppingTrolley record);
 
-    ShoppingTrolley selectByUserId(Integer userId);
+    List<ShoppingTrolley> selectByUserId(@Param("userId") Integer userId);
 }

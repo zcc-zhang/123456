@@ -6,6 +6,7 @@
     <result column="commodity_Id" property="commodityId" jdbcType="INTEGER" />
     <result column="user_Id" property="userId" jdbcType="INTEGER" />
     <result column="STATUS" property="status" jdbcType="INTEGER" />
+    <result column="count" property="count"/>
   </resultMap>
 
   <resultMap id="cartResultMap" type="cn.hyj.entity.ShoppingTrolley">
@@ -13,7 +14,8 @@
     <result column="commodity_Id" property="commodityId" jdbcType="INTEGER" />
     <result column="user_Id" property="userId" jdbcType="INTEGER" />
     <result column="STATUS" property="status" jdbcType="INTEGER" />
-    <collection property="commodities" javaType="cn.hyj.entity.Commodity">
+    <result column="count" property="count"/>
+    <collection property="commodity" javaType="cn.hyj.entity.Commodity">
       <id column="commodity_ID" property="commodityId" jdbcType="INTEGER"/>
       <result column="product_name" property="productName" jdbcType="VARCHAR"/>
       <result column="commodity_type_ID" property="commodityTypeId" jdbcType="INTEGER"/>
@@ -28,6 +30,7 @@
       <result column="commodity_number" property="commodityNumber" jdbcType="INTEGER"/>
       <result column="inventory" property="inventory" jdbcType="INTEGER"/>
       <result column="collect_number" property="collectNumber" jdbcType="INTEGER"/>
+      <result column="commodity_img" property="commodityImg" jdbcType="LONGVARCHAR"/>
     </collection>
   </resultMap>
 
@@ -41,9 +44,8 @@
     from t_shopping_trolley
     where shopping_trolley_Id = #{shoppingTrolleyId,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from t_shopping_trolley
-    where shopping_trolley_Id = #{shoppingTrolleyId,jdbcType=INTEGER}
+  <delete id="deleteByCommodityId" parameterType="java.lang.Integer" >
+   delete from t_shopping_trolley where commodity_Id=#{commodityId}
   </delete>
   <insert id="insert" parameterType="cn.hyj.entity.ShoppingTrolley" >
     insert into t_shopping_trolley (commodity_Id, user_Id,
@@ -93,6 +95,9 @@
       <if test="status != null" >
         STATUS = #{status,jdbcType=INTEGER},
       </if>
+      <if test="count != null" >
+        count=#{count}
+      </if>
     </set>
     where shopping_trolley_Id = #{shoppingTrolleyId,jdbcType=INTEGER}
   </update>
@@ -100,7 +105,8 @@
     update t_shopping_trolley
     set commodity_Id = #{commodityId,jdbcType=INTEGER},
       user_Id = #{userId,jdbcType=INTEGER},
-      STATUS = #{status,jdbcType=INTEGER}
+      STATUS = #{status,jdbcType=INTEGER},
+      count=#{count}
     where shopping_trolley_Id = #{shoppingTrolleyId,jdbcType=INTEGER}
   </update>
 
@@ -123,7 +129,10 @@
     , t_commodity.commodity_weight
     , t_commodity.commodity_evaluation
     , t_commodity.commodity_number
-    , t_commodity.inventory, collect_number
+    , t_commodity.inventory
+    , collect_number
+    , commodity_img
+    ,count
     from t_shopping_trolley ,t_commodity
     where t_shopping_trolley.commodity_Id = t_commodity.commodity_ID and t_shopping_trolley.user_Id=#{userId};
   </select>

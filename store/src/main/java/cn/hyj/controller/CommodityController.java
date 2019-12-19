@@ -40,7 +40,6 @@ public class CommodityController {
         map.put("pageCode", pageCode);//当前页
         map.put("total", totalPage);//总页数
         map.put("CommodityList", commodities);//商品集合
-        System.out.println(pageCode);
         return "product_list";
     }
 

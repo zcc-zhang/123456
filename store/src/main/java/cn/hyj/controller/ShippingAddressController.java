@@ -6,23 +6,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.Map;
+
+
 /**
  * 收货地址的controller
  */
 @Controller
 @RequestMapping("/shippingAddress")
 public class ShippingAddressController {
-
-    @Autowired
-    private ShippingAddressService shippingAddressService;
-
-    @RequestMapping("/insertShippingAddress")
-    public String insert(ShippingAddress address) {
-
-        shippingAddressService.insert(address);
-
-        return "User_address";
-    }
 
     /**
      * 添加收货地址

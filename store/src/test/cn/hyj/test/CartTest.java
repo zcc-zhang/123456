@@ -12,9 +12,6 @@ public class CartTest {
     @Test
     public void testSelectByUserId(){
         ApplicationContext applicationContext=new ClassPathXmlApplicationContext("beans.xml");
-        ShoppingTrolleyService shoppingTrolleyService=(ShoppingTrolleyService) applicationContext.getBean("shoppingTrolleyService");
-        ShoppingTrolley shoppingTrolley = shoppingTrolleyService.selectByUserId(1);
-        System.out.println(shoppingTrolley);
 
     }
 }
