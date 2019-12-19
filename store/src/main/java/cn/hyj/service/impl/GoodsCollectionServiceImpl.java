@@ -3,6 +3,7 @@ package cn.hyj.service.impl;
 import cn.hyj.entity.ShoppingCollection;
 import cn.hyj.service.GoodsCollectionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -12,6 +13,7 @@ import java.util.List;
  * @author Administrator
  *
  */
+@Service
 public class GoodsCollectionServiceImpl implements GoodsCollectionService {
 
     @Autowired

@@ -23,6 +23,8 @@ public class ShoppingCollectionController {
         return "";
     }
 
+
+
     /**
      * 收藏商品的列表
      * @param model

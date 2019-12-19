@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
  * @author Administrator
  *
  */
-@Service("shoppingTrolleyService")
+@Service
 public class ShoppingTrolleyServiceImpl implements ShoppingTrolleyService {
 
     @Autowired
