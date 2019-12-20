@@ -1,21 +1,35 @@
 package cn.hyj.controller;
 
 import cn.hyj.entity.OrderInformation;
+import cn.hyj.entity.ShoppingTrolley;
 import cn.hyj.entity.User;
 import cn.hyj.service.OrderInformationService;
+import cn.hyj.service.ShoppingTrolleyService;
 import cn.hyj.utils.SplitString;
 import com.sun.org.apache.xpath.internal.objects.XObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.swing.plaf.IconUIResource;
+import java.io.IOException;
+import java.math.BigDecimal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
+
+import static javax.swing.text.html.CSS.getAttribute;
 
 /**
  * 订单controller
@@ -26,6 +40,9 @@ public class OrderInformationController {
 
     @Autowired
     private OrderInformationService orderInformationService;
+
+    @Autowired
+    private ShoppingTrolleyService shoppingTrolleyService;
 
     /**
      * 订单列表
@@ -97,6 +114,61 @@ public class OrderInformationController {
         orderInformationService.deleteByPrimaryKey(orderFormId);
 
         return "User_Orderform";
+    }
+
+    /**
+     * 生成订单
+     * @return
+     */
+    @RequestMapping("/createOrderForm")
+    public void createOrderForm(HttpServletRequest request, HttpServletResponse response, ModelMap modelMap) throws Exception {
+
+        User user=(User)modelMap.getAttribute("user");
+        if(user==null)
+        {
+            request.setAttribute("message", "2");
+            request.getRequestDispatcher("login.jsp").forward(request, response);
+            return;
+        }
+        String outTradeNo = request.getParameter("out_trade_no");//// 商户订单号
+        String tradeNo = request.getParameter("trade_no");//// 支付宝交易号
+        String totalAmount = request.getParameter("total_amount");//// 付款金额
+        String affDate="1999-12-29 23:59:59";//未收货地址
+        Date date = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");// 转换日期
+        String dateStr = dateFormat.format(date);// 当前时间的字符串
+        List<ShoppingTrolley>shoppingTrolleys=(List<ShoppingTrolley>) modelMap.getAttribute("shoppingTrolleys");//购物车集合
+        shoppingTrolleys.forEach(shoppingTrolley -> {
+            try {
+                OrderInformation orderInformation=new OrderInformation();
+                orderInformation.setId(shoppingTrolley.getUserId());
+                orderInformation.setCommodityImg(shoppingTrolley.getCommodity().getCommodityImg());
+                orderInformation.setAffirmDate(dateFormat.parse(affDate));
+                orderInformation.setCommodityAttribute(shoppingTrolley.getCommodity().getCommodityAttribute());
+                orderInformation.setCommodityFreight(shoppingTrolley.getCommodity().getCommodityFreight());
+                orderInformation.setCommodityCount(shoppingTrolley.getCount());
+                orderInformation.setPaymentTime(new Date());
+                orderInformation.setPrice( new BigDecimal(totalAmount));
+                orderInformation.setStatus(3);
+                orderInformation.setSubtotal(new BigDecimal("0"));
+                orderInformation.setCommodityPrice(shoppingTrolley.getCommodity().getCommodityPrice());
+                orderInformation.setLogisticsId(outTradeNo);
+                orderInformation.setProductName(shoppingTrolley.getCommodity().getProductName());
+                orderInformation.setPlaceAnOrderDate(new Date());
+                orderInformationService.insertSelective(orderInformation);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            shoppingTrolleyService.EmptyShoppingCart(user.getUserId());
+            try {
+                request.getRequestDispatcher("orderInformationServlet").forward(request, response);
+            } catch (ServletException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
     }
 
 

@@ -197,4 +197,59 @@ public class Commodity {
                 ", commodityImg='" + commodityImg + '\'' +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Commodity commodity = (Commodity) o;
+
+        if (commodityId != null ? !commodityId.equals(commodity.commodityId) : commodity.commodityId != null)
+            return false;
+        if (productName != null ? !productName.equals(commodity.productName) : commodity.productName != null)
+            return false;
+        if (commodityTypeId != null ? !commodityTypeId.equals(commodity.commodityTypeId) : commodity.commodityTypeId != null)
+            return false;
+        if (commodityAttribute != null ? !commodityAttribute.equals(commodity.commodityAttribute) : commodity.commodityAttribute != null)
+            return false;
+        if (commodityPrice != null ? !commodityPrice.equals(commodity.commodityPrice) : commodity.commodityPrice != null)
+            return false;
+        if (commodityFreight != null ? !commodityFreight.equals(commodity.commodityFreight) : commodity.commodityFreight != null)
+            return false;
+        if (merchantId != null ? !merchantId.equals(commodity.merchantId) : commodity.merchantId != null) return false;
+        if (commodityStatus != null ? !commodityStatus.equals(commodity.commodityStatus) : commodity.commodityStatus != null)
+            return false;
+        if (shelfTime != null ? !shelfTime.equals(commodity.shelfTime) : commodity.shelfTime != null) return false;
+        if (commodityWeight != null ? !commodityWeight.equals(commodity.commodityWeight) : commodity.commodityWeight != null)
+            return false;
+        if (commodityEvaluation != null ? !commodityEvaluation.equals(commodity.commodityEvaluation) : commodity.commodityEvaluation != null)
+            return false;
+        if (commodityNumber != null ? !commodityNumber.equals(commodity.commodityNumber) : commodity.commodityNumber != null)
+            return false;
+        if (inventory != null ? !inventory.equals(commodity.inventory) : commodity.inventory != null) return false;
+        if (collectNumber != null ? !collectNumber.equals(commodity.collectNumber) : commodity.collectNumber != null)
+            return false;
+        return commodityImg != null ? commodityImg.equals(commodity.commodityImg) : commodity.commodityImg == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = commodityId != null ? commodityId.hashCode() : 0;
+        result = 31 * result + (productName != null ? productName.hashCode() : 0);
+        result = 31 * result + (commodityTypeId != null ? commodityTypeId.hashCode() : 0);
+        result = 31 * result + (commodityAttribute != null ? commodityAttribute.hashCode() : 0);
+        result = 31 * result + (commodityPrice != null ? commodityPrice.hashCode() : 0);
+        result = 31 * result + (commodityFreight != null ? commodityFreight.hashCode() : 0);
+        result = 31 * result + (merchantId != null ? merchantId.hashCode() : 0);
+        result = 31 * result + (commodityStatus != null ? commodityStatus.hashCode() : 0);
+        result = 31 * result + (shelfTime != null ? shelfTime.hashCode() : 0);
+        result = 31 * result + (commodityWeight != null ? commodityWeight.hashCode() : 0);
+        result = 31 * result + (commodityEvaluation != null ? commodityEvaluation.hashCode() : 0);
+        result = 31 * result + (commodityNumber != null ? commodityNumber.hashCode() : 0);
+        result = 31 * result + (inventory != null ? inventory.hashCode() : 0);
+        result = 31 * result + (collectNumber != null ? collectNumber.hashCode() : 0);
+        result = 31 * result + (commodityImg != null ? commodityImg.hashCode() : 0);
+        return result;
+    }
 }

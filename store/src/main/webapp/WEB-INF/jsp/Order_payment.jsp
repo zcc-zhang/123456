@@ -438,7 +438,7 @@
  </div>-->
 				</div>
 				<form class="form" method="post"
-					  action="${pageContext.request.contextPath}/paymentOrderFromServlet">
+					  action="${pageContext.request.contextPath}/shoppingTrolley/paymentOrderFrom">
 					<fieldset>
 						<!--快递选择-->
 						<div class="express_delivery" style="width: 1160px;height: 167px">

@@ -2,6 +2,7 @@ package cn.hyj.mapper;
 
 import cn.hyj.entity.ShoppingTrolley;
 import org.apache.ibatis.annotations.Param;
+import org.omg.CORBA.INTERNAL;
 
 import java.util.List;
 
@@ -20,4 +21,6 @@ public interface ShoppingTrolleyMapper {
     int updateByPrimaryKey(ShoppingTrolley record);
 
     List<ShoppingTrolley> selectByUserId(@Param("userId") Integer userId);
+
+    void deleteByUserId(Integer userID);
 }
