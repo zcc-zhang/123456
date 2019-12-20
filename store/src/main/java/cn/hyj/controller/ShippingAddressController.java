@@ -15,12 +15,14 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import java.util.List;
 import java.util.Map;
 
-@Controller
-@RequestMapping("/shippingAddress")
+
 /**
  * 收货地址的controller
  */
+@Controller
+@RequestMapping("/shippingAddress")
 public class ShippingAddressController {
+
 
     @Autowired
     private ShippingAddressService shippingAddressService;
@@ -37,6 +39,7 @@ public class ShippingAddressController {
         return "User_address";
     }
 
+
     /**
      * 添加收货地址
      * @param shippingAddress
@@ -49,23 +52,13 @@ public class ShippingAddressController {
     public String addAddress(ShippingAddress shippingAddress,String province,String city,String county,@SessionAttribute(value = "user") User user){
         StringBuilder address=new StringBuilder(province).append(city).append(county).append(shippingAddress.getAddress());//最终地址
         shippingAddress.setAddress(address.toString());
+
         shippingAddress.setId(user.getUserId());
         shippingAddress.setStatus(1);
         shippingAddressService.insert(shippingAddress);
         return "User_address";
     }
 
-    /**
-     * 修改收货地址
-     * @return
-     */
-    @RequestMapping("/changeAddress")
-    public String changeAddress(Integer id,Map<String,Object> map){
-        ShippingAddress shippingAddress = shippingAddressService.queryById(id);
-        map.put("address",shippingAddress);
-        map.put("flag",true);
-        return "User_address";
-    }
 
     /**
      * 修改收货地址

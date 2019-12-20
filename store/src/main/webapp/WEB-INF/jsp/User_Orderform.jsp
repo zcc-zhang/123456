@@ -267,7 +267,7 @@
 					</div>
 					<div class="user_name">
 						<p><span class="name">${page.username}</span><a href="${pageContext.request.contextPath}/User_changePassword.jsp">[修改密码]</a></p>
-						<p>访问时间：${dateDay}</p>
+						<p id="date">访问时间：</p>
 					</div>
 				</div>
 				<!--菜单列表图层-->
@@ -275,8 +275,8 @@
 					<dt class="transaction_manage"><em class="icon_1"></em>订单中心</dt>
 					<dd>
 						<ul>
-							<li> <a href="User_Collect.html"> 我的订单</a></li>
-							<li> <a href="user.php?act=address_list">收货地址</a></li>
+							<li> <a href="User_Collect?act=address_list"> 我的订单</a></li>
+							<li> <a href="addAddress?act=address_list">收货地址</a></li>
 							<li> <a href="user.php?act=booking_list"> 缺货登记</a></li>
 						</ul>
 					</dd>
@@ -325,11 +325,10 @@
 			<div class="Order_Sort">
 				<form action="orderInformationServlet" method="get">
 					<ul>
-
-						<li><a href="orderInformationServlet?price1=1" class="" ><img src="${pageContext.request.contextPath}/images/icon-dingdan1.png"/><br />待付款 （${daiPrice}）</a></li>
-						<li><a href="orderInformationServlet?price1=0" class=""><img src="${pageContext.request.contextPath}/images/icon-dingdan.png" /><br />已完成（${accomplish}）</a></li>
-						<li><a href="orderInformationServlet?price1=3" class=""><img src="${pageContext.request.contextPath}/images/icon-kuaidi.png" /></a><br />待收货（${daiShouH}）</li>
-						<li class="noborder"><a href="orderInformationServlet?price1=2"><img src="${pageContext.request.contextPath}/images/icon-weibiaoti101.png" /><br />派件中（${daiFaH}）</a></li>
+						<li><a href="${pageContext.request.contextPath}/orderInformation/orderList?status=1" class="" ><img src="${pageContext.request.contextPath}/images/icon-dingdan1.png"/><br />待付款 （${daiPrice}）</a></li>
+						<li><a href="${pageContext.request.contextPath}/orderInformation/orderList?status=5" class=""><img src="${pageContext.request.contextPath}/images/icon-dingdan.png" /><br />已完成（${accomplish}）</a></li>
+						<li><a href="${pageContext.request.contextPath}/orderInformation/orderList?status=3" class=""><img src="${pageContext.request.contextPath}/images/icon-kuaidi.png" /></a><br />待收货（${daiShouH}）</li>
+						<li class="noborder"><a href="${pageContext.request.contextPath}/orderInformation/orderList?status=2"><img src="${pageContext.request.contextPath}/images/icon-weibiaoti101.png" /><br />派件中（${daiFaH}）</a></li>
 					</ul>
 				</form>
 			</div>
@@ -347,7 +346,7 @@
 					<c:forEach items="${orderList }" var="order">
 
 						<input type="hidden" name="query" value="query" />
-						<tr><td colspan="6" class="Order_form_time"><fmt:formatDate value="${order.placeAnOrderDate}" pattern="yyyy-MM-dd"/> 订单号：${order.logisticsID}</td></tr>
+						<tr><td colspan="6" class="Order_form_time"><fmt:formatDate value="${order.placeAnOrderDate}" pattern="yyyy-MM-dd" var="date"/>${date} 订单号：${order.logisticsId}</td></tr>
 						<tr>
 							<td colspan="3">
 								<table class="Order_product_style">
@@ -360,14 +359,15 @@
 											</div>
 										</td>
 										<td >${order.commodityPrice}</td>
-										<td>${order.commoditCount}</td>
+										<td>${order.commodityCount}</td>
 									</tr>
-									</tbody></table>
+									</tbody>
+								</table>
 							</td>
 							<td class="split_line">${order.price}</td>
 							<td class="split_line">
 								<!-- (买卖商品代付款为1，代发货为2，待收货为3，待评价为4，商品买卖结束为0) -->
-								<c:if test="${order.status==0 }">
+								<c:if test="${order.status==5 }">
 									买卖结束
 								</c:if>
 								<c:if test="${order.status==1 }">
@@ -385,7 +385,7 @@
 							</td>
 							<td class="operating">
 								<a href="#">查看详细</a>
-								<a href="${pageContext.request.contextPath }/orderInformaDeleteServlet?orderid=${order.orderFormID}">删除</a>
+								<a href="${pageContext.request.contextPath}/orderInformation/deleteOrder?orderFormId=${order.orderFormId}">删除</a>
 							</td>
 						</tr>
 					</c:forEach>
@@ -562,4 +562,34 @@
 	</ul>
 </div>
 </body>
+<script>
+		function writeCurrentDate() {
+			var now = new Date();
+			var year = now.getFullYear(); //得到年份
+			var month = now.getMonth();//得到月份
+			var date = now.getDate();//得到日期
+			var day = now.getDay();//得到周几
+			var hour = now.getHours();//得到小时
+			var minu = now.getMinutes();//得到分钟
+			var sec = now.getSeconds();//得到秒
+			var MS = now.getMilliseconds();//获取毫秒
+			var week;
+			month = month + 1;
+			if (month < 10) month = "0" + month;
+			if (date < 10) date = "0" + date;
+			if (hour < 10) hour = "0" + hour;
+			if (minu < 10) minu = "0" + minu;
+			if (sec < 10) sec = "0" + sec;
+			if (MS < 100)MS = "0" + MS;
+			var arr_week = new Array("星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六");
+			week = arr_week[day];
+			var time = "";
+			time = year + "年" + month + "月" + date + "日" + " " + hour + ":" + minu + ":" + sec + " " + week;
+			//当前日期赋值给当前日期输入框中（jQuery easyUI）
+			$("#date").html(time);
+			//设置得到当前日期的函数的执行间隔时间，每1000毫秒刷新一次。
+			var timer = setTimeout("writeCurrentDate()", 1000);
+		}
+		writeCurrentDate();
+</script>
 </html>

@@ -34,18 +34,25 @@
 
     <mvc:default-servlet-handler/>
     <!--跳转到注册页面的controller-->
-    <mvc:view-controller path="/login" view-name="login"></mvc:view-controller>
+    <mvc:view-controller path="/login" view-name="login"/>
 
-    <mvc:view-controller path="/index" view-name="index"></mvc:view-controller>
+    <!--首页-->
+    <mvc:view-controller path="/index" view-name="index"/>
+
+    <!--注册页面-->
+    <mvc:view-controller path="/registered" view-name="registered"/>
+
+    <!--购物车页面-->
+    <mvc:view-controller path="/Cart" view-name="Cart"/>
 
     <!--跳转到用户中心-->
-    <mvc:view-controller path="/user_Center" view-name="User_Center"></mvc:view-controller>
+    <mvc:view-controller path="/user_Center" view-name="User_Center"/>
 
     <!--跳转到用户信息-->
-    <mvc:view-controller path="/profile" view-name="User_Personalinfo"></mvc:view-controller>
+    <mvc:view-controller path="/profile" view-name="User_Personalinfo"/>
 
     <!--跳转收货地址-->
-    <mvc:view-controller path="/address" view-name="User_address"></mvc:view-controller>
+    <mvc:view-controller path="/address" view-name="User_address"/>
 
 
 </beans>

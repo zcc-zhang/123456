@@ -69,7 +69,7 @@
 						<a href="${pageContext.request.contextPath }/registered.jsp"class="red" id='registered'>[免费注册]</a>
 					</li>
 					<li class="hd_menu_tit" data-addclass="hd_menu_hover">
-						<a href="${pageContext.request.contextPath }/orderInformationServlet">我的订单</a>
+						<a href="${pageContext.request.contextPath }/orderInformation/orderList">我的订单</a>
 					</li>
 					<li class="hd_menu_tit" data-addclass="hd_menu_hover">
 						<a href="${pageContext.request.contextPath }/shoppingTrolleyList">购物车</a>
@@ -1512,7 +1512,7 @@
 				</div>
 			</div></li>
 
-		<li class="fixeBoxLi Home"><a href="./"> <span
+		<li class="fixeBoxLi Home"><a href="${pageContext.request.contextPath}/shoppingCollection/commodityList"> <span
 				class="fixeBoxSpan iconfont  icon-shoucang"></span> <strong>收藏</strong>
 		</a></li>
 		<li class="fixeBoxLi Home"><a href="./"> <span

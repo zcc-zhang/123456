@@ -15,7 +15,7 @@ import java.util.List;
  * @author Administrator
  *
  */
-@Service("shoppingTrolleyService")
+@Service
 public class ShoppingTrolleyServiceImpl implements ShoppingTrolleyService {
 
     @Autowired

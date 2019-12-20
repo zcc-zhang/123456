@@ -5,6 +5,7 @@ import cn.hyj.entity.ShippingAddress;
 import java.util.List;
 
 public interface ShippingAddressMapper {
+
     int deleteByPrimaryKey(Integer shippingAddressId);
 
     int insert(ShippingAddress record);

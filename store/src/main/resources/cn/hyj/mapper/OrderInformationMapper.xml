@@ -16,12 +16,18 @@
         <result column="affirm_date" property="affirmDate" jdbcType="TIMESTAMP"/>
         <result column="logistics_Id" property="logisticsId" jdbcType="VARCHAR"/>
         <result column="STATUS" property="status" jdbcType="INTEGER"/>
+        <result column="commodity_img" property="commodityImg" jdbcType="LONGVARCHAR"/>
     </resultMap>
     <sql id="Base_Column_List">
     order_form_Id, id, product_name, commodity_attribute, commodity_price, commodity_count, 
     commodity_freight, subtotal, price, place_an_order_date, payment_time, affirm_date, 
-    logistics_Id, STATUS
+    logistics_Id, STATUS,commodity_img
   </sql>
+    <select id="queryByIdStatus" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/>
+        from t_order_information
+        where id=#{userId}
+    </select>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
         <include refid="Base_Column_List"/>

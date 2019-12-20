@@ -32,6 +32,8 @@ public class OrderInformation {
 
     private Integer status;
 
+    private String commodityImg;
+
     public Integer getOrderFormId() {
         return orderFormId;
     }
@@ -142,5 +144,13 @@ public class OrderInformation {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public String getCommodityImg() {
+        return commodityImg;
+    }
+
+    public void setCommodityImg(String commodityImg) {
+        this.commodityImg = commodityImg;
     }
 }

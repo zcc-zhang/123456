@@ -15,15 +15,15 @@
 	<script src="${pageContext.request.contextPath}/js/lrtk.js" type="text/javascript"></script>
 	<script>
 		$(function() {
-			var pageCode = "${param.pageCode}"; //获取点击页码
-			if (pageCode == "") //如果等于空
+			var collectionListCode = "${param.collectionListCode}"; //获取点击页码
+			if (collectionListCode == "") //如果等于空
 			{
 				$(".Pagination a").eq(0).addClass('on'); //默认给第一个页码加上样式
 			} else {
 				var arr = $(".Pagination a"); //得到页码数组
 				$(arr).each(function() {
 					var str = $(this).text();
-					if (str == pageCode) {
+					if (str == collectionListCode) {
 						$(this).addClass("on");
 					}
 				});
@@ -60,7 +60,7 @@
 <!--顶部图层-->
 <div id="header_top">
 	<div id="top">
-		<div class="Inside_pages">
+		<div class="Inside_collectionLists">
 			<div class="Collection">
 				下午好，欢迎光临锦宏颜！<em></em><a href="#">收藏我们</a>
 			</div>
@@ -77,13 +77,13 @@
 						<c:if test="${empty user.username}">
 							新用户
 						</c:if>
-						<a href="${pageContext.request.contextPath }/registered.jsp"class="red" id='registered'>[免费注册]</a>
+						<a href="${pageContext.request.contextPath }/registered"class="red" id='registered'>[免费注册]</a>
 					</li>
 					<li class="hd_menu_tit" data-addclass="hd_menu_hover">
-						<a href="${pageContext.request.contextPath }/orderInformationServlet">我的订单</a>
+						<a href="${pageContext.request.contextPath }/orderInformation/orderList?status=1">我的订单</a>
 					</li>
 					<li class="hd_menu_tit" data-addclass="hd_menu_hover">
-						<a href="${pageContext.request.contextPath }/Cart.jsp">购物车</a>
+						<a href="${pageContext.request.contextPath }/Cart">购物车</a>
 					</li>
 					<li class="hd_menu_tit" data-addclass="hd_menu_hover">
 						<a href="#">联系我们</a></li>
@@ -92,7 +92,7 @@
 						<div class="hd_menu_list">
 							<ul>
 								<li><a
-										href="${pageContext.request.contextPath }/Feedback.jsp">常见问题</a></li>
+										href="${pageContext.request.contextPath }/Feedback">常见问题</a></li>
 								<li><a href="#">在线退换货</a></li>
 								<li><a href="#">在线投诉</a></li>
 								<li><a href="#">配送范围</a></li>
@@ -111,7 +111,7 @@
 	</div>
 	<!--样式-->
 	<!--顶部样式2-->
-	<div id="header " class="header page_style">
+	<div id="header " class="header collectionList_style">
 		<div class="logo">
 			<a href="index.html"><img src="${pageContext.request.contextPath}/images/logo.png" /></a>
 		</div>
@@ -262,21 +262,21 @@
 									</div>
 									<div class="Brands">
 										<a href="#" class="logo_Brands"><img
-												src="product/logo/34.jpg" /></a> <a href="#"
-																					class="logo_Brands"><img src="product/logo/42.jpg" /></a> <a
+												src="${pageContext.request.contextPath}/product/logo/34.jpg" /></a> <a href="#"
+																					class="logo_Brands"><img src="${pageContext.request.contextPath}/product/logo/42.jpg" /></a> <a
 											href="#" class="logo_Brands"><img
-											src="product/logo/152.jpg" /></a> <a href="#"
-																				 class="logo_Brands"><img src="product/logo/156.jpg" /></a>
+											src="${pageContext.request.contextPath}/product/logo/152.jpg" /></a> <a href="#"
+																				 class="logo_Brands"><img src="${pageContext.request.contextPath}/product/logo/156.jpg" /></a>
 										<a href="#" class="logo_Brands"><img
-												src="product/logo/458.jpg" /></a> <a href="#"
-																					 class="logo_Brands"><img src="product/logo/339.jpg" /></a>
+												src="${pageContext.request.contextPath}/product/logo/458.jpg" /></a> <a href="#"
+																					 class="logo_Brands"><img src="${pageContext.request.contextPath}/product/logo/339.jpg" /></a>
 										<a href="#" class="logo_Brands"><img
-												src="product/logo/245.jpg" /></a> <a href="#"
-																					 class="logo_Brands"><img src="product/logo/199.jpg" /></a>
+												src="${pageContext.request.contextPath}/product/logo/245.jpg" /></a> <a href="#"
+																					 class="logo_Brands"><img src="${pageContext.request.contextPath}/product/logo/199.jpg" /></a>
 										<a href="#" class="logo_Brands"><img
-												src="product/logo/618.jpg" /></a> <a href="#"
-																					 class="logo_Brands"><img src="product/logo/644.jpg" /></a>
-										<a href="#" class="AD_3"><img src="product/ad/2.jpg" /></a>
+												src="${pageContext.request.contextPath}/product/logo/618.jpg" /></a> <a href="#"
+																					 class="logo_Brands"><img src="${pageContext.request.contextPath}/product/logo/644.jpg" /></a>
+										<a href="#" class="AD_3"><img src="${pageContext.request.contextPath}/product/ad/2.jpg" /></a>
 									</div>
 								</div>
 								<!--品牌-->
@@ -365,19 +365,19 @@
 			<!--菜单栏-->
 			<div class="Navigation" id="Navigation">
 				<ul class="Navigation_name">
-					<li><a href="${pageContext.request.contextPath}/index.jsp">首页</a></li>
+					<li><a href="${pageContext.request.contextPath}/index">首页</a></li>
 					<li><a
-							href="${pageContext.request.contextPath}/Footprint.jsp">日常护理</a></li>
-					<li><a href="${pageContext.request.contextPath}/Must_see.jsp">每日必看</a></li>
+							href="${pageContext.request.contextPath}/Footprint">日常护理</a></li>
+					<li><a href="${pageContext.request.contextPath}/Must_see">每日必看</a></li>
 					<li><a
-							href="${pageContext.request.contextPath}/product_list.jsp">产品列表</a></li>
+							href="${pageContext.request.contextPath}/product_list">产品列表</a></li>
 					<li><a
-							href="${pageContext.request.contextPath}/Buy_Brands.jsp">限时团购</a></li>
-					<li><a href="${pageContext.request.contextPath}/diy.jsp">礼品DIY</a></li>
+							href="${pageContext.request.contextPath}/Buy_Brands">限时团购</a></li>
+					<li><a href="${pageContext.request.contextPath}/diy">礼品DIY</a></li>
 					<li><a
-							href="${pageContext.request.contextPath}/Group_buy.jsp">品牌团购</a></li>
+							href="${pageContext.request.contextPath}/Group_buy">品牌团购</a></li>
 					<li><a href="#">联系我们</a></li>
-					<li><a href="${pageContext.request.contextPath}/index.jsp">简洁版</a></li>
+					<li><a href="${pageContext.request.contextPath}/index">简洁版</a></li>
 				</ul>
 			</div>
 			<script>$("#Navigation").slide({
@@ -387,7 +387,7 @@
 		</div>
 	</div>
 	<!--用户中心样式-->
-	<div class="user_style  Inside_pages clearfix">
+	<div class="user_style  Inside_collectionLists clearfix">
 		<div class="user_center">
 			<!--左侧菜单图层-->
 			<div class="left_style">
@@ -413,7 +413,7 @@
 						</dt>
 						<dd>
 							<ul>
-								<li><a href="User_Orderform.html"> 我的订单</a></li>
+								<li><a href="${pageContext.request.contextPath}/orderInformation/orderList?status=1"> 我的订单</a></li>
 								<li><a href="User_address.html">收货地址</a></li>
 								<li><a href="user.php?act=booking_list"> 缺货登记</a></li>
 							</ul>
@@ -469,7 +469,7 @@
 					</dt>
 					<dd>
 						<ul>
-							<li><a href="User_Orderform.html"> 我的订单</a></li>
+							<li><a href="${pageContext.request.contextPath}/orderInformation/orderList?status=1"> 我的订单</a></li>
 							<li><a href="User_address.html">收货地址</a></li>
 							<li><a href="user.php?act=booking_list"> 缺货登记</a></li>
 						</ul>
@@ -531,23 +531,21 @@
 				</div>
 				<div class="collect_list">
 					<ul>
-						<c:forEach items="${page.list}" var="page">
-							<li class="collect_p"><em
-									class="iconfont icon-close2 delete"><input name='id'
-																			   type="hidden" value='${page.id}' /></em>
+						<c:forEach items="${collectionList}" var="collectionList">
+							<li class="collect_p">
 								<div class="collect_info">
 									<div class="img_link">
 										<a href="#" class="center "><img
-												src="${page.commodityImg}" /></a>
+												src="" /></a>
 									</div>
 									<dl class="xinxi">
 										<dt>
-											<a href="#" class="name">${page.productName }</a>
+											<a href="#" class="name"></a>
 										</dt>
 										<dd>
-											<span class="Price"><b>￥</b>${page.commodityPrice}</span><span
+											<span class="Price"><b>￥</b></span><span
 												class="collect_Amount"><I
-												class="iconfont icon-shoucang"></I>${page.collectNumber}</span>
+												class="iconfont icon-shoucang"></I></span>
 										</dd>
 									</dl>
 								</div></li>
@@ -556,33 +554,33 @@
 				</div>
 				<div class="Paging">
 					<div class="Pagination">
-						<c:if test="${page.currentPage >1}">
-							<a
-									href="${pageContext.request.contextPath}/showCollectCommodityList?currentPage=1">首页</a>
-							<a
-									href="${pageContext.request.contextPath}/showCollectCommodityList
-									?currentPage=${page.currentPage-1}"
-									class="pn-prev disabled">上一页</a>
-						</c:if>
-						<c:forEach begin="${page.pageStartNo}" end="${page.pageEndNo }"
-								   var='pageCode'>
-							<c:if test="${page.pageStartNo != pageCode}">
-								<a
-										href="${pageContext.request.contextPath}/showCollectCommodityList
-									?currentPage=${pageCode}">${pageCode}</a>
-							</c:if>
+<%--						<c:if test="${collectionList.currentcollectionList >1}">--%>
+<%--							<a--%>
+<%--									href="${pageContext.request.contextPath}/showCollectCommodityList?currentcollectionList=1">首页</a>--%>
+<%--							<a--%>
+<%--									href="${pageContext.request.contextPath}/showCollectCommodityList--%>
+<%--									?currentcollectionList=${collectionList.currentcollectionList-1}"--%>
+<%--									class="pn-prev disabled">上一页</a>--%>
+<%--						</c:if>--%>
+<%--						<c:forEach begin="${collectionList.collectionListStartNo}" end="${collectionList.collectionListEndNo }"--%>
+<%--								   var='collectionListCode'>--%>
+<%--							<c:if test="${collectionList.collectionListStartNo != collectionListCode}">--%>
+<%--								<a--%>
+<%--										href="${pageContext.request.contextPath}/showCollectCommodityList--%>
+<%--									?currentcollectionList=${collectionListCode}">${collectionListCode}</a>--%>
+<%--							</c:if>--%>
 
-						</c:forEach>
+<%--						</c:forEach>--%>
 
-						<c:if
-								test="${page.currentPage != page.totalPage && page.totalPage>0}">
-							<a
-									href="${pageContext.request.contextPath}/showCollectCommodityList
-									?currentPage=${page.currentPage+1}"">下一页</a>
-							<a
-									href="${pageContext.request.contextPath}/showCollectCommodityList
-									?currentPage=${page.pageEndNo}">尾页</a>
-						</c:if>
+<%--						<c:if--%>
+<%--								test="${collectionList.currentcollectionList != collectionList.totalcollectionList && collectionList.totalcollectionList>0}">--%>
+<%--							<a--%>
+<%--									href="${pageContext.request.contextPath}/showCollectCommodityList--%>
+<%--									?currentcollectionList=${collectionList.currentcollectionList+1}"">下一页</a>--%>
+<%--							<a--%>
+<%--									href="${pageContext.request.contextPath}/showCollectCommodityList--%>
+<%--									?currentcollectionList=${collectionList.collectionListEndNo}">尾页</a>--%>
+<%--						</c:if>--%>
 					</div>
 				</div>
 			</div>

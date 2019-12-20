@@ -1,8 +1,6 @@
 package cn.hyj.service;
 
 import cn.hyj.entity.ShippingAddress;
-import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 

@@ -10,6 +10,16 @@
   <sql id="Base_Column_List" >
     shopping_collection_Id, commodity_Id, user_Id, STATUS
   </sql>
+  <select id="QueryByIdCommodity" resultMap="BaseResultMap">
+    select
+
+
+
+    from t_shopping_collection s,t_commodity c
+    where user_Id=#{userId}
+
+
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
