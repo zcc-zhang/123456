@@ -16,6 +16,16 @@ public class ShoppingTrolley {
 
     private Integer count;//商品数量
 
+    private Integer sum;//总价
+
+    public Integer getSum() {
+        return sum;
+    }
+
+    public void setSum() {
+        this.sum = commodity.getCommodityPrice().intValue()*count;
+    }
+
     public Integer getShoppingTrolleyId() {
         return shoppingTrolleyId;
     }

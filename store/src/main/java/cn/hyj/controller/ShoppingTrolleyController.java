@@ -124,4 +124,18 @@ public class ShoppingTrolleyController {
             return "0";
         }
     }
+
+    /**
+     * 清空购物车
+     * @param modelMap
+     * @return
+     */
+    @RequestMapping("/emptyCart")
+    public String emptyCart(ModelMap modelMap){
+
+        List<ShoppingTrolley> shoppingTrolleys=(List<ShoppingTrolley>) modelMap.getAttribute("shoppingTrolleys");
+        shoppingTrolleys.forEach(shoppingTrolley -> shoppingTrolley.setSum());
+        modelMap.addAttribute("trolleyList",shoppingTrolleys);
+        return "Order_payment";
+    }
 }
