@@ -81,7 +81,7 @@ public class MailUtils {
      * @param type
      * @throws Exception
      */
-    private MimeMessage  designMail(String receiveMailAccount, String mailActiveCode, String type) throws Exception {
+    private MimeMessage designMail(String receiveMailAccount, String mailActiveCode, String type) throws Exception {
         String title = null;// 标题
 
         String activeUrl = null;// 确定信息页面的URL

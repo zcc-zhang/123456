@@ -42,6 +42,9 @@
     <!--注册页面-->
     <mvc:view-controller path="/registered" view-name="registered"/>
 
+    <!--修改密码页面-->
+    <mvc:view-controller path="/resetPassword" view-name="resetPassword"/>
+
     <!--购物车页面-->
     <mvc:view-controller path="/Cart" view-name="Cart"/>
 

@@ -39,7 +39,7 @@
 		/***********发送验证码**************/
 		function sendCode() {
 			$.ajax({
-				url : "${pageContext.request.contextPath}/resetPasswordServlet", //发送验证码
+				url : "${pageContext.request.contextPath}/user/registerCode", //发送验证码
 				type : "post",
 				data : {
 					'type' : 'checkCode'
@@ -76,7 +76,7 @@
 				return false;
 			}
 			$.ajax({ //发送请求
-				url : "${pageContext.request.contextPath}/resetPasswordServlet",
+				url : "${pageContext.request.contextPath}/user/resetPassword",
 				type : "post",
 				data : {
 					'email' : email,
@@ -99,7 +99,7 @@
 		function resetPass() {
 			var password = $('input[name=passwd]').val();
 			$.ajax({
-				url : "${pageContext.request.contextPath}/resetPasswordServlet",
+				url : "${pageContext.request.contextPath}/user/resetPassword",
 				type : "post",
 				data : {
 					'password' : password,'type':'password'
@@ -118,7 +118,7 @@
 		function checkCode() {
 			var code = $('input[name=code]').val();
 			$.ajax({
-				url : "${pageContext.request.contextPath}/resetPasswordServlet",
+				url : "${pageContext.request.contextPath}/user/resetPassword",
 				type : "post",
 				data : {
 					'code' : code,
@@ -165,8 +165,6 @@
 				}
 			});
 		});
-
-
 	});
 </script>
 <style>
@@ -236,7 +234,7 @@
 		<div class="icon"></div>
 		<p class="hint">密码已重置</p>
 		<div class="button">
-			<a href="login.jsp">重新登录</a>
+			<a href="${pageContext.request.contextPath}/login">重新登录</a>
 		</div>
 	</div>
 </div>

@@ -94,6 +94,37 @@ public class UserController {
         return "forward:/notarizeEmail.jsp";
     }
 
+
+    @RequestMapping("/resetPassword")
+    public String resetPassword(String password,String email,String code,ModelMap modelMap){
+        Integer activationCode = (int) ((Math.random() * 9 + 1) * 1000);//激活码
+
+        Boolean flag =userService.queryUserByEmail(email);
+        System.out.println("flag==="+flag);
+        try{
+            //判断邮箱是否存在
+            if (flag == true) {
+                //判断验证码是否正确
+                try {
+                    mailUtils.sendActiveMail(email, activationCode.toString(), "resetPassword");//发送邮件
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    throw new MailException("发送邮箱失败！");
+                }
+                return "email";
+            }
+
+            if (code.equals(activationCode.toString())) {
+                //密码修改
+                userService.resettingUserPasswordByEmail(email,password);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return "1";
+        }
+        return "login";
+    }
+
     /**
      * 注册
      *

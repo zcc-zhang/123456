@@ -75,7 +75,7 @@
                 	<span style="font-family:'宋体';" class="fl">
                     	<label class="r_rad"><input type="checkbox" checked="checked"></label><label class="r_txt">请保存我这次的登录信息</label>
                     </span>
-                    <span class="fr"><a href="resetPassword.jsp" style="color:#ff4e00;">忘记密码</a></span>
+                    <span class="fr"><a href="${pageContext.request.contextPath}/resetPassword" style="color:#ff4e00;">忘记密码</a></span>
                 </td>
               </tr>
               <tr height="60">

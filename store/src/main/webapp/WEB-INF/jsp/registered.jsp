@@ -261,7 +261,7 @@
 		<div class="top">
 			<div class="logo">
 				<div class="logo_link">
-					<a href="Index.html"><img src="images/logo.png"></a>
+					<a href="Index.html"><img src="${pageContext.request.contextPath}/images/logo.png"></a>
 				</div>
 				<div class="phone">
 					免费咨询热线：<b>400-567-4556</b>
@@ -270,14 +270,14 @@
 		</div>
 		<div class="regist">
 			<div class="log_img">
-				<img src="images/imgbg_03.png" width="611" height="425" />
+				<img src="${pageContext.request.contextPath}/images/imgbg_03.png" width="611" height="425" />
 			</div>
 			<div class="reg_c" id="registered">
 
 				<div class="bd">
 					<ul>
 						<form id='buyerFrom'
-							action="${pageContext.request.contextPath}/user//registerCode"
+							action="${pageContext.request.contextPath}/user/registerCode"
 							method="post">
 							<table border="0"
 								style="width:720px; font-size:14px; margin-top:20px;"

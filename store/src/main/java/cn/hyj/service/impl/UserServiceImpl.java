@@ -3,6 +3,7 @@ package cn.hyj.service.impl;
 import cn.hyj.entity.User;
 import cn.hyj.mapper.UserMapper;
 import cn.hyj.service.UserService;
+import org.apache.ibatis.jdbc.Null;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,7 +41,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Boolean queryUserByEmail(String email) {
-        return null;
+        return userMapper.queryUserByEmail(email);
     }
 
     @Override
