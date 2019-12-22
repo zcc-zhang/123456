@@ -6,18 +6,27 @@
     <result column="commodity_Id" property="commodityId" jdbcType="INTEGER" />
     <result column="user_Id" property="userId" jdbcType="INTEGER" />
     <result column="STATUS" property="status" jdbcType="INTEGER" />
+    <collection property="commodity" javaType="cn.hyj.entity.Commodity">
+          <result column="product_name" property="productName" jdbcType="VARCHAR"/>
+          <result column="commodity_price" property="commodityPrice" jdbcType="DECIMAL"/>
+          <result column="commodity_img" property="commodityImg" jdbcType="LONGVARCHAR"/>
+    </collection>
   </resultMap>
   <sql id="Base_Column_List" >
     shopping_collection_Id, commodity_Id, user_Id, STATUS
   </sql>
   <select id="QueryByIdCommodity" resultMap="BaseResultMap">
-    select
+    SELECT
+     t_shopping_collection.shopping_collection_Id
+     ,t_shopping_collection.commodity_Id
+    , t_shopping_collection.user_Id
+    , t_shopping_collection.STATUS
+    , t_commodity.product_name
+    , t_commodity.commodity_price
+    , t_commodity.commodity_img
 
-
-
-    from t_shopping_collection s,t_commodity c
-    where user_Id=#{userId}
-
+    FROM t_shopping_collection,t_commodity
+    WHERE t_shopping_collection.user_Id=#{userId} AND t_shopping_collection.`commodity_Id`=t_commodity.`commodity_ID`
 
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >

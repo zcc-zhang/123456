@@ -9,6 +9,8 @@ public class ShoppingCollection {
 
     private Integer status;
 
+    private Commodity commodity;
+
     public Integer getShoppingCollectionId() {
         return shoppingCollectionId;
     }
@@ -40,4 +42,13 @@ public class ShoppingCollection {
     public void setStatus(Integer status) {
         this.status = status;
     }
+
+    public Commodity getCommodity() {
+        return commodity;
+    }
+
+    public void setCommodity(Commodity commodity) {
+        this.commodity = commodity;
+    }
+
 }

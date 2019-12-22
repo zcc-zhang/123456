@@ -17,6 +17,7 @@
 	<script src="${pageContext.request.contextPath}/js/common_js.js" type="text/javascript"></script>
 	<script src="${pageContext.request.contextPath}/js/footer.js" type="text/javascript"></script>
 	<script src="${pageContext.request.contextPath}/js/lrtk.js" type="text/javascript"></script>
+	<script type="text/javascript" charset="UTF-8" src="${pageContext.request.contextPath}/js/date.js"></script>
 	<title>订单列表</title>
 </head>
 
@@ -39,13 +40,13 @@
 						<c:if test="${empty user.username}">
 							新用户
 						</c:if>
-						<a href="${pageContext.request.contextPath }/registered.jsp"class="red" id='registered'>[免费注册]</a>
+						<a href="${pageContext.request.contextPath }/registered"class="red" id='registered'>[免费注册]</a>
 					</li>
 					<li class="hd_menu_tit" data-addclass="hd_menu_hover">
-						<a href="${pageContext.request.contextPath }/orderInformationServlet">我的订单</a>
+						<a href="${pageContext.request.contextPath }/orderInformation/orderList">我的订单</a>
 					</li>
 					<li class="hd_menu_tit" data-addclass="hd_menu_hover">
-						<a href="${pageContext.request.contextPath }/Cart.jsp">购物车</a>
+						<a href="${pageContext.request.contextPath }/shoppingTrolley/queryShoppingTrolley">购物车</a>
 					</li>
 					<li class="hd_menu_tit" data-addclass="hd_menu_hover">
 						<a href="#">联系我们</a></li>
@@ -151,17 +152,17 @@
 										<dd><a href="#"> 乳液</a><a href="#"> 面霜</a><a href="#">按摩霜</a><a href="#">面部啫喱</a><a href="#">凝露/凝胶</a></dd>
 									</dl>
 									</div><div class="Brands">
-									<a href="#" class="logo_Brands"><img src="product/logo/34.jpg" /></a>
-									<a href="#" class="logo_Brands"><img src="product/logo/42.jpg" /></a>
-									<a href="#" class="logo_Brands"><img src="product/logo/152.jpg" /></a>
-									<a href="#" class="logo_Brands"><img src="product/logo/156.jpg" /></a>
-									<a href="#" class="logo_Brands"><img src="product/logo/458.jpg" /></a>
-									<a href="#" class="logo_Brands"><img src="product/logo/339.jpg" /></a>
-									<a href="#" class="logo_Brands"><img src="product/logo/245.jpg" /></a>
-									<a href="#" class="logo_Brands"><img src="product/logo/199.jpg" /></a>
-									<a href="#" class="logo_Brands"><img src="product/logo/618.jpg" /></a>
-									<a href="#" class="logo_Brands"><img src="product/logo/644.jpg" /></a>
-									<a href="#" class="AD_3"><img src="product/ad/2.jpg" /></a>
+									<a href="#" class="logo_Brands"><img src="${pageContext.request.contextPath}/product/logo/34.jpg" /></a>
+									<a href="#" class="logo_Brands"><img src="${pageContext.request.contextPath}/product/logo/42.jpg" /></a>
+									<a href="#" class="logo_Brands"><img src="${pageContext.request.contextPath}/product/logo/152.jpg" /></a>
+									<a href="#" class="logo_Brands"><img src="${pageContext.request.contextPath}/product/logo/156.jpg" /></a>
+									<a href="#" class="logo_Brands"><img src="${pageContext.request.contextPath}/product/logo/458.jpg" /></a>
+									<a href="#" class="logo_Brands"><img src="${pageContext.request.contextPath}/product/logo/339.jpg" /></a>
+									<a href="#" class="logo_Brands"><img src="${pageContext.request.contextPath}/product/logo/245.jpg" /></a>
+									<a href="#" class="logo_Brands"><img src="${pageContext.request.contextPath}/product/logo/199.jpg" /></a>
+									<a href="#" class="logo_Brands"><img src="${pageContext.request.contextPath}/product/logo/618.jpg" /></a>
+									<a href="#" class="logo_Brands"><img src="${pageContext.request.contextPath}/product/logo/644.jpg" /></a>
+									<a href="#" class="AD_3"><img src="${pageContext.request.contextPath}/product/ad/2.jpg" /></a>
 								</div>
 								</div>
 								<!--品牌-->
@@ -238,15 +239,15 @@
 			<!--菜单栏-->
 			<div class="Navigation" id="Navigation">
 				<ul class="Navigation_name">
-					<li><a href="${pageContext.request.contextPath}/index.jsp">首页</a></li>
-					<li><a href="${pageContext.request.contextPath}/Footprint.jsp">日常护理</a></li>
-					<li><a href="${pageContext.request.contextPath}/Must_see.jsp">每日必看</a></li>
+					<li><a href="${pageContext.request.contextPath}/index">首页</a></li>
+					<li><a href="${pageContext.request.contextPath}/Footprint">日常护理</a></li>
+					<li><a href="${pageContext.request.contextPath}/Must_see">每日必看</a></li>
 					<li><a href="${pageContext.request.contextPath}/showCommodityListServlet">产品列表</a></li>
-					<li><a href="${pageContext.request.contextPath}/Buy_Brands.jsp">限时团购</a></li>
-					<li><a href="${pageContext.request.contextPath}/diy.jsp">礼品DIY</a></li>
-					<li><a href="${pageContext.request.contextPath}/Group_buy.jsp">品牌团购</a></li>
+					<li><a href="${pageContext.request.contextPath}/Buy_Brands">限时团购</a></li>
+					<li><a href="${pageContext.request.contextPath}/diy">礼品DIY</a></li>
+					<li><a href="${pageContext.request.contextPath}/Group_buy">品牌团购</a></li>
 					<li><a href="#">联系我们</a></li>
-					<li><a href="${pageContext.request.contextPath}/index.jsp">简洁版</a></li>
+					<li><a href="${pageContext.request.contextPath}/index">简洁版</a></li>
 				</ul>
 			</div>
 			<script>$("#Navigation").slide({titCell:".Navigation_name li"});</script>
@@ -262,11 +263,12 @@
 				<div class="user_title">用户中心</div>
 				<div class="user_Head">
 					<div class="user_portrait">
-						<a href="#" title="修改头像" class="btn_link"></a> <img src="${pageContext.request.contextPath}/images/people.png">
+						<a href="#" title="修改头像" class="btn_link"></a> <img src="${user.headPortrait}">
 						<div class="background_img"></div>
 					</div>
 					<div class="user_name">
-						<p><span class="name">${page.username}</span><a href="${pageContext.request.contextPath}/User_changePassword.jsp">[修改密码]</a></p>
+						<p><span class="name">${user.username}</span><a href="${pageContext.request.contextPath}/User_changePassword">[修改密码]</a></p>
+
 						<p id="date">访问时间：</p>
 					</div>
 				</div>
@@ -275,8 +277,8 @@
 					<dt class="transaction_manage"><em class="icon_1"></em>订单中心</dt>
 					<dd>
 						<ul>
-							<li> <a href="User_Collect?act=address_list"> 我的订单</a></li>
-							<li> <a href="addAddress?act=address_list">收货地址</a></li>
+							<li> <a href="${pageContext.request.contextPath}/orderInformation/orderList"> 我的订单</a></li>
+							<li> <a href="${pageContext.request.contextPath}/shippingAddress/addressList">收货地址</a></li>
 							<li> <a href="user.php?act=booking_list"> 缺货登记</a></li>
 						</ul>
 					</dd>
@@ -401,7 +403,7 @@
 			<li><a href="${pageContext.request.contextPath}/index">首页</a></li>
 			<li><a href="${pageContext.request.contextPath}/Footprint">日常护理</a></li>
 			<li><a href="${pageContext.request.contextPath}/Must_see">每日必看</a></li>
-			<li><a href="${pageContext.request.contextPath}/showCommodityListServlet">产品列表</a></li>
+			<li><a href="${pageContext.request.contextPath}/commodity/toPage">产品列表</a></li>
 			<li><a href="${pageContext.request.contextPath}/Buy_Brands">限时团购</a></li>
 			<li><a href="${pageContext.request.contextPath}/diy">礼品DIY</a></li>
 			<li><a href="${pageContext.request.contextPath}/Group_buy">品牌团购</a></li>
@@ -495,7 +497,7 @@
 				class="fixeBoxSpan iconfont icon-yonghu"></span> <strong>用户</strong></a>
 		</li>
 		<li class="fixeBoxLi cart_bd" style="display:block;" id="cartboxs">
-			<a href="${pageContext.request.contextPath}/shoppingTrolleyList"><p class="good_cart">${commodityCount}</p> <span
+			<a href="${pageContext.request.contextPath}/shoppingTrolley/queryShoppingTrolley"><p class="good_cart">${commodityCount}</p> <span
 					class="fixeBoxSpan iconfont icon-cart"></span> <strong>购物车</strong>
 				<div class="cartBox">
 					<div class="bjfff"></div>
@@ -547,7 +549,7 @@
 				</div>
 			</div></li>
 
-		<li class="fixeBoxLi Home"><a href="./"> <span
+		<li class="fixeBoxLi Home"><a href="${pageContext.request.contextPath}/shoppingCollection/commodityList"> <span
 				class="fixeBoxSpan iconfont  icon-shoucang"></span> <strong>收藏</strong>
 		</a></li>
 		<li class="fixeBoxLi Home"><a href="./"> <span
@@ -563,33 +565,6 @@
 </div>
 </body>
 <script>
-		function writeCurrentDate() {
-			var now = new Date();
-			var year = now.getFullYear(); //得到年份
-			var month = now.getMonth();//得到月份
-			var date = now.getDate();//得到日期
-			var day = now.getDay();//得到周几
-			var hour = now.getHours();//得到小时
-			var minu = now.getMinutes();//得到分钟
-			var sec = now.getSeconds();//得到秒
-			var MS = now.getMilliseconds();//获取毫秒
-			var week;
-			month = month + 1;
-			if (month < 10) month = "0" + month;
-			if (date < 10) date = "0" + date;
-			if (hour < 10) hour = "0" + hour;
-			if (minu < 10) minu = "0" + minu;
-			if (sec < 10) sec = "0" + sec;
-			if (MS < 100)MS = "0" + MS;
-			var arr_week = new Array("星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六");
-			week = arr_week[day];
-			var time = "";
-			time = year + "年" + month + "月" + date + "日" + " " + hour + ":" + minu + ":" + sec + " " + week;
-			//当前日期赋值给当前日期输入框中（jQuery easyUI）
-			$("#date").html(time);
-			//设置得到当前日期的函数的执行间隔时间，每1000毫秒刷新一次。
-			var timer = setTimeout("writeCurrentDate()", 1000);
-		}
 		writeCurrentDate();
 </script>
 </html>
