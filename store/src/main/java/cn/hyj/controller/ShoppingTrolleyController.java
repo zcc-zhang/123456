@@ -157,6 +157,6 @@ public class ShoppingTrolleyController {
         model.addAttribute("describe",describe);
         model.addAttribute("sum",sum);
         model.addAttribute("leave",orderFromleave);
-        return "payment";
+        return "forward:/payment.jsp";
     }
 }

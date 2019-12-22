@@ -14,6 +14,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -36,6 +37,7 @@ import static javax.swing.text.html.CSS.getAttribute;
  */
 @Controller
 @RequestMapping("/orderInformation")
+@SessionAttributes({"user","shoppingTrolleys"})
 public class OrderInformationController {
 
     @Autowired
@@ -121,14 +123,14 @@ public class OrderInformationController {
      * @return
      */
     @RequestMapping("/createOrderForm")
-    public void createOrderForm(HttpServletRequest request, HttpServletResponse response, ModelMap modelMap) throws Exception {
+    public String createOrderForm(HttpServletRequest request, HttpServletResponse response, ModelMap modelMap) throws Exception {
 
         User user=(User)modelMap.getAttribute("user");
+        System.out.println(user);
         if(user==null)
         {
             request.setAttribute("message", "2");
             request.getRequestDispatcher("login.jsp").forward(request, response);
-            return;
         }
         String outTradeNo = request.getParameter("out_trade_no");//// 商户订单号
         String tradeNo = request.getParameter("trade_no");//// 支付宝交易号
@@ -160,15 +162,9 @@ public class OrderInformationController {
                 e.printStackTrace();
             }
             shoppingTrolleyService.EmptyShoppingCart(user.getUserId());
-            try {
-                request.getRequestDispatcher("orderInformationServlet").forward(request, response);
-            } catch (ServletException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
 
+        });
+        return "redirect:/orderInformation/orderList";
     }
 
 
