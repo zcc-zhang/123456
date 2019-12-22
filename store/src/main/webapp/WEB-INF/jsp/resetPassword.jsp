@@ -38,11 +38,13 @@
 		}
 		/***********发送验证码**************/
 		function sendCode() {
+			var email=$(".UDBSdkReg-phoneMask").text();
 			$.ajax({
-				url : "${pageContext.request.contextPath}/user/registerCode", //发送验证码
+				url : "${pageContext.request.contextPath}/user/resetPassword", //发送验证码
 				type : "post",
 				data : {
-					'type' : 'checkCode'
+					'type' : 'sendCode',
+					email:email
 				},
 				success : function(data) {
 					if (data == '1') { //发送成功给用户提示
@@ -82,19 +84,22 @@
 					'email' : email,
 					'type' : 'email'
 				},
-				success : function(data) {
+				success : function (data) {
 					if (data == email) {
 						$('.UDBSdkReg-phoneMask').text(email);
+						$('.UDBSdkReg-nav').removeClass('.findnav-1').addClass('findnav-2'); //改变进度栏
+						$(".UDBSdkReg-item").parent().hide(); //隐藏当前验证邮箱的进度
+						$('.focusout').show();
+
 					} else {
 						$.sendWarningToTop('邮箱不存在', 3000, function() {
 							console.log('sendWarningToTop closed');
 						});
-						return false;
 					}
 				}
 			});
-			return true;
 		}
+
 		/*******发送修改密码请求*******/
 		function resetPass() {
 			var password = $('input[name=passwd]').val();
@@ -102,7 +107,7 @@
 				url : "${pageContext.request.contextPath}/user/resetPassword",
 				type : "post",
 				data : {
-					'password' : password,'type':'password'
+					'password' : password,'type':'password','email':$('input[name=acct]').val()
 				},
 				success : function(data) {
 					if (data == '1') {
@@ -122,7 +127,7 @@
 				type : "post",
 				data : {
 					'code' : code,
-					'type' : "code"
+					'type' : "checkCode"
 				},
 				success : function(data) {
 					if (data == '0') {
@@ -140,11 +145,6 @@
 		$('.UDBSdkReg-button').click(function() { //点击下一步
 			var type = $(this).attr('step'); //获取属性
 			if (type == 1) { //为1则验证邮箱
-				if (checkEmail()) {
-					$('.UDBSdkReg-nav').removeClass('.findnav-1').addClass('findnav-2'); //改变进度栏
-					$(this).parent().hide(); //隐藏当前验证邮箱的进度
-					$('.focusout').show();
-				}
 			} else if (type == 2) {
 				$('.UDBSdkReg-button').removeClass('.UDBSdkReg-button');
 			}

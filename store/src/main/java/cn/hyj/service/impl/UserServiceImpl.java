@@ -26,7 +26,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void userRegister(User user) {
-        userMapper.insert(user);
+        userMapper.insertSelective(user);
     }
 
     @Override
@@ -41,7 +41,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Boolean queryUserByEmail(String email) {
-        return userMapper.queryUserByEmail(email);
+        Integer count= userMapper.queryUserByEmail(email);
+        return count >0 ;
     }
 
     @Override
@@ -51,6 +52,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void resettingUserPasswordByEmail(String email, String password) {
-
+        userMapper.resettingUserPasswordByEmail(email,password);
     }
 }

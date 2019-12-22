@@ -29,7 +29,7 @@ import java.util.UUID;
 
 @RequestMapping("/user/")
 @Controller
-@SessionAttributes(value = {"user","code","shoppingTrolleys"})
+@SessionAttributes(value = {"user","code","shoppingTrolleys","sendCode"})
 public class UserController {
 
     @Autowired
@@ -96,33 +96,42 @@ public class UserController {
 
 
     @RequestMapping("/resetPassword")
-    public String resetPassword(String password,String email,String code,ModelMap modelMap){
-        Integer activationCode = (int) ((Math.random() * 9 + 1) * 1000);//激活码
-
-        Boolean flag =userService.queryUserByEmail(email);
-        System.out.println("flag==="+flag);
-        try{
-            //判断邮箱是否存在
-            if (flag == true) {
-                //判断验证码是否正确
-                try {
-                    mailUtils.sendActiveMail(email, activationCode.toString(), "resetPassword");//发送邮件
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    throw new MailException("发送邮箱失败！");
-                }
-                return "email";
+    @ResponseBody
+    public String resetPassword(String password,String email,String code,String type,ModelMap modelMap,Model model) throws Exception{
+        if("email".equals(type)){
+            Boolean flag =userService.queryUserByEmail(email);
+            if(flag){
+                return email;
+            }else {
+                return "1";
             }
-
-            if (code.equals(activationCode.toString())) {
-                //密码修改
+        }else if("sendCode".equals(type)){
+            Integer activationCode = (int) ((Math.random() * 9 + 1) * 1000);//激活码
+            try {
+                mailUtils.sendActiveMail(email,activationCode.toString(),"resetPassword");
+                model.addAttribute("sendCode",activationCode);
+                return "1";
+            } catch (Exception e) {
+                e.printStackTrace();
+                throw new MailException("发送邮箱失败!");
+            }
+        }else if("checkCode".equals(type)){
+            System.out.println("kjjkakj");
+            Integer checkCode=(Integer) model.getAttribute("sendCode");//发送过去的验证码
+            if (!checkCode.equals(Integer.parseInt(code))){
+                return "1";
+            }
+        }else if("password".equals(type)){
+            try {
+                System.out.println("jjjkjkk");
                 userService.resettingUserPasswordByEmail(email,password);
+                return "1";
+            } catch (Exception e) {
+                e.printStackTrace();
+                throw new RuntimeException(e);
             }
-        }catch (Exception e){
-            e.printStackTrace();
-            return "1";
         }
-        return "login";
+        return "";
     }
 
     /**
