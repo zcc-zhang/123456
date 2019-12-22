@@ -203,7 +203,7 @@
         <h2 id="tab4" name="tab">退 款 查 询</h2>
         <h2 id="tab5" name="tab">交 易 关 闭</h2> -->
 	</div>
-	<form name=${pageContext.request.contextPath}/alipayment action=${pageContext.request.contextPath}/alipay.trade.page.pay.jsp method=post
+	<form name=alipayment action=${pageContext.request.contextPath}/alipay.trade.page.pay.jsp method=post
 		  target="_blank">
 		<div id="body1" class="show" name="divcontent">
 			<dl class="content">

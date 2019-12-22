@@ -42,17 +42,23 @@
 
 	//——请在这里编写您的程序（以下代码仅作参考）——
 	if(signVerified) {
-		//商户订单号
-		String out_trade_no = new String(request.getParameter("out_trade_no").getBytes("ISO-8859-1"),"UTF-8");
-		request.setAttribute("out_trade_no", out_trade_no);
-		//支付宝交易号
-		String trade_no = new String(request.getParameter("trade_no").getBytes("ISO-8859-1"),"UTF-8");
-		request.setAttribute("trade_no", trade_no);
-		//付款金额
-		String total_amount = new String(request.getParameter("total_amount").getBytes("ISO-8859-1"),"UTF-8");
-		request.setAttribute("total_amount", total_amount);
-		request.getRequestDispatcher("/orderInformation/createOrderForm").forward(request, response);
-		out.println("trade_no:"+trade_no+"<br/>out_trade_no:"+out_trade_no+"<br/>total_amount:"+total_amount);
+		try {
+			//商户订单号
+			String out_trade_no = new String(request.getParameter("out_trade_no").getBytes("ISO-8859-1"),"UTF-8");
+			request.setAttribute("out_trade_no", out_trade_no);
+			//支付宝交易号
+			String trade_no = new String(request.getParameter("trade_no").getBytes("ISO-8859-1"),"UTF-8");
+			request.setAttribute("trade_no", trade_no);
+			//付款金额
+			String total_amount = new String(request.getParameter("total_amount").getBytes("ISO-8859-1"),"UTF-8");
+			request.setAttribute("total_amount", total_amount);
+			request.getRequestDispatcher("/orderInformation/createOrderForm").forward(request, response);
+			out.println("trade_no:"+trade_no+"<br/>out_trade_no:"+out_trade_no+"<br/>total_amount:"+total_amount);
+		} catch (Exception e) {
+			e.printStackTrace();
+			request.getRequestDispatcher("/WEB-INF/jsp/User_Orderform.jsp").forward(request,response);
+		}
+
 	}else {
 		out.println("验签失败");
 	}

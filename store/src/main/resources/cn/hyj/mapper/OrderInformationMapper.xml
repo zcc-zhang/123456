@@ -95,6 +95,9 @@
             <if test="status != null">
                 STATUS,
             </if>
+            <if test="commodityImg!=null">
+                commodity_img
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="orderFormId != null">
@@ -138,6 +141,9 @@
             </if>
             <if test="status != null">
                 #{status,jdbcType=INTEGER},
+            </if>
+            <if test="commodityImg != null">
+                #{commodityImg}
             </if>
         </trim>
     </insert>
