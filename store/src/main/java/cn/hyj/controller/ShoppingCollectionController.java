@@ -3,11 +3,13 @@ package cn.hyj.controller;
 import cn.hyj.entity.ShoppingCollection;
 import cn.hyj.entity.User;
 import cn.hyj.service.GoodsCollectionService;
+import cn.hyj.utils.SplitString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import java.util.List;
@@ -27,7 +29,6 @@ public class ShoppingCollectionController {
     @RequestMapping("/collectionCommodity")
     public String collectionCommodity(Integer commodityId){
 
-
         return "";
     }
 
@@ -40,8 +41,12 @@ public class ShoppingCollectionController {
     public String commodityList(ModelMap modelMap){
 
         User user = (User) modelMap.getAttribute("user");//取出session中数据
-        System.out.println(user);
         List<ShoppingCollection> collectionList = goodsCollectionService.QueryByIdCommodity(user.getUserId());
+        //图片路径分割
+        collectionList.forEach(shoppingCollection ->{
+            List<String> img = SplitString.splitStringToList(shoppingCollection.getCommodity().getCommodityImg());
+            shoppingCollection.getCommodity().setCommodityImg(img.get(0));
+        });
         modelMap.addAttribute("collectionList",collectionList);
 
         return "User_Collect";
@@ -52,8 +57,15 @@ public class ShoppingCollectionController {
      * @param id
      * @return
      */
-    @RequestMapping("/delectByID")
-    public String delectByID(Integer id){
-        return "";
+    @RequestMapping("/deleteByID")
+    public String deleteByID(Integer id){
+
+        try{
+            goodsCollectionService.deleteByPrimaryKey(id);
+            return "User_Collect";
+        }catch (Exception e){
+            e.printStackTrace();
+            return "0";
+        }
     }
 }

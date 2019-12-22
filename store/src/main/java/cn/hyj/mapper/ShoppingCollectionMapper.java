@@ -14,6 +14,7 @@ public interface ShoppingCollectionMapper {
     List<ShoppingCollection> QueryByIdCommodity(Integer userId);
 
     int insert(ShoppingCollection record);
+
     ShoppingCollection selectByPrimaryKey(Integer shoppingCollectionId);
 
     int updateByPrimaryKeySelective(ShoppingCollection record);

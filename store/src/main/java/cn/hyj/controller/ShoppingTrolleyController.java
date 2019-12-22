@@ -79,7 +79,6 @@ public class ShoppingTrolleyController {
             ShoppingTrolley shoppingTrolley = new ShoppingTrolley();
             shoppingTrolley.setCommodityId(commodityID);
             shoppingTrolley.setUserId(user.getUserId());
-
             shoppingTrolleyService.insert(shoppingTrolley);
             return "1";
         } catch (Exception e) {

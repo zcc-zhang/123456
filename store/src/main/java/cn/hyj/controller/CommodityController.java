@@ -17,7 +17,7 @@ import java.util.Map;
 /**
  * 商品controller
  */
-@RequestMapping("/commodity/")
+@RequestMapping("/commodity")
 @Controller
 public class CommodityController {
 

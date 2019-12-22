@@ -13,6 +13,7 @@
 	<script src="${pageContext.request.contextPath}/js/common_js.js" type="text/javascript"></script>
 	<script src="${pageContext.request.contextPath}/js/footer.js" type="text/javascript"></script>
 	<script src="${pageContext.request.contextPath}/js/lrtk.js" type="text/javascript"></script>
+    <script src="${pageContext.request.contextPath}/js/date.js" type="text/javascript"></script>
 	<script>
 		$(function() {
 			var collectionListCode = "${param.collectionListCode}"; //获取点击页码
@@ -32,11 +33,9 @@
 				var id = $(this).children("input[name=id]").val();
 				$.ajax(
 						{
-							url : "${pageContext.request.contextPath}/delCollCommodityServlet",
+							url : "${pageContext.request.contextPath}/shoppingCollection/deleteByID",
 							type : "post",
-							data : {
-								'id' : id
-							},
+							data : {"id" : id},
 							success : callBack
 						});
 				function callBack(data) {
@@ -48,7 +47,6 @@
 						});
 						return;
 					}
-
 				}
 			});
 		});
@@ -60,7 +58,7 @@
 <!--顶部图层-->
 <div id="header_top">
 	<div id="top">
-		<div class="Inside_collectionLists">
+		<div class="Inside_pages">
 			<div class="Collection">
 				下午好，欢迎光临锦宏颜！<em></em><a href="#">收藏我们</a>
 			</div>
@@ -396,14 +394,14 @@
 					<div class="user_Head">
 						<div class="user_portrait">
 							<a href="#" title="修改头像" class="btn_link"></a> <img
-								src="${pageContext.request.contextPath}/images/people.png">
+								src="${user.headPortrait}">
 								<div class="background_img"></div>
 						</div>
 						<div class="user_name">
 							<p>
-								<span class="name">化海天堂</span><a href="#">[修改密码]</a>
+								<span class="name">${user.username}</span><a href="#">[修改密码]</a>
 							</p>
-							<p>访问时间：${dateDay}</p>
+							<p id="date">访问时间：</p>
 						</div>
 					</div>
 					<!--菜单列表图层-->
@@ -413,8 +411,8 @@
 						</dt>
 						<dd>
 							<ul>
-								<li><a href="${pageContext.request.contextPath}/orderInformation/orderList?status=1"> 我的订单</a></li>
-								<li><a href="User_address.html">收货地址</a></li>
+								<li><a href="${pageContext.request.contextPath}/orderInformation/orderList">我的订单</a></li>
+								<li><a href="${pageContext.request.contextPath}/shoppingCollection/commodityList">收货地址</a></li>
 								<li><a href="user.php?act=booking_list"> 缺货登记</a></li>
 							</ul>
 						</dd>
@@ -469,7 +467,7 @@
 					</dt>
 					<dd>
 						<ul>
-							<li><a href="${pageContext.request.contextPath}/orderInformation/orderList?status=1"> 我的订单</a></li>
+							<li><a href="${pageContext.request.contextPath}/orderInformation/orderList"> 我的订单</a></li>
 							<li><a href="User_address.html">收货地址</a></li>
 							<li><a href="user.php?act=booking_list"> 缺货登记</a></li>
 						</ul>
@@ -526,26 +524,29 @@
 			<div class="r_user_style">
 				<div class="collect">
 					<div class="Quantity">
-						<i class="iconfont icon-favor"></i>收藏量：12条 | 最多收藏100条
+						<i class="iconfont icon-favor"></i>收藏量：${collectionList.stream().count()} &nbsp;| 最多收藏100条
 					</div>
 				</div>
 				<div class="collect_list">
 					<ul>
 						<c:forEach items="${collectionList}" var="collectionList">
 							<li class="collect_p">
+								<em class="iconfont icon-close2 delete">
+									<input type="hidden" value='${collectionList.shoppingCollectionId}' name="id"/>
+								</em>
 								<div class="collect_info">
 									<div class="img_link">
 										<a href="#" class="center "><img
-												src="" /></a>
+												src="${collectionList.commodity.commodityImg}" /></a>
 									</div>
 									<dl class="xinxi">
 										<dt>
-											<a href="#" class="name"></a>
+											<a href="#" class="name">${collectionList.commodity.productName}</a>
 										</dt>
 										<dd>
-											<span class="Price"><b>￥</b></span><span
+											<span class="Price"><b>￥</b></span>${collectionList.commodity.commodityPrice}<span
 												class="collect_Amount"><I
-												class="iconfont icon-shoucang"></I></span>
+												class="iconfont icon-shoucang"></I>${collectionList.commodity.collectNumber}</span>
 										</dd>
 									</dl>
 								</div></li>
@@ -554,33 +555,6 @@
 				</div>
 				<div class="Paging">
 					<div class="Pagination">
-<%--						<c:if test="${collectionList.currentcollectionList >1}">--%>
-<%--							<a--%>
-<%--									href="${pageContext.request.contextPath}/showCollectCommodityList?currentcollectionList=1">首页</a>--%>
-<%--							<a--%>
-<%--									href="${pageContext.request.contextPath}/showCollectCommodityList--%>
-<%--									?currentcollectionList=${collectionList.currentcollectionList-1}"--%>
-<%--									class="pn-prev disabled">上一页</a>--%>
-<%--						</c:if>--%>
-<%--						<c:forEach begin="${collectionList.collectionListStartNo}" end="${collectionList.collectionListEndNo }"--%>
-<%--								   var='collectionListCode'>--%>
-<%--							<c:if test="${collectionList.collectionListStartNo != collectionListCode}">--%>
-<%--								<a--%>
-<%--										href="${pageContext.request.contextPath}/showCollectCommodityList--%>
-<%--									?currentcollectionList=${collectionListCode}">${collectionListCode}</a>--%>
-<%--							</c:if>--%>
-
-<%--						</c:forEach>--%>
-
-<%--						<c:if--%>
-<%--								test="${collectionList.currentcollectionList != collectionList.totalcollectionList && collectionList.totalcollectionList>0}">--%>
-<%--							<a--%>
-<%--									href="${pageContext.request.contextPath}/showCollectCommodityList--%>
-<%--									?currentcollectionList=${collectionList.currentcollectionList+1}"">下一页</a>--%>
-<%--							<a--%>
-<%--									href="${pageContext.request.contextPath}/showCollectCommodityList--%>
-<%--									?currentcollectionList=${collectionList.collectionListEndNo}">尾页</a>--%>
-<%--						</c:if>--%>
 					</div>
 				</div>
 			</div>
@@ -712,7 +686,7 @@
 				class="fixeBoxSpan iconfont icon-yonghu"></span> <strong>用户</strong></a>
 		</li>
 		<li class="fixeBoxLi cart_bd" style="display:block;" id="cartboxs">
-			<a href="${pageContext.request.contextPath}/shoppingTrolleyList"><p class="good_cart">${commodityCount}</p> <span
+			<a href="${pageContext.request.contextPath}/shoppingTrolley/queryShoppingTrolley"><p class="good_cart">${commodityCount}</p> <span
 					class="fixeBoxSpan iconfont icon-cart"></span> <strong>购物车</strong>
 				<div class="cartBox">
 					<div class="bjfff"></div>
@@ -738,7 +712,7 @@
 				</dl>
 				<dl onclick="javascript:;">
 					<dt>
-						<img src="${pageContext.request.contextPath}/images/Service1.png">
+						<img src="${pageContext.request.contextPath}/images/微信二维码.jpg">
 					</dt>
 					<dd>
 						<strong>QQ客服1</strong>
@@ -757,14 +731,14 @@
 				<div class="bjfff"></div>
 				<div class="QR_code">
 					<p>
-						<img src="${pageContext.request.contextPath}/images/erweim.jpg" width="150px" height="150px"
+						<img src="${pageContext.request.contextPath}/images/微信二维码.jpg" width="150px" height="150px"
 							 style=" margin-top:10px;" />
 					</p>
 					<p>微信扫一扫，关注我们</p>
 				</div>
 			</div></li>
 
-		<li class="fixeBoxLi Home"><a href="./"> <span
+		<li class="fixeBoxLi Home"><a href="${pageContext.request.contextPath}/shoppingCollection/commodityList"> <span
 				class="fixeBoxSpan iconfont  icon-shoucang"></span> <strong>收藏</strong>
 		</a></li>
 		<li class="fixeBoxLi Home"><a href="./"> <span
@@ -779,5 +753,8 @@
 	</ul>
 </div>
 </body>
+<script>
+	writeCurrentDate();
+</script>
 </html>
 

@@ -36,10 +36,10 @@ public class OrderInformationController {
     public String orderList(Model model, @SessionAttribute("user") User user,@RequestParam(defaultValue = "1") Integer status){
 
         List<OrderInformation>  orderInformationList = orderInformationService.queryByIdStatus(user.getUserId());
-        Integer daiPrice = 0;   //1.待付款
-        Integer daiShouH=0; //2.待收货
-        Integer daiFaH=0;   //3.派件中
-        Integer accomplish=0;  //5.已完成
+        int daiPrice = 0;   //1.待付款
+        int daiShouH=0; //2.待收货
+        int daiFaH=0;   //3.派件中
+        int accomplish=0;  //5.已完成
 
         if (orderInformationList != null){//判断集合是否为空
             //图片路径分割
