@@ -21,4 +21,6 @@ public interface ShoppingTrolleyService {
     int updateByPrimaryKey(ShoppingTrolley record);
 
     void deleteByPrimaryKey(Integer shoppingTrolleyId);
+
+    void EmptyShoppingCart(Integer userID);
 }

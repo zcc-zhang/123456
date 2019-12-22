@@ -10,7 +10,8 @@
         http://www.springframework.org/schema/tx
         https://www.springframework.org/schema/tx/spring-tx.xsd
         http://www.springframework.org/schema/aop
-        http://www.springframework.org/schema/aop/spring-aop.xsd">
+        http://www.springframework.org/schema/aop/spring-aop.xsd"
+>
 
 
     <context:property-placeholder location="classpath:db.properties" system-properties-mode="NEVER"/>

@@ -71,7 +71,7 @@
                             href="#" class="hd_menu "><em class="iconfont icon-shouji"></em>手机版</a>
                         <div class="hd_menu_list erweima">
                             <ul>
-                                <img src="images/erweima.png" width="100px" height="100"/>
+                                <img src="${pageContext.request.contextPath}/images/erweima.png" width="100px" height="100"/>
                             </ul>
                         </div>
                     </li>
@@ -82,7 +82,7 @@
     <!--样式-->
     <!--顶部样式2-->
     <div id="header " class="header page_style">
-        <div class="logo"><a href="index.html"><img src="images/logo.png"/></a></div>
+        <div class="logo"><a href="index.html"><img src="${pageContext.request.contextPath}/images/logo.png"/></a></div>
         <!--结束图层-->
         <div class="Search">
             <p><input name="" type="text" class="text"/><input name="" type="submit" value="搜 索" class="Search_btn"/>
@@ -99,7 +99,7 @@
                 <!--<div class="prompt"></div><div class="nogoods"><b></b>购物车中还没有商品，赶紧选购吧！</div>-->
                 <ul class="p_s_list">
                     <li>
-                        <div class="img"><img src="images/tianma.png"></div>
+                        <div class="img"><img src="${pageContext.request.contextPath}/images/tianma.png"></div>
                         <div class="content"><p><a href="#">产品名称</a></p>
                             <p>颜色分类:紫花8255尺码:XL</p></div>
                         <div class="Operations">
@@ -286,7 +286,8 @@
                     <div class="biankuan">
                         <div class="img_link center"><a href="#"><img src="${list.commodityImg}"/></a></div>
                         <div class="name"><a
-                                href="${pageContext.request.contextPath}/productDetailedServlet?commodityId=${list.commodityID}"">${list.productName }</a>
+                                href="${pageContext.request.contextPath}/productDetailedServlet?commodityId=${list.commodityId}">
+                                ${list.productName}</a>
                         </div>
                         <div class="Price"><b>￥</b>${list.commodityPrice}</div>
                     </div>
@@ -408,21 +409,21 @@
     <div class="index_style">
         <ul class="wrap">
             <li>
-                <a href="#"><img src="images/slogen_34.png" data-bd-imgshare-binded="1"></a>
+                <a href="#"><img src="${pageContext.request.contextPath}/images/slogen_34.png" data-bd-imgshare-binded="1"></a>
                 <b>安全保证</b>
                 <span>多重保障机制 认证商城</span>
             </li>
-            <li><a href="#"><img src="images/slogen_28.png" data-bd-imgshare-binded="2"></a>
+            <li><a href="#"><img src="${pageContext.request.contextPath}/images/slogen_28.png" data-bd-imgshare-binded="2"></a>
                 <b>正品保证</b>
                 <span>正品行货 放心选购</span>
             </li>
             <li>
-                <a href="#"><img src="images/slogen_30.png" data-bd-imgshare-binded="3"></a>
+                <a href="#"><img src="${pageContext.request.contextPath}/images/slogen_30.png" data-bd-imgshare-binded="3"></a>
                 <b>七天无理由退换</b>
                 <span>七天无理由保障消费权益</span>
             </li>
             <li>
-                <a href="#"><img src="images/slogen_31.png" data-bd-imgshare-binded="4"></a>
+                <a href="#"><img src="${pageContext.request.contextPath}/images/slogen_31.png" data-bd-imgshare-binded="4"></a>
                 <b>天天低价</b>
                 <span>价格更低，质量更可靠</span>
             </li>
@@ -505,7 +506,7 @@
                 <div class="bjfffs"></div>
                 <dl onclick="javascript:;">
                     <dt>
-                        <img src="images/Service1.png">
+                        <img src="${pageContext.request.contextPath}/images/Service1.png">
                     </dt>
                     <dd>
                         <strong>QQ客服1</strong>
@@ -518,7 +519,7 @@
                 </dl>
                 <dl onclick="javascript:;">
                     <dt>
-                        <img src="images/Service1.png">
+                        <img src="${pageContext.request.contextPath}/images/Service1.png">
                     </dt>
                     <dd>
                         <strong>QQ客服1</strong>
@@ -538,7 +539,7 @@
                 <div class="bjfff"></div>
                 <div class="QR_code">
                     <p>
-                        <img src="images/erweim.jpg" width="150px" height="150px"
+                        <img src="${pageContext.request.contextPath}/images/erweim.jpg" width="150px" height="150px"
                              style=" margin-top:10px;"/>
                     </p>
                     <p>微信扫一扫，关注我们</p>

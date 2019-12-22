@@ -629,7 +629,9 @@
 </div>
 <script>
 	$(function() {
-		$('#skip').click(function(){window.location.href="${pageContext.request.contextPath}/skipConfirmAnOrderServlet?type=cart"});
+		$('#skip').on('click',function(){
+			window.location.href="${pageContext.request.contextPath}/shoppingTrolley/emptyCart"
+		});
 		$('.del').bind('click',function()
 		{
 			var id=$(this).prev().val();

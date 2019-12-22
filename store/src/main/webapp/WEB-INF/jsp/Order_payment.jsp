@@ -438,7 +438,7 @@
  </div>-->
 				</div>
 				<form class="form" method="post"
-					  action="${pageContext.request.contextPath}/paymentOrderFromServlet">
+					  action="${pageContext.request.contextPath}/shoppingTrolley/paymentOrderFrom">
 					<fieldset>
 						<!--快递选择-->
 						<div class="express_delivery" style="width: 1160px;height: 167px">
@@ -609,11 +609,11 @@
 								<c:forEach items="${trolleyList}" var="trolleyList">
 									<tr class="commodity">
 										<td class="Product_info"><a href="#"><img
-												src="${ trolleyList.commdityImg}" width="100px"
-												height="100px" /></a> <a href="#" class="product_name">${trolleyList.productName }</a>
+												src="${ trolleyList.commodity.commodityImg}" width="100px"
+												height="100px" /></a> <a href="#" class="product_name">${trolleyList.commodity.productName }</a>
 										</td>
-										<td><i>￥</i>${trolleyList.commodityPrice }</td>
-										<td><i>￥</i>${trolleyList.commodityPrice }</td>
+										<td><i>￥</i>${trolleyList.commodity.commodityPrice }</td>
+										<td><i>￥</i>${trolleyList.commodity.commodityPrice }</td>
 										<td>${trolleyList.count }</td>
 										<td class="Moneys"><i>￥</i><i>${trolleyList.sum}</i></td>
 									</tr>

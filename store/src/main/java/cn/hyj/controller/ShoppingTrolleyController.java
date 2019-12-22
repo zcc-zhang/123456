@@ -1,7 +1,9 @@
 package cn.hyj.controller;
 
+import cn.hyj.entity.ShippingAddress;
 import cn.hyj.entity.ShoppingTrolley;
 import cn.hyj.entity.User;
+import cn.hyj.service.ShippingAddressService;
 import cn.hyj.service.ShoppingTrolleyService;
 import cn.hyj.utils.SplitString;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,15 +15,20 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @RequestMapping("/shoppingTrolley")
 @Controller
-@SessionAttributes(value = {"shoppingTrolleys","commodityID","count","change"})
+@SessionAttributes(value = {"shoppingTrolleys","commodityID","count","change","user"})
 public class ShoppingTrolleyController {
 
     @Autowired
     private ShoppingTrolleyService shoppingTrolleyService;
+
+    @Autowired
+    private ShippingAddressService shippingAddressService;
 
     @RequestMapping("/queryShoppingTrolley")
     public String queryShoppingTrolley(Integer commodityID, Integer count, String change, @SessionAttribute("user") User user, Model model, ModelMap modelMap, Integer id) {
@@ -124,5 +131,32 @@ public class ShoppingTrolleyController {
             e.printStackTrace();
             return "0";
         }
+    }
+
+    /**
+     * 清空购物车
+     * @param modelMap
+     * @return
+     */
+    @RequestMapping("/emptyCart")
+    public String emptyCart(ModelMap modelMap){
+        User user=(User)modelMap.getAttribute("user");
+        List<ShippingAddress> shippingAddresses = shippingAddressService.queryByUserID(user.getUserId());
+        List<ShoppingTrolley> shoppingTrolleys=(List<ShoppingTrolley>) modelMap.getAttribute("shoppingTrolleys");
+        shoppingTrolleys.forEach(shoppingTrolley -> shoppingTrolley.setSum());
+        modelMap.addAttribute("trolleyList",shoppingTrolleys);
+        modelMap.addAttribute("addressList",shippingAddresses);
+        return "Order_payment";
+    }
+
+    @RequestMapping("/paymentOrderFrom")
+    public String paymentOrderFrom(Integer sum,String orderFromleave,Model model){
+
+        SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd ");
+        String describe=dateFormat.format(new Date())+"购物车结算";//商品描述
+        model.addAttribute("describe",describe);
+        model.addAttribute("sum",sum);
+        model.addAttribute("leave",orderFromleave);
+        return "payment";
     }
 }

@@ -55,4 +55,9 @@ public class ShoppingTrolleyServiceImpl implements ShoppingTrolleyService {
          shoppingTrolleyMapper.deleteByCommodityId(commodityId);
     }
 
+    @Override
+    public void EmptyShoppingCart(Integer userID) {
+        shoppingTrolleyMapper.deleteByUserId(userID);
+    }
+
 }

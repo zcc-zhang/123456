@@ -136,4 +136,8 @@
     from t_shopping_trolley ,t_commodity
     where t_shopping_trolley.commodity_Id = t_commodity.commodity_ID and t_shopping_trolley.user_Id=#{userId};
   </select>
+
+  <delete id="deleteByUserId">
+    delete from t_shopping_trolley where user_Id=#{userID}
+  </delete>
 </mapper>
