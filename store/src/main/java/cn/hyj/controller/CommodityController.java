@@ -38,9 +38,10 @@ public class CommodityController {
     @RequestMapping("/toPage")
     public String commodityList(Map<String, Object> map
             , @RequestParam(defaultValue = "1", value = "currentPage") Integer pageCode
-            , String commodityAttribute, String commodityPrice,HttpServletRequest request) {
+            , String commodityAttribute,Integer min,Integer max,HttpServletRequest request) {
+
         PageHelper.startPage(pageCode, 16);//设置分页 每页16条数据
-        List<Commodity> commodities = commodityService.queryAll(commodityPrice,commodityAttribute);//全部数据
+        List<Commodity> commodities = commodityService.queryAll(commodityAttribute,max,min);//全部数据
         commodities.forEach(commodity -> {
             List<String> strings = SplitString.splitStringToList(commodity.getCommodityImg());//根据,号分割字符串
             commodity.setCommodityImg(strings.get(0));//取出第一张图片
@@ -58,6 +59,7 @@ public class CommodityController {
         map.put("pageCode", pageCode);//当前页
         map.put("total", totalPage);//总页数
         map.put("CommodityList", commodities);//商品集合
+        map.put("list",this.salesRanking());
         return "product_list";
     }
 
@@ -76,7 +78,6 @@ public class CommodityController {
         }else{
             buffer.append(commodityId.toString());
         }
-        System.out.println("buffer--->"+buffer);
         response.addCookie(new Cookie("commodityId",buffer.toString()));
         Commodity commodity = commodityService.queryByPrimaryKey(commodityId);//商品
         List<String> commodityImg = SplitString.splitStringToList(commodity.getCommodityImg());
@@ -100,6 +101,16 @@ public class CommodityController {
         List<Commodity> list=new ArrayList<Commodity>(set);
         request.setAttribute("history", list);
         return "Footprint";
+    }
+
+    /**
+     * 浏览历史
+     * @return
+     */
+    public List<Commodity> salesRanking(){
+         List<Commodity> list=commodityService.queryByCommodityEvaluation();
+         list.forEach(commodity -> commodity.setCommodityImg(SplitString.splitString(commodity.getCommodityImg())[0]));
+         return  list;
     }
 
 }

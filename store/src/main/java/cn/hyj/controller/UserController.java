@@ -175,7 +175,6 @@ public class UserController {
         String fileName=fileField.getName();//获得名字
         // 获得原始名称
         String originalFilename = fileField.getOriginalFilename();
-        System.out.println(originalFilename);
         fileField.transferTo(new File(file,originalFilename));//保存
     }
 

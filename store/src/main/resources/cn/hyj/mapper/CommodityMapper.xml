@@ -28,6 +28,13 @@
     <sql id="Blob_Column_List">
     commodity_img
   </sql>
+    <!--销量排行-->
+    <select id="selectByCommodityEvaluation" resultMap="ResultMapWithBLOBs">
+        select <include refid="Base_Column_List"/> ,<include refid="Blob_Column_List"/>
+        from t_commodity
+        order by commodity_evaluation desc
+        limit 0,10
+    </select>
     <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer">
         select
         <include refid="Base_Column_List"/>
@@ -235,19 +242,23 @@
     where commodity_ID = #{commodityId,jdbcType=INTEGER}
   </update>
     <select id="selectAll" resultMap="ResultMapWithBLOBs">
+
         select
         <include refid="Base_Column_List"/>
         ,
         <include refid="Blob_Column_List"/>
         from t_commodity
         <trim prefix="where" suffixOverrides="and">
-            <if test="commodityPrice!=null and commodityPrice!='' ">
-                commodity_price between #{commodityPrice} and
+            <if test="min!=null  and max !=null  ">
+                commodity_price between #{min} and  #{max}
             </if>
             <if test="commodityAttribute != null and commodityAttribute!=''">
-               commodity_attribute=#{commodityAttribute}
+              and commodity_attribute=#{commodityAttribute}
             </if>
-
+            <if test="max != null and min == null">
+        <![CDATA[
+                commodity_price >= 1000 ]]>
+            </if>
         </trim>
 
     </select>

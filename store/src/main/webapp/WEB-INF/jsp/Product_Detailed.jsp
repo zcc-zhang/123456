@@ -7,11 +7,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/${pageContext.request.contextPath}/css/demo.css">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/src/${pageContext.request.contextPath}/css/dialog.css">
-	<link href="${pageContext.request.contextPath}/${pageContext.request.contextPath}/css/common.css"
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/demo.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/src/css/dialog.css">
+	<link href="${pageContext.request.contextPath}/css/common.css"
 		  rel="stylesheet" type="text/css" />
-	<link href="${pageContext.request.contextPath}/${pageContext.request.contextPath}/css/style.css"
+	<link href="${pageContext.request.contextPath}/css/style.css"
 		  rel="stylesheet" type="text/css" />
 	<link href="${pageContext.request.contextPath}/fonts/iconfont.css"
 		  rel="stylesheet" type="text/css" />

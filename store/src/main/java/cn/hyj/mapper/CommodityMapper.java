@@ -7,6 +7,12 @@ import java.util.List;
 
 public interface CommodityMapper {
 
+    /**
+     * 销量排行
+     * @return
+     */
+    List<Commodity> selectByCommodityEvaluation();
+
     int deleteByPrimaryKey(Integer commodityId);
 
     int insert(Commodity record);
@@ -21,5 +27,7 @@ public interface CommodityMapper {
 
     int updateByPrimaryKey(Commodity record);
 
-    List<Commodity> selectAll(@Param("commodityPrice") String commodityPrice, @Param("commodityAttribute") String commodityAttribute);
+    List<Commodity> selectAll(@Param("commodityAttribute") String commodityAttribute,
+                              @Param("max")Integer maxNumber,
+                              @Param("min")Integer minNumber);
 }

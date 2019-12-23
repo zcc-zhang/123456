@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,12 +22,13 @@ public class ShoppingCollectionController {
 
     @Autowired
     private GoodsCollectionService goodsCollectionService;
+
     /**
      * add收藏商品
      * @param commodityID
      * @return 0：异常  1：添加成功 2.收藏商品已存在
      */
-    @RequestMapping("/addCollectionCommodity")
+    @RequestMapping(value = "/addCollectionCommodity")
     @ResponseBody
     public String addCollectionCommodity(Integer commodityID, @SessionAttribute("user") User user){
         try {
@@ -61,7 +65,6 @@ public class ShoppingCollectionController {
      */
     @RequestMapping("/commodityList")
     public String commodityList(ModelMap modelMap){
-
         User user = (User) modelMap.getAttribute("user");//取出session中数据
         List<ShoppingCollection> collectionList = goodsCollectionService.QueryByIdCommodity(user.getUserId());//根据用户id查询出所有数据
         //图片路径分割
