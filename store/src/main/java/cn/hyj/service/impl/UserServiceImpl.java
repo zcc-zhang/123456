@@ -53,4 +53,9 @@ public class UserServiceImpl implements UserService {
     public void resettingUserPasswordByEmail(String email, String password) {
 
     }
+
+    @Override
+    public int updateByPrimaryKeySelective(User user) {
+        return userMapper.updateByPrimaryKeySelective(user);
+    }
 }

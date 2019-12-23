@@ -19,6 +19,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * 购物车controller
+ */
 @RequestMapping("/shoppingTrolley")
 @Controller
 @SessionAttributes(value = {"shoppingTrolleys","commodityID","count","change","user"})

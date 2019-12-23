@@ -25,6 +25,7 @@
 			src="${pageContext.request.contextPath}/js/sweetalert-dev.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/province.js"></script>
 <script src="${pageContext.request.contextPath}/src/jquery.dialog.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/date.js" type="text/javascript"></script>
 <script type="text/javascript">
 
 	$(function(){
@@ -242,7 +243,7 @@
 				<div class="hd_top_manu clearfix">
 					<ul class="clearfix">
 						<li class="hd_menu_tit zhuce" data-addclass="hd_menu_hover">欢迎光临本店！
-						<a href="${pageContext.request.contextPath }/login.jsp" class="red">
+						<a href="${pageContext.request.contextPath }/login" class="red">
 						<c:if test="${ not empty user.username}">
 							${user.username} <style>#registered{display: none}</style>
 						</c:if>
@@ -252,13 +253,13 @@
 						<c:if test="${empty user.username}">
 							新用户
 						</c:if>
-						<a href="${pageContext.request.contextPath }/registered.jsp"class="red" id='registered'>[免费注册]</a>
+						<a href="${pageContext.request.contextPath }/registered"class="red" id='registered'>[免费注册]</a>
 						</li>
 						<li class="hd_menu_tit" data-addclass="hd_menu_hover">
-						<a href="${pageContext.request.contextPath }/orderInformationServlet">我的订单</a>
+						<a href="${pageContext.request.contextPath }/orderInformation/orderList">我的订单</a>
 						</li>
 						<li class="hd_menu_tit" data-addclass="hd_menu_hover">
-						<a href="${pageContext.request.contextPath }/Cart.jsp">购物车</a>
+						<a href="${pageContext.request.contextPath }/shoppingTrolley/queryShoppingTrolley">购物车</a>
 						</li>
 						<li class="hd_menu_tit" data-addclass="hd_menu_hover">
 						<a href="#">联系我们</a></li>
@@ -586,8 +587,8 @@
 						</dt>
 						<dd>
 							<ul>
-								<li><a href="${pageContext.request.contextPath}/orderInformation/orderList?status=1"> 我的订单</a></li>
-								<li><a href="User_address.html">收货地址</a></li>
+								<li><a href="${pageContext.request.contextPath}/orderInformation/orderList"> 我的订单</a></li>
+								<li><a href="${pageContext.request.contextPath}/User_address">收货地址</a></li>
 								<li><a href="user.php?act=booking_list"> 缺货登记</a></li>
 							</ul>
 						</dd>
@@ -598,8 +599,8 @@
 						</dt>
 						<dd>
 							<ul>
-								<li><a href="user.php?act=profile"> 用户信息</a></li>
-								<li><a href="User_Collect.html"> 我的收藏</a></li>
+								<li><a href="${pageContext.request.contextPath}/profile"> 用户信息</a></li>
+								<li><a href="${pageContext.request.contextPath}/shoppingCollection/commodityList"> 我的收藏</a></li>
 								<li><a href="user.php?act=message_list"> 我的留言</a></li>
 								<li><a href="user.php?act=tag_list">我的标签</a></li>
 								<!-- <li> <a href="user.php?act=affiliate"> 我的推荐</a></li> -->

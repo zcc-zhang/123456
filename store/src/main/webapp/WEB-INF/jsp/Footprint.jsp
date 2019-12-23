@@ -31,7 +31,7 @@
             <div class="hd_top_manu clearfix">
                 <ul class="clearfix">
                     <li class="hd_menu_tit zhuce" data-addclass="hd_menu_hover">欢迎光临本店！
-                        <a href="${pageContext.request.contextPath }/login.jsp" class="red">
+                        <a href="${pageContext.request.contextPath }/login" class="red">
                             <c:if test="${ not empty user.username}">
                                 ${user.username}
                                 <style>#registered {
@@ -44,14 +44,14 @@
                         <c:if test="${empty user.username}">
                             新用户
                         </c:if>
-                        <a href="${pageContext.request.contextPath }/registered.jsp" class="red"
+                        <a href="${pageContext.request.contextPath }/registered" class="red"
                            id='registered'>[免费注册]</a>
                     </li>
                     <li class="hd_menu_tit" data-addclass="hd_menu_hover">
-                        <a href="${pageContext.request.contextPath }/orderInformationServlet">我的订单</a>
+                        <a href="${pageContext.request.contextPath }/orderInformation/orderList">我的订单</a>
                     </li>
                     <li class="hd_menu_tit" data-addclass="hd_menu_hover">
-                        <a href="${pageContext.request.contextPath }/Cart.jsp">购物车</a>
+                        <a href="${pageContext.request.contextPath }/shoppingTrolley/queryShoppingTrolley">购物车</a>
                     </li>
                     <li class="hd_menu_tit" data-addclass="hd_menu_hover">
                         <a href="#">联系我们</a></li>
@@ -92,7 +92,7 @@
         </div>
         <!--购物车样式-->
         <div class="hd_Shopping_list" id="Shopping_list">
-            <div class="s_cart"><em class="iconfont icon-cart2"></em><a href="#">我的购物车</a> <i
+            <div class="s_cart"><em class="iconfont icon-cart2"></em><a href="${pageContext.request.contextPath}/shoppingTrolley/queryShoppingTrolley">我的购物车</a> <i
                     class="ci-right">&gt;</i><i class="ci-count" id="shopping-amount">0</i></div>
             <div class="dorpdown-layer">
                 <div class="spacer"></div>
@@ -124,9 +124,9 @@
                     <!--左侧栏目开始-->
                     <ul class="Menu_list">
                         <li class="name">
-                            <div class="Menu_name"><a href="product_list.html">面部护理</a> <span>&lt;</span></div>
+                            <div class="Menu_name"><a href="${pageContext.request.contextPath}/product_list.html">面部护理</a> <span>&lt;</span></div>
                             <div class="link_name">
-                                <p><a href="Product_Detailed.html">茅台</a> <a href="#">五粮液</a> <a href="#">郎酒</a> <a
+                                <p><a href="${pageContext.request.contextPath}/product_Detailed.html">茅台</a> <a href="#">五粮液</a> <a href="#">郎酒</a> <a
                                         href="#">剑南春</a></p>
                             </div>
                             <div class="menv_Detail">
@@ -174,17 +174,17 @@
                                         </dl>
                                     </div>
                                     <div class="Brands">
-                                        <a href="#" class="logo_Brands"><img src="product/logo/34.jpg"/></a>
-                                        <a href="#" class="logo_Brands"><img src="product/logo/42.jpg"/></a>
-                                        <a href="#" class="logo_Brands"><img src="product/logo/152.jpg"/></a>
-                                        <a href="#" class="logo_Brands"><img src="product/logo/156.jpg"/></a>
-                                        <a href="#" class="logo_Brands"><img src="product/logo/458.jpg"/></a>
-                                        <a href="#" class="logo_Brands"><img src="product/logo/339.jpg"/></a>
-                                        <a href="#" class="logo_Brands"><img src="product/logo/245.jpg"/></a>
-                                        <a href="#" class="logo_Brands"><img src="product/logo/199.jpg"/></a>
-                                        <a href="#" class="logo_Brands"><img src="product/logo/618.jpg"/></a>
-                                        <a href="#" class="logo_Brands"><img src="product/logo/644.jpg"/></a>
-                                        <a href="#" class="AD_3"><img src="product/ad/2.jpg"/></a>
+                                        <a href="#" class="logo_Brands"><img src="${pageContext.request.contextPath}/product/logo/34.jpg"/></a>
+                                        <a href="#" class="logo_Brands"><img src="${pageContext.request.contextPath}/product/logo/42.jpg"/></a>
+                                        <a href="#" class="logo_Brands"><img src="${pageContext.request.contextPath}/product/logo/152.jpg"/></a>
+                                        <a href="#" class="logo_Brands"><img src="${pageContext.request.contextPath}/product/logo/156.jpg"/></a>
+                                        <a href="#" class="logo_Brands"><img src="${pageContext.request.contextPath}/product/logo/458.jpg"/></a>
+                                        <a href="#" class="logo_Brands"><img src="${pageContext.request.contextPath}/product/logo/339.jpg"/></a>
+                                        <a href="#" class="logo_Brands"><img src="${pageContext.request.contextPath}/product/logo/245.jpg"/></a>
+                                        <a href="#" class="logo_Brands"><img src="${pageContext.request.contextPath}/product/logo/199.jpg"/></a>
+                                        <a href="#" class="logo_Brands"><img src="${pageContext.request.contextPath}/product/logo/618.jpg"/></a>
+                                        <a href="#" class="logo_Brands"><img src="${pageContext.request.contextPath}/product/logo/644.jpg"/></a>
+                                        <a href="#" class="AD_3"><img src="${pageContext.request.contextPath}/product/ad/2.jpg"/></a>
                                     </div>
                                 </div>
                                 <!--品牌-->
@@ -193,7 +193,7 @@
                         <li class="name">
                             <div class="Menu_name"><a href="#">身体护理</a><span>&lt;</span></div>
                             <div class="link_name">
-                                <a href="Product_Detailed.html"> 面霜</a><a href="#">眼霜</a><a href="#"> 面膜</a><a href="#">护肤套装</a>
+                                <a href="${pageContext.request.contextPath}/product_Detailed.html"> 面霜</a><a href="#">眼霜</a><a href="#"> 面膜</a><a href="#">护肤套装</a>
 
                             </div>
                             <div class="menv_Detail">
@@ -286,8 +286,8 @@
                     <div class="biankuan">
                         <div class="img_link center"><a href="#"><img src="${list.commodityImg}"/></a></div>
                         <div class="name"><a
-                                href="${pageContext.request.contextPath}/productDetailedServlet?commodityId=${list.commodityId}">
-                                ${list.productName}</a>
+                                href="${pageContext.request.contextPath}/${pageContext.request.contextPath}/productDetailedServlet?commodityId=${list.commodityId}">
+                                ${list.${pageContext.request.contextPath}/productName}</a>
                         </div>
                         <div class="Price"><b>￥</b>${list.commodityPrice}</div>
                     </div>
@@ -295,98 +295,98 @@
             </c:forEach>
             <!--  <li class="Record_style">
               <div class="biankuan">
-                <div class="img_link center"><a href="#"><img src="product/p_1.jpg" /></a></div>
+                <div class="img_link center"><a href="#"><img src="${pageContext.request.contextPath}/product/p_1.jpg" /></a></div>
                 <div class="name"><a href="#">沙宣洗发水垂坠质感750ml（男女通用 洗头膏 洗发露 去屑）</a></div>
                 <div class="Price"><b>￥</b>45.00</div>
-                <div class="logo"><a href="#"><img src="product/logo/34.jpg" width="150"/></a></div>
+                <div class="logo"><a href="#"><img src="${pageContext.request.contextPath}/product/logo/34.jpg" width="150"/></a></div>
               </div>
              </li>
               <li class="Record_style">
               <div class="biankuan">
-                <div class="img_link center"><a href="#"><img src="product/p_15.jpg" /></a></div>
+                <div class="img_link center"><a href="#"><img src="${pageContext.request.contextPath}/product/p_15.jpg" /></a></div>
                 <div class="name"><a href="#">沙宣洗发水垂坠质感750ml（男女通用 洗头膏 洗发露 去屑）</a></div>
                 <div class="Price"><b>￥</b>45.00</div>
-                <div class="logo"><a href="#"><img src="product/logo/34.jpg" width="150"/></a></div>
+                <div class="logo"><a href="#"><img src="${pageContext.request.contextPath}/product/logo/34.jpg" width="150"/></a></div>
               </div>
              </li>
               <li class="Record_style">
               <div class="biankuan">
-                <div class="img_link center"><a href="#"><img src="product/p_13.jpg" /></a></div>
+                <div class="img_link center"><a href="#"><img src="${pageContext.request.contextPath}/product/p_13.jpg" /></a></div>
                 <div class="name"><a href="#">沙宣洗发水垂坠质感750ml（男女通用 洗头膏 洗发露 去屑）</a></div>
                 <div class="Price"><b>￥</b>45.00</div>
-                <div class="logo"><a href="#"><img src="product/logo/42.jpg" width="150"/></a></div>
+                <div class="logo"><a href="#"><img src="${pageContext.request.contextPath}/product/logo/42.jpg" width="150"/></a></div>
               </div>
              </li>
               <li class="Record_style">
               <div class="biankuan">
-                <div class="img_link center"><a href="#"><img src="product/p_12.jpg" /></a></div>
+                <div class="img_link center"><a href="#"><img src="${pageContext.request.contextPath}/product/p_12.jpg" /></a></div>
                 <div class="name"><a href="#">沙宣洗发水垂坠质感750ml（男女通用 洗头膏 洗发露 去屑）</a></div>
                 <div class="Price"><b>￥</b>45.00</div>
-                <div class="logo"><a href="#"><img src="product/logo/152.jpg" width="150"/></a></div>
+                <div class="logo"><a href="#"><img src="${pageContext.request.contextPath}/product/logo/152.jpg" width="150"/></a></div>
               </div>
              </li>
              <li class="Record_style">
               <div class="biankuan">
-                <div class="img_link center"><a href="#"><img src="product/p_11.jpg" /></a></div>
+                <div class="img_link center"><a href="#"><img src="${pageContext.request.contextPath}/product/p_11.jpg" /></a></div>
                 <div class="name"><a href="#">沙宣洗发水垂坠质感750ml（男女通用 洗头膏 洗发露 去屑）</a></div>
                 <div class="Price"><b>￥</b>45.00</div>
-                <div class="logo"><a href="#"><img src="product/logo/152.jpg" width="150"/></a></div>
+                <div class="logo"><a href="#"><img src="${pageContext.request.contextPath}/product/logo/152.jpg" width="150"/></a></div>
               </div>
              </li>
              <li class="Record_style">
               <div class="biankuan">
-                <div class="img_link center"><a href="#"><img src="product/p_5.jpg" /></a></div>
+                <div class="img_link center"><a href="#"><img src="${pageContext.request.contextPath}/product/p_5.jpg" /></a></div>
                 <div class="name"><a href="#">沙宣洗发水垂坠质感750ml（男女通用 洗头膏 洗发露 去屑）</a></div>
                 <div class="Price"><b>￥</b>45.00</div>
-                <div class="logo"><a href="#"><img src="product/logo/152.jpg" width="150"/></a></div>
+                <div class="logo"><a href="#"><img src="${pageContext.request.contextPath}/product/logo/152.jpg" width="150"/></a></div>
               </div>
              </li>
              <li class="Record_style">
               <div class="biankuan">
-                <div class="img_link center"><a href="#"><img src="product/p_4.jpg" /></a></div>
+                <div class="img_link center"><a href="#"><img src="${pageContext.request.contextPath}/product/p_4.jpg" /></a></div>
                 <div class="name"><a href="#">沙宣洗发水垂坠质感750ml（男女通用 洗头膏 洗发露 去屑）</a></div>
                 <div class="Price"><b>￥</b>45.00</div>
-                <div class="logo"><a href="#"><img src="product/logo/152.jpg" width="150"/></a></div>
+                <div class="logo"><a href="#"><img src="${pageContext.request.contextPath}/product/logo/152.jpg" width="150"/></a></div>
               </div>
              </li>
              <li class="Record_style">
               <div class="biankuan">
-                <div class="img_link center"><a href="#"><img src="product/p_3.jpg" /></a></div>
+                <div class="img_link center"><a href="#"><img src="${pageContext.request.contextPath}/product/p_3.jpg" /></a></div>
                 <div class="name"><a href="#">沙宣洗发水垂坠质感750ml（男女通用 洗头膏 洗发露 去屑）</a></div>
                 <div class="Price"><b>￥</b>45.00</div>
-                <div class="logo"><a href="#"><img src="product/logo/152.jpg" width="150"/></a></div>
+                <div class="logo"><a href="#"><img src="${pageContext.request.contextPath}/product/logo/152.jpg" width="150"/></a></div>
               </div>
              </li>
              <li class="Record_style">
               <div class="biankuan">
-                <div class="img_link center"><a href="#"><img src="product/p_21.jpg" /></a></div>
+                <div class="img_link center"><a href="#"><img src="${pageContext.request.contextPath}/product/p_21.jpg" /></a></div>
                 <div class="name"><a href="#">沙宣洗发水垂坠质感750ml（男女通用 洗头膏 洗发露 去屑）</a></div>
                 <div class="Price"><b>￥</b>45.00</div>
-                <div class="logo"><a href="#"><img src="product/logo/152.jpg"  width="150"/></a></div>
+                <div class="logo"><a href="#"><img src="${pageContext.request.contextPath}/product/logo/152.jpg"  width="150"/></a></div>
               </div>
              </li>
              <li class="Record_style">
               <div class="biankuan">
-                <div class="img_link center"><a href="#"><img src="product/p_24.jpg" /></a></div>
+                <div class="img_link center"><a href="#"><img src="${pageContext.request.contextPath}/product/p_24.jpg" /></a></div>
                 <div class="name"><a href="#">沙宣洗发水垂坠质感750ml（男女通用 洗头膏 洗发露 去屑）</a></div>
                 <div class="Price"><b>￥</b>45.00</div>
-                <div class="logo"><a href="#"><img src="product/logo/152.jpg"  width="150"/></a></div>
+                <div class="logo"><a href="#"><img src="${pageContext.request.contextPath}/product/logo/152.jpg"  width="150"/></a></div>
               </div>
              </li>
              <li class="Record_style">
               <div class="biankuan">
-                <div class="img_link center"><a href="#"><img src="product/p_32.jpg" /></a></div>
+                <div class="img_link center"><a href="#"><img src="${pageContext.request.contextPath}/product/p_32.jpg" /></a></div>
                 <div class="name"><a href="#">沙宣洗发水垂坠质感750ml（男女通用 洗头膏 洗发露 去屑）</a></div>
                 <div class="Price"><b>￥</b>45.00</div>
-                <div class="logo"><a href="#"><img src="product/logo/199.jpg"  width="150"/></a></div>
+                <div class="logo"><a href="#"><img src="${pageContext.request.contextPath}/product/logo/199.jpg"  width="150"/></a></div>
               </div>
              </li>
              <li class="Record_style">
               <div class="biankuan">
-                <div class="img_link center"><a href="#"><img src="product/p_22.jpg" /></a></div>
+                <div class="img_link center"><a href="#"><img src="${pageContext.request.contextPath}/product/p_22.jpg" /></a></div>
                 <div class="name"><a href="#">沙宣洗发水垂坠质感750ml（男女通用 洗头膏 洗发露 去屑）</a></div>
                 <div class="Price"><b>￥</b>45.00</div>
-                <div class="logo"><a href="#"><img src="product/logo/156.jpg"  width="150"/></a></div>
+                <div class="logo"><a href="#"><img src="${pageContext.request.contextPath}/product/logo/156.jpg"  width="150"/></a></div>
               </div>
              </li> -->
         </ul>
@@ -547,7 +547,7 @@
             </div>
         </li>
 
-        <li class="fixeBoxLi Home"><a href="./"> <span
+        <li class="fixeBoxLi Home"><a href="${pageContext.request.contextPath}/shoppingCollection/commodityList"> <span
                 class="fixeBoxSpan iconfont  icon-shoucang"></span> <strong>收藏</strong>
         </a></li>
         <li class="fixeBoxLi Home"><a href="./"> <span

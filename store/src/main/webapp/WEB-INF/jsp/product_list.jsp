@@ -84,7 +84,7 @@
                 var dataStr = $(this).parent().siblings("#myFrom").serialize();
                 $.ajax(
                     {
-                        url: "${pageContext.request.contextPath}/collectCommoditySevlet",
+                        url: "${pageContext.request.contextPath}/shoppingCollection/addCollectionCommodity",
                         data: dataStr,
                         type: "post",
                         success: callBack
@@ -137,8 +137,6 @@
         return false;
     }
 
-    //点击效果end
-    //
 </script>
 <body>
 <!--顶部图层-->
@@ -151,7 +149,7 @@
             <div class="hd_top_manu clearfix">
                 <ul class="clearfix">
                     <li class="hd_menu_tit zhuce" data-addclass="hd_menu_hover">欢迎光临本店！
-                        <a href="${pageContext.request.contextPath }/login.jsp" class="red">
+                        <a href="${pageContext.request.contextPath }/login" class="red">
                             <c:if test="${ not empty user.username}">
                                 ${user.username}
                                 <style>#registered {
@@ -164,14 +162,14 @@
                         <c:if test="${empty user.username}">
                             新用户
                         </c:if>
-                        <a href="${pageContext.request.contextPath }/registered.jsp" class="red"
+                        <a href="${pageContext.request.contextPath }/registered" class="red"
                            id='registered'>[免费注册]</a>
                     </li>
                     <li class="hd_menu_tit" data-addclass="hd_menu_hover">
-                        <a href="${pageContext.request.contextPath }/orderInformationServlet">我的订单</a>
+                        <a href="${pageContext.request.contextPath }/orderInformation/orderList">我的订单</a>
                     </li>
                     <li class="hd_menu_tit" data-addclass="hd_menu_hover">
-                        <a href="${pageContext.request.contextPath }/Cart.jsp">购物车</a>
+                        <a href="${pageContext.request.contextPath }/shoppingCollection/commodityList">购物车</a>
                     </li>
                     <li class="hd_menu_tit" data-addclass="hd_menu_hover">
                         <a href="#">联系我们</a></li>
@@ -220,7 +218,7 @@
         <!--购物车样式-->
         <div class="hd_Shopping_list" id="Shopping_list">
             <div class="s_cart">
-                <em class="iconfont icon-cart2"></em><a href="#">我的购物车</a> <i
+                <em class="iconfont icon-cart2"></em><a href="${pageContext.request.contextPath }/shoppingCollection/commodityList">我的购物车</a> <i
                     class="ci-right">&gt;</i><i class="ci-count" id="shopping-amount">0</i>
             </div>
             <div class="dorpdown-layer">
@@ -467,14 +465,14 @@
             <!--菜单栏-->
             <div class="Navigation" id="Navigation">
                 <ul class="Navigation_name">
-                    <li><a href="${pageContext.request.contextPath}/index.jsp">首页</a></li>
+                    <li><a href="${pageContext.request.contextPath}/index">首页</a></li>
                     <li><a href="${pageContext.request.contextPath}/browsingHistoryServlet">日常护理</a></li>
                     <li><a href="${pageContext.request.contextPath}/Must_see.jsp">每日必看</a></li>
-                    <li><a href="${pageContext.request.contextPath}/showCommodityListServlet">产品列表</a></li>
+                    <li><a href="${pageContext.request.contextPath}/commodity//toPage">产品列表</a></li>
                     <li><a href="${pageContext.request.contextPath}/Buy_Brands.jsp">限时团购</a></li>
                     <li><a href="${pageContext.request.contextPath}/Group_buy.jsp">品牌团购</a></li>
                     <li><a href="#">联系我们</a></li>
-                    <li><a href="${pageContext.request.contextPath}/index.jsp">简洁版</a></li>
+                    <li><a href="${pageContext.request.contextPath}/index">简洁版</a></li>
                 </ul>
             </div>
             <script>$("#Navigation").slide({
@@ -699,39 +697,6 @@
                                         class="p_Sales right">销量：${historyList.commodityEvaluation}件</span>
                                 </p></li>
                         </c:forEach>
-                        <!-- <li><a href="#">
-                                <p>
-                                    <img src="${pageContext.request.contextPath}/product/p_32.jpg">
-                                </p>
-                                <p class="p_name">商品名称</p>
-                        </a>
-                            <p>
-                                <span class="p_Price left">价格:<b>￥5.30</b></span><span
-                                    class="p_Sales right">销量：2345件</span>
-                            </p></li>
-                        <li><a href="#">
-                                <p>
-                                    <img src="${pageContext.request.contextPath}/product/p_30.jpg">
-                                </p>
-                                <p class="p_name">商品名称</p>
-                        </a>
-                            <p>
-                                <span class="p_Price left">价格:<b>￥5.30</b></span><span
-                                    class="p_Sales right">销量：2345件</span>
-                            </p></li>
-                        <li><a href="#">
-                                <p>
-                                    <img src="${pageContext.request.contextPath}/product/p_34.jpg">
-                                </p>
-                                <p class="p_name">商品名称</p>
-                        </a>
-                            <p>
-                                <span class="p_Price left">价格:<b>￥5.30</b></span><span
-                                    class="p_Sales right">销量：2345件</span>
-                            </p></li> -->
-                    </ul>
-                </div>
-                <!--销售排行-->
                 <div class="pro_ranking">
                     <div class="title_name">
                         <em></em>销量排行
@@ -752,106 +717,6 @@
                                     </dd>
                                 </li>
                             </c:forEach>
-                            <!-- <li class="t_p on"><em class="icon_ranking">1</em>
-                                <dt>
-                                    <h3>
-                                        <a href="#">韩束墨菊深度补水八件套（补水保湿 深层）</a>
-                                    </h3>
-                                </dt>
-                                <dd class="clearfix">
-                                    <a href="#"><img src="${pageContext.request.contextPath}/product/p_29.jpg" width="90"
-                                        height="90" /></a> <span class="Price">￥23.00</span>
-                                </dd></li>
-                            <li class="t_p"><em class="icon_ranking">2</em>
-                                <dt>
-                                    <h3>
-                                        <a href="#">韩束墨菊深度补水八件套（补水保湿 深层）</a>
-                                    </h3>
-                                </dt>
-                                <dd class="clearfix">
-                                    <a href="#"><img src="${pageContext.request.contextPath}/product/p_29.jpg" width="90"
-                                        height="90" /></a> <span class="Price">￥23.00</span>
-                                </dd></li>
-                            <li class="t_p"><em class="icon_ranking">3</em>
-                                <dt>
-                                    <h3>
-                                        <a href="#">韩束墨菊深度补水八件套（补水保湿 深层）</a>
-                                    </h3>
-                                </dt>
-                                <dd class="clearfix">
-                                    <a href="#"><img src="${pageContext.request.contextPath}/product/p_29.jpg" width="90"
-                                        height="90" /></a> <span class="Price">￥23.00</span>
-                                </dd></li>
-                            <li class="t_p"><em class="icon_ranking">4</em>
-                                <dt>
-                                    <h3>
-                                        <a href="#">韩束墨菊深度补水八件套（补水保湿 深层）</a>
-                                    </h3>
-                                </dt>
-                                <dd class="clearfix">
-                                    <a href="#"><img src="${pageContext.request.contextPath}/product/p_29.jpg" width="90"
-                                        height="90" /></a> <span class="Price">￥23.00</span>
-                                </dd></li>
-                            <li class="t_p"><em class="icon_ranking">5</em>
-                                <dt>
-                                    <h3>
-                                        <a href="#">韩束墨菊深度补水八件套（补水保湿 深层）</a>
-                                    </h3>
-                                </dt>
-                                <dd class="clearfix">
-                                    <a href="#"><img src="${pageContext.request.contextPath}/product/p_29.jpg" width="90"
-                                        height="90" /></a> <span class="Price">￥23.00</span>
-                                </dd></li>
-                            <li class="t_p"><em class="icon_ranking">6</em>
-                                <dt>
-                                    <h3>
-                                        <a href="#">韩束墨菊深度补水八件套（补水保湿 深层）</a>
-                                    </h3>
-                                </dt>
-                                <dd class="clearfix">
-                                    <a href="#"><img src="${pageContext.request.contextPath}/product/p_29.jpg" width="90"
-                                        height="90" /></a> <span class="Price">￥23.00</span>
-                                </dd></li>
-                            <li class="t_p"><em class="icon_ranking">7</em>
-                                <dt>
-                                    <h3>
-                                        <a href="#">韩束墨菊深度补水八件套（补水保湿 深层）</a>
-                                    </h3>
-                                </dt>
-                                <dd class="clearfix">
-                                    <a href="#"><img src="${pageContext.request.contextPath}/product/p_29.jpg" width="90"
-                                        height="90" /></a> <span class="Price">￥23.00</span>
-                                </dd></li>
-                            <li class="t_p"><em class="icon_ranking">8</em>
-                                <dt>
-                                    <h3>
-                                        <a href="#">韩束墨菊深度补水八件套（补水保湿 深层）</a>
-                                    </h3>
-                                </dt>
-                                <dd class="clearfix">
-                                    <a href="#"><img src="${pageContext.request.contextPath}/product/p_29.jpg" width="90"
-                                        height="90" /></a> <span class="Price">￥23.00</span>
-                                </dd></li>
-                            <li class="t_p"><em class="icon_ranking">9</em>
-                                <dt>
-                                    <h3>
-                                        <a href="#">韩束墨菊深度补水八件套（补水保湿 深层）</a>
-                                    </h3>
-                                </dt>
-                                <dd class="clearfix">
-                                    <a href="#"><img src="${pageContext.request.contextPath}/product/p_29.jpg" width="90"
-                                        height="90" /></a> <span class="Price">￥23.00</span>
-                                </dd></li>
-                            <li class="t_p"><em class="icon_ranking">10</em>
-                                <dt>
-                                    <h3>
-                                        <a href="#">韩束墨菊深度补水八件套（补水保湿 深层）</a>
-                                    </h3>
-                                </dt>
-                                <dd class="clearfix">
-                                    <a href="#"><img src="${pageContext.request.contextPath}/product/p_29.jpg" width="90"
-                                        height="90" /></a> <span class="Price">￥23.00</span>
-                                </dd></li> -->
                         </ul>
                     </div>
                 </div>
@@ -931,7 +796,7 @@
                                 </div>
                                 <div class="name">
                                     <a
-                                            href="${pageContext.request.contextPath}/commodity//particularsView?commodityId=${list.commodityId}">${list.productName}</a>
+                                            href="${pageContext.request.contextPath}/commodity/particularsView?commodityId=${list.commodityId}">${list.productName}</a>
                                 </div>
                                 <div class="Review">
                                     已有<a href="#">${list.commodityEvaluation}</a>评论
