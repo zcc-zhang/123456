@@ -9,10 +9,10 @@ public interface UserMapper {
     User userLoginVerify(@Param("username")String username,@Param("password")String password);
 
     //查询邮箱
-    Boolean queryUserByEmail(String email);
+    Integer queryUserByEmail(String email);
 
     // 根据邮箱更新用户密码
-    public void resettingUserPasswordByEmail(String email, String password);
+    public void resettingUserPasswordByEmail(@Param("email") String email, @Param("password") String password);
 
     int deleteByPrimaryKey(Integer userId);
 

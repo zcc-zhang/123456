@@ -27,7 +27,7 @@
         where username=#{username} and PASSWORD=#{password}
     </select>
     <!-- 查询邮箱是否存在-->
-    <select id="queryUserByEmail" resultType="java.lang.Boolean">
+    <select id="queryUserByEmail" resultType="int">
         <![CDATA[
             select count(*)
             from t_user
@@ -35,9 +35,9 @@
          ]]>
     </select>
     <!-- 根据邮箱修改密码-->
-    <update id="resettingUserPasswordByEmail" parameterType="cn.hyj.entity.User">
+    <update id="resettingUserPasswordByEmail">
         update t_user
-           set PASSWORD = #{password},
+        set PASSWORD = #{password}
         where email = #{email}
 
     </update>
