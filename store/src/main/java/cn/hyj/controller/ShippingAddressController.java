@@ -87,7 +87,10 @@ public class ShippingAddressController {
      * @param addressId
      * @return
      */
+    @RequestMapping("delete")
     public String delete(Integer addressId){
+
+        shippingAddressService.deleteByPrimaryKey(addressId);
 
         return "";
     }
