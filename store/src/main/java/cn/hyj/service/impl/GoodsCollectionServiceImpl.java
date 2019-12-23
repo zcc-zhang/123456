@@ -28,12 +28,16 @@ public class GoodsCollectionServiceImpl implements GoodsCollectionService {
 
     @Override
     public int insertSelective(ShoppingCollection record) {
-
         return shoppingCollectionMapper.insertSelective(record);
     }
 
     @Override
     public List<ShoppingCollection> QueryByIdCommodity(Integer userId) {
         return shoppingCollectionMapper.QueryByIdCommodity(userId);
+    }
+
+    @Override
+    public Boolean commodityEixs(Integer userId, Integer commodityId) {
+        return shoppingCollectionMapper.commodityEixs(userId,commodityId);
     }
 }

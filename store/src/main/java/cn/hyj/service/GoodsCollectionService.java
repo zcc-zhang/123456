@@ -19,4 +19,7 @@ public interface GoodsCollectionService {
     int insertSelective(ShoppingCollection record);
     //查询商品
     List<ShoppingCollection> QueryByIdCommodity(Integer userId);
+
+    Boolean commodityEixs(Integer userId,Integer commodityId);
+
 }

@@ -30,7 +30,7 @@
             <div class="hd_top_manu clearfix">
                 <ul class="clearfix">
                     <li class="hd_menu_tit zhuce" data-addclass="hd_menu_hover">欢迎光临本店！
-                        <a href="${pageContext.request.contextPath }/login.jsp" class="red">
+                        <a href="${pageContext.request.contextPath }/login" class="red">
                             <c:if test="${ not empty user.username}">
                                 ${user.username}
                                 <style>#registered {
@@ -43,7 +43,7 @@
                         <c:if test="${empty user.username}">
                             新用户
                         </c:if>
-                        <a href="${pageContext.request.contextPath }/registered.jsp" class="red"
+                        <a href="${pageContext.request.contextPath }/registered" class="red"
                            id='registered'>[免费注册]</a>
                     </li>
                     <li class="hd_menu_tit" data-addclass="hd_menu_hover">

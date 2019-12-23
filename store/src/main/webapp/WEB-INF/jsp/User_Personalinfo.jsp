@@ -19,9 +19,11 @@
     <script src="${pageContext.request.contextPath}/js/ajaxfileupload.js" type="text/javascript"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/sweetalert-dev.js"></script>
     <script src="${pageContext.request.contextPath}/src/jquery.dialog.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/date.js"></script>
     <title>个人信息</title>
 </head>
 <script type="text/javascript">
+    writeCurrentDate();
     $(function () {
         $(".modify").on('click', function () {
             $(".text").removeAttr("readonly");
@@ -134,7 +136,7 @@
             <div class="hd_top_manu clearfix">
                 <ul class="clearfix">
                     <li class="hd_menu_tit zhuce" data-addclass="hd_menu_hover">欢迎光临本店！
-                        <a href="${pageContext.request.contextPath }/login.jsp" class="red">
+                        <a href="${pageContext.request.contextPath }/login" class="red">
                             <c:if test="${ not empty user.username}">
                                 ${user.username}
                                 <style>#registered {
@@ -147,14 +149,14 @@
                         <c:if test="${empty user.username}">
                             新用户
                         </c:if>
-                        <a href="${pageContext.request.contextPath }/registered.jsp" class="red"
+                        <a href="${pageContext.request.contextPath }/registered" class="red"
                            id='registered'>[免费注册]</a>
                     </li>
                     <li class="hd_menu_tit" data-addclass="hd_menu_hover">
-                        <a href="${pageContext.request.contextPath }/orderInformationServlet">我的订单</a>
+                        <a href="${pageContext.request.contextPath }/orderInformation/orderList">我的订单</a>
                     </li>
                     <li class="hd_menu_tit" data-addclass="hd_menu_hover">
-                        <a href="${pageContext.request.contextPath }/Cart.jsp">购物车</a>
+                        <a href="${pageContext.request.contextPath }/shoppingTrolley/addCommodity">购物车</a>
                     </li>
                     <li class="hd_menu_tit" data-addclass="hd_menu_hover">
                         <a href="#">联系我们</a></li>
@@ -203,7 +205,7 @@
         <!--购物车样式-->
         <div class="hd_Shopping_list" id="Shopping_list">
             <div class="s_cart">
-                <em class="iconfont icon-cart2"></em><a href="#">我的购物车</a> <i
+                <em class="iconfont icon-cart2"></em><a href="${pageContext.request.contextPath}/shoppingCollection/commodityList">我的购物车</a> <i
                     class="ci-right">&gt;</i><i class="ci-count" id="shopping-amount">0</i>
             </div>
             <div class="dorpdown-layer">
@@ -484,9 +486,9 @@
                     </div>
                     <div class="user_name">
                         <p>
-                            <span class="name">化海天堂</span><a href="#">[修改密码]</a>
+                            <span class="name">${user.username}</span><a href="${pageContext.request.contextPath}/user/changePassword">[修改密码]</a>
                         </p>
-                        <p>访问时间：2016-1-21 10:23</p>
+                        <p id="date">访问时间：</p>
                     </div>
                 </div>
                 <div class="sideMen">
@@ -497,8 +499,8 @@
                         </dt>
                         <dd>
                             <ul>
-                                <li><a href="User_Orderform.html"> 我的订单</a></li>
-                                <li><a href="User_address.html">收货地址</a></li>
+                                <li><a href="${pageContext.request.contextPath}/orderInformation/orderList"> 我的订单</a></li>
+                                <li><a href="${pageContext.request.contextPath}/shippingAddress/addressList">收货地址</a></li>
                                 <li><a href="user.php?act=booking_list"> 缺货登记</a></li>
                             </ul>
                         </dd>

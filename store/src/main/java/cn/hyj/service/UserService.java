@@ -55,4 +55,11 @@ public interface UserService {
 	 * @param password
 	 */
 	public void resettingUserPasswordByEmail(String email, String password);
+
+	/***
+	 * 修改个别字段
+	 * @param user
+	 * @return
+	 */
+	int updateByPrimaryKeySelective(User user);
 }

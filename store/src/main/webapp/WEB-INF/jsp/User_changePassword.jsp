@@ -22,7 +22,9 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/passwordIntensity.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/src/jquery.dialog.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/sweetalert-dev.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/date.js"></script>
 	<title>修改密码</title> <script type="text/javascript">
+		writeCurrentDate();
 	$(function() {
 		/**********验证两次密码是否一致**********/
 		function checkPassword() {
@@ -43,23 +45,22 @@
 				flag = false;
 			}
 			if (flag) {
-				var datastr = $("form").serialize();
+				var dataset = $("form").serialize();
 				$.ajax({
-					url : "${pageContext.request.contextPath}/changePasswordServlet",
+					url : "${pageContext.request.contextPath}/user/changePassword",
 					type : "post",
-					data : datastr,
+					data : dataset,
 					success : function(data) {
 						if (data == "1") {
 							swal({
 										title : "密码修改成功",
 										text : "请点击OK重新登录",
 										type : "success",
-										showCancelButton : true,
 										closeOnConfirm : false,
 										showLoaderOnConfirm : true,
 									},
 									function() {
-										window.location.href = "login.jsp";
+										window.location.href = "${pageContext.request.contextPath}/login";
 									});
 
 						} else if (data == "-1") {
@@ -73,7 +74,6 @@
 								title: "错误提示",
 								text: "原密码输入错误!",
 								type: "warning",
-								showCancelButton: true,
 								confirmButtonColor: "#DD6B55",
 							});
 						}
@@ -95,7 +95,7 @@
 			<div class="hd_top_manu clearfix">
 				<ul class="clearfix">
 					<li class="hd_menu_tit zhuce" data-addclass="hd_menu_hover">欢迎光临本店！
-						<a href="${pageContext.request.contextPath }/login.jsp" class="red">
+						<a href="${pageContext.request.contextPath }/login" class="red">
 							<c:if test="${ not empty user.username}">
 								${user.username} <style>#registered{display: none}</style>
 							</c:if>
@@ -108,10 +108,10 @@
 						<a href="${pageContext.request.contextPath }/registered.jsp"class="red" id='registered'>[免费注册]</a>
 					</li>
 					<li class="hd_menu_tit" data-addclass="hd_menu_hover">
-						<a href="${pageContext.request.contextPath }/orderInformationServlet">我的订单</a>
+						<a href="${pageContext.request.contextPath }/orderInformation/orderList">我的订单</a>
 					</li>
 					<li class="hd_menu_tit" data-addclass="hd_menu_hover">
-						<a href="${pageContext.request.contextPath }/Cart.jsp">购物车</a>
+						<a href="${pageContext.request.contextPath }/shoppingTrolley/queryShoppingTrolley">购物车</a>
 					</li>
 					<li class="hd_menu_tit" data-addclass="hd_menu_hover">
 						<a href="#">联系我们</a></li>
@@ -165,7 +165,7 @@
 				<ul class="p_s_list">
 					<li>
 						<div class="img">
-							<img src="products/p_7.jpg">
+							<img src="${pageContext.request.contextPath}/products/p_7.jpg">
 						</div>
 						<div class="content">
 							<p>
@@ -388,15 +388,15 @@
 			<!--菜单栏-->
 			<div class="Navigation" id="Navigation">
 				<ul class="Navigation_name">
-					<li><a href="${pageContext.request.contextPath}/index.jsp">首页</a></li>
+					<li><a href="${pageContext.request.contextPath}/index">首页</a></li>
 					<li><a href="${pageContext.request.contextPath}/Footprint.jsp">日常护理</a></li>
 					<li><a href="${pageContext.request.contextPath}/Must_see.jsp">每日必看</a></li>
-					<li><a href="${pageContext.request.contextPath}/showCommodityListServlet">产品列表</a></li>
+					<li><a href="${pageContext.request.contextPath}/commodity/toPage">产品列表</a></li>
 					<li><a href="${pageContext.request.contextPath}/Buy_Brands.jsp">限时团购</a></li>
 					<li><a href="${pageContext.request.contextPath}/diy.jsp">礼品DIY</a></li>
 					<li><a href="${pageContext.request.contextPath}/Group_buy.jsp">品牌团购</a></li>
 					<li><a href="#">联系我们</a></li>
-					<li><a href="${pageContext.request.contextPath}/index.jsp">简洁版</a></li>
+					<li><a href="${pageContext.request.contextPath}/index">简洁版</a></li>
 				</ul>
 			</div>
 			<script>$("#Navigation").slide({
@@ -421,11 +421,10 @@
 					</div>
 					<div class="user_name">
 						<p>
-							<span class="name">${user.username}</span><a href="#">[修改密码]</a>
+							<span class="name">${user.username}</span><a href="${pageContext.request.contextPath}/User_changePassword">[修改密码]</a>
 						</p>
-						<p>
+						<p id="date">
 							访问时间:
-							<fmt:formatDate value="${thisDate}" pattern="yyyy年MM月dd号" />
 						</p>
 					</div>
 				</div>
@@ -437,7 +436,7 @@
 						</dt>
 						<dd>
 							<ul>
-								<li><a href="User_Orderform.html"> 我的订单</a></li>
+								<li><a href="${pageContext.request.contextPath}/orderInformation/orderList"> 我的订单</a></li>
 								<li><a href="User_address.html">收货地址</a></li>
 								<li><a href="user.php?act=booking_list"> 缺货登记</a></li>
 							</ul>
@@ -449,10 +448,10 @@
 						</dt>
 						<dd>
 							<ul>
-								<li><a href="User_Personalinfo.html"> 用户信息</a></li>
+								<li><a href="${pageContext.request.contextPath}/User_Personalinfo"> 用户信息</a></li>
 								<li><a href="User_Collect.html"> 我的收藏</a></li>
 								<li><a href="user.php?act=message_list"> 我的留言</a></li>
-								<li><a href="User_changePassword.html">修改密码</a></li>
+								<li><a href="${pageContext.request.contextPath}/User_changePassword">修改密码</a></li>
 								<li><a href="User_integral.html">我的积分</a></li>
 								<li><a href="user.php?act=comment_list"> 我的评论</a></li>
 							</ul>

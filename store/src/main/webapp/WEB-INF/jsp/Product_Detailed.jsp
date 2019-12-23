@@ -40,7 +40,7 @@
 
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/magnifyingGlass.js"></script>
 	<title>产品详细页</title>
-	<link rel="stylesheet" href="css/styles.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/styles.css">
 </head>
 <body>
 <!--顶部图层-->
@@ -53,7 +53,7 @@
 			<div class="hd_top_manu clearfix">
 				<ul class="clearfix">
 					<li class="hd_menu_tit zhuce" data-addclass="hd_menu_hover">欢迎光临本店！
-						<a href="${pageContext.request.contextPath }/login.jsp"
+						<a href="${pageContext.request.contextPath }/login"
 						   class="red"> <c:if test="${ not empty user.username}">
 							${user.username} <style>
 							#registered {
@@ -355,19 +355,19 @@
 			<!--菜单栏-->
 			<div class="Navigation" id="Navigation">
 				<ul class="Navigation_name">
-					<li><a href="${pageContext.request.contextPath}/index.jsp">首页</a></li>
+					<li><a href="${pageContext.request.contextPath}/index">首页</a></li>
 					<li><a
-							href="${pageContext.request.contextPath}/Footprint.jsp">日常护理</a></li>
+							href="${pageContext.request.contextPath}/Footprint">日常护理</a></li>
 					<li><a href="${pageContext.request.contextPath}/Must_see.jsp">每日必看</a></li>
 					<li><a
-							href="${pageContext.request.contextPath}/showCommodityListServlet">产品列表</a></li>
+							href="${pageContext.request.contextPath}/commodity//toPage">产品列表</a></li>
 					<li><a
 							href="${pageContext.request.contextPath}/Buy_Brands.jsp">限时团购</a></li>
 					<li><a href="${pageContext.request.contextPath}/diy.jsp">礼品DIY</a></li>
 					<li><a
 							href="${pageContext.request.contextPath}/Group_buy.jsp">品牌团购</a></li>
 					<li><a href="#">联系我们</a></li>
-					<li><a href="${pageContext.request.contextPath}/index.jsp">简洁版</a></li>
+					<li><a href="${pageContext.request.contextPath}/index">简洁版</a></li>
 				</ul>
 			</div>
 			<script>$("#Navigation").slide({
@@ -459,93 +459,6 @@
 		<div class="property">
 			<form action="javascript:addToCart(97)" name="ECS_FORMBUY"
 				  id="ECS_FORMBUY">
-				<!--  <h2>乐品乐茶 碧螺春2015新茶茶叶绿茶一级洞庭山明前春茶礼盒125g*2</h2>
-                <div class="goods_info">◆买即送大麦茶◆满2件减10元再赠2罐大麦茶◆礼品袋茶包免费赠◆</div>
-                <div class="ProductD clearfix">
-                    <div class="productDL">
-                        <dl>
-                            <dt>售&nbsp;&nbsp;&nbsp;&nbsp;价：</dt>
-                            <dd>
-                                <span id="ECS_SHOPPRICE"><i>￥</i>121.01</span>
-                                <del>市场价：￥220.01</del>
-                            </dd>
-                        </dl>
-                        <dl>
-                            <dt>总 重 量：</dt>
-                            <dd>140克</dd>
-                        </dl>
-                        <dl>
-                            <dt>规&nbsp;&nbsp;&nbsp;&nbsp;格：</dt>
-                            <dd>
-                                <div class="item  selected">
-                                    <b></b><a href="#none" title="小礼盒">小礼盒</a>
-                                </div>
-                                <div class="item">
-                                    <b></b><a href="#none" title="普通包装">普通包装</a>
-                                </div>
-                                <div class="item">
-                                    <b></b><a href="#none" title="大礼盒">大礼盒</a>
-                                </div>
-                                <div class="item">
-                                    <b></b><a href="#none" title="铁盒装">铁盒装</a>
-                                </div>
-                            </dd>
-                        </dl>
-                        <dl>
-                            <dt>上架时间：</dt>
-                            <dd>2015-04-14</dd>
-                        </dl>
-                        <div class="Appraisal">
-                            <p>销售评价</p>
-                            <a>1234</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="buyinfo" id="detail_buyinfo">
-                    <dl>
-                        <dt>数量</dt>
-                        <dd>
-                            <div class="choose-amount left">
-                                <a class="btn-reduce" href="javascript:;"
-                                    onclick="setAmount.reduce('#buy-num')">-</a> <a
-                                    class="btn-add" href="javascript:;"
-                                    onclick="setAmount.add('#buy-num')">+</a> <input class="text"
-                                    id="buy-num" value="1" onkeyup="setAmount.modify('#buy-num');">
-                            </div>
-                            <div class="P_Quantity">剩余：50000件</div>
-                        </dd>
-                        <dd>
-                            <div class="wrap_btn">
-                                <a href="javascript:addToCart_bak(92)" class="wrap_btn1"
-                                    title="加入购物车"></a> <a href="javascript:addToCart(92)"
-                                    class="wrap_btn2" title="立即购买"></a>
-                            </div>
-                        </dd>
-                    </dl>
-                </div>
-                <div class="Guarantee clearfix">
-                    <dl>
-                        <dt>支付方式</dt>
-                        <dd>
-                            <em></em>货到付款（部分地区）
-                        </dd>
-                        <dd>
-                            <em></em>在线支付
-                        </dd>
-                        <dd>
-                            <div class="payment" id="payment">
-                                <a href="javascript:void(0);" class="paybtn">支付方式<span
-                                    class="iconDetail"></span></a>
-                                <ul>
-                                    <li>货到付款</li>
-                                    <li>礼品卡支付</li>
-                                    <li>网上支付</li>
-                                    <li>银行转账</li>
-                                </ul>
-                            </div>
-                        </dd>
-                    </dl>
-                </div>-->
 				<h2>${commodity.productName }</h2>
 				<div class="goods_info">◆买即送大麦茶◆满2件减10元再赠2罐大麦茶◆礼品袋茶包免费赠◆</div>
 				<div class="ProductD clearfix">
@@ -620,6 +533,7 @@
 										value="${commodity.merchantId}" />
 
 									<a href="javascript:void(0)" class="wrap_btn1" title="加入购物车"></a>
+									<a href="javascript:addToCart(92)"class="wrap_btn2" title="立即购买"></a>
 								</form>
 							</div>
 						</dd>
@@ -851,7 +765,7 @@
 			$('.wrap_btn1').on('click',function(){
 				var formStr=$('form').serialize();//序列化表单
 				$.ajax({
-					url:"${pageContext.request.contextPath}/shoppingTrolleyServlet",
+					url:"${pageContext.request.contextPath}/shoppingTrolley/addCommodity",
 					type:"post",
 					data:formStr,
 					success:function(data)

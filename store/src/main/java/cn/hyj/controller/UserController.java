@@ -95,6 +95,14 @@ public class UserController {
     }
 
 
+    /***
+     * 重置密码
+     * @param password
+     * @param email
+     * @param code
+     * @param modelMap
+     * @return
+     */
     @RequestMapping("/resetPassword")
     @ResponseBody
     public String resetPassword(String password,String email,String code,String type,ModelMap modelMap,Model model) throws Exception{
@@ -145,6 +153,7 @@ public class UserController {
         Integer _code = (Integer) modelMap.getAttribute("code");//取出session中的验证码
         User user = (User) modelMap.getAttribute("user");//取出session中的user对象
         if (_code.toString().equals(code)) {
+            user.setPassword(SplitString.encode(user.getPassword()));//密码加密【使用MD5】
             userService.userRegister(user);//保存数据库
         }
         return "login";
@@ -166,7 +175,6 @@ public class UserController {
         String fileName=fileField.getName();//获得名字
         // 获得原始名称
         String originalFilename = fileField.getOriginalFilename();
-        System.out.println(originalFilename);
         fileField.transferTo(new File(file,originalFilename));//保存
     }
 
@@ -183,6 +191,33 @@ public class UserController {
         }
         userService.userUpdateInformation(user);
         return user;
+    }
+
+    /**
+     * 修改密码
+     * @param thispassword 原密码
+     * @param password 要修改的密码
+     * @param modelMap
+     * @return
+     */
+    @RequestMapping("/changePassword")
+    @ResponseBody
+    public String changePassword(String thispassword,String password,ModelMap modelMap){
+
+        User user = (User) modelMap.getAttribute("user");//取出session中的user对象
+        //判断密码是否相同
+        if(thispassword.equals(user.getPassword())){
+            user.setPassword(password);
+            try {
+                userService.updateByPrimaryKeySelective(user);
+                return "1";
+            }catch (Exception e){
+                e.printStackTrace();
+                return "-1";
+            }
+        }else{
+            return "0";
+        }
     }
 
 

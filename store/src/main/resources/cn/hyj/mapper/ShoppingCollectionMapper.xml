@@ -24,11 +24,15 @@
     , t_commodity.product_name
     , t_commodity.commodity_price
     , t_commodity.commodity_img
-
     FROM t_shopping_collection,t_commodity
     WHERE t_shopping_collection.user_Id=#{userId} AND t_shopping_collection.`commodity_Id`=t_commodity.`commodity_ID`
-
   </select>
+  <select id="commodityEixs" resultType="java.lang.Boolean">
+    select count(*)
+    from t_shopping_collection
+    where user_Id=#{userId} and commodity_Id=#{commodityId}
+  </select>
+
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />

@@ -78,7 +78,6 @@ public class CommodityController {
         }else{
             buffer.append(commodityId.toString());
         }
-        System.out.println("buffer--->"+buffer);
         response.addCookie(new Cookie("commodityId",buffer.toString()));
         Commodity commodity = commodityService.queryByPrimaryKey(commodityId);//商品
         List<String> commodityImg = SplitString.splitStringToList(commodity.getCommodityImg());

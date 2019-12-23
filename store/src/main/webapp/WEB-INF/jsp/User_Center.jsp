@@ -14,9 +14,12 @@
     <script src="${pageContext.request.contextPath}/js/common_js.js" type="text/javascript"></script>
     <script src="${pageContext.request.contextPath}/js/footer.js" type="text/javascript"></script>
     <script src="${pageContext.request.contextPath}/js/lrtk.js" type="text/javascript"></script>
+    <script src="${pageContext.request.contextPath}/js/date.js" type="text/javascript"></script>
     <title>用户中心</title>
 </head>
 <script type="text/javascript">
+
+    writeCurrentDate();
     $(document).ready(function () {
         $(".transaction_manage").eq(0).trigger('click');
         setInterval(showTime, 1000);

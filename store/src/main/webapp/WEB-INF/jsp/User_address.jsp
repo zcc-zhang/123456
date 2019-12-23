@@ -25,7 +25,10 @@
 			src="${pageContext.request.contextPath}/js/sweetalert-dev.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/assets/province.js"></script>
 	<script src="${pageContext.request.contextPath}/src/jquery.dialog.min.js"></script>
-	<script type="text/javascript">
+	<script type="text/javascript" src="${pageContext.request.contextPath}/assets/province.js"></script>
+	<script src="${pageContext.request.contextPath}/src/jquery.dialog.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/date.js" type="text/javascript"></script>
+<script type="text/javascript">
 
 		$(function(){
 			/******单击删除图标*********/
@@ -232,35 +235,34 @@
 </head>
 
 <body>
-<!--顶部图层-->
-<div id="header_top">
-	<div id="top">
-		<div class="Inside_pages">
-			<div class="Collection">
-				下午好，欢迎光临锦宏颜！<em></em><a href="#">收藏我们</a>
-			</div>
-			<div class="hd_top_manu clearfix">
-				<ul class="clearfix">
-					<li class="hd_menu_tit zhuce" data-addclass="hd_menu_hover">欢迎光临本店！
-						<a href="${pageContext.request.contextPath }/login.jsp" class="red">
-							<c:if test="${ not empty user.username}">
-								${user.username} <style>#registered{display: none}</style>
-							</c:if>
-							<c:if test="${empty user.username}">
-								[请登录]
-							</c:if> </a>
+	<div id="header_top">
+		<div id="top">
+			<div class="Inside_pages">
+				<div class="Collection">
+					下午好，欢迎光临锦宏颜！<em></em><a href="#">收藏我们</a>
+				</div>
+				<div class="hd_top_manu clearfix">
+					<ul class="clearfix">
+						<li class="hd_menu_tit zhuce" data-addclass="hd_menu_hover">欢迎光临本店！
+						<a href="${pageContext.request.contextPath }/login" class="red">
+						<c:if test="${ not empty user.username}">
+							${user.username} <style>#registered{display: none}</style>
+						</c:if>
+						<c:if test="${empty user.username}">
+							[请登录]
+						</c:if> </a>
 						<c:if test="${empty user.username}">
 							新用户
 						</c:if>
-						<a href="${pageContext.request.contextPath }/registered.jsp"class="red" id='registered'>[免费注册]</a>
-					</li>
-					<li class="hd_menu_tit" data-addclass="hd_menu_hover">
-						<a href="${pageContext.request.contextPath }/orderInformationServlet">我的订单</a>
-					</li>
-					<li class="hd_menu_tit" data-addclass="hd_menu_hover">
-						<a href="${pageContext.request.contextPath }/Cart.jsp">购物车</a>
-					</li>
-					<li class="hd_menu_tit" data-addclass="hd_menu_hover">
+						<a href="${pageContext.request.contextPath }/registered"class="red" id='registered'>[免费注册]</a>
+						</li>
+						<li class="hd_menu_tit" data-addclass="hd_menu_hover">
+						<a href="${pageContext.request.contextPath }/orderInformation/orderList">我的订单</a>
+						</li>
+						<li class="hd_menu_tit" data-addclass="hd_menu_hover">
+						<a href="${pageContext.request.contextPath }/shoppingTrolley/queryShoppingTrolley">购物车</a>
+						</li>
+						<li class="hd_menu_tit" data-addclass="hd_menu_hover">
 						<a href="#">联系我们</a></li>
 					<li class="hd_menu_tit list_name" data-addclass="hd_menu_hover">
 						<a href="#" class="hd_menu">客户服务</a>
@@ -334,6 +336,60 @@
 						共<b>1</b>件商品 共计<strong>￥ 515.00</strong>
 					</div>
 					<a href="#" title="去购物车结算" id="btn-payforgoods" class="Shopping">去购物车结算</a>
+					<!--菜单列表图层-->
+					<dl class="accountSideOption1">
+						<dt class="transaction_manage">
+							<em class="icon_1"></em>订单中心
+						</dt>
+						<dd>
+							<ul>
+								<li><a href="${pageContext.request.contextPath}/orderInformation/orderList"> 我的订单</a></li>
+								<li><a href="${pageContext.request.contextPath}/User_address">收货地址</a></li>
+								<li><a href="user.php?act=booking_list"> 缺货登记</a></li>
+							</ul>
+						</dd>
+					</dl>
+					<dl class="accountSideOption1">
+						<dt class="transaction_manage">
+							<em class="icon_2"></em>会员中心
+						</dt>
+						<dd>
+							<ul>
+								<li><a href="${pageContext.request.contextPath}/profile"> 用户信息</a></li>
+								<li><a href="${pageContext.request.contextPath}/shoppingCollection/commodityList"> 我的收藏</a></li>
+								<li><a href="user.php?act=message_list"> 我的留言</a></li>
+								<li><a href="user.php?act=tag_list">我的标签</a></li>
+								<!-- <li> <a href="user.php?act=affiliate"> 我的推荐</a></li> -->
+								<li><a href="user.php?act=comment_list"> 我的评论</a></li>
+							</ul>
+						</dd>
+					</dl>
+					<dl class="accountSideOption1">
+						<dt class="transaction_manage">
+							<em class="icon_3"></em>账户中心
+						</dt>
+						<dd>
+							<ul>
+								<li><a href="user.php?act=bonus">我的红包</a></li>
+								<!--<a href="user.php?act=group_buy">我的团购</a>-->
+								<li><a href="user.php?act=track_packages"> 跟踪包裹</a></li>
+								<li><a href="user.php?act=account_log"> 资金管理</a></li>
+							</ul>
+						</dd>
+					</dl>
+					<dl class="accountSideOption1">
+						<dt class="transaction_manage">
+							<em class="icon_4"></em>分销中心
+						</dt>
+						<dd>
+							<ul>
+								<li><a href="user.php?act=myshop">店铺管理</a></li>
+								<li><a href="user.php?act=myguide">我的盟友</a></li>
+								<li><a href="user.php?act=myaccount"> 我的佣金</a></li>
+								<li><a href="user.php?act=account_raply">申请提现</a></li>
+							</ul>
+						</dd>
+					</dl>
 				</div>
 			</div>
 		</div>
