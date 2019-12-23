@@ -62,6 +62,18 @@ public class ShippingAddressController {
 
     /**
      * 修改收货地址
+     * @return
+     */
+    @RequestMapping("/changeAddress")
+    public String changeAddress(Integer id,Map<String,Object> map){
+        ShippingAddress shippingAddress = shippingAddressService.queryById(id);
+        map.put("address",shippingAddress);
+        map.put("flag",true);
+        return "User_address";
+    }
+
+    /**
+     * 修改收货地址
      * @param shippingAddress
      * @param province
      * @param city

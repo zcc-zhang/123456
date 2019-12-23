@@ -84,7 +84,7 @@
                 var dataStr = $(this).parent().siblings("#myFrom").serialize();
                 $.ajax(
                     {
-                        url: "${pageContext.request.contextPath}/collectCommoditySevlet",
+                        url: "${pageContext.request.contextPath}/shoppingCollection/collectionCommodity",
                         data: dataStr,
                         type: "post",
                         success: callBack
@@ -660,15 +660,15 @@
                 </div>
                 <div class="p_f_name">
                     <a
-                            href="${pageContext.request.contextPath}/commodity//toPage?commodityPrice= 0 and 50">0-50</a>
+                            href="${pageContext.request.contextPath}/commodity//toPage?min=0&max=50">0-50</a>
                     <a
-                            href="${pageContext.request.contextPath}/showCommodityListServlet?commodityPrice=between 50 and 150">50-150</a>
+                            href="${pageContext.request.contextPath}/commodity//toPage?min=50&max=150">50-150</a>
                     <a
-                            href="${pageContext.request.contextPath}/showCommodityListServlet?commodityPrice=between 150 and 500">150-500</a>
+                            href="${pageContext.request.contextPath}/commodity//toPage?min=150&max=500">150-500</a>
                     <a
-                            href="${pageContext.request.contextPath}/showCommodityListServlet?commodityPrice=between 500 and 1000">500-1000</a>
+                            href="${pageContext.request.contextPath}/commodity//toPage?min=500&max=1000">500-1000</a>
                     <a
-                            href="${pageContext.request.contextPath}/showCommodityListServlet?commodityPrice=>1000">1000以上</a>
+                            href="${pageContext.request.contextPath}/commodity//toPage?max=1000">1000以上</a>
                 </div>
             </div>
         </div>
@@ -956,7 +956,7 @@
 								?currentPage=${pageCode - 1}"
                                     class="pn-prev disabled">上一页</a>
                         </c:if>
-                        <c:forEach begin="${total-4}" end="${total}" var='pageCode'>
+                        <c:forEach begin="1" end="${total}" var='pageCode'>
                             <a href="${pageContext.request.contextPath}/commodity//toPage?currentPage=${pageCode}">${pageCode}</a>
                         </c:forEach>
                         <!--

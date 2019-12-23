@@ -2,7 +2,6 @@
 	contentType="text/html;charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
-<!-- saved from url=(0062)https://profile.oracle.com/myprofile/account/confirmation.jspx -->
 <html class="p_AFMaximized" dir="ltr" lang="zh-CN">
 <script src="js/jquery-1.9.1.min.js" type="text/javascript"></script>
 <head>
@@ -63,9 +62,9 @@ body {
 								${user.email}发送了电子邮件，其中附有确认电子邮件地址的按钮。</span>
 							<div id="createaccount:dc12:sp4" style="margin-top:20px"></div>
 							<span class="x24b">您是否已收到该电子邮件？如果没有，请最晚在 3 天之内检查您的垃圾邮件夹或<a
-								href="https://profile.oracle.com/myprofile/account/request-verification.jspx">请求向您发送新的确认电子邮件</a>。如果您未能在
+								href="#">请求向您发送新的确认电子邮件</a>。如果您未能在
 								3 天之内确认您的电子邮件地址，您将需要创建一个新帐户。如果您有问题，请参阅<a
-								href="https://www.oracle.com/corporate/contact/help.html">帐户帮助</a>。
+								href="#">帐户帮助</a>。
 							</span>
 							<div id="createaccount:dc12:s4" style="margin-top:32px"></div>
 						</div>

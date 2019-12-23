@@ -9,9 +9,10 @@ import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import javax.servlet.annotation.WebServlet;
 import java.util.List;
 
 @Controller
@@ -23,11 +24,13 @@ public class ShoppingCollectionController {
     private GoodsCollectionService goodsCollectionService;
     /**
      * 收藏商品
-     * @param commodityId
+     * @param commodityID
      * @return
      */
     @RequestMapping("/collectionCommodity")
-    public String collectionCommodity(Integer commodityId){
+    @ResponseBody
+    public String collectionCommodity(Integer commodityID,ModelMap modelMap){
+
 
         return "";
     }
@@ -39,7 +42,6 @@ public class ShoppingCollectionController {
      */
     @RequestMapping("/commodityList")
     public String commodityList(ModelMap modelMap){
-
         User user = (User) modelMap.getAttribute("user");//取出session中数据
         List<ShoppingCollection> collectionList = goodsCollectionService.QueryByIdCommodity(user.getUserId());
         //图片路径分割
