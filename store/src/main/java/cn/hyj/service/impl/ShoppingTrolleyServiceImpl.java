@@ -29,7 +29,7 @@ public class ShoppingTrolleyServiceImpl implements ShoppingTrolleyService {
 
     @Override
     public void insert(ShoppingTrolley record) {
-
+        System.out.println(record);
         List<ShoppingTrolley> trolleys = this.selectByUserId(record.getUserId());
         boolean flag=true;
             for (int i=0;i<trolleys.size();i++)
