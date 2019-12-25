@@ -61,7 +61,7 @@
     <div id="top">
         <div class="Inside_pages">
             <div class="Collection">
-                下午好，欢迎光临锦宏颜！<em></em><a href="#">收藏我们</a>
+                下午好，欢迎光临锦宏颜！<em></em><a href="${pageContext.request.contextPath}/shoppingCollection/commodityList">收藏我们</a>
             </div>
             <div class="hd_top_manu clearfix">
                 <ul class="clearfix">
@@ -79,7 +79,7 @@
                         </c:if>
                         </a> <c:if test="${empty user.username}">
                             新用户
-                        </c:if> <a href="${pageContext.request.contextPath }/registered.jsp"
+                        </c:if> <a href="${pageContext.request.contextPath }/registered"
                                    class="red" id='registered'>[免费注册]</a>
                     </li>
                     <li class="hd_menu_tit" data-addclass="hd_menu_hover"><a
@@ -133,7 +133,7 @@
         <!--购物车样式-->
         <div class="hd_Shopping_list" id="Shopping_list">
             <div class="s_cart">
-                <em class="iconfont icon-cart2"></em><a href="#">我的购物车</a> <i
+                <em class="iconfont icon-cart2"></em><a href="${pageContext.request.contextPath}/shoppingTrolley/queryShoppingTrolley">我的购物车</a> <i
                     class="ci-right">&gt;</i><i class="ci-count" id="shopping-amount">0</i>
             </div>
             <div class="dorpdown-layer">
@@ -162,7 +162,7 @@
                     <div class="p-total">
                         共<b>1</b>件商品 共计<strong>￥ 515.00</strong>
                     </div>
-                    <a href="#" title="去购物车结算" id="btn-payforgoods" class="Shopping">去购物车结算</a>
+                    <a href="${pageContext.request.contextPath}/shoppingTrolley/queryShoppingTrolley" title="去购物车结算" id="btn-payforgoods" class="Shopping">去购物车结算</a>
                 </div>
             </div>
         </div>
@@ -266,26 +266,26 @@
                                     </div>
                                     <div class="Brands">
                                         <a href="#" class="logo_Brands"><img
-                                                src="product/logo/34.jpg"/></a> <a href="#"
+                                                src="${pageContext.request.contextPath}/product/logo/34.jpg"/></a> <a href="#"
                                                                                    class="logo_Brands"><img
-                                            src="product/logo/42.jpg"/></a> <a
+                                            src="${pageContext.request.contextPath}/product/logo/42.jpg"/></a> <a
                                             href="#" class="logo_Brands"><img
-                                            src="product/logo/152.jpg"/></a> <a href="#"
+                                            src="${pageContext.request.contextPath}/product/logo/152.jpg"/></a> <a href="#"
                                                                                 class="logo_Brands"><img
-                                            src="product/logo/156.jpg"/></a>
+                                            src="${pageContext.request.contextPath}/product/logo/156.jpg"/></a>
                                         <a href="#" class="logo_Brands"><img
-                                                src="product/logo/458.jpg"/></a> <a href="#"
+                                                src="${pageContext.request.contextPath}/product/logo/458.jpg"/></a> <a href="#"
                                                                                     class="logo_Brands"><img
-                                            src="product/logo/339.jpg"/></a>
+                                            src="${pageContext.request.contextPath}/product/logo/339.jpg"/></a>
                                         <a href="#" class="logo_Brands"><img
-                                                src="product/logo/245.jpg"/></a> <a href="#"
+                                                src="${pageContext.request.contextPath}/product/logo/245.jpg"/></a> <a href="#"
                                                                                     class="logo_Brands"><img
-                                            src="product/logo/199.jpg"/></a>
+                                            src="${pageContext.request.contextPath}/product/logo/199.jpg"/></a>
                                         <a href="#" class="logo_Brands"><img
-                                                src="product/logo/618.jpg"/></a> <a href="#"
+                                                src="${pageContext.request.contextPath}/product/logo/618.jpg"/></a> <a href="#"
                                                                                     class="logo_Brands"><img
-                                            src="product/logo/644.jpg"/></a>
-                                        <a href="#" class="AD_3"><img src="product/ad/2.jpg"/></a>
+                                            src="${pageContext.request.contextPath}/product/logo/644.jpg"/></a>
+                                        <a href="#" class="AD_3"><img src="${pageContext.request.contextPath}/product/ad/2.jpg"/></a>
                                     </div>
                                 </div>
                                 <!--品牌-->
@@ -374,19 +374,19 @@
             <!--菜单栏-->
             <div class="Navigation" id="Navigation">
                 <ul class="Navigation_name">
-                    <li><a href="${pageContext.request.contextPath}/index.jsp">首页</a></li>
+                    <li><a href="${pageContext.request.contextPath}/index">首页</a></li>
                     <li><a
                             href="${pageContext.request.contextPath}/Footprint.jsp">日常护理</a></li>
                     <li><a href="${pageContext.request.contextPath}/Must_see.jsp">每日必看</a></li>
                     <li><a
-                            href="${pageContext.request.contextPath}/showCommodityListServlet">产品列表</a></li>
+                            href="${pageContext.request.contextPath}/commodity//toPage">产品列表</a></li>
                     <li><a
                             href="${pageContext.request.contextPath}/Buy_Brands.jsp">限时团购</a></li>
                     <li><a href="${pageContext.request.contextPath}/diy.jsp">礼品DIY</a></li>
                     <li><a
                             href="${pageContext.request.contextPath}/Group_buy.jsp">品牌团购</a></li>
                     <li><a href="#">联系我们</a></li>
-                    <li><a href="${pageContext.request.contextPath}/index.jsp">简洁版</a></li>
+                    <li><a href="${pageContext.request.contextPath}/index">简洁版</a></li>
                 </ul>
             </div>
             <script>$("#Navigation").slide({
@@ -411,11 +411,12 @@
                     <div class="user_name">
                         <p>
                             <span class="name">${user.username}</span> <a
-                                href="${pageContext.request.contextPath}/User_changePassword.jsp">[修改密码]</a>
+                                href="${pageContext.request.contextPath}/User_changePassword">[修改密码]</a>
                         </p>
-                        <span>
+                        <script>writeCurrentDate();</script>
+                        <span id="date">
 								访问时间：
-								<fmt:formatDate value="${thisDate}" pattern="yyyy年MM月dd号"/></span>
+								</span>
                     </div>
                 </div>
                 <!--菜单列表图层-->
@@ -425,11 +426,8 @@
                     </dt>
                     <dd>
                         <ul>
-                            <li><a
-                                    href="${pageContext.request.contextPath}/orderInformationServlet">
-                                我的订单</a></li>
-                            <li><a
-                                    href="${pageContext.request.contextPath}/shippingAddress/addressList">收货地址</a></li>
+                            <li><a href="${pageContext.request.contextPath}/shoppingCollection/commodityList"> 我的订单</a></li>
+                            <li><a href="${pageContext.request.contextPath}/shippingAddress/addressList">收货地址</a></li>
                             <li><a href="user.php?act=booking_list"> 缺货登记</a></li>
                         </ul>
                     </dd>
@@ -466,17 +464,6 @@
                         </ul>
                     </dd>
                 </dl>
-                <!-- <dl class="accountSideOption1">
-  <dt class="transaction_manage"><em class="icon_4"></em>分销中心</dt>
-  <dd>
-    <ul>
-      <li> <a href="user.php?act=myshop">店铺管理</a></li>
-      <li> <a href="user.php?act=myguide">我的盟友</a></li>
-      <li> <a href="user.php?act=myaccount"> 我的佣金</a></li>
-      <li> <a href="user.php?act=account_raply">申请提现</a></li>
-    </ul>
-  </dd>
-</dl> -->
             </div>
         </div>
         <!--右侧内容图层-->
@@ -592,26 +579,6 @@
                                         <td><img src="${pageContext.request.contextPath}/big/123456789.PNG"/></td>
                                     </tr>
                                 </c:if>
-
-
-                                <!--  <tr>
-<td class="img_link">
-<a href="#" class="img"><img src="Product/cp_1.jpg" width="80" height="80"></a>
-<a href="#" class="title">雅诗兰黛（Estee Lauder）弹性紧实柔肤眼霜15ml(又名弹性紧实眼霜)（提拉紧致 保湿补水 淡化细纹）</a>
-</td>
-<td>2</td>
-<td>完成</td>
-<td><a href="#">查看</a></td>
-</tr>
-<tr>
-<td class="img_link">
-<a href="#" class="img"><img src="Product/cp_2.jpg" width="80" height="80"></a>
-<a href="#" class="title">雅诗兰黛 即时修护眼部精华霜15ML 小棕瓶</a>
-</td>
-<td>2</td>
-<td>完成</td>
-<td><a href="#">查看</a></td>
-</tr> -->
                                 </tbody>
                             </table>
                             <div class="us_jls">共2条记录</div>
@@ -647,83 +614,6 @@
                                                 </div>
                                             </li>
                                         </c:forEach>
-
-                                        <!-- <li>
-                        <div class="p_width">
-                            <div class="pic"><a href=""><img src="Product/P_10.jpg"></a></div>
-                            <div class="title"><a href="#">金龙鱼 东北大米 蟹稻共生 盘锦大米5KG</a></div>
-                            <div class="Purchase_info"><span class="p_Price">￥32.50</span> <a href="#" class="Purchase">立即购买</a></div>
-                        </div>
-                        </li>
-                        <li >
-                                <div class="p_width">
-                            <div class="pic"><a href=""><img src="Product/P_1.jpg"></a></div>
-                            <div class="title"><a href="#">金龙鱼 东北大米 蟹稻共生 盘锦大米5KG</a></div>
-                            <div class="Purchase_info"><span class="p_Price">￥32.50</span> <a href="#" class="Purchase">立即购买</a></div>
-                        </div>
-                            </li>
-                        <li >
-                        <div class="p_width">
-                            <div class="pic"><a href=""><img src="Product/P_2.jpg"></a></div>
-                            <div class="title"><a href="#">金龙鱼 东北大米 蟹稻共生 盘锦大米5KG</a></div>
-                            <div class="Purchase_info"><span class="p_Price">￥32.50</span> <a href="#" class="Purchase">立即购买</a></div>
-                        </div>
-                        </li>
-                            <li >
-                                <div class="p_width">
-                            <div class="pic"><a href=""><img src="Product/P_3.jpg"></a></div>
-                            <div class="title"><a href="#">金龙鱼 东北大米 蟹稻共生 盘锦大米5KG</a></div>
-                            <div class="Purchase_info"><span class="p_Price">￥32.50</span> <a href="#" class="Purchase">立即购买</a></div>
-                        </div>
-                            </li>
-                            <li >
-                                <div class="p_width">
-                            <div class="pic"><a href=""><img src="Product/P_4.jpg"></a></div>
-                            <div class="title"><a href="#">金龙鱼 东北大米 蟹稻共生 盘锦大米5KG</a></div>
-                            <div class="Purchase_info"><span class="p_Price">￥32.50</span> <a href="#" class="Purchase">立即购买</a></div>
-                        </div>
-                            </li>
-                            <li >
-                                <div class="p_width">
-                            <div class="pic"><a href=""><img src="Product/P_5.jpg"></a></div>
-                            <div class="title"><a href="#">金龙鱼 东北大米 蟹稻共生 盘锦大米5KG</a></div>
-                            <div class="Purchase_info"><span class="p_Price">￥32.50</span> <a href="#" class="Purchase">立即购买</a></div>
-                        </div>
-                            </li>
-                                <li >
-                                <div class="p_width">
-                            <div class="pic"><a href=""><img src="Product/P_8.jpg"></a></div>
-                            <div class="title"><a href="#">金龙鱼 东北大米 蟹稻共生 盘锦大米5KG</a></div>
-                            <div class="Purchase_info"><span class="p_Price">￥32.50</span> <a href="#" class="Purchase">立即购买</a></div>
-                        </div>
-                            </li>
-                                <li>
-                                <div class="p_width">
-                            <div class="pic"><a href=""><img src="Product/P_11.jpg"></a></div>
-                            <div class="title"><a href="#">金龙鱼 东北大米 蟹稻共生 盘锦大米5KG</a></div>
-                            <div class="Purchase_info"><span class="p_Price">￥32.50</span> <a href="#" class="Purchase">立即购买</a></div>
-                        </div>
-                            </li>
-                                <li >
-                                <div class="p_width">
-                            <div class="pic"><a href=""><img src="Product/P_6.jpg"></a></div>
-                            <div class="title"><a href="#">金龙鱼 东北大米 蟹稻共生 盘锦大米5KG</a></div>
-                            <div class="Purchase_info"><span class="p_Price">￥32.50</span> <a href="#" class="Purchase">立即购买</a></div>
-                        </div>
-                            </li>
-                            <li >
-                        <div class="p_width">
-                            <div class="pic"><a href=""><img src="Product/P_10.jpg"></a></div>
-                            <div class="title"><a href="#">金龙鱼 东北大米 蟹稻共生 盘锦大米5KG</a></div>
-                            <div class="Purchase_info"><span class="p_Price">￥32.50</span> <a href="#" class="Purchase">立即购买</a></div>
-                        </div>
-                        </li><li >
-                                <div class="p_width">
-                            <div class="pic"><a href=""><img src="Product/P_1.jpg"></a></div>
-                            <div class="title"><a href="#">金龙鱼 东北大米 蟹稻共生 盘锦大米5KG</a></div>
-                            <div class="Purchase_info"><span class="p_Price">￥32.50</span> <a href="#" class="Purchase">立即购买</a></div>
-                        </div>
-                            </li> -->
                                     </ul>
                                 </div>
                             </div>
@@ -758,114 +648,6 @@
                                         <div class="p_Price">￥${goodsCollectionList.commodityPrice}</div>
                                     </li>
                                 </c:forEach>
-                                <!-- <li>
-                                    <div class="pic">
-                                        <a href=""><img src="Product/P_10.jpg"></a>
-                                    </div>
-                                    <div class="title">
-                                        <a href="#">金龙鱼 东北大米 蟹稻共生 盘锦大米5KG</a>
-                                    </div>
-                                    <div class="p_Price">￥32.50</div>
-                                </li>
-                                <li s>
-                                    <div class="pic">
-                                        <a href=""><img src="Product/P_9.jpg"></a>
-                                    </div>
-                                    <div class="title">
-                                        <a href="#">金龙鱼 东北大米 蟹稻共生 盘锦大米5KG</a>
-                                    </div>
-                                    <div class="p_Price">￥32.50</div>
-                                </li>
-                                <li>
-                                    <div class="pic">
-                                        <a href=""><img src="Product/P_8.jpg"></a>
-                                    </div>
-                                    <div class="title">
-                                        <a href="#">金龙鱼 东北大米 蟹稻共生 盘锦大米5KG</a>
-                                    </div>
-                                    <div class="p_Price">￥32.50</div>
-                                </li>
-                                <li>
-                                    <div class="pic">
-                                        <a href=""><img src="Product/P_4.jpg"></a>
-                                    </div>
-                                    <div class="title">
-                                        <a href="#">金龙鱼 东北大米 蟹稻共生 盘锦大米5KG</a>
-                                    </div>
-                                    <div class="p_Price">￥32.50</div>
-                                </li>
-                                <li>
-                                    <div class="pic">
-                                        <a href=""><img src="Product/P_3.jpg"></a>
-                                    </div>
-                                    <div class="title">
-                                        <a href="#">金龙鱼 东北大米 蟹稻共生 盘锦大米5KG</a>
-                                    </div>
-                                    <div class="p_Price">￥32.50</div>
-                                </li>
-                                <li>
-                                    <div class="pic">
-                                        <a href=""><img src="Product/P_8.jpg"></a>
-                                    </div>
-                                    <div class="title">
-                                        <a href="#">金龙鱼 东北大米 蟹稻共生 盘锦大米5KG</a>
-                                    </div>
-                                    <div class="p_Price">￥32.50</div>
-                                </li>
-                                <li>
-                                    <div class="pic">
-                                        <a href=""><img src="Product/P_8.jpg"></a>
-                                    </div>
-                                    <div class="title">
-                                        <a href="#">金龙鱼 东北大米 蟹稻共生 盘锦大米5KG</a>
-                                    </div>
-                                    <div class="p_Price">￥32.50</div>
-                                </li>
-                                <li>
-                                    <div class="pic">
-                                        <a href=""><img src="Product/P_5.jpg"></a>
-                                    </div>
-                                    <div class="title">
-                                        <a href="#">金龙鱼 东北大米 蟹稻共生 盘锦大米5KG</a>
-                                    </div>
-                                    <div class="p_Price">￥32.50</div>
-                                </li>
-                                <li>
-                                    <div class="pic">
-                                        <a href=""><img src="Product/P_6.jpg"></a>
-                                    </div>
-                                    <div class="title">
-                                        <a href="#">金龙鱼 东北大米 蟹稻共生 盘锦大米5KG</a>
-                                    </div>
-                                    <div class="p_Price">￥32.50</div>
-                                </li>
-                                <li>
-                                    <div class="pic">
-                                        <a href=""><img src="Product/P_8.jpg"></a>
-                                    </div>
-                                    <div class="title">
-                                        <a href="#">金龙鱼 东北大米 蟹稻共生 盘锦大米5KG</a>
-                                    </div>
-                                    <div class="p_Price">￥32.50</div>
-                                </li>
-                                <li>
-                                    <div class="pic">
-                                        <a href=""><img src="Product/P-8.jpg"></a>
-                                    </div>
-                                    <div class="title">
-                                        <a href="#">金龙鱼 东北大米 蟹稻共生 盘锦大米5KG</a>
-                                    </div>
-                                    <div class="p_Price">￥32.50</div>
-                                </li>
-                                <li>
-                                    <div class="pic">
-                                        <a href=""><img src="Product/P_8.jpg"></a>
-                                    </div>
-                                    <div class="title">
-                                        <a href="#">金龙鱼 东北大米 蟹稻共生 盘锦大米5KG</a>
-                                    </div>
-                                    <div class="p_Price">￥32.50</div>
-                                </li> -->
                             </ul>
                         </div>
                     </div>
@@ -1004,12 +786,12 @@
 <!--右侧菜单栏购物车样式-->
 <div class="fixedBox">
     <ul class="fixedBoxList">
-        <li class="fixeBoxLi user"><a href="${pageContext.request.contextPath}/skipUserCenterServlet"> <span
+        <li class="fixeBoxLi user"><a href="${pageContext.request.contextPath}/profile"> <span
                 class="fixeBoxSpan iconfont icon-yonghu"></span> <strong>用户</strong></a>
         </li>
         <li class="fixeBoxLi cart_bd" style="display:block;" id="cartboxs">
-            <a href="${pageContext.request.contextPath}/shoppingTrolleyList"><p
-                    class="good_cart">${commodityCount}</p> <span
+            <a href="${pageContext.request.contextPath}/shoppingTrolley/queryShoppingTrolley"><p
+                    class="good_cart">${shoppingTrolleys.stream().count()}</p> <span
                     class="fixeBoxSpan iconfont icon-cart"></span> <strong>购物车</strong>
                 <div class="cartBox">
                     <div class="bjfff"></div>
@@ -1064,7 +846,7 @@
             </div>
         </li>
 
-        <li class="fixeBoxLi Home"><a href="./"> <span
+        <li class="fixeBoxLi Home"><a href="/shoppingCollection/commodityList"> <span
                 class="fixeBoxSpan iconfont  icon-shoucang"></span> <strong>收藏</strong>
         </a></li>
         <li class="fixeBoxLi Home"><a href="./"> <span

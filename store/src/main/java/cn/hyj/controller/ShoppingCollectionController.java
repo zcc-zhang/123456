@@ -83,6 +83,7 @@ public class ShoppingCollectionController {
      * @return
      */
     @RequestMapping("/deleteByID")
+    @ResponseBody
     public String deleteByID(Integer id){
         try{
             goodsCollectionService.deleteByPrimaryKey(id);//根据id删除

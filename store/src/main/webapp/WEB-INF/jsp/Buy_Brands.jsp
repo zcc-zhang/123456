@@ -32,7 +32,7 @@
             <div class="hd_top_manu clearfix">
                 <ul class="clearfix">
                     <li class="hd_menu_tit zhuce" data-addclass="hd_menu_hover">欢迎光临本店！
-                        <a href="${pageContext.request.contextPath }/login.jsp" class="red">
+                        <a href="${pageContext.request.contextPath }/login" class="red">
                             <c:if test="${ not empty user.username}">
                                 ${user.username} <style>#registered{display: none}</style>
                             </c:if>
@@ -42,13 +42,13 @@
                         <c:if test="${empty user.username}">
                             新用户
                         </c:if>
-                        <a href="${pageContext.request.contextPath }/registered.jsp"class="red" id='registered'>[免费注册]</a>
+                        <a href="${pageContext.request.contextPath }/registered"class="red" id='registered'>[免费注册]</a>
                     </li>
                     <li class="hd_menu_tit" data-addclass="hd_menu_hover">
-                        <a href="${pageContext.request.contextPath }/">我的订单</a>
+                        <a href="${pageContext.request.contextPath }/orderInformation/orderList">我的订单</a>
                     </li>
                     <li class="hd_menu_tit" data-addclass="hd_menu_hover">
-                        <a href="${pageContext.request.contextPath }/Cart.jsp">购物车</a>
+                        <a href="${pageContext.request.contextPath }/shoppingTrolley/queryShoppingTrolley">购物车</a>
                     </li>
                     <li class="hd_menu_tit" data-addclass="hd_menu_hover">
                         <a href="#">联系我们</a></li>
@@ -241,15 +241,15 @@
             <!--菜单栏-->
             <div class="Navigation" id="Navigation">
                 <ul class="Navigation_name">
-                    <li><a href="${pageContext.request.contextPath}/index.jsp">首页</a></li>
+                    <li><a href="${pageContext.request.contextPath}/index">首页</a></li>
                     <li><a href="${pageContext.request.contextPath}/Footprint.jsp">日常护理</a></li>
                     <li><a href="${pageContext.request.contextPath}/Must_see.jsp">每日必看</a></li>
-                    <li><a href="${pageContext.request.contextPath}/showCommodityListServlet">产品列表</a></li>
+                    <li><a href="${pageContext.request.contextPath}/commodity//toPage">产品列表</a></li>
                     <li><a href="${pageContext.request.contextPath}/Buy_Brands.jsp">限时团购</a></li>
                     <li><a href="${pageContext.request.contextPath}/diy.jsp">礼品DIY</a></li>
                     <li><a href="${pageContext.request.contextPath}/Group_buy.jsp">品牌团购</a></li>
                     <li><a href="#">联系我们</a></li>
-                    <li><a href="${pageContext.request.contextPath}/index.jsp">简洁版</a></li>
+                    <li><a href="${pageContext.request.contextPath}/index">简洁版</a></li>
                 </ul>
             </div>
             <script>$("#Navigation").slide({titCell:".Navigation_name li"});</script>
@@ -707,16 +707,13 @@
 <!--右侧菜单栏购物车样式-->
 <div class="fixedBox">
     <ul class="fixedBoxList">
-        <li class="fixeBoxLi user"><a href="${pageContext.request.contextPath}/skipUserCenterServlet"> <span
+        <li class="fixeBoxLi user"><a href="${pageContext.request.contextPath}/profile"> <span
                 class="fixeBoxSpan iconfont icon-yonghu"></span> <strong>用户</strong></a>
         </li>
         <li class="fixeBoxLi cart_bd" style="display:block;" id="cartboxs">
-            <a href="${pageContext.request.contextPath}/shoppingTrolleyList"><p class="good_cart">${commodityCount}</p> <span
+            <a href="${pageContext.request.contextPath}/shoppingTrolley/queryShoppingTrolley"><p class="good_cart">${shoppingTrolleys.stream().count()}</p> <span
                     class="fixeBoxSpan iconfont icon-cart"></span> <strong>购物车</strong>
-                <div class="cartBox">
-                    <div class="bjfff"></div>
-                    <div class="message">购物车内暂无商品，赶紧选购吧</div>
-                </div></a>
+               </a>
         </li>
         <li class="fixeBoxLi Service "><span
                 class="fixeBoxSpan iconfont icon-service"></span> <strong>客服</strong>
@@ -763,7 +760,7 @@
                 </div>
             </div></li>
 
-        <li class="fixeBoxLi Home"><a href="./"> <span
+        <li class="fixeBoxLi Home"><a href="${pageContext.request.contextPath}/shoppingCollection/commodityList"> <span
                 class="fixeBoxSpan iconfont  icon-shoucang"></span> <strong>收藏</strong>
         </a></li>
         <li class="fixeBoxLi Home"><a href="./"> <span

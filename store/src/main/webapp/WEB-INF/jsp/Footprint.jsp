@@ -487,17 +487,13 @@
 <!--右侧菜单栏购物车样式-->
 <div class="fixedBox">
     <ul class="fixedBoxList">
-        <li class="fixeBoxLi user"><a href="${pageContext.request.contextPath}/skipUserCenterServlet"> <span
+        <li class="fixeBoxLi user"><a href="${pageContext.request.contextPath}/profile"> <span
                 class="fixeBoxSpan iconfont icon-yonghu"></span> <strong>用户</strong></a>
         </li>
         <li class="fixeBoxLi cart_bd" style="display:block;" id="cartboxs">
-            <a href="${pageContext.request.contextPath}/shoppingTrolleyList"><p class="good_cart">${commodityCount}</p>
+            <a href="${pageContext.request.contextPath}/shoppingTrolley/queryShoppingTrolley"><p class="good_cart">${shoppingTrolleys.stream().count()}</p>
                 <span
                         class="fixeBoxSpan iconfont icon-cart"></span> <strong>购物车</strong>
-                <div class="cartBox">
-                    <div class="bjfff"></div>
-                    <div class="message">购物车内暂无商品，赶紧选购吧</div>
-                </div>
             </a>
         </li>
         <li class="fixeBoxLi Service "><span

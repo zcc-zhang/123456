@@ -221,7 +221,7 @@
         <div class="hd_Shopping_list" id="Shopping_list">
             <div class="s_cart">
                 <em class="iconfont icon-cart2"></em><a href="#">我的购物车</a> <i
-                    class="ci-right">&gt;</i><i class="ci-count" id="shopping-amount">0</i>
+                    class="ci-right">&gt;</i><i class="ci-count" id="shopping-amount">${shoppingTrolleys.stream().count()}</i>
             </div>
             <div class="dorpdown-layer">
                 <div class="spacer"></div>
@@ -1094,17 +1094,13 @@
 <!--右侧菜单栏购物车样式-->
 <div class="fixedBox">
     <ul class="fixedBoxList">
-        <li class="fixeBoxLi user"><a href="${pageContext.request.contextPath}/user_Center"> <span
+        <li class="fixeBoxLi user"><a href="${pageContext.request.contextPath}/profile"> <span
                 class="fixeBoxSpan iconfont icon-yonghu"></span> <strong>用户</strong></a>
         </li>
         <li class="fixeBoxLi cart_bd" style="display:block;" id="cartboxs">
             <a href="${pageContext.request.contextPath}/shoppingTrolley/queryShoppingTrolley"><p
-                    class="good_cart">${commodityCount}</p> <span
+                    class="good_cart">${shoppingTrolleys.stream().count()}</p> <span
                     class="fixeBoxSpan iconfont icon-cart"></span> <strong>购物车</strong>
-                <div class="cartBox">
-                    <div class="bjfff"></div>
-                    <div class="message">购物车内暂无商品，赶紧选购吧</div>
-                </div>
             </a>
         </li>
         <li class="fixeBoxLi Service "><span
@@ -1154,7 +1150,7 @@
             </div>
         </li>
 
-        <li class="fixeBoxLi Home"><a href="./"> <span
+        <li class="fixeBoxLi Home"><a href="${pageContext.request.contextPath}/shoppingCollection/commodityList"> <span
                 class="fixeBoxSpan iconfont  icon-shoucang"></span> <strong>收藏</strong>
         </a></li>
         <li class="fixeBoxLi Home"><a href="./"> <span

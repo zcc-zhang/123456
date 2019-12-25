@@ -105,7 +105,7 @@
 						<c:if test="${empty user.username}">
 							新用户
 						</c:if>
-						<a href="${pageContext.request.contextPath }/registered.jsp"class="red" id='registered'>[免费注册]</a>
+						<a href="${pageContext.request.contextPath }/registered"class="red" id='registered'>[免费注册]</a>
 					</li>
 					<li class="hd_menu_tit" data-addclass="hd_menu_hover">
 						<a href="${pageContext.request.contextPath }/orderInformation/orderList">我的订单</a>
@@ -156,8 +156,8 @@
 		<!--购物车样式-->
 		<div class="hd_Shopping_list" id="Shopping_list">
 			<div class="s_cart">
-				<em class="iconfont icon-cart2"></em><a href="#">我的购物车</a> <i
-					class="ci-right">&gt;</i><i class="ci-count" id="shopping-amount">0</i>
+				<em class="iconfont icon-cart2"></em><a href="${pageContext.request.contextPath}/shoppingTrolley/queryShoppingTrolley">我的购物车</a> <i
+					class="ci-right">&gt;</i><i class="ci-count" id="shopping-amount">${shoppingTrolleys.stream().count()}</i>
 			</div>
 			<div class="dorpdown-layer">
 				<div class="spacer"></div>
@@ -185,7 +185,7 @@
 					<div class="p-total">
 						共<b>1</b>件商品 共计<strong>￥ 515.00</strong>
 					</div>
-					<a href="#" title="去购物车结算" id="btn-payforgoods" class="Shopping">去购物车结算</a>
+					<a href="${pageContext.request.contextPath}/shoppingTrolley/queryShoppingTrolley" title="去购物车结算" id="btn-payforgoods" class="Shopping">去购物车结算</a>
 				</div>
 			</div>
 		</div>
@@ -437,7 +437,7 @@
 						<dd>
 							<ul>
 								<li><a href="${pageContext.request.contextPath}/orderInformation/orderList"> 我的订单</a></li>
-								<li><a href="User_address.html">收货地址</a></li>
+								<li><a href="${pageContext.request.contextPath}/shippingAddress/addressList">收货地址</a></li>
 								<li><a href="user.php?act=booking_list"> 缺货登记</a></li>
 							</ul>
 						</dd>
@@ -448,8 +448,8 @@
 						</dt>
 						<dd>
 							<ul>
-								<li><a href="${pageContext.request.contextPath}/User_Personalinfo"> 用户信息</a></li>
-								<li><a href="User_Collect.html"> 我的收藏</a></li>
+								<li><a href="${pageContext.request.contextPath}/profile"> 用户信息</a></li>
+								<li><a href="${pageContext.request.contextPath}/shoppingCollection/commodityList"> 我的收藏</a></li>
 								<li><a href="user.php?act=message_list"> 我的留言</a></li>
 								<li><a href="${pageContext.request.contextPath}/User_changePassword">修改密码</a></li>
 								<li><a href="User_integral.html">我的积分</a></li>

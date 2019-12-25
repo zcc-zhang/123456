@@ -83,7 +83,7 @@
 		</div>
 		<!--购物车样式-->
 		<div class="hd_Shopping_list" id="Shopping_list">
-			<div class="s_cart"><em class="iconfont icon-cart2"></em><a href="#">我的购物车</a> <i class="ci-right">&gt;</i><i class="ci-count" id="shopping-amount">0</i></div>
+			<div class="s_cart"><em class="iconfont icon-cart2"></em><a href="${pageContext.request.contextPath}/shoppingTrolley/queryShoppingTrolley">我的购物车</a> <i class="ci-right">&gt;</i><i class="ci-count" id="shopping-amount">${shoppingTrolleys.stream().count()}</i></div>
 			<div class="dorpdown-layer">
 				<div class="spacer"></div>
 				<!--<div class="prompt"></div><div class="nogoods"><b></b>购物车中还没有商品，赶紧选购吧！</div>-->
@@ -287,8 +287,8 @@
 					<dt class="transaction_manage"><em class="icon_2"></em>会员中心</dt>
 					<dd>
 						<ul>
-							<li> <a href="user.php?act=profile"> 用户信息</a></li>
-							<li> <a href="User_Orderform.html"> 我的收藏</a></li>
+							<li> <a href="${pageContext.request.contextPath}/profile"> 用户信息</a></li>
+							<li> <a href="${pageContext.request.contextPath}/shoppingCollection/commodityList"> 我的收藏</a></li>
 							<li> <a href="user.php?act=message_list"> 我的留言</a></li>
 							<li> <a href="user.php?act=tag_list">我的标签</a></li>
 							<!-- <li> <a href="user.php?act=affiliate"> 我的推荐</a></li> -->
@@ -493,7 +493,7 @@
 <!--右侧菜单栏购物车样式-->
 <div class="fixedBox">
 	<ul class="fixedBoxList">
-		<li class="fixeBoxLi user"><a href="${pageContext.request.contextPath}/skipUserCenterServlet"> <span
+		<li class="fixeBoxLi user"><a href="${pageContext.request.contextPath}/profile"> <span
 				class="fixeBoxSpan iconfont icon-yonghu"></span> <strong>用户</strong></a>
 		</li>
 		<li class="fixeBoxLi cart_bd" style="display:block;" id="cartboxs">
