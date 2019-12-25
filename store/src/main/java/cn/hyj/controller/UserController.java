@@ -124,14 +124,12 @@ public class UserController {
                 throw new MailException("发送邮箱失败!");
             }
         }else if("checkCode".equals(type)){
-            System.out.println("kjjkakj");
             Integer checkCode=(Integer) model.getAttribute("sendCode");//发送过去的验证码
             if (!checkCode.equals(Integer.parseInt(code))){
                 return "1";
             }
         }else if("password".equals(type)){
             try {
-                System.out.println("jjjkjkk");
                 userService.resettingUserPasswordByEmail(email,password);
                 return "1";
             } catch (Exception e) {
