@@ -183,7 +183,7 @@ public class UserController {
      * @param user
      * @return
      */
-    @RequestMapping("/changeInfo")
+    @RequestMapping("/   ")
     @ResponseBody
     public User changeInfo(User user,@RequestParam( value = "headImgPath",required = false) String fileField){
         if(fileField!=null){

@@ -1094,7 +1094,7 @@
 <!--右侧菜单栏购物车样式-->
 <div class="fixedBox">
     <ul class="fixedBoxList">
-        <li class="fixeBoxLi user"><a href="${pageContext.request.contextPath}/user_Center"> <span
+        <li class="fixeBoxLi user"><a href="${pageContext.request.contextPath}/profile"> <span
                 class="fixeBoxSpan iconfont icon-yonghu"></span> <strong>用户</strong></a>
         </li>
         <li class="fixeBoxLi cart_bd" style="display:block;" id="cartboxs">
@@ -1154,7 +1154,7 @@
             </div>
         </li>
 
-        <li class="fixeBoxLi Home"><a href="./"> <span
+        <li class="fixeBoxLi Home"><a href="${pageContext.reqeust.contextPath}/shoppingCollection/commodityList"> <span
                 class="fixeBoxSpan iconfont  icon-shoucang"></span> <strong>收藏</strong>
         </a></li>
         <li class="fixeBoxLi Home"><a href="./"> <span

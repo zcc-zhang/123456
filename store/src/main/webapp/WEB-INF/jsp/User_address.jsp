@@ -33,11 +33,11 @@
 		$(function(){
 			/******单击删除图标*********/
 			$(".del").on('click',function(){
-				var id=$(this).parent().next().text();//获取id
+				var addressId=$(this).parent().next().text();//获取id
 				var dom=$(this).parent().parent();//地址
-				console.log('id:',id,'dom:',dom);
+				console.log('addressId:',addressId,'dom:',dom);
 				swal({
-							title : "您确定要删除此商品吗",
+							title : "您确定要删除此地址吗",
 							text : "删除后将无法恢复，请谨慎操作！",
 							type : "warning",
 							showCancelButton : true,
@@ -51,19 +51,22 @@
 							if (isConfirm) {
 								swal({
 									title : "删除成功！",
-									text : "您已经永久删除了这条信息。",
+									text : "您已经永久删除了这条地址。",
 									type : "success"
 								}, function() {
 
 									$.ajax({
-										url : "${pageContext.request.contextPath}/delAddressServlet",
+										url : "${pageContext.request.contextPath}/shippingAddress/delete",
 										data : {
-											'id' : id
+											'addressId' : addressId
 										},
 										type : "post",
-										success:function()
+										success:function(date)
 										{
-											dom.remove();
+											if (date=="1"){
+												dom.remove();
+											}
+
 										}
 									});
 
@@ -596,15 +599,15 @@
 			<!--菜单栏-->
 			<div class="Navigation" id="Navigation">
 				<ul class="Navigation_name">
-					<li><a href="${pageContext.request.contextPath}/index.jsp">首页</a></li>
-					<li><a href="${pageContext.request.contextPath}/Footprint.jsp">日常护理</a></li>
+					<li><a href="${pageContext.request.contextPath}/index">首页</a></li>
+					<li><a href="${pageContext.request.contextPath}/Footprint">日常护理</a></li>
 					<li><a href="${pageContext.request.contextPath}/Must_see.jsp">每日必看</a></li>
-					<li><a href="${pageContext.request.contextPath}/showCommodityListServlet">产品列表</a></li>
+					<li><a href="${pageContext.request.contextPath}/commodity//toPage">产品列表</a></li>
 					<li><a href="${pageContext.request.contextPath}/Buy_Brands.jsp">限时团购</a></li>
 					<li><a href="${pageContext.request.contextPath}/diy.jsp">礼品DIY</a></li>
 					<li><a href="${pageContext.request.contextPath}/Group_buy.jsp">品牌团购</a></li>
 					<li><a href="#">联系我们</a></li>
-					<li><a href="${pageContext.request.contextPath}/index.jsp">简洁版</a></li>
+					<li><a href="${pageContext.request.contextPath}/index">简洁版</a></li>
 				</ul>
 			</div>
 		</div>
@@ -630,9 +633,12 @@
 					</div>
 					<div class="user_name">
 						<p>
-							<span class="name">${user.username}</span><a href="#">[修改密码]</a>
+							<span class="name">${user.username}</span><a href="${pageContext.request.contextPath}/User_changePassword">[修改密码]</a>
 						</p>
-						<p>访问时间：2016-1-21 10:23</p>
+                        <script type="text/javascript">
+                            writeCurrentDate()
+						</script>
+						<p id="date">访问时间：</p>
 					</div>
 				</div>
 				<!--菜单列表图层-->
@@ -642,8 +648,8 @@
 					</dt>
 					<dd>
 						<ul>
-							<li><a href="User_Orderform.html"> 我的订单</a></li>
-							<li><a href="User_address.html">收货地址</a></li>
+							<li><a href="${pageContext.request.contextPath}/orderInformation/orderList"> 我的订单</a></li>
+							<li><a href="${pageContext.request.contextPath}/shippingAddress/addressList">收货地址</a></li>
 							<li><a href="user.php?act=booking_list"> 缺货登记</a></li>
 						</ul>
 					</dd>
@@ -654,8 +660,8 @@
 					</dt>
 					<dd>
 						<ul>
-							<li><a href="user.php?act=profile"> 用户信息</a></li>
-							<li><a href="User_Collect.html"> 我的收藏</a></li>
+							<li><a href="${pageContext.request.contextPath}/user//changeInfo"> 用户信息</a></li>
+							<li><a href="${pageContext.request.contextPath}/shoppingCollection/commodityList"> 我的收藏</a></li>
 							<li><a href="user.php?act=message_list"> 我的留言</a></li>
 							<li><a href="user.php?act=tag_list">我的标签</a></li>
 							<!-- <li> <a href="user.php?act=affiliate"> 我的推荐</a></li> -->
@@ -710,7 +716,7 @@
 										<img src="${pageContext.request.contextPath}/img/del.png"/></a>
 								</div>
 
-								<p style="display: none">${list.id }</p>
+								<p style="display: none">${list.shippingAddressId }</p>
 								<li>${list.name }</li>
 								<li>${list.address }</li>
 								<li>${list.moblie }</li>
@@ -763,17 +769,14 @@
 								<td class="label_name">性&nbsp;&nbsp;别</td>
 
 								<td>
-									<%--<c:if test="${address }=='男'">--%>
 									<label class="sex">
 										<input type="radio"
 											   name="RadioGroup1" value="1" id="RadioGroup1_0"
 											   class="select" />男</label>
-									<%--</c:if>	--%>
-									<%--<c:if test="${address.sex }=='女'">						--%>
+
 									<label class="sex"><input type="radio"
 															  name="RadioGroup1" value="2" id="RadioGroup1_1"
 															  class="select" />女</label><i>（选填）</i>
-									<%--</c:if>--%>
 								</td>
 							</tr>
 							<tr>
@@ -925,11 +928,11 @@
 <!--右侧菜单栏购物车样式-->
 <div class="fixedBox">
 	<ul class="fixedBoxList">
-		<li class="fixeBoxLi user"><a href="${pageContext.request.contextPath}/skipUserCenterServlet"> <span
+		<li class="fixeBoxLi user"><a href="${pageContext.request.contextPath}/profile"> <span
 				class="fixeBoxSpan iconfont icon-yonghu"></span> <strong>用户</strong></a>
 		</li>
 		<li class="fixeBoxLi cart_bd" style="display:block;" id="cartboxs">
-			<a href="${pageContext.request.contextPath}/shoppingTrolleyList"><p class="good_cart">${commodityCount}</p> <span
+			<a href="${pageContext.request.contextPath}/shoppingTrolley/queryShoppingTrolley"><p class="good_cart">${commodityCount}</p> <span
 					class="fixeBoxSpan iconfont icon-cart"></span> <strong>购物车</strong>
 				<div class="cartBox">
 					<div class="bjfff"></div>
@@ -940,7 +943,7 @@
 				class="fixeBoxSpan iconfont icon-service"></span> <strong>客服</strong>
 			<div class="ServiceBox">
 				<div class="bjfffs"></div>
-				<dl onclick="javascript:;">
+				<dl onclick="javascript:void (0);">
 					<dt>
 						<img src="${pageContext.request.contextPath}/images/Service1.png">
 					</dt>
@@ -981,7 +984,7 @@
 				</div>
 			</div></li>
 
-		<li class="fixeBoxLi Home"><a href="./"> <span
+		<li class="fixeBoxLi Home"><a href="${pageContext.request.contextPath}/shoppingCollection/commodityList"> <span
 				class="fixeBoxSpan iconfont  icon-shoucang"></span> <strong>收藏</strong>
 		</a></li>
 		<li class="fixeBoxLi Home"><a href="./"> <span

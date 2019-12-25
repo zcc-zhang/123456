@@ -100,10 +100,17 @@ public class ShippingAddressController {
      * @return
      */
     @RequestMapping("delete")
+    @ResponseBody
     public String delete(Integer addressId){
 
-        shippingAddressService.deleteByPrimaryKey(addressId);
+        try{
+            System.out.println("id:"+addressId);
+            shippingAddressService.deleteByPrimaryKey(addressId);
 
-        return "";
+            return "1";
+        }catch (Exception e){
+            e.printStackTrace();
+            return "0";
+        }
     }
 }

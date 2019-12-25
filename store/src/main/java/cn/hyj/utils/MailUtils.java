@@ -26,7 +26,7 @@ public class MailUtils {
      */
     public void sendActiveMail(String receiveMailAccount, String mailActiveCode,String type) throws Exception{
 
-        MimeMessage  simpleMailMessage=designMail(receiveMailAccount,mailActiveCode,type);
+        MimeMessage simpleMailMessage=designMail(receiveMailAccount,mailActiveCode,type);
         try {
             mailSender.send(simpleMailMessage);
         } catch (Exception e) {

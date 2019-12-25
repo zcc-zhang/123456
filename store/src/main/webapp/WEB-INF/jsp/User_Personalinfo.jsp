@@ -234,7 +234,7 @@
                     <div class="p-total">
                         共<b>1</b>件商品 共计<strong>￥ 515.00</strong>
                     </div>
-                    <a href="#" title="去购物车结算" id="btn-payforgoods" class="Shopping">去购物车结算</a>
+                    <a href="${pageContext.request.contextPath}/shoppingTrolley/queryShoppingTrolley" title="去购物车结算" id="btn-payforgoods" class="Shopping">去购物车结算</a>
                 </div>
             </div>
         </div>
@@ -252,11 +252,11 @@
                     <ul class="Menu_list">
                         <li class="name">
                             <div class="Menu_name">
-                                <a href="product_list.html">面部护理</a> <span>&lt;</span>
+                                <a href="${pageContext.request.contextPath}/product_list.html">面部护理</a> <span>&lt;</span>
                             </div>
                             <div class="link_name">
                                 <p>
-                                    <a href="Product_Detailed.html">茅台</a> <a href="#">五粮液</a> <a
+                                    <a href="${pageContext.request.contextPath}/product_Detailed.html">茅台</a> <a href="#">五粮液</a> <a
                                         href="#">郎酒</a> <a href="#">剑南春</a>
                                 </p>
                             </div>
@@ -338,26 +338,26 @@
                                     </div>
                                     <div class="Brands">
                                         <a href="#" class="logo_Brands"><img
-                                                src="product/logo/34.jpg"/></a> <a href="#"
+                                                src="${pageContext.request.contextPath}/product/logo/34.jpg"/></a> <a href="#"
                                                                                    class="logo_Brands"><img
-                                            src="product/logo/42.jpg"/></a> <a
+                                            src="${pageContext.request.contextPath}/product/logo/42.jpg"/></a> <a
                                             href="#" class="logo_Brands"><img
-                                            src="product/logo/152.jpg"/></a> <a href="#"
+                                            src="${pageContext.request.contextPath}/product/logo/152.jpg"/></a> <a href="#"
                                                                                 class="logo_Brands"><img
-                                            src="product/logo/156.jpg"/></a>
+                                            src="${pageContext.request.contextPath}/product/logo/156.jpg"/></a>
                                         <a href="#" class="logo_Brands"><img
-                                                src="product/logo/458.jpg"/></a> <a href="#"
+                                                src="${pageContext.request.contextPath}/product/logo/458.jpg"/></a> <a href="#"
                                                                                     class="logo_Brands"><img
-                                            src="product/logo/339.jpg"/></a>
+                                            src="${pageContext.request.contextPath}/product/logo/339.jpg"/></a>
                                         <a href="#" class="logo_Brands"><img
-                                                src="product/logo/245.jpg"/></a> <a href="#"
+                                                src="${pageContext.request.contextPath}/product/logo/245.jpg"/></a> <a href="#"
                                                                                     class="logo_Brands"><img
-                                            src="product/logo/199.jpg"/></a>
+                                            src="${pageContext.request.contextPath}/product/logo/199.jpg"/></a>
                                         <a href="#" class="logo_Brands"><img
-                                                src="product/logo/618.jpg"/></a> <a href="#"
+                                                src="${pageContext.request.contextPath}/product/logo/618.jpg"/></a> <a href="#"
                                                                                     class="logo_Brands"><img
-                                            src="product/logo/644.jpg"/></a>
-                                        <a href="#" class="AD_3"><img src="product/ad/2.jpg"/></a>
+                                            src="${pageContext.request.contextPath}/product/logo/644.jpg"/></a>
+                                        <a href="#" class="AD_3"><img src="${pageContext.request.contextPath}/product/ad/2.jpg"/></a>
                                     </div>
                                 </div>
                                 <!--品牌-->
@@ -368,7 +368,7 @@
                                 <a href="#">身体护理</a><span>&lt;</span>
                             </div>
                             <div class="link_name">
-                                <a href="Product_Detailed.html"> 面霜</a><a href="#">眼霜</a><a
+                                <a href="${pageContext.request.contextPath}/product_Detailed.html"> 面霜</a><a href="#">眼霜</a><a
                                     href="#"> 面膜</a><a href="#">护肤套装</a>
 
                             </div>
@@ -446,15 +446,15 @@
             <!--菜单栏-->
             <div class="Navigation" id="Navigation">
                 <ul class="Navigation_name">
-                    <li><a href="${pageContext.request.contextPath}/index.jsp">首页</a></li>
+                    <li><a href="${pageContext.request.contextPath}/index">首页</a></li>
                     <li><a href="${pageContext.request.contextPath}/Footprint.jsp">日常护理</a></li>
                     <li><a href="${pageContext.request.contextPath}/Must_see.jsp">每日必看</a></li>
-                    <li><a href="${pageContext.request.contextPath}/showCommodityListServlet">产品列表</a></li>
+                    <li><a href="${pageContext.request.contextPath}/commodity/toPage">产品列表</a></li>
                     <li><a href="${pageContext.request.contextPath}/Buy_Brands.jsp">限时团购</a></li>
                     <li><a href="${pageContext.request.contextPath}/diy.jsp">礼品DIY</a></li>
                     <li><a href="${pageContext.request.contextPath}/Group_buy.jsp">品牌团购</a></li>
                     <li><a href="#">联系我们</a></li>
-                    <li><a href="${pageContext.request.contextPath}/index.jsp">简洁版</a></li>
+                    <li><a href="${pageContext.request.contextPath}/index">简洁版</a></li>
                 </ul>
             </div>
             <script>$("#Navigation").slide({
@@ -468,7 +468,6 @@
     titCell: ".Navigation_name li"
 });
 </script>
-<!-- <a href="#" class="link_bg"><img src="${pageContext.request.contextPath}/images/link_bg_03.png" /></a>-->
 </div>
 </div>
 </div>
@@ -511,10 +510,10 @@
                         </dt>
                         <dd>
                             <ul>
-                                <li><a href="User_Personalinfo.html"> 用户信息</a></li>
-                                <li><a href="User_Collect.html"> 我的收藏</a></li>
+                                <li><a href="${pageContext.request.contextPath}/profile"> 用户信息</a></li>
+                                <li><a href="${pageContext.request.contextPath}/shoppingCollection/commodityList"> 我的收藏</a></li>
                                 <li><a href="user.php?act=message_list"> 我的留言</a></li>
-                                <li><a href="User_changePassword.html">修改密码</a></li>
+                                <li><a href="${pageContext.request.contextPath}/user//changePassword">修改密码</a></li>
                                 <li><a href="User_integral.html">我的积分</a></li>
                                 <li><a href="user.php?act=comment_list"> 我的评论</a></li>
                             </ul>
