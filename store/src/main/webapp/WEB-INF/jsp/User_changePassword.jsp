@@ -157,7 +157,7 @@
 		<div class="hd_Shopping_list" id="Shopping_list">
 			<div class="s_cart">
 				<em class="iconfont icon-cart2"></em><a href="${pageContext.request.contextPath}/shoppingTrolley/queryShoppingTrolley">我的购物车</a> <i
-					class="ci-right">&gt;</i><i class="ci-count" id="shopping-amount">0</i>
+					class="ci-right">&gt;</i><i class="ci-count" id="shopping-amount">${shoppingTrolleys.stream().count()}</i>
 			</div>
 			<div class="dorpdown-layer">
 				<div class="spacer"></div>

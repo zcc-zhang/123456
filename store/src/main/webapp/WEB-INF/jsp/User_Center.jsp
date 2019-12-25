@@ -791,7 +791,7 @@
         </li>
         <li class="fixeBoxLi cart_bd" style="display:block;" id="cartboxs">
             <a href="${pageContext.request.contextPath}/shoppingTrolley/queryShoppingTrolley"><p
-                    class="good_cart">${commodityCount}</p> <span
+                    class="good_cart">${shoppingTrolleys.stream().count()}</p> <span
                     class="fixeBoxSpan iconfont icon-cart"></span> <strong>购物车</strong>
                 <div class="cartBox">
                     <div class="bjfff"></div>

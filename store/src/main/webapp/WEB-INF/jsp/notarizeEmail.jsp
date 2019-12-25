@@ -27,9 +27,9 @@ body {
 	background-size: cover;
 }
 </style>
-<link rel="stylesheet" href="css/reset.css" type="text/css">
-<link rel="stylesheet" href="src/css/dialog.css" type="text/css">
-<script src="src/jquery.dialog.min.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/reset.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/src/css/dialog.css" type="text/css">
+<script src="${pageContext.request.contextPath}/src/jquery.dialog.min.js"></script>
 </head>
 
 <body class="x288 x13d p_AFMaximized">

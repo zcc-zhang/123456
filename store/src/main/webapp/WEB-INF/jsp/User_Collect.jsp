@@ -65,7 +65,7 @@
 			<div class="hd_top_manu clearfix">
 				<ul class="clearfix">
 					<li class="hd_menu_tit zhuce" data-addclass="hd_menu_hover">欢迎光临本店！
-						<a href="${pageContext.request.contextPath }/login.jsp" class="red">
+						<a href="${pageContext.request.contextPath }/login" class="red">
 							<c:if test="${ not empty user.username}">
 								${user.username} <style>#registered{display: none}</style>
 							</c:if>
@@ -78,7 +78,7 @@
 						<a href="${pageContext.request.contextPath }/registered"class="red" id='registered'>[免费注册]</a>
 					</li>
 					<li class="hd_menu_tit" data-addclass="hd_menu_hover">
-						<a href="${pageContext.request.contextPath }/orderInformation/orderList?status=1">我的订单</a>
+						<a href="${pageContext.request.contextPath }/orderInformation/orderList">我的订单</a>
 					</li>
 					<li class="hd_menu_tit" data-addclass="hd_menu_hover">
 						<a href="${pageContext.request.contextPath }/shoppingTrolley/queryShoppingTrolley">购物车</a>
@@ -128,7 +128,7 @@
 		<div class="hd_Shopping_list" id="Shopping_list">
 			<div class="s_cart">
 				<em class="iconfont icon-cart2"></em><a href="#">我的购物车</a> <i
-					class="ci-right">&gt;</i><i class="ci-count" id="shopping-amount">0</i>
+					class="ci-right">&gt;</i><i class="ci-count" id="shopping-amount">${shoppingTrolleys.stream().count()}</i>
 			</div>
 			<div class="dorpdown-layer">
 				<div class="spacer"></div>
@@ -686,12 +686,9 @@
 				class="fixeBoxSpan iconfont icon-yonghu"></span> <strong>用户</strong></a>
 		</li>
 		<li class="fixeBoxLi cart_bd" style="display:block;" id="cartboxs">
-			<a href="${pageContext.request.contextPath}/shoppingTrolley/queryShoppingTrolley"><p class="good_cart">${commodityCount}</p> <span
+			<a href="${pageContext.request.contextPath}/shoppingTrolley/queryShoppingTrolley"><p class="good_cart">${shoppingTrolleys.stream().count()}</p> <span
 					class="fixeBoxSpan iconfont icon-cart"></span> <strong>购物车</strong>
-				<div class="cartBox">
-					<div class="bjfff"></div>
-					<div class="message">购物车内暂无商品，赶紧选购吧</div>
-				</div></a>
+			</a>
 		</li>
 		<li class="fixeBoxLi Service "><span
 				class="fixeBoxSpan iconfont icon-service"></span> <strong>客服</strong>
