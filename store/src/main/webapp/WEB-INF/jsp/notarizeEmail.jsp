@@ -63,7 +63,7 @@ body {
 								${user.email}发送了电子邮件，其中附有确认电子邮件地址的按钮。</span>
 							<div id="createaccount:dc12:sp4" style="margin-top:20px"></div>
 							<span class="x24b">您是否已收到该电子邮件？如果没有，请最晚在 3 天之内检查您的垃圾邮件夹或<a
-								href="https://profile.oracle.com/myprofile/account/request-verification.jspx">请求向您发送新的确认电子邮件</a>。如果您未能在
+								href="javascript:void(0)">请求向您发送新的确认电子邮件</a>。如果您未能在
 								3 天之内确认您的电子邮件地址，您将需要创建一个新帐户。如果您有问题，请参阅<a
 								href="https://www.oracle.com/corporate/contact/help.html">帐户帮助</a>。
 							</span>
@@ -85,7 +85,6 @@ body {
 	</footer>
 </body>
 <script type="text/javascript">
-	
 	function submitForm() {
 		var frm = document.getElementById("myFrom");
 		var $code = $("input[name='code']").val();
@@ -94,9 +93,7 @@ body {
 				console.log('sendSuccessToTop closed')
 			});
 			setTimeout(function(){frm.submit()}, 3000);
-			
 		}
-
 	}
 	submitForm();
 </script>
