@@ -126,10 +126,10 @@ public class OrderInformationController {
     @RequestMapping("/buyNowCommodity")
     public String buyNowCommodity(Commodity commodity,ModelMap modelMap){
 
-        User user = (User) modelMap.getAttribute("user");
-        List<ShoppingTrolley> shoppingTrolleyList = new ArrayList<>();
-        ShoppingTrolley shoppingTrolley=new ShoppingTrolley();
-        shoppingTrolley.setCommodity(commodity);
+        User user = (User) modelMap.getAttribute("user");//取出session中的user对象
+        List<ShoppingTrolley> shoppingTrolleyList = new ArrayList<>();//new一个购物车的集合
+        ShoppingTrolley shoppingTrolley=new ShoppingTrolley();//new购物车实体类
+        shoppingTrolley.setCommodity(commodity);//商品实体
         shoppingTrolley.setUserId(user.getUserId());
         shoppingTrolley.setCommodityId(commodity.getCommodityId());
 
