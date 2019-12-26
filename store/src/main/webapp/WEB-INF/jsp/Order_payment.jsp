@@ -41,7 +41,7 @@
 			<div class="hd_top_manu clearfix">
 				<ul class="clearfix">
 					<li class="hd_menu_tit zhuce" data-addclass="hd_menu_hover">欢迎光临本店！
-						<a href="${pageContext.request.contextPath }/login.jsp" class="red">
+						<a href="${pageContext.request.contextPath }/login" class="red">
 							<c:if test="${ not empty user.username}">
 								${user.username} <style>#registered{display: none}</style>
 							</c:if>
