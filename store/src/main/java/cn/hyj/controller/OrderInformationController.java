@@ -134,7 +134,7 @@ public class OrderInformationController {
         shoppingTrolley.setCommodityId(commodity.getCommodityId());
 
         shoppingTrolleyList.add(shoppingTrolley);
-        modelMap.addAttribute("trolleyList",commodityList);
+        modelMap.addAttribute("trolleyList",shoppingTrolleyList);
         return "Order_payment";
     }
 

@@ -37,7 +37,6 @@
 			margin-top: -300px;
 		}
 	</style>
-
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/magnifyingGlass.js"></script>
 	<title>产品详细页</title>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/styles.css">
@@ -785,32 +784,6 @@
 			$('#submit').click();
 		});
 
-		/**************点击增加数量****************/
-		$(".btn-add").on("click",function() {
-			var num = $("#buy-num");//商品数量
-			num.val(parseInt(num.val())+parseInt(1));
-			var price = $("#ECS_SHOPPRICE").children("input").val();//价格
-			var sum=parseInt(num.val())*parseInt(price);
-			$("#ECS_SHOPPRICE").children("input").val(price)
-			$("#ECS_SHOPPRICE").html("<i>￥</i> <input type=\"hidden\" value=\"${commodity.commodityPrice}\" />"+sum);
-		});
-		/**************点击减少数量***************/
-		$(".btn-reduce").bind("click", function() {
-			var num=$("#buy-num");//数量
-
-			if(num.val() == 1){
-				$.sendWarningToTop('不能再减啦,再减就没了!!!', 3000, function() {
-					console.log('sendWarningToTop closed');
-				});
-			}else{
-				num.val(parseInt(num.val())-parseInt(1));
-				var price = $("#ECS_SHOPPRICE").children("input").val();//价格
-				var sum=parseInt(num.val())*parseInt(price);
-				$("#ECS_SHOPPRICE").children("input").val(price)
-				console.log(price);
-				$("#ECS_SHOPPRICE").html("<i>￥</i> <input type=\"hidden\" value=\"${commodity.commodityPrice}\" />"+sum);
-			}
-		})
 	});
 </script>
 </html>
