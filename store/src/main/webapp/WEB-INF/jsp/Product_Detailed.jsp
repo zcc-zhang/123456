@@ -465,7 +465,9 @@
 						<dl>
 							<dt>售&nbsp;&nbsp;&nbsp;&nbsp;价：</dt>
 							<dd>
-								<span id="ECS_SHOPPRICE"><i>￥</i>${commodity.commodityPrice}</span>
+								<span id="ECS_SHOPPRICE">
+                                    <input type="hidden" value="${commodity.commodityPrice}" />
+                                    <i>￥</i>${commodity.commodityPrice}</span>
 								<del>市场价：￥${marketPrice}</del>
 							</dd>
 						</dl>
@@ -507,11 +509,11 @@
 						<dt>数量</dt>
 						<dd>
 							<div class="choose-amount left">
-								<a class="btn-reduce" href="javascript:;"
-								   onclick="setAmount.reduce('#buy-num')">-</a> <a
-									class="btn-add" href="javascript:;"
-									onclick="setAmount.add('#buy-num')">+</a> <input class="text"
-																					 id="buy-num" value="1" onkeyup="setAmount.modify('#buy-num');">
+								<a class="btn-reduce" href="javascript:void(0);"
+								   >-</a> <a
+									class="btn-add" href="javascript:void(0);"
+									>+</a> <input class="text"
+																					 id="buy-num" value="1" >
 							</div>
 							<div class="P_Quantity">剩余：${commodity.inventory}件</div>
 						</dd>
@@ -779,11 +781,37 @@
 				});
 			});
 			/**************立即购买**************/
-			$('.wrap_btn2').on('click',function(){
+			$('.wrap_btn2').on('click',function() {
 				$('#byFrom').submit(true);
 			});
+
+			/**************点击增加数量****************/
+			$(".btn-add").on("click",function() {
+				var num = $("#buy-num");//商品数量
+                num.val(parseInt(num.val())+parseInt(1));
+                var price = $("#ECS_SHOPPRICE").children("input").val();//价格
+                var sum=parseInt(num.val())*parseInt(price);
+                $("#ECS_SHOPPRICE").children("input").val(price)
+                $("#ECS_SHOPPRICE").html("<i>￥</i> <input type=\"hidden\" value=\"${commodity.commodityPrice}\" />"+sum);
+			});
+			/**************点击减少数量***************/
+			$(".btn-reduce").bind("click", function() {
+				var num=$("#buy-num");//数量
+
+                if(num.val() == 1){
+					$.sendWarningToTop('不能再减啦,再减就没了!!!', 3000, function() {
+						console.log('sendWarningToTop closed');
+					});
+				}else{
+                    num.val(parseInt(num.val())-parseInt(1));
+                    var price = $("#ECS_SHOPPRICE").children("input").val();//价格
+                    var sum=parseInt(num.val())*parseInt(price);
+                    $("#ECS_SHOPPRICE").children("input").val(price)
+                    console.log(price);
+                    $("#ECS_SHOPPRICE").html("<i>￥</i> <input type=\"hidden\" value=\"${commodity.commodityPrice}\" />"+sum);
+				}
+			})
 		});
 	</script>
-</div>
 </body>
 </html>

@@ -568,7 +568,7 @@
 				class="fixeBoxSpan iconfont icon-service"></span> <strong>客服</strong>
 			<div class="ServiceBox">
 				<div class="bjfffs"></div>
-				<dl onclick="javascript:;">
+				<dl onclick="javascript:void(0);">
 					<dt>
 						<img src="${pageContext.request.contextPath}/images/Service1.png">
 					</dt>
