@@ -84,7 +84,6 @@ public class ShoppingTrolleyController {
         if (trolleys != null && !trolleys.isEmpty()) {//如果修改过的集合不为空
             model.addAttribute("shoppingTrolleys", trolleys);
         } else {
-            System.out.println(shoppingTrolleys);
             model.addAttribute("shoppingTrolleys", shoppingTrolleys);
         }
         return "Cart";
@@ -97,7 +96,6 @@ public class ShoppingTrolleyController {
     @ResponseBody
     public String addCommodity(Integer commodityID, @SessionAttribute("user") User user) {
         try {
-            System.out.println(commodityID);
             ShoppingTrolley shoppingTrolley = new ShoppingTrolley();
             shoppingTrolley.setCommodityId(commodityID);
             shoppingTrolley.setUserId(user.getUserId());
@@ -149,7 +147,7 @@ public class ShoppingTrolleyController {
     }
 
     /**
-     * 清空购物车
+     * 清空购物车【结算】
      * @param modelMap
      * @return
      */

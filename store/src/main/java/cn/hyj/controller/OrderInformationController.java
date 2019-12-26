@@ -1,5 +1,6 @@
 package cn.hyj.controller;
 
+import cn.hyj.entity.Commodity;
 import cn.hyj.entity.OrderInformation;
 import cn.hyj.entity.ShoppingTrolley;
 import cn.hyj.entity.User;
@@ -117,6 +118,26 @@ public class OrderInformationController {
 
         return "User_Orderform";
     }
+
+    /**
+     * 立即购买商品
+     * @return 如若不立即支付，就返回订单确认页面
+     */
+    @RequestMapping("/buyNowCommodity")
+    public String buyNowCommodity(Commodity commodity,ModelMap modelMap){
+
+        User user = (User) modelMap.getAttribute("user");
+        List<ShoppingTrolley> shoppingTrolleyList = new ArrayList<>();
+        ShoppingTrolley shoppingTrolley=new ShoppingTrolley();
+        shoppingTrolley.setCommodity(commodity);
+        shoppingTrolley.setUserId(user.getUserId());
+        shoppingTrolley.setCommodityId(commodity.getCommodityId());
+
+        shoppingTrolleyList.add(shoppingTrolley);
+        modelMap.addAttribute("trolleyList",commodityList);
+        return "Order_payment";
+    }
+
 
     /**
      * 生成订单

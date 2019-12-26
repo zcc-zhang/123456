@@ -236,21 +236,21 @@
 									</div>
 									<div class="Brands">
 										<a href="#" class="logo_Brands"><img
-												src="product/logo/34.jpg" /></a> <a href="#"
-																					class="logo_Brands"><img src="product/logo/42.jpg" /></a> <a
+												src="${pageContext.request.contextPath}/product/logo/34.jpg" /></a> <a href="#"
+																					class="logo_Brands"><img src="${pageContext.request.contextPath}/product/logo/42.jpg" /></a> <a
 											href="#" class="logo_Brands"><img
-											src="product/logo/152.jpg" /></a> <a href="#"
-																				 class="logo_Brands"><img src="product/logo/156.jpg" /></a>
+											src="${pageContext.request.contextPath}/product/logo/152.jpg" /></a> <a href="#"
+																				 class="logo_Brands"><img src="${pageContext.request.contextPath}/product/logo/156.jpg" /></a>
 										<a href="#" class="logo_Brands"><img
-												src="product/logo/458.jpg" /></a> <a href="#"
-																					 class="logo_Brands"><img src="product/logo/339.jpg" /></a>
+												src="${pageContext.request.contextPath}/product/logo/458.jpg" /></a> <a href="#"
+																					 class="logo_Brands"><img src="${pageContext.request.contextPath}/product/logo/339.jpg" /></a>
 										<a href="#" class="logo_Brands"><img
-												src="product/logo/245.jpg" /></a> <a href="#"
-																					 class="logo_Brands"><img src="product/logo/199.jpg" /></a>
+												src="${pageContext.request.contextPath}/product/logo/245.jpg" /></a> <a href="#"
+																					 class="logo_Brands"><img src="${pageContext.request.contextPath}/product/logo/199.jpg" /></a>
 										<a href="#" class="logo_Brands"><img
-												src="product/logo/618.jpg" /></a> <a href="#"
-																					 class="logo_Brands"><img src="product/logo/644.jpg" /></a>
-										<a href="#" class="AD_3"><img src="product/ad/2.jpg" /></a>
+												src="${pageContext.request.contextPath}/product/logo/618.jpg" /></a> <a href="#"
+																					 class="logo_Brands"><img src="${pageContext.request.contextPath}/product/logo/644.jpg" /></a>
+										<a href="#" class="AD_3"><img src="${pageContext.request.contextPath}/product/ad/2.jpg" /></a>
 									</div>
 								</div>
 								<!--品牌-->
@@ -339,15 +339,15 @@
 			<!--菜单栏-->
 			<div class="Navigation" id="Navigation">
 				<ul class="Navigation_name">
-					<li><a href="${pageContext.request.contextPath}/index.jsp">首页</a></li>
+					<li><a href="${pageContext.request.contextPath}/index">首页</a></li>
 					<li><a href="${pageContext.request.contextPath}/Footprint.jsp">日常护理</a></li>
 					<li><a href="${pageContext.request.contextPath}/Must_see.jsp">每日必看</a></li>
-					<li><a href="${pageContext.request.contextPath}/showCommodityListServlet">产品列表</a></li>
+					<li><a href="${pageContext.request.contextPath}/commodity//toPage">产品列表</a></li>
 					<li><a href="${pageContext.request.contextPath}/Buy_Brands.jsp">限时团购</a></li>
 					<li><a href="${pageContext.request.contextPath}/diy.jsp">礼品DIY</a></li>
 					<li><a href="${pageContext.request.contextPath}/Group_buy.jsp">品牌团购</a></li>
 					<li><a href="#">联系我们</a></li>
-					<li><a href="${pageContext.request.contextPath}/index.jsp">简洁版</a></li>
+					<li><a href="${pageContext.request.contextPath}/index">简洁版</a></li>
 				</ul>
 			</div>
 			<script>$("#Navigation").slide({
@@ -401,41 +401,6 @@
 							</div>
 						</ul>
 					</c:forEach>
-					<!--  <ul class="">
-          <div class="adderss_operating">
-         <div class="Operate"><a href="#" class="delete_btn"></a> <a href="#" class="modify_btn"></a></div>
-        </div>
-         <div class="user_address">
-        <li>小张</li>
-        <li>四川成都高新区创业路10号3栋1单元1102式</li>
-        <li class="Postcode">610043</li>
-        <li>18908269130</li>
-        </div>
-        </ul> -->
-					<!--   <ul class="">
-          <div class="adderss_operating">
-         <div class="Operate"><a href="#" class="delete_btn"></a> <a href="#" class="modify_btn"></a></div>
-        </div>
-         <div class="user_address">
-        <li>小张</li>
-        <li>四川成都高新区创业路10号3栋1单元1102式</li>
-        <li class="Postcode">610043</li>
-        <li>18908269130</li>
-        </div>
-        </ul>
-        </div>
-       </div> -->
-					<!--收货地址样式-->
-					<!-- <div class="Shipping_address">
-   <ul class="detailed">
-    <li><label>收货人姓名</label><span>张晓</span></li>
-    <li><label>电子邮件</label><span>4567454@qq.com</span></li>
-    <li><label>详细地址</label><span>四川成都武侯区簇景西路20号3栋1单元302号</span></li>
-    <li><label>邮政编码</label><span></span></li>
-    <li><label>移动电话</label><span></span></li>
-     <li><label>固定电话</label><span></span></li>
-   </ul>
- </div>-->
 				</div>
 				<form class="form" method="post"
 					  action="${pageContext.request.contextPath}/shoppingTrolley/paymentOrderFrom">
@@ -618,26 +583,6 @@
 										<td class="Moneys"><i>￥</i><i>${trolleyList.sum}</i></td>
 									</tr>
 								</c:forEach>
-								<!-- <tr>
-                                    <td class="Product_info"><a href="#"><img
-                                            src="Product/p_11.jpg" width="100px" height="100px" /></a> <a
-                                        href="#" class="product_name">麻阳冰糖橙子甜橙冰糖柑8斤新鲜水果甜过永兴冰糖橙赣南脐橙包邮</a>
-                                    </td>
-                                    <td><i>￥</i>123.00</td>
-                                    <td><i>￥</i>112.00</td>
-                                    <td>2</td>
-                                    <td class="Moneys"><i>￥</i>224.00</td>
-                                </tr> -->
-								<!-- <tr>
-                                    <td class="Product_info"><a href="#"><img
-                                            src="Product/p_12.jpg" width="100px" height="100px" /></a> <a
-                                        href="#" class="product_name">麻阳冰糖橙子甜橙冰糖柑8斤新鲜水果甜过永兴冰糖橙赣南脐橙包邮</a>
-                                    </td>
-                                    <td><i>￥</i>123.00</td>
-                                    <td><i>￥</i>112.00</td>
-                                    <td>2</td>
-                                    <td class="Moneys"><i>￥</i>224.00</td>
-                                </tr> -->
 								</tbody>
 							</table>
 							<div class="Pay_info">
@@ -660,9 +605,6 @@
 											   class="submit_btn" /> <input name="" type="button"
 																			value="返回购物车" class="return_btn" />
 									</div>
-									<!-- <div class="integral right">
-                                        待订单确认后，你将获得<span>345</span>积分
-                                    </div> -->
 								</div>
 							</div>
 						</div>

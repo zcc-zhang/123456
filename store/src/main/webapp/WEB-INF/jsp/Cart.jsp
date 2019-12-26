@@ -426,7 +426,7 @@
 										   id="b">￥</b></span></td>
 			</tr>
 			<tr valign="top" height="150">
-				<td colspan="6" align="right"><a href="#"><img
+				<td colspan="6" align="right"><a href="${pageContext.request.contextPath}/commodity//toPage"><img
 						src="${pageContext.request.contextPath}/images/buy1.gif"></a>&nbsp; &nbsp; <a href="#"><img
 						src="${pageContext.request.contextPath}/images/buy2.gif" id="skip"></a></td>
 			</tr>

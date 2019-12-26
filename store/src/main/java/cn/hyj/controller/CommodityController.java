@@ -35,6 +35,16 @@ public class CommodityController {
     @Autowired
     private CookieUtil cookieUtil;
 
+    /**
+     * 商品列表
+     * @param map
+     * @param pageCode
+     * @param commodityAttribute
+     * @param min
+     * @param max
+     * @param request
+     * @return
+     */
     @RequestMapping("/toPage")
     public String commodityList(Map<String, Object> map
             , @RequestParam(defaultValue = "1", value = "currentPage") Integer pageCode
@@ -88,6 +98,7 @@ public class CommodityController {
         model.addAttribute("commodityImg",commodityImg);
         return "Product_Detailed";
     }
+
 
     @RequestMapping("/browsingHistory")
     public String browsingHistory(HttpServletRequest request, HttpServletResponse response, ModelMap modelMap) throws Exception{
