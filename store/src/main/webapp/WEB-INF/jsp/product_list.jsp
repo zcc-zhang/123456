@@ -220,7 +220,7 @@
         <!--购物车样式-->
         <div class="hd_Shopping_list" id="Shopping_list">
             <div class="s_cart">
-                <em class="iconfont icon-cart2"></em><a href="#">我的购物车</a> <i
+                <em class="iconfont icon-cart2"></em><a href="${pageContext.request.contextPath}/shoppingTrolley/queryShoppingTrolley">我的购物车</a> <i
                     class="ci-right">&gt;</i><i class="ci-count" id="shopping-amount">${shoppingTrolleys.stream().count()}</i>
             </div>
             <div class="dorpdown-layer">
@@ -247,9 +247,9 @@
                 </ul>
                 <div class="Shopping_style">
                     <div class="p-total">
-                        共<b>1</b>件商品 共计<strong>￥ 515.00</strong>
+                        共<b>${shoppingTrolleys.stream().count()}</b>件商品 共计<strong>￥ 515.00</strong>
                     </div>
-                    <a href="#" title="去购物车结算" id="btn-payforgoods" class="Shopping">去购物车结算</a>
+                    <a href="${pageContext.request.contextPath}/shoppingTrolley/queryShoppingTrolley" title="去购物车结算" id="btn-payforgoods" class="Shopping">去购物车结算</a>
                 </div>
             </div>
         </div>
@@ -467,14 +467,14 @@
             <!--菜单栏-->
             <div class="Navigation" id="Navigation">
                 <ul class="Navigation_name">
-                    <li><a href="${pageContext.request.contextPath}/index.jsp">首页</a></li>
+                    <li><a href="${pageContext.request.contextPath}/index">首页</a></li>
                     <li><a href="${pageContext.request.contextPath}/browsingHistoryServlet">日常护理</a></li>
                     <li><a href="${pageContext.request.contextPath}/Must_see.jsp">每日必看</a></li>
-                    <li><a href="${pageContext.request.contextPath}/showCommodityListServlet">产品列表</a></li>
+                    <li><a href="${pageContext.request.contextPath}/commodity//toPage">产品列表</a></li>
                     <li><a href="${pageContext.request.contextPath}/Buy_Brands.jsp">限时团购</a></li>
                     <li><a href="${pageContext.request.contextPath}/Group_buy.jsp">品牌团购</a></li>
                     <li><a href="#">联系我们</a></li>
-                    <li><a href="${pageContext.request.contextPath}/index.jsp">简洁版</a></li>
+                    <li><a href="${pageContext.request.contextPath}/index">简洁版</a></li>
                 </ul>
             </div>
             <script>$("#Navigation").slide({
@@ -699,36 +699,7 @@
                                         class="p_Sales right">销量：${historyList.commodityEvaluation}件</span>
                                 </p></li>
                         </c:forEach>
-                        <!-- <li><a href="#">
-                                <p>
-                                    <img src="${pageContext.request.contextPath}/product/p_32.jpg">
-                                </p>
-                                <p class="p_name">商品名称</p>
-                        </a>
-                            <p>
-                                <span class="p_Price left">价格:<b>￥5.30</b></span><span
-                                    class="p_Sales right">销量：2345件</span>
-                            </p></li>
-                        <li><a href="#">
-                                <p>
-                                    <img src="${pageContext.request.contextPath}/product/p_30.jpg">
-                                </p>
-                                <p class="p_name">商品名称</p>
-                        </a>
-                            <p>
-                                <span class="p_Price left">价格:<b>￥5.30</b></span><span
-                                    class="p_Sales right">销量：2345件</span>
-                            </p></li>
-                        <li><a href="#">
-                                <p>
-                                    <img src="${pageContext.request.contextPath}/product/p_34.jpg">
-                                </p>
-                                <p class="p_name">商品名称</p>
-                        </a>
-                            <p>
-                                <span class="p_Price left">价格:<b>￥5.30</b></span><span
-                                    class="p_Sales right">销量：2345件</span>
-                            </p></li> -->
+
                     </ul>
                 </div>
                 <!--销售排行-->

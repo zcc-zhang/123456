@@ -205,12 +205,14 @@ public class UserController {
         User user = (User) modelMap.getAttribute("user");//取出session中的user对象
         //判断密码是否相同
         if(thispassword.equals(user.getPassword())){
-            user.setPassword(password);
             try {
+                user.setPassword(SplitString.encode(password));//密码【使用MD5加密】
                 userService.updateByPrimaryKeySelective(user);
+                //登录成功
                 return "1";
             }catch (Exception e){
                 e.printStackTrace();
+                //异常
                 return "-1";
             }
         }else{

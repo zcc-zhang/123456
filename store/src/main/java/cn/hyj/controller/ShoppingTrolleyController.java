@@ -33,6 +33,17 @@ public class ShoppingTrolleyController {
     @Autowired
     private ShippingAddressService shippingAddressService;
 
+    /**
+     * 显示购物车信息
+     * @param commodityID
+     * @param count
+     * @param change
+     * @param user
+     * @param model
+     * @param modelMap
+     * @param id
+     * @return
+     */
     @RequestMapping("/queryShoppingTrolley")
     public String queryShoppingTrolley(Integer commodityID, Integer count, String change, @SessionAttribute("user") User user, Model model, ModelMap modelMap, Integer id) {
         List<ShoppingTrolley> shoppingTrolleys = shoppingTrolleyService.selectByUserId(user.getUserId());//购物车商品集合
@@ -73,8 +84,8 @@ public class ShoppingTrolleyController {
         if (trolleys != null && !trolleys.isEmpty()) {//如果修改过的集合不为空
             model.addAttribute("shoppingTrolleys", trolleys);
         } else {
+            System.out.println(shoppingTrolleys);
             model.addAttribute("shoppingTrolleys", shoppingTrolleys);
-
         }
         return "Cart";
     }
@@ -86,6 +97,7 @@ public class ShoppingTrolleyController {
     @ResponseBody
     public String addCommodity(Integer commodityID, @SessionAttribute("user") User user) {
         try {
+            System.out.println(commodityID);
             ShoppingTrolley shoppingTrolley = new ShoppingTrolley();
             shoppingTrolley.setCommodityId(commodityID);
             shoppingTrolley.setUserId(user.getUserId());

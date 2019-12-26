@@ -64,11 +64,11 @@
 						</c:if>
 						</a> <c:if test="${empty user.username}">
 							新用户
-						</c:if> <a href="${pageContext.request.contextPath }/registered.jsp"
+						</c:if> <a href="${pageContext.request.contextPath }/registered"
 								   class="red" id='registered'>[免费注册]</a>
 					</li>
 					<li class="hd_menu_tit" data-addclass="hd_menu_hover"><a
-							href="${pageContext.request.contextPath }/orderInformationServlet">我的订单</a>
+							href="${pageContext.request.contextPath }/orderInformation/orderList">我的订单</a>
 					</li>
 					<li class="hd_menu_tit" data-addclass="hd_menu_hover"><a
 							href="${pageContext.request.contextPath }/Cart.jsp">购物车</a></li>
@@ -95,7 +95,6 @@
 						</div></li>
 				</ul>
 			</div>
-			ss
 		</div>
 	</div>
 	<!--样式-->
@@ -118,8 +117,8 @@
 		<!--购物车样式-->
 		<div class="hd_Shopping_list" id="Shopping_list">
 			<div class="s_cart">
-				<em class="iconfont icon-cart2"></em><a href="#">我的购物车</a> <i
-					class="ci-right">&gt;</i><i class="ci-count" id="shopping-amount">0</i>
+				<em class="iconfont icon-cart2"></em><a href="${pageContext.request.contextPath}/shoppingTrolley/queryShoppingTrolley">我的购物车</a> <i
+					class="ci-right">&gt;</i><i class="ci-count" id="shopping-amount">${shoppingTrolleys.stream().count()}</i>
 			</div>
 			<div class="dorpdown-layer">
 				<div class="spacer"></div>
@@ -145,9 +144,9 @@
 				</ul>
 				<div class="Shopping_style">
 					<div class="p-total">
-						共<b>1</b>件商品 共计<strong>￥ 515.00</strong>
+						共<b>${shoppingTrolleys.stream().count()}</b>件商品 共计<strong>￥ </strong>
 					</div>
-					<a href="#" title="去购物车结算" id="btn-payforgoods" class="Shopping">去购物车结算</a>
+					<a href="${pageContext.request.contextPath}/shoppingTrolley/queryShoppingTrolley" title="去购物车结算" id="btn-payforgoods" class="Shopping">去购物车结算</a>
 				</div>
 			</div>
 		</div>
@@ -251,21 +250,21 @@
 									</div>
 									<div class="Brands">
 										<a href="#" class="logo_Brands"><img
-												src="product/logo/34.jpg" /></a> <a href="#"
-																					class="logo_Brands"><img src="product/logo/42.jpg" /></a> <a
+												src="${pageContext.request.contextPath}/product/logo/34.jpg" /></a> <a href="#"
+																					class="logo_Brands"><img src="${pageContext.request.contextPath}/product/logo/42.jpg" /></a> <a
 											href="#" class="logo_Brands"><img
-											src="product/logo/152.jpg" /></a> <a href="#"
-																				 class="logo_Brands"><img src="product/logo/156.jpg" /></a>
+											src="${pageContext.request.contextPath}/product/logo/152.jpg" /></a> <a href="#"
+																				 class="logo_Brands"><img src="${pageContext.request.contextPath}/product/logo/156.jpg" /></a>
 										<a href="#" class="logo_Brands"><img
-												src="product/logo/458.jpg" /></a> <a href="#"
-																					 class="logo_Brands"><img src="product/logo/339.jpg" /></a>
+												src="${pageContext.request.contextPath}/product/logo/458.jpg" /></a> <a href="#"
+																					 class="logo_Brands"><img src="${pageContext.request.contextPath}/product/logo/339.jpg" /></a>
 										<a href="#" class="logo_Brands"><img
-												src="product/logo/245.jpg" /></a> <a href="#"
-																					 class="logo_Brands"><img src="product/logo/199.jpg" /></a>
+												src="${pageContext.request.contextPath}/product/logo/245.jpg" /></a> <a href="#"
+																					 class="logo_Brands"><img src="${pageContext.request.contextPath}/product/logo/199.jpg" /></a>
 										<a href="#" class="logo_Brands"><img
-												src="product/logo/618.jpg" /></a> <a href="#"
-																					 class="logo_Brands"><img src="product/logo/644.jpg" /></a>
-										<a href="#" class="AD_3"><img src="product/ad/2.jpg" /></a>
+												src="${pageContext.request.contextPath}/product/logo/618.jpg" /></a> <a href="#"
+																					 class="logo_Brands"><img src="${pageContext.request.contextPath}/product/logo/644.jpg" /></a>
+										<a href="#" class="AD_3"><img src="${pageContext.request.contextPath}/product/ad/2.jpg" /></a>
 									</div>
 								</div>
 								<!--品牌-->
@@ -519,7 +518,7 @@
 						</dd>
 						<dd>
 							<div class="wrap_btn">
-								<form action="${pageContext.request.contextPath}/skipConfirmAnOrderServlet"  method="post" id="byFrom">
+								<form method="post" id="byFrom">
 									<input name="commodityID" type="hidden"
 										   value="${commodity.commodityId}" /> <input
 										name="commodityPrice" type="hidden"
@@ -730,7 +729,7 @@
 					</dl>
 				</div></li>
 			<li class="fixeBoxLi code cart_bd " style="display:block;"
-				id="cartboxs"><span class="fixeBoxSpan iconfont icon-erweima"></span>
+				id=""><span class="fixeBoxSpan iconfont icon-erweima"></span>
 				<strong>微信</strong>
 				<div class="cartBox">
 					<div class="bjfff"></div>
@@ -823,6 +822,5 @@
             },500)
 		});
 	</script>
-
 </body>
 </html>
