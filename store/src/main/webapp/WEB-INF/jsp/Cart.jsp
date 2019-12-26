@@ -561,14 +561,14 @@
 		</li>
 		<li class="fixeBoxLi cart_bd" style="display:block;" id="cartboxs">
 			<a href="${pageContext.request.contextPath}/shoppingTrolley/queryShoppingTrolley"><p
-					class="good_cart">${shoppingT rolleys.stream().count()}</p> <span
+					class="good_cart">${shoppingTrolleys.stream().count()}</p> <span
 					class="fixeBoxSpan iconfont icon-cart"></span> <strong>购物车</strong>
 			</a></li>
 		<li class="fixeBoxLi Service "><span
 				class="fixeBoxSpan iconfont icon-service"></span> <strong>客服</strong>
 			<div class="ServiceBox">
 				<div class="bjfffs"></div>
-				<dl onclick="javascript:;">
+				<dl onclick="javascript:void(0);">
 					<dt>
 						<img src="${pageContext.request.contextPath}/images/Service1.png">
 					</dt>

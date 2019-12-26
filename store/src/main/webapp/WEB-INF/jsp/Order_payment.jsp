@@ -41,7 +41,7 @@
 			<div class="hd_top_manu clearfix">
 				<ul class="clearfix">
 					<li class="hd_menu_tit zhuce" data-addclass="hd_menu_hover">欢迎光临本店！
-						<a href="${pageContext.request.contextPath }/login.jsp" class="red">
+						<a href="${pageContext.request.contextPath }/login" class="red">
 							<c:if test="${ not empty user.username}">
 								${user.username} <style>#registered{display: none}</style>
 							</c:if>
@@ -57,7 +57,7 @@
 						<a href="${pageContext.request.contextPath }/orderInformationServlet">我的订单</a>
 					</li>
 					<li class="hd_menu_tit" data-addclass="hd_menu_hover">
-						<a href="${pageContext.request.contextPath }/Cart.jsp">购物车</a>
+						<a href="${pageContext.request.contextPath }/Cart">购物车</a>
 					</li>
 					<li class="hd_menu_tit" data-addclass="hd_menu_hover">
 						<a href="#">联系我们</a></li>
@@ -92,8 +92,8 @@
 		<!--结束图层-->
 		<div class="Search">
 			<p>
-				<input name="" type="text" class="text" /><input name=""
-																 type="submit" value="搜 索" class="Search_btn" />
+				<input name="" type="text" class="text" />
+				<input name="" type="submit" value="搜 索" class="Search_btn" />
 			</p>
 			<p class="Words">
 				<a href="#">苹果</a><a href="#">香蕉</a><a href="#">菠萝</a><a href="#">西红柿</a><a
@@ -804,7 +804,7 @@
 					class="fixeBoxSpan iconfont icon-service"></span> <strong>客服</strong>
 				<div class="ServiceBox">
 					<div class="bjfffs"></div>
-					<dl onclick="javascript:;">
+					<dl onclick="javascript:void (0);">
 						<dt>
 							<img src="${pageContext.request.contextPath}/images/Service1.png">
 						</dt>
@@ -817,7 +817,7 @@
 							</p>
 						</dd>
 					</dl>
-					<dl onclick="javascript:;">
+					<dl onclick="javascript:void (0);">
 						<dt>
 							<img src="${pageContext.request.contextPath}/images/Service1.png">
 						</dt>

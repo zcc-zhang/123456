@@ -38,7 +38,10 @@ public class CommodityController {
     @RequestMapping("/toPage")
     public String commodityList(Map<String, Object> map
             , @RequestParam(defaultValue = "1", value = "currentPage") Integer pageCode
-            , String commodityAttribute,Integer min,Integer max,HttpServletRequest request) {
+            , String commodityAttribute
+            ,Integer min
+            ,Integer max
+            ,HttpServletRequest request) {
 
         PageHelper.startPage(pageCode, 16);//设置分页 每页16条数据
         List<Commodity> commodities = commodityService.queryAll(commodityAttribute,max,min);//全部数据

@@ -48,7 +48,7 @@ public class UserController {
     public String login(@RequestParam("username") String username, @RequestParam("password") String password,Model model,
                         HttpServletRequest request){
 
-        User user = userService.userLoginVerify(username,password);
+        User user = userService.userLoginVerify(username,SplitString.encode(password));
         Integer message=0;
         if (username.equals("") && password.equals("")){
             message=2;//message为2，username和password为空
@@ -130,7 +130,7 @@ public class UserController {
             }
         }else if("password".equals(type)){
             try {
-                userService.resettingUserPasswordByEmail(email,password);
+                userService.resettingUserPasswordByEmail(email,SplitString.encode(password));
                 return "1";
             } catch (Exception e) {
                 e.printStackTrace();
