@@ -152,6 +152,13 @@ public class ShoppingTrolleyController {
         return "Order_payment";
     }
 
+    /**
+     * 结算购物车
+     * @param sum
+     * @param orderFromleave
+     * @param model
+     * @return
+     */
     @RequestMapping("/paymentOrderFrom")
     public String paymentOrderFrom(Integer sum,String orderFromleave,Model model){
 

@@ -37,7 +37,6 @@
 			margin-top: -300px;
 		}
 	</style>
-
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/magnifyingGlass.js"></script>
 	<title>产品详细页</title>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/styles.css">
@@ -812,6 +811,16 @@
                     $("#ECS_SHOPPRICE").html("<i>￥</i> <input type=\"hidden\" value=\"${commodity.commodityPrice}\" />"+sum);
 				}
 			})
+            /**************计算商品总价****************/
+            function compute() {
+                var val = $("#ECS_SHOPPRICE").children("input[type=hidden]").val();//商品单价
+                var count=$("#buy-num").val();//商品数量
+                var money=parseInt(val)*parseInt(count);//总价
+                $("#ECS_SHOPPRICE").html("<i>￥</i> <input type=\"hidden\" value=\"${commodity.commodityPrice}\" />"+money);
+            }
+            setInterval(function(){
+                compute();
+            },500)
 		});
 	</script>
 

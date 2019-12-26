@@ -31,7 +31,6 @@
 
     <mvc:annotation-driven/>
 
-
     <mvc:default-servlet-handler/>
     <!--跳转到注册页面的controller-->
     <mvc:view-controller path="/login" view-name="login"/>
