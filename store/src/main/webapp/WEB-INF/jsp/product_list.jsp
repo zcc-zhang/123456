@@ -895,7 +895,7 @@
                                                      style="width:220px;height:220px"></a>
                                 </div>
                                 <form id="myFrom">
-                                    <input type="hidden" name="commodityID" value="${list.commodityId}"/>
+                                    <input type="hidden" name="commodityId" value="${list.commodityId}"/>
                                 </form>
                                 <div class="Price">
                                     <b>¥${list.commodityPrice}</b><span>[${list.commodityWeight}g]</span>

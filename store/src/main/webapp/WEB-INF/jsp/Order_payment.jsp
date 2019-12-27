@@ -802,6 +802,7 @@
 		</ul>
 	</div>
 	<script type="text/javascript">
+
 		function checkLength(which) {
 			var maxChars = 50; //
 			if (which.value.length > maxChars) {
@@ -847,9 +848,10 @@
 				$('.commodity').each(function() {
 					sum += parseInt($(this).children('.Moneys').children('i').eq(1).text());//获取每个商品的总价
 				})
+				console.log(sum);
 				$('#sum').text(sum);
-				$('.shiji_price').find('span').text(sum);
-				$('input[name=sum]').val(sum);
+				$('.shiji_price').find('span').text(parseInt(sum));
+				$('input[name=sum]').val(parseInt(sum));
 			}
 			sum();
 		});

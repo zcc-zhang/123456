@@ -209,22 +209,22 @@
 			<dl class="content">
 				<dt>商户订单号 ：</dt>
 				<dd>
-					<input id="WIDout_trade_no" name="WIDout_trade_no" />
+					<input id="WIDout_trade_no" name="WIDout_trade_no" readonly />
 				</dd>
 				<hr class="one_line">
 				<dt>订单名称 ：</dt>
 				<dd>
-					<input id="WIDsubject" name="WIDsubject" value="${describe}"/>
+					<input id="WIDsubject" name="WIDsubject" value="${describe}" readonly/>
 				</dd>
 				<hr class="one_line">
 				<dt>付款金额 ：</dt>
 				<dd>
-					<input id="WIDtotal_amount" name="WIDtotal_amount" value="${sum}"/>
+					<input id="WIDtotal_amount" name="WIDtotal_amount" value="${sum}" readonly/>
 				</dd>
 				<hr class="one_line">
 				<dt>订单描述：</dt>
 				<dd>
-					<input id="WIDbody" name="WIDbody"  value="${leave}"/>
+					<input id="WIDbody" name="WIDbody"  value="${leave}" readonly/>
 				</dd>
 				<hr class="one_line">
 				<dt></dt>

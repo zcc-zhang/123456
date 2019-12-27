@@ -24,7 +24,6 @@ import java.util.List;
  */
 @RequestMapping("/shoppingTrolley")
 @Controller
-@SessionAttributes(value = {"shoppingTrolleys","commodityID","count","change","user"})
 public class ShoppingTrolleyController {
 
     @Autowired
@@ -94,11 +93,13 @@ public class ShoppingTrolleyController {
      */
     @RequestMapping("/addCommodity")
     @ResponseBody
-    public String addCommodity(Integer commodityID, @SessionAttribute("user") User user) {
+    public String addCommodity(Integer commodityId,Integer count,@SessionAttribute("user") User user) {
         try {
             ShoppingTrolley shoppingTrolley = new ShoppingTrolley();
-            shoppingTrolley.setCommodityId(commodityID);
-            shoppingTrolley.setUserId(user.getUserId());
+            shoppingTrolley.setCommodityId(commodityId);//商品id
+            shoppingTrolley.setUserId(user.getUserId());//用户id
+            shoppingTrolley.setCount(count);//数量
+
             shoppingTrolleyService.insert(shoppingTrolley);
             return "1";
         } catch (Exception e) {

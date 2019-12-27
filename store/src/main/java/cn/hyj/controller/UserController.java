@@ -27,7 +27,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-@RequestMapping("/user/")
+@RequestMapping("/user")
 @Controller
 @SessionAttributes(value = {"user","code","shoppingTrolleys","sendCode"})
 public class UserController {
@@ -44,7 +44,7 @@ public class UserController {
      * @param password 密码
      * @return
      */
-    @RequestMapping("login")
+    @RequestMapping("/login")
     public String login(@RequestParam("username") String username, @RequestParam("password") String password,Model model,
                         HttpServletRequest request){
 

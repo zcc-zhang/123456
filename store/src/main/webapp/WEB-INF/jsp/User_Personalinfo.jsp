@@ -568,8 +568,8 @@
                     </div>
                     <form enctype="multipart/form-data">
                         <ul class="xinxi">
-                            <li><label>注册日期：</label> <span class="time"><fmt:formatDate value="${user.register}"
-                                                                                        pattern="yyyy-MM-dd HH:mm:ss"
+                            <li><label>注册日期：</label> <span class="time"><fmt:formatdate value="${user.register}"
+                                                                                        pattern="yyyy-mm-dd hh:mm:ss"
                                                                                         var="date"/>${date} </span>
                             </li>
                             <li><label>用户性别：</label> <span class="sex"> <input
@@ -589,20 +589,20 @@
                                     name="moblie" type="text" value="${user.moblie}"
                                     class="text"/></span></li>
                             <li><label>身份证号：</label> <span><input
-                                    name="IDnumber" type="text" value="${user.idnumber}"
+                                    name="idnumber" type="text" value="${user.idnumber}"
                                     class="text"/></span></li>
                             <div class="bottom">
                                 <input type="button" value="修改信息" class="modify"/> <input
                                     name="submit" type="button" value="确认修改" class="confirm"/>
                             </div>
                         </ul>
-                        <ul class="Head_portrait">
-                            <li class="User_avatar"><img id="headImg"
-                                                         src="${user.headPortrait}" width="200" height="200"/></li>
-                            <li><input type="file" name="fileField" class="a-upload"
-                                       id="fileField" style="display: none" value="请选择头像"/></li>
-                            <li><input name="headImgPath" type="hidden" value=""/></li>
-                            <li><input name="uploadImg" id="shangchuan" type="button"
+                        <ul class="head_portrait">
+                            <li class="user_avatar"><img id="headimg"
+                                                         src="${user.headportrait}" width="200" height="200"/></li>
+                            <li><input type="file" name="filefield" class="a-upload"
+                                       id="filefield" style="display: none" value="请选择头像"/></li>
+                            <li><input name="headimgpath" type="hidden" value=""/></li>
+                            <li> <input name="uploadimg" id="shangchuan" type="button"
                                        value="上传头像" class="submit"/></li>
                         </ul>
                     </form>

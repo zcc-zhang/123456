@@ -49,8 +49,8 @@
   </delete>
   <insert id="insert" parameterType="cn.hyj.entity.ShoppingTrolley" >
     insert into t_shopping_trolley (commodity_Id, user_Id,
-      STATUS)
-    values (#{commodityId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER},default )
+      STATUS,count)
+    values (#{commodityId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER},default,#{count} )
   </insert>
   <insert id="insertSelective" parameterType="cn.hyj.entity.ShoppingTrolley" >
     insert into t_shopping_trolley
@@ -64,9 +64,8 @@
       <if test="userId != null" >
         user_Id,
       </if>
-      <if test="status != null" >
         STATUS,
-      </if>
+        count,
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="shoppingTrolleyId != null" >
@@ -80,6 +79,15 @@
       </if>
       <if test="status != null" >
         #{status,jdbcType=INTEGER},
+      </if>
+      <if test="status == null" >
+        default,
+      </if>
+      <if test="count != null" >
+        #{count,jdbcType=INTEGER},
+      </if>
+      <if test="count == null" >
+          default
       </if>
     </trim>
   </insert>

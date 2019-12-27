@@ -153,4 +153,25 @@ public class OrderInformation {
     public void setCommodityImg(String commodityImg) {
         this.commodityImg = commodityImg;
     }
+
+    @Override
+    public String toString() {
+        return "OrderInformation{" +
+                "orderFormId=" + orderFormId +
+                ", id=" + id +
+                ", productName='" + productName + '\'' +
+                ", commodityAttribute='" + commodityAttribute + '\'' +
+                ", commodityPrice=" + commodityPrice +
+                ", commodityCount=" + commodityCount +
+                ", commodityFreight=" + commodityFreight +
+                ", subtotal=" + subtotal +
+                ", price=" + price +
+                ", placeAnOrderDate=" + placeAnOrderDate +
+                ", paymentTime=" + paymentTime +
+                ", affirmDate=" + affirmDate +
+                ", logisticsId='" + logisticsId + '\'' +
+                ", status=" + status +
+                ", commodityImg='" + commodityImg + '\'' +
+                '}';
+    }
 }

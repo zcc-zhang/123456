@@ -144,7 +144,7 @@
 				</ul>
 				<div class="Shopping_style">
 					<div class="p-total">
-						共<b>${shoppingTrolleys.stream().count()}</b>件商品 共计<strong>￥ </strong>
+						共<b>${shoppingTrolleys.stream().count()}</b>件商品 共计<strong>￥ 1520</strong>
 					</div>
 					<a href="${pageContext.request.contextPath}/shoppingTrolley/queryShoppingTrolley" title="去购物车结算" id="btn-payforgoods" class="Shopping">去购物车结算</a>
 				</div>
@@ -529,7 +529,7 @@
 										value="${commodity.commodityImg }" /> <input
 										name="merchant_ID" type="hidden"
 										value="${commodity.merchantId}" />
-									<input type="hidden" name="count" value=""/>
+									<input type="hidden" name="count" />
 
 									<a href="javascript:void(0)" class="wrap_btn1" title="加入购物车"></a>
 									<a href="javascript:void(0)" class="wrap_btn2" title="立即购买"></a>
@@ -783,6 +783,46 @@
 		$('.wrap_btn2').on('click',function() {
 			$('#submit').click();
 		});
+
+
+		/**************点击增加数量****************/
+		$(".btn-add").on("click",function() {
+			var num = $("#buy-num");//商品数量
+			num.val(parseInt(num.val())+parseInt(1));
+			var price = $("#ECS_SHOPPRICE").children("input").val();//价格
+			var sum=parseInt(num.val())*parseInt(price);
+			$("#ECS_SHOPPRICE").children("input").val(price)
+			$("#ECS_SHOPPRICE").html("<i>￥</i> <input type=\"hidden\" value=\"${commodity.commodityPrice}\" />"+sum);
+		});
+		/**************点击减少数量***************/
+		$(".btn-reduce").bind("click", function() {
+			var num=$("#buy-num");//数量
+
+			if(num.val() == 1){
+				$.sendWarningToTop('不能再减啦,再减就没了!!!', 3000, function() {
+					console.log('sendWarningToTop closed');
+				});
+			}else{
+				num.val(parseInt(num.val())-parseInt(1));
+				var price = $("#ECS_SHOPPRICE").children("input").val();//价格
+				var sum=parseInt(num.val())*parseInt(price);
+				$("#ECS_SHOPPRICE").children("input").val(price)
+				console.log(price);
+				$("#ECS_SHOPPRICE").html("<i>￥</i> <input type=\"hidden\" value=\"${commodity.commodityPrice}\" />"+sum);
+			}
+		})
+		/**************计算商品总价****************/
+		function compute() {
+			var val = $("#ECS_SHOPPRICE").children("input[type=hidden]").val();//商品单价
+			var count=$("#buy-num").val();//商品数量
+			var money=parseInt(val)*parseInt(count);//总价
+			$("input[name=count]").val(count);
+			console.log(count);
+			$("#ECS_SHOPPRICE").html("<i>￥</i> <input type=\"hidden\" value=\"${commodity.commodityPrice}\" />"+money);
+		}
+		setInterval(function(){
+			compute();
+		},500)
 
 	});
 </script>

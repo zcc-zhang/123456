@@ -242,7 +242,7 @@
 					<li><a href="${pageContext.request.contextPath}/index">首页</a></li>
 					<li><a href="${pageContext.request.contextPath}/Footprint">日常护理</a></li>
 					<li><a href="${pageContext.request.contextPath}/Must_see">每日必看</a></li>
-					<li><a href="${pageContext.request.contextPath}/showCommodityListServlet">产品列表</a></li>
+					<li><a href="${pageContext.request.contextPath}/commodity//toPage">产品列表</a></li>
 					<li><a href="${pageContext.request.contextPath}/Buy_Brands">限时团购</a></li>
 					<li><a href="${pageContext.request.contextPath}/diy">礼品DIY</a></li>
 					<li><a href="${pageContext.request.contextPath}/Group_buy">品牌团购</a></li>
@@ -345,7 +345,7 @@
 						<td class="list_name_title6">操作</td>
 					</tr></thead>
 					<thead>
-					<c:forEach items="${orderList }" var="order">
+					<c:forEach items="${orderList}" var="order">
 
 						<input type="hidden" name="query" value="query" />
 						<tr><td colspan="6" class="Order_form_time"><fmt:formatDate value="${order.placeAnOrderDate}" pattern="yyyy-MM-dd" var="date"/>${date} 订单号：${order.logisticsId}</td></tr>

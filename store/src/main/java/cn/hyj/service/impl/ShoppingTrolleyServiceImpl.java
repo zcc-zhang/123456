@@ -41,7 +41,7 @@ public class ShoppingTrolleyServiceImpl implements ShoppingTrolleyService {
                 }
             }
             if(flag){
-                shoppingTrolleyMapper.insert(record);
+                shoppingTrolleyMapper.insertSelective(record);
             }
     }
 

@@ -25,7 +25,7 @@ import java.util.*;
  * 商品controller
  */
 @SessionAttributes(value = {"user"})
-@RequestMapping("/commodity/")
+@RequestMapping("/commodity")
 @Controller
 public class CommodityController {
 
@@ -96,6 +96,7 @@ public class CommodityController {
         List<String> commodityImg = SplitString.splitStringToList(commodity.getCommodityImg());
         model.addAttribute("commodity",commodity);
         model.addAttribute("commodityImg",commodityImg);
+
         return "Product_Detailed";
     }
 

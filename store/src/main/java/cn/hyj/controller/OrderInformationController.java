@@ -1,10 +1,8 @@
 package cn.hyj.controller;
 
-import cn.hyj.entity.Commodity;
-import cn.hyj.entity.OrderInformation;
-import cn.hyj.entity.ShoppingTrolley;
-import cn.hyj.entity.User;
+import cn.hyj.entity.*;
 import cn.hyj.service.OrderInformationService;
+import cn.hyj.service.ShippingAddressService;
 import cn.hyj.service.ShoppingTrolleyService;
 import cn.hyj.utils.SplitString;
 import com.sun.org.apache.xpath.internal.objects.XObject;
@@ -21,6 +19,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.swing.plaf.IconUIResource;
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -38,7 +37,7 @@ import static javax.swing.text.html.CSS.getAttribute;
  */
 @Controller
 @RequestMapping("/orderInformation")
-@SessionAttributes({"user","shoppingTrolleys"})
+@SessionAttributes({"user","shoppingTrolleys","trolleyList"})
 public class OrderInformationController {
 
     @Autowired
@@ -46,6 +45,9 @@ public class OrderInformationController {
 
     @Autowired
     private ShoppingTrolleyService shoppingTrolleyService;
+
+    @Autowired
+    private ShippingAddressService shippingAddressService;
 
     /**
      * 订单列表
@@ -60,7 +62,7 @@ public class OrderInformationController {
         int daiShouH=0; //2.待收货
         int daiFaH=0;   //3.派件中
         int accomplish=0;  //5.已完成
-
+        System.out.println(orderInformationList.size());
         if (orderInformationList != null){//判断集合是否为空
             //图片路径分割
             orderInformationList.forEach(orderInformation -> {
@@ -119,25 +121,36 @@ public class OrderInformationController {
         return "User_Orderform";
     }
 
+
     /**
-     * 立即购买商品
+     * 【立即购买】 商品
+     * @param commodity 商品实体类
+     * @param count 商品总数量
+     * @param modelMap
      * @return 如若不立即支付，就返回订单确认页面
      */
     @RequestMapping("/buyNowCommodity")
-    public String buyNowCommodity(Commodity commodity,ModelMap modelMap){
+    public String buyNowCommodity(Commodity commodity, Integer count, ModelMap modelMap, HttpSession session,Model model){
 
-        User user = (User) modelMap.getAttribute("user");//取出session中的user对象
+        commodity.setCommodityImg(SplitString.splitString(commodity.getCommodityImg())[0]);//图片路径分割
+        User user = (User) modelMap.getAttribute("user");
+        List<ShippingAddress> shippingAddresses = shippingAddressService.queryByUserID(user.getUserId());//获取收货地址
         List<ShoppingTrolley> shoppingTrolleyList = new ArrayList<>();//new一个购物车的集合
         ShoppingTrolley shoppingTrolley=new ShoppingTrolley();//new购物车实体类
-        shoppingTrolley.setCommodity(commodity);//商品实体
-        shoppingTrolley.setUserId(user.getUserId());
-        shoppingTrolley.setCommodityId(commodity.getCommodityId());
 
-        shoppingTrolleyList.add(shoppingTrolley);
-        modelMap.addAttribute("trolleyList",shoppingTrolleyList);
+        shoppingTrolley.setCommodity(commodity);//商品实体类
+        shoppingTrolley.setUserId(user.getUserId());//用户id
+        shoppingTrolley.setCount(count);//商品总数量
+        shoppingTrolley.setCommodityId(commodity.getCommodityId());//商品id
+        shoppingTrolley.setSum();//总价
+
+        shoppingTrolleyList.add(shoppingTrolley); //添加到购物车集合中
+//        modelMap.addAttribute("trolleyList",shoppingTrolleyList);//保存商品信息
+        modelMap.addAttribute("addressList",shippingAddresses);//保存收货地址
+        model.addAttribute("trolleyList",shoppingTrolleyList);
+        session.setAttribute("ispayCart",false);
         return "Order_payment";
     }
-
 
     /**
      * 生成订单
@@ -147,7 +160,6 @@ public class OrderInformationController {
     public String createOrderForm(HttpServletRequest request, HttpServletResponse response, ModelMap modelMap) throws Exception {
 
         User user=(User)modelMap.getAttribute("user");
-        System.out.println(user);
         if(user==null)
         {
             request.setAttribute("message", "2");
@@ -157,10 +169,16 @@ public class OrderInformationController {
         String tradeNo = request.getParameter("trade_no");//// 支付宝交易号
         String totalAmount = request.getParameter("total_amount");//// 付款金额
         String affDate="1999-12-29 23:59:59";//未收货地址
+        Boolean flag = (Boolean) request.getSession().getAttribute("ispayCart");
         Date date = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");// 转换日期
         String dateStr = dateFormat.format(date);// 当前时间的字符串
-        List<ShoppingTrolley>shoppingTrolleys=(List<ShoppingTrolley>) modelMap.getAttribute("shoppingTrolleys");//购物车集合
+        List<ShoppingTrolley>shoppingTrolleys=null;
+        if (flag){
+            shoppingTrolleys=(List<ShoppingTrolley>) modelMap.getAttribute("shoppingTrolleys");//购物车结算
+        }else{
+            shoppingTrolleys=(List<ShoppingTrolley>) modelMap.getAttribute("trolleyList");//单个商品结算
+        }
         shoppingTrolleys.forEach(shoppingTrolley -> {
             try {
                 OrderInformation orderInformation=new OrderInformation();
