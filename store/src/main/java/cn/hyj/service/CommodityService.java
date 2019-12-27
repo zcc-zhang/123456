@@ -26,4 +26,28 @@ public interface CommodityService {
      * @return
      */
     List<Commodity> queryByCommodityEvaluation();
+
+    /**
+     * 随机限时团购商品
+     * @return
+     */
+    List<Commodity> randomGenerationLimitBuy();
+
+    /**
+     * 随机 脸部护理1F
+     * @return
+     */
+    List<Commodity> randomGeneration1F();
+
+    /**
+     * 2F
+     * @return
+     */
+    List<Commodity> randomGeneration2F();
+
+    /**
+     * 猜你喜欢
+     * @return
+     */
+    List<Commodity> guessYouLike();
 }
