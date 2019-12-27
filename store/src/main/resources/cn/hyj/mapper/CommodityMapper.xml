@@ -28,6 +28,12 @@
     <sql id="Blob_Column_List">
     commodity_img
   </sql>
+    <select id="selectRandomGeneration" resultMap="ResultMapWithBLOBs">
+        select <include refid="Base_Column_List"/> ,<include refid="Blob_Column_List"/>
+        from t_commodity
+
+            ORDER BY  RAND() LIMIT #{xxx}
+    </select>
     <!--销量排行-->
     <select id="selectByCommodityEvaluation" resultMap="ResultMapWithBLOBs">
         select <include refid="Base_Column_List"/> ,<include refid="Blob_Column_List"/>

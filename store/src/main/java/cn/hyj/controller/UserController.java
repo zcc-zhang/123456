@@ -3,29 +3,25 @@ package cn.hyj.controller;
 import cn.hyj.entity.ShoppingTrolley;
 import cn.hyj.entity.User;
 import cn.hyj.exception.MailException;
+import cn.hyj.service.CommodityService;
 import cn.hyj.service.ShoppingTrolleyService;
 import cn.hyj.service.UserService;
 import cn.hyj.utils.MailUtils;
 import cn.hyj.utils.SplitString;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.support.MultipartFilter;
 
-import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 @RequestMapping("/user")
 @Controller
@@ -37,6 +33,9 @@ public class UserController {
 
     @Autowired
     private ShoppingTrolleyService shoppingTrolleyService;
+
+    @Autowired
+    private CommodityService commodityService;
 
     /**
      * 登录
@@ -219,8 +218,4 @@ public class UserController {
             return "0";
         }
     }
-
-
-
-
 }

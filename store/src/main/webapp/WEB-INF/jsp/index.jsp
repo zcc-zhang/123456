@@ -1,6 +1,7 @@
 <%@ page language="java" import="java.util.*"
 		 contentType="text/html;charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -888,19 +889,14 @@
 		</div>
 		<div class="Limit_list">
 			<ul class="p_t_list">
-				<li><a href="#"><span>御泥坊 玫瑰滋养+红石榴亮颜美肤套装 </span><img
-						src="${pageContext.request.contextPath}/product/p_9.jpg" width="180" height="170" /></a></li>
-				<li><a href="#"><span>御泥坊 玫瑰滋养+红石榴亮颜美肤套装 </span><img
-						src="${pageContext.request.contextPath}/product/p_7.jpg" width="180" height="170" /></a></li>
-				<li><a href="#"><span>御泥坊 玫瑰滋养+红石榴亮颜美肤套装 </span><img
-						src="${pageContext.request.contextPath}/product/p_11.jpg" width="180" height="170" /></a></li>
-
-				<li><a href="#"><span>御泥坊 玫瑰滋养+红石榴亮颜美肤套装 </span><img
-						src="${pageContext.request.contextPath}/product/p_19.jpg" width="180" height="170" /></a></li>
-				<li><a href="#"><span>御泥坊 玫瑰滋养+红石榴亮颜美肤套装 </span><img
-						src="${pageContext.request.contextPath}/product/p_29.jpg" width="180" height="170" /></a></li>
-				<li><a href="#"><span>御泥坊 玫瑰滋养+红石榴亮颜美肤套装 </span><img
-						src="${pageContext.request.contextPath}/product/p_20.jpg" width="180" height="170" /></a></li>
+				<c:forEach var="limitBuys" items="${limitBuy}">
+				<c:if test="${ not empty limitBuys.productName}">
+					<li><a href="${pageContext.request.contextPath}/commodity//particularsView?commodityId=${limitBuys.commodityId}">
+						<span limit="18">${limitBuys.productName}</span><img
+							src="${limitBuys.commodityImg}" width="180" height="170" /></a></li>
+					<li>
+				</c:if>
+				</c:forEach>
 				<li class="Limit_name"><a href="#"><img
 						src="${pageContext.request.contextPath}/images/bg_p_23.png" width="243" height="399" /></a></li>
 			</ul>
@@ -1047,50 +1043,15 @@
 			<!--产品列表-->
 			<div class="pro_list">
 				<ul>
-					<li><a href="#"><img src="${pageContext.request.contextPath}/images2/4.jpg" width="180px"
-										 height="150px" /></a> <a href="#" class="p_title_name">ZMC/植美村牛油果电动按摩眼霜淡化黑眼圈眼袋去脂肪粒细纹紧致</a>
-						<div class="Numeral">
-							<span class="price"><i>￥</i>98.00</span><span class="Sales">销量<i>545</i>件
+					<c:forEach items="${generation1F}" var="item">
+						<li><a href="#"><img src="${item.commodityImg}" width="180px"
+											 height="150px" /></a>
+							<a href="${pageContext.request.contextPath}/commodity//particularsView?commodityId=${item.commodityId}" class="p_title_name">${item.productName}</a>
+							<div class="Numeral">
+								<span class="price"><i>￥</i>${item.commodityPrice}</span><span class="Sales">销量<i>${item.commodityEvaluation}</i>件
 								</span>
-						</div></li>
-					<li><a href="#"><img
-							src="${pageContext.request.contextPath}/images3/O1CN01yybY5229k8fnFavxb_!!0-item_pic.jpg_250x250.jpg_.webp.jpg"
-							width="180px" height="150px" /></a> <a href="#"
-																   class="p_title_name">韩国wlab白雪公主王丽坤素颜霜学生专用少女正品W.Lab裸妆懒人霜</a>
-						<div class="Numeral">
-							<span class="price"><i>￥</i>1669</span><span class="Sales">销量<i>145</i>件
-								</span>
-						</div></li>
-					<li><a href="#"><img
-							src="${pageContext.request.contextPath}/images3/O1CN01EolndW1WKFGRmdAtc_!!0-item_pic.jpg_250x250.jpg_.webp.jpg"
-							width="180px" height="150px" /></a> <a href="#"
-																   class="p_title_name">HFP补水保湿亮肤套装 爽肤水乳液控油烟酰胺护肤化妆品正品男女士</a>
-						<div class="Numeral">
-							<span class="price"><i>￥</i>9.9</span><span class="Sales">销量<i>245</i>件
-								</span>
-						</div></li>
-					<li><a href="#"><img
-							src="${pageContext.request.contextPath}/images3/O1CN01VgpAFW1mLBw5N6rhO_!!0-item_pic.jpg_250x250.jpg_.webp.jpg"
-							width="180px" height="150px" /></a> <a href="#"
-																   class="p_title_name">红参蜗牛原液美白淡斑套装正品补水保湿水乳全套护肤化妆品学生女</a>
-						<div class="Numeral">
-							<span class="price"><i>￥</i>599.00</span><span class="Sales">销量<i>445</i>件
-								</span>
-						</div></li>
-					<li><a href="#"><img src="${pageContext.request.contextPath}/product/p_5.jpg" width="180px"
-										 height="150px" /></a> <a href="#" class="p_title_name">ECHOIN/百雀羚
-						小雀幸静润补水保湿面膜 丰盈补水 自然润泽</a>
-						<div class="Numeral">
-							<span class="price"><i>￥</i>123.00</span><span class="Sales">销量<i>45</i>件
-								</span>
-						</div></li>
-					<li><a href="#"><img src="${pageContext.request.contextPath}/product/p_6.jpg" width="180px"
-										 height="150px" /></a> <a href="#" class="p_title_name">Olay玉兰油
-						新生塑颜金纯活能水</a>
-						<div class="Numeral">
-							<span class="price"><i>￥</i>123.00</span><span class="Sales">销量<i>345</i>件
-								</span>
-						</div></li>
+							</div></li>
+					</c:forEach>
 				</ul>
 			</div>
 			<div class="pro_ads">
@@ -1166,48 +1127,17 @@
 			<!--产品列表-->
 			<div class="pro_list">
 				<ul>
-					<li><a href="#"><img src="${pageContext.request.contextPath}/product/p_1.jpg" width="180px"
-										 height="150px" /></a> <a href="#" class="p_title_name">Olay玉兰油
-						新生塑颜金纯活能水</a>
-						<div class="Numeral">
-							<span class="price"><i>￥</i>123.00</span><span class="Sales">销量<i>345</i>件
+					<c:forEach items="${generation2F}" var="item">
+						<li><a href="#"><img src="${item.commodityImg}" width="180px"
+											 height="150px" /></a>
+							<a href="${pageContext.request.contextPath}/commodity//particularsView?commodityId=${item.commodityId}" class="p_title_name">${item.productName}</a>
+							<div class="Numeral">
+								<span class="price"><i>￥</i>${item.commodityPrice}</span>
+								<span class="Sales">销量<i>${item.commodityEvaluation}</i>件
 								</span>
-						</div></li>
-					<li><a href="#"><img src="${pageContext.request.contextPath}/product/p_2.jpg" width="180px"
-										 height="150px" /></a> <a href="#" class="p_title_name">Olay玉兰油
-						新生塑颜金纯活能水</a>
-						<div class="Numeral">
-							<span class="price"><i>￥</i>123.00</span><span class="Sales">销量<i>345</i>件
-								</span>
-						</div></li>
-					<li><a href="#"><img src="${pageContext.request.contextPath}/product/p_3.jpg" width="180px"
-										 height="150px" /></a> <a href="#" class="p_title_name">Olay玉兰油
-						新生塑颜金纯活能水</a>
-						<div class="Numeral">
-							<span class="price"><i>￥</i>123.00</span><span class="Sales">销量<i>345</i>件
-								</span>
-						</div></li>
-					<li><a href="#"><img src="${pageContext.request.contextPath}/product/p_4.jpg" width="180px"
-										 height="150px" /></a> <a href="#" class="p_title_name">Olay玉兰油
-						新生塑颜金纯活能水</a>
-						<div class="Numeral">
-							<span class="price"><i>￥</i>123.00</span><span class="Sales">销量<i>345</i>件
-								</span>
-						</div></li>
-					<li><a href="#"><img src="${pageContext.request.contextPath}/product/p_5.jpg" width="180px"
-										 height="150px" /></a> <a href="#" class="p_title_name">ECHOIN/百雀羚
-						小雀幸静润补水保湿面膜 丰盈补水 自然润泽</a>
-						<div class="Numeral">
-							<span class="price"><i>￥</i>123.00</span><span class="Sales">销量<i>345</i>件
-								</span>
-						</div></li>
-					<li><a href="#"><img src="${pageContext.request.contextPath}/product/p_6.jpg" width="180px"
-										 height="150px" /></a> <a href="#" class="p_title_name">Olay玉兰油
-						新生塑颜金纯活能水</a>
-						<div class="Numeral">
-							<span class="price"><i>￥</i>123.00</span><span class="Sales">销量<i>345</i>件
-								</span>
-						</div></li>
+							</div></li>
+					</c:forEach>
+
 				</ul>
 			</div>
 			<div class="pro_ads">
@@ -1248,62 +1178,15 @@
 		</div>
 		<div class="list">
 			<ul class="list_style">
-				<li class="p_info_u"><a href="#" class="p_img"><img
-						src="${pageContext.request.contextPath}/product/p_14.jpg" /></a> <a href="#" class="name">御泥坊
-					玫瑰滋养+红石榴亮颜美肤套装 深层补水滋润 提亮肤色</a>
-					<div class="Numeral">
-						<span class="price"><i>￥</i>123.00</span><span class="Sales">销量<i>345</i>件
+				<c:forEach items="${guessYouLike}" var="item">
+					<li class="p_info_u"><a href="#" class="p_img"><img
+							src="${item.commodityImg}" width="220px" height="220px" /></a>
+						<a href="${pageContext.request.contextPath}/commodity//particularsView?commodityId=${item.commodityId}" class="name">${item.productName}</a>
+						<div class="Numeral">
+							<span class="price"><i>￥</i>${item.commodityPrice}</span><span class="Sales">${item.commodityEvaluation}<i>345</i>件
 							</span>
-					</div></li>
-				<li class="p_info_u"><a href="#" class="p_img"><img
-						src="${pageContext.request.contextPath}/product/p_15.jpg" /></a> <a href="#" class="name">御泥坊
-					玫瑰滋养+红石榴亮颜美肤套装 深层补水滋润 提亮肤色</a>
-					<div class="Numeral">
-						<span class="price"><i>￥</i>123.00</span><span class="Sales">销量<i>345</i>件
-							</span>
-					</div></li>
-				<li class="p_info_u"><a href="#" class="p_img"><img
-						src="${pageContext.request.contextPath}/product/p_16.jpg" /></a> <a href="#" class="name">御泥坊
-					玫瑰滋养+红石榴亮颜美肤套装 深层补水滋润 提亮肤色</a>
-					<div class="Numeral">
-						<span class="price"><i>￥</i>123.00</span><span class="Sales">销量<i>345</i>件
-							</span>
-					</div></li>
-				<li class="p_info_u"><a href="#" class="p_img"><img
-						src="${pageContext.request.contextPath}/product/p_17.jpg" /></a> <a href="#" class="name">御泥坊
-					玫瑰滋养+红石榴亮颜美肤套装 深层补水滋润 提亮肤色</a>
-					<div class="Numeral">
-						<span class="price"><i>￥</i>123.00</span><span class="Sales">销量<i>345</i>件
-							</span>
-					</div></li>
-				<li class="p_info_u"><a href="#" class="p_img"><img
-						src="${pageContext.request.contextPath}/product/p_18.jpg" /></a> <a href="#" class="name">御泥坊
-					玫瑰滋养+红石榴亮颜美肤套装 深层补水滋润 提亮肤色</a>
-					<div class="Numeral">
-						<span class="price"><i>￥</i>123.00</span><span class="Sales">销量<i>345</i>件
-							</span>
-					</div></li>
-				<li class="p_info_u"><a href="#" class="p_img"><img
-						src="${pageContext.request.contextPath}/product/p_19.jpg" /></a> <a href="#" class="name">御泥坊
-					玫瑰滋养+红石榴亮颜美肤套装 深层补水滋润 提亮肤色</a>
-					<div class="Numeral">
-						<span class="price"><i>￥</i>123.00</span><span class="Sales">销量<i>345</i>件
-							</span>
-					</div></li>
-				<li class="p_info_u"><a href="#" class="p_img"><img
-						src="${pageContext.request.contextPath}/product/p_24.jpg" /></a> <a href="#" class="name">御泥坊
-					玫瑰滋养+红石榴亮颜美肤套装 深层补水滋润 提亮肤色</a>
-					<div class="Numeral">
-						<span class="price"><i>￥</i>123.00</span><span class="Sales">销量<i>345</i>件
-							</span>
-					</div></li>
-				<li class="p_info_u"><a href="#" class="p_img"><img
-						src="${pageContext.request.contextPath}/product/p_26.jpg" /></a> <a href="#" class="name">御泥坊
-					玫瑰滋养+红石榴亮颜美肤套装 深层补水滋润 提亮肤色</a>
-					<div class="Numeral">
-						<span class="price"><i>￥</i>123.00</span><span class="Sales">销量<i>345</i>件
-							</span>
-					</div></li>
+						</div></li>
+				</c:forEach>
 			</ul>
 		</div>
 	</div>
@@ -1499,6 +1382,27 @@
 </body>
 </html>
 <script type="text/javascript">
+	$(function () {
+		$(".p_t_list li").each(function () {
+			var dom=$(this).children("a").html();
+			if(dom===undefined){
+				$(this).remove();
+			}else {
+				var length = $(this).find("span").text().length;
+				var spanText=$(this).find("span").text();
+				var num=$(this).find("span").attr("limit");
+				console.log(num);
+				console.log($(this).find("span"));
+				if(length>num){
+					spanText=spanText.substring(0,num);
+					console.log(spanText)
+					$(this).find("span").text(spanText+"...");
+				}
+
+			}
+		});
+
+	});
 	//浮动导航
 	function float_nav(dom){
 		var right_nav=$(dom);

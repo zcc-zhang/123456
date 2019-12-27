@@ -30,4 +30,6 @@ public interface CommodityMapper {
     List<Commodity> selectAll(@Param("commodityAttribute") String commodityAttribute,
                               @Param("max")Integer maxNumber,
                               @Param("min")Integer minNumber);
+
+    List<Commodity> selectRandomGeneration(Integer nums);
 }

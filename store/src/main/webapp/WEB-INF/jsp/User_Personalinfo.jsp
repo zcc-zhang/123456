@@ -807,7 +807,6 @@
                    data:dataStr,
                    type:"post",
                     success:function (data) {
-                            console.log(data);
                             $('input[name=email]').val(data.email);
                             $('input[name=username]').val(data.username);
                             $('input[name=moblie]').val(data.moblie);
