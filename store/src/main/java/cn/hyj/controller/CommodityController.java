@@ -25,7 +25,7 @@ import java.util.*;
  * 商品controller
  */
 @SessionAttributes(value = {"user"})
-@RequestMapping("/commodity/")
+@RequestMapping("/commodity")
 @Controller
 public class CommodityController {
 
