@@ -40,7 +40,7 @@ public class CookieUtil {
 		}
 		if (commoditys != null && commoditys.length > 0)// 数组不为空遍历
 		{
-			for (int i = 0; i < commoditys.length; i++) {
+			for (int i = 0; i < commoditys.length && !"".equals(commoditys[i].trim()); i++) {
 				commodity = service.queryByPrimaryKey(Integer.parseInt(commoditys[i]));// 根据id查询指定商品
 				if (list.size() == 0) {
 					list.add(commodity);

@@ -50,4 +50,26 @@ public interface CommodityService {
      * @return
      */
     List<Commodity> guessYouLike();
+
+    /**
+     * 添加商品
+     * @param commodity
+     * @return
+     */
+    int insertSelective(Commodity commodity);
+
+    /**
+     * 类型ID查询商品
+     * @param commodityTypeId
+     * @return
+     */
+    List<Commodity> queryByCommodityType(Integer commodityTypeId,String productName);
+
+    /**
+     * 修改商品个别字段
+     * @param record
+     * @return
+     */
+    void updateByPrimaryKeySelective(Commodity record);
+
 }

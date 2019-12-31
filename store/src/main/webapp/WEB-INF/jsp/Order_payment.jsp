@@ -236,21 +236,21 @@
 									</div>
 									<div class="Brands">
 										<a href="#" class="logo_Brands"><img
-												src="product/logo/34.jpg" /></a> <a href="#"
-																					class="logo_Brands"><img src="product/logo/42.jpg" /></a> <a
+												src="${pageContext.request.contextPath}/product/logo/34.jpg" /></a> <a href="#"
+																					class="logo_Brands"><img src="${pageContext.request.contextPath}/product/logo/42.jpg" /></a> <a
 											href="#" class="logo_Brands"><img
-											src="product/logo/152.jpg" /></a> <a href="#"
-																				 class="logo_Brands"><img src="product/logo/156.jpg" /></a>
+											src="${pageContext.request.contextPath}/product/logo/152.jpg" /></a> <a href="#"
+																				 class="logo_Brands"><img src="${pageContext.request.contextPath}/product/logo/156.jpg" /></a>
 										<a href="#" class="logo_Brands"><img
-												src="product/logo/458.jpg" /></a> <a href="#"
-																					 class="logo_Brands"><img src="product/logo/339.jpg" /></a>
+												src="${pageContext.request.contextPath}/product/logo/458.jpg" /></a> <a href="#"
+																					 class="logo_Brands"><img src="${pageContext.request.contextPath}/product/logo/339.jpg" /></a>
 										<a href="#" class="logo_Brands"><img
-												src="product/logo/245.jpg" /></a> <a href="#"
-																					 class="logo_Brands"><img src="product/logo/199.jpg" /></a>
+												src="${pageContext.request.contextPath}/product/logo/245.jpg" /></a> <a href="#"
+																					 class="logo_Brands"><img src="${pageContext.request.contextPath}/product/logo/199.jpg" /></a>
 										<a href="#" class="logo_Brands"><img
-												src="product/logo/618.jpg" /></a> <a href="#"
-																					 class="logo_Brands"><img src="product/logo/644.jpg" /></a>
-										<a href="#" class="AD_3"><img src="product/ad/2.jpg" /></a>
+												src="${pageContext.request.contextPath}/product/logo/618.jpg" /></a> <a href="#"
+																					 class="logo_Brands"><img src="${pageContext.request.contextPath}/product/logo/644.jpg" /></a>
+										<a href="#" class="AD_3"><img src="${pageContext.request.contextPath}/product/ad/2.jpg" /></a>
 									</div>
 								</div>
 								<!--品牌-->
@@ -339,15 +339,15 @@
 			<!--菜单栏-->
 			<div class="Navigation" id="Navigation">
 				<ul class="Navigation_name">
-					<li><a href="${pageContext.request.contextPath}/index.jsp">首页</a></li>
+					<li><a href="${pageContext.request.contextPath}/index">首页</a></li>
 					<li><a href="${pageContext.request.contextPath}/Footprint.jsp">日常护理</a></li>
 					<li><a href="${pageContext.request.contextPath}/Must_see.jsp">每日必看</a></li>
-					<li><a href="${pageContext.request.contextPath}/showCommodityListServlet">产品列表</a></li>
+					<li><a href="${pageContext.request.contextPath}/commodity//toPage">产品列表</a></li>
 					<li><a href="${pageContext.request.contextPath}/Buy_Brands.jsp">限时团购</a></li>
 					<li><a href="${pageContext.request.contextPath}/diy.jsp">礼品DIY</a></li>
 					<li><a href="${pageContext.request.contextPath}/Group_buy.jsp">品牌团购</a></li>
 					<li><a href="#">联系我们</a></li>
-					<li><a href="${pageContext.request.contextPath}/index.jsp">简洁版</a></li>
+					<li><a href="${pageContext.request.contextPath}/index">简洁版</a></li>
 				</ul>
 			</div>
 			<script>$("#Navigation").slide({
@@ -583,7 +583,6 @@
 										<td class="Moneys"><i>￥</i><i>${trolleyList.sum}</i></td>
 									</tr>
 								</c:forEach>
-
 								</tbody>
 							</table>
 							<div class="Pay_info">
@@ -606,9 +605,6 @@
 											   class="submit_btn" /> <input name="" type="button"
 																			value="返回购物车" class="return_btn" />
 									</div>
-									<!-- <div class="integral right">
-                                        待订单确认后，你将获得<span>345</span>积分
-                                    </div> -->
 								</div>
 							</div>
 						</div>
@@ -806,6 +802,7 @@
 		</ul>
 	</div>
 	<script type="text/javascript">
+
 		function checkLength(which) {
 			var maxChars = 50; //
 			if (which.value.length > maxChars) {
@@ -851,9 +848,10 @@
 				$('.commodity').each(function() {
 					sum += parseInt($(this).children('.Moneys').children('i').eq(1).text());//获取每个商品的总价
 				})
+				console.log(sum);
 				$('#sum').text(sum);
-				$('.shiji_price').find('span').text(sum);
-				$('input[name=sum]').val(sum);
+				$('.shiji_price').find('span').text(parseInt(sum));
+				$('input[name=sum]').val(parseInt(sum));
 			}
 			sum();
 		});

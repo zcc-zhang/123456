@@ -110,8 +110,8 @@
 		<!--购物车样式-->
 		<div class="hd_Shopping_list" id="Shopping_list">
 			<div class="s_cart">
-				<em class="iconfont icon-cart2"></em><a href="#">我的购物车</a> <i
-					class="ci-right">&gt;</i><i class="ci-count" id="shopping-amount">0</i>
+				<em class="iconfont icon-cart2"></em><a href="${pageContext.request.contextPath}/shoppingTrolley/queryShoppingTrolley">我的购物车</a> <i
+					class="ci-right">&gt;</i><i class="ci-count" id="shopping-amount">${shoppingTrolleys.stream().count()}</i>
 			</div>
 			<div class="dorpdown-layer">
 				<div class="spacer"></div>
@@ -426,7 +426,7 @@
 										   id="b">￥</b></span></td>
 			</tr>
 			<tr valign="top" height="150">
-				<td colspan="6" align="right"><a href="#"><img
+				<td colspan="6" align="right"><a href="${pageContext.request.contextPath}/commodity//toPage"><img
 						src="${pageContext.request.contextPath}/images/buy1.gif"></a>&nbsp; &nbsp; <a href="#"><img
 						src="${pageContext.request.contextPath}/images/buy2.gif" id="skip"></a></td>
 			</tr>
@@ -663,13 +663,13 @@
 										if(data=='1'){
 											dom.remove();
 											$(".good_cart").text(parseInt($(".good_cart").text())-1);
+											$("#shopping-amount").text(parseInt($("#shopping-amount").text())-1);
 											$.ajax({
 												url:"${pageContext.request.contextPath}/shoppingTrolley/queryShoppingTrolley",
 												type:"post",
 												data:{"change":"delete",'id':id}
 											});
 										}
-
 									}
 								});
 

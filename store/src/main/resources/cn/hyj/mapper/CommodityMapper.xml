@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="cn.hyj.mapper.CommodityMapper">
+    <!-- 商品-->
     <resultMap id="BaseResultMap" type="cn.hyj.entity.Commodity">
         <id column="commodity_ID" property="commodityId" jdbcType="INTEGER"/>
         <result column="product_name" property="productName" jdbcType="VARCHAR"/>
@@ -17,23 +18,51 @@
         <result column="inventory" property="inventory" jdbcType="INTEGER"/>
         <result column="collect_number" property="collectNumber" jdbcType="INTEGER"/>
     </resultMap>
+    <!-- 商品图片-->
     <resultMap id="ResultMapWithBLOBs" type="cn.hyj.entity.Commodity" extends="BaseResultMap">
         <result column="commodity_img" property="commodityImg" jdbcType="LONGVARCHAR"/>
     </resultMap>
+    <!-- 商品类型映射-->
+    <resultMap id="ResultMapCommodityType" type="cn.hyj.entity.CommodityType">
+        <result column="commodity_type_ID" property="commodityTypeId" jdbcType="INTEGER"/>
+        <result column="commodity_type" property="commodityType" jdbcType="VARCHAR"/>
+        <result column="type" property="type" jdbcType="INTEGER"/>
+    </resultMap>
+
     <sql id="Base_Column_List">
-    commodity_ID, product_name, commodity_type_ID, commodity_attribute, commodity_price, 
-    commodity_freight, merchant_id, commodity_status, shelf_time, commodity_weight, commodity_evaluation, 
-    commodity_number, inventory, collect_number
+        commodity_ID, product_name, commodity_type_ID, commodity_attribute, commodity_price,
+        commodity_freight, merchant_id, commodity_status, shelf_time, commodity_weight, commodity_evaluation,
+        commodity_number, inventory, collect_number
   </sql>
     <sql id="Blob_Column_List">
-    commodity_img
-  </sql>
+     commodity_img
+    </sql>
+    <!-- 商品类型-->
+    <sql id="Type_Column_list">
+        commodity_type_ID,commodity_type,type
+    </sql>
+
+    <!-- 根据【商品类型 || 商品名称（模糊）】查询商品-->
+    <select id="queryByCommodityType" resultMap="ResultMapWithBLOBs">
+        select <include refid="Base_Column_List"/>
+              ,<include refid="Blob_Column_List"/>
+        from t_commodity
+      <trim prefix="where" suffixOverrides="and">
+          <if test="commodityTypeId != null and commodityTypeId != ''">
+              commodity_type_ID=#{commodityTypeId} and
+          </if>
+          <if test="productName != null and productName != ''">
+              product_name like concat('%',#{productName},'%')
+          </if>
+      </trim>
+    </select>
+
     <select id="selectRandomGeneration" resultMap="ResultMapWithBLOBs">
         select <include refid="Base_Column_List"/> ,<include refid="Blob_Column_List"/>
         from t_commodity
-
-            ORDER BY  RAND() LIMIT #{xxx}
+            ORDER BY RAND() LIMIT #{xxx}
     </select>
+    
     <!--销量排行-->
     <select id="selectByCommodityEvaluation" resultMap="ResultMapWithBLOBs">
         select <include refid="Base_Column_List"/> ,<include refid="Blob_Column_List"/>
@@ -41,6 +70,7 @@
         order by commodity_evaluation desc
         limit 0,10
     </select>
+    
     <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer">
         select
         <include refid="Base_Column_List"/>
@@ -250,9 +280,8 @@
     <select id="selectAll" resultMap="ResultMapWithBLOBs">
 
         select
-        <include refid="Base_Column_List"/>
-        ,
-        <include refid="Blob_Column_List"/>
+         <include refid="Base_Column_List"/>
+        ,<include refid="Blob_Column_List"/>
         from t_commodity
         <trim prefix="where" suffixOverrides="and">
             <if test="min!=null  and max !=null  ">

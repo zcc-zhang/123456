@@ -1,5 +1,8 @@
 package cn.hyj.entity;
 
+/**
+ * 收藏
+ */
 public class ShoppingCollection {
     private Integer shoppingCollectionId;
 

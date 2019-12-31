@@ -1,6 +1,8 @@
 package cn.hyj.controller;
 
+import cn.hyj.entity.Administrator;
 import cn.hyj.entity.Commodity;
+import cn.hyj.entity.CommodityType;
 import cn.hyj.entity.User;
 import cn.hyj.service.CommodityService;
 import cn.hyj.utils.CookieUtil;
@@ -11,10 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttribute;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -24,7 +24,8 @@ import java.util.*;
 /**
  * 商品controller
  */
-@SessionAttributes(value = {"user"})
+<<<<<<< HEAD
+@SessionAttributes(value = {"user","shoppingTrolleys"})
 @RequestMapping("/commodity")
 @Controller
 public class CommodityController {
@@ -35,6 +36,16 @@ public class CommodityController {
     @Autowired
     private CookieUtil cookieUtil;
 
+    /**
+     * 商品列表
+     * @param map
+     * @param pageCode
+     * @param commodityAttribute
+     * @param min
+     * @param max
+     * @param request
+     * @return
+     */
     @RequestMapping("/toPage")
     public String commodityList(Map<String, Object> map
             , @RequestParam(defaultValue = "1", value = "currentPage") Integer pageCode
@@ -86,8 +97,10 @@ public class CommodityController {
         List<String> commodityImg = SplitString.splitStringToList(commodity.getCommodityImg());
         model.addAttribute("commodity",commodity);
         model.addAttribute("commodityImg",commodityImg);
+
         return "Product_Detailed";
     }
+
 
     @RequestMapping("/browsingHistory")
     public String browsingHistory(HttpServletRequest request, HttpServletResponse response, ModelMap modelMap) throws Exception{
@@ -115,5 +128,64 @@ public class CommodityController {
          list.forEach(commodity -> commodity.setCommodityImg(SplitString.splitString(commodity.getCommodityImg())[0]));
          return  list;
     }
+
+    /**
+     * 添加商品
+     * @param commodity
+     * @return
+     */
+    @RequestMapping("insert")
+    public Commodity insertCommodity(Commodity commodity){
+
+        commodityService.insertSelective(commodity);
+
+        return commodity;
+    }
+
+    /**
+     * 根据【类型,名称模糊】查询商品
+     * @return
+     */
+    @RequestMapping("/queryByTypeId")
+    @ResponseBody
+    public List<Commodity> queryByIdCommodityType(Integer commodityTypeId,String productName
+                                            ,@RequestParam(defaultValue = "1",value = "currentPage") Integer pageCode){
+
+            PageHelper.startPage(pageCode,16);//分页，每页16条数据
+            List<Commodity> commodityList = commodityService.queryByCommodityType(commodityTypeId,productName);//查询全部数据
+            //分割字符串
+            commodityList.forEach(commodity -> {
+               commodity.setCommodityImg(SplitString.splitString(commodity.getCommodityImg())[0]);//取出第一张图片
+            });
+            PageInfo<Commodity> pageInfo = new PageInfo<Commodity>(commodityList);
+            commodityList = pageInfo.getList();//重新赋值给集合-
+            Integer totalPage = pageInfo.getPages();//总页数
+
+
+            return commodityList;
+    }
+
+    /**
+     * 删除商品【修改商品状态】
+     * status 0:删除 1:正常 2:已下架
+     * @param commodityID
+     * @return
+     */
+    @RequestMapping("/update")
+    @ResponseBody
+    public String updateCommodityById(Integer commodityID){
+
+        Commodity commodit = new Commodity();
+        commodit.setCommodityId(commodityID);//商品id
+        commodit.setCommodityStatus(0);//状态
+        try{
+            commodityService.updateByPrimaryKeySelective(commodit);
+            return "1";//修改成功
+        }catch (Exception e){
+            e.printStackTrace();
+            return "0";//异常
+        }
+    }
+
 
 }

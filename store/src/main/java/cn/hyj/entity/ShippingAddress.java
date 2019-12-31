@@ -1,5 +1,9 @@
 package cn.hyj.entity;
 
+
+/**
+ * 收货地址
+ */
 public class ShippingAddress {
     private Integer shippingAddressId;//逻辑主键
 

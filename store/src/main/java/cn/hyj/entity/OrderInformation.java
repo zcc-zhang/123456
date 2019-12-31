@@ -3,6 +3,9 @@ package cn.hyj.entity;
 import java.math.BigDecimal;
 import java.util.Date;
 
+/**
+ * 订单
+ */
 public class OrderInformation {
     private Integer orderFormId;
 
@@ -152,5 +155,26 @@ public class OrderInformation {
 
     public void setCommodityImg(String commodityImg) {
         this.commodityImg = commodityImg;
+    }
+
+    @Override
+    public String toString() {
+        return "OrderInformation{" +
+                "orderFormId=" + orderFormId +
+                ", id=" + id +
+                ", productName='" + productName + '\'' +
+                ", commodityAttribute='" + commodityAttribute + '\'' +
+                ", commodityPrice=" + commodityPrice +
+                ", commodityCount=" + commodityCount +
+                ", commodityFreight=" + commodityFreight +
+                ", subtotal=" + subtotal +
+                ", price=" + price +
+                ", placeAnOrderDate=" + placeAnOrderDate +
+                ", paymentTime=" + paymentTime +
+                ", affirmDate=" + affirmDate +
+                ", logisticsId='" + logisticsId + '\'' +
+                ", status=" + status +
+                ", commodityImg='" + commodityImg + '\'' +
+                '}';
     }
 }

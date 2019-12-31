@@ -15,8 +15,10 @@ public interface ShoppingTrolleyService {
 
    // 根据id查询
     List<ShoppingTrolley> selectByUserId(Integer userId);
+
     //添加
     void insert(ShoppingTrolley record);
+
     //【更改状态】
     int updateByPrimaryKey(ShoppingTrolley record);
 

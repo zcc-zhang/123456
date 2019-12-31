@@ -57,7 +57,7 @@
 			<div class="hd_top_manu clearfix">
 				<ul class="clearfix">
 					<li class="hd_menu_tit zhuce" data-addclass="hd_menu_hover">欢迎光临本店！
-						<a href="${pageContext.request.contextPath }/login.jsp" class="red">
+						<a href="${pageContext.request.contextPath }/login" class="red">
 							<c:if test="${ not empty user.username}">
 								${user.username} <style>#registered{display: none}</style>
 							</c:if>
@@ -803,14 +803,14 @@
 			<!--菜单栏-->
 			<div class="Navigation" id="Navigation">
 				<ul class="Navigation_name">
-					<li><a href="${pageContext.request.contextPath}/index.jsp">首页</a></li>
+					<li><a href="${pageContext.request.contextPath}/index">首页</a></li>
 					<li><a href="${pageContext.request.contextPath}/commodity//browsingHistory">我的足迹</a></li>
 					<li><a href="${pageContext.request.contextPath}/Must_see.jsp">每日必看</a></li>
 					<li><a href="${pageContext.request.contextPath}/commodity//toPage">产品列表</a></li>
 					<li><a href="${pageContext.request.contextPath}/Buy_Brands.jsp">限时团购</a></li>
 					<li><a href="${pageContext.request.contextPath}/Group_buy.jsp">品牌团购</a></li>
 					<li><a href="#">联系我们</a></li>
-					<li><a href="${pageContext.request.contextPath}/index.jsp">简洁版</a></li>
+					<li><a href="${pageContext.request.contextPath}/index">简洁版</a></li>
 				</ul>
 			</div>
 			<script>$("#Navigation").slide({

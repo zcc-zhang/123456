@@ -144,7 +144,7 @@
 				</ul>
 				<div class="Shopping_style">
 					<div class="p-total">
-						共<b>${shoppingTrolleys.stream().count()}</b>件商品 共计<strong>￥ </strong>
+						共<b>${shoppingTrolleys.stream().count()}</b>件商品 共计<strong>￥ 1520</strong>
 					</div>
 					<a href="${pageContext.request.contextPath}/shoppingTrolley/queryShoppingTrolley" title="去购物车结算" id="btn-payforgoods" class="Shopping">去购物车结算</a>
 				</div>
@@ -455,8 +455,6 @@
 		</div>
 		<!--产品信息-->
 		<div class="property">
-			<form action="javascript:addToCart(97)" name="ECS_FORMBUY"
-				  id="ECS_FORMBUY">
 				<h2>${commodity.productName }</h2>
 				<div class="goods_info">◆买即送大麦茶◆满2件减10元再赠2罐大麦茶◆礼品袋茶包免费赠◆</div>
 				<div class="ProductD clearfix">
@@ -512,14 +510,14 @@
 								   >-</a> <a
 									class="btn-add" href="javascript:void(0);"
 									>+</a> <input class="text"
-																					 id="buy-num" value="1" >
+																					 id="buy-num" value="1" />
 							</div>
 							<div class="P_Quantity">剩余：${commodity.inventory}件</div>
 						</dd>
 						<dd>
 							<div class="wrap_btn">
-								<form method="post" id="byFrom">
-									<input name="commodityID" type="hidden"
+								<form action="${pageContext.request.contextPath}/orderInformation/buyNowCommodity" method="post" id="byFrom">
+									<input name="commodityId" type="hidden"
 										   value="${commodity.commodityId}" /> <input
 										name="commodityPrice" type="hidden"
 										value="${commodity.commodityPrice }" /> <input
@@ -531,9 +529,11 @@
 										value="${commodity.commodityImg }" /> <input
 										name="merchant_ID" type="hidden"
 										value="${commodity.merchantId}" />
+									<input type="hidden" name="count" />
 
 									<a href="javascript:void(0)" class="wrap_btn1" title="加入购物车"></a>
-									<a href="javascript:void(0)"class="wrap_btn2" title="立即购买"></a>
+									<a href="javascript:void(0)" class="wrap_btn2" title="立即购买"></a>
+									<input type="submit" style="display: none" id="submit"/>
 								</form>
 							</div>
 						</dd>
@@ -562,7 +562,6 @@
 						</dd>
 					</dl>
 				</div>
-			</form>
 		</div>
 	</div>
 
@@ -756,71 +755,75 @@
 			</li>
 		</ul>
 	</div>
-	<script>
-		$(function(){
-			/***********加入购物车*************/
-			$('.wrap_btn1').on('click',function(){
-				var formStr=$('form').serialize();//序列化表单
-				$.ajax({
-					url:"${pageContext.request.contextPath}/shoppingTrolley/addCommodity",
-					type:"post",
-					data:formStr,
-					success:function(data)
-					{
-						if(data=='1')
-						{
-							$.sendSuccessToTop('成功将该商品加入购物车', 3000, function() {
-								console.log('sendSuccessToTop closed')});
-						}else{
-							$.sendWarningToTop('出现未知错误请稍后重试!！', 3000, function() {
-								console.log('sendWarningToTop closed');
-							});
-						}
-					}
-				});
-			});
-			/**************立即购买**************/
-			$('.wrap_btn2').on('click',function() {
-				$('#byFrom').submit(true);
-			});
-
-			/**************点击增加数量****************/
-			$(".btn-add").on("click",function() {
-				var num = $("#buy-num");//商品数量
-                num.val(parseInt(num.val())+parseInt(1));
-                var price = $("#ECS_SHOPPRICE").children("input").val();//价格
-                var sum=parseInt(num.val())*parseInt(price);
-                $("#ECS_SHOPPRICE").children("input").val(price)
-                $("#ECS_SHOPPRICE").html("<i>￥</i> <input type=\"hidden\" value=\"${commodity.commodityPrice}\" />"+sum);
-			});
-			/**************点击减少数量***************/
-			$(".btn-reduce").bind("click", function() {
-				var num=$("#buy-num");//数量
-
-                if(num.val() == 1){
-					$.sendWarningToTop('不能再减啦,再减就没了!!!', 3000, function() {
-						console.log('sendWarningToTop closed');
-					});
-				}else{
-                    num.val(parseInt(num.val())-parseInt(1));
-                    var price = $("#ECS_SHOPPRICE").children("input").val();//价格
-                    var sum=parseInt(num.val())*parseInt(price);
-                    $("#ECS_SHOPPRICE").children("input").val(price)
-                    console.log(price);
-                    $("#ECS_SHOPPRICE").html("<i>￥</i> <input type=\"hidden\" value=\"${commodity.commodityPrice}\" />"+sum);
-				}
-			})
-            /**************计算商品总价****************/
-            function compute() {
-                var val = $("#ECS_SHOPPRICE").children("input[type=hidden]").val();//商品单价
-                var count=$("#buy-num").val();//商品数量
-                var money=parseInt(val)*parseInt(count);//总价
-                $("#ECS_SHOPPRICE").html("<i>￥</i> <input type=\"hidden\" value=\"${commodity.commodityPrice}\" />"+money);
-            }
-            setInterval(function(){
-                compute();
-            },500)
-		});
-	</script>
 </body>
+<script>
+	$(function(){
+		/***********加入购物车*************/
+		$('.wrap_btn1').on('click',function(){
+			var formStr=$('form').serialize();//序列化表单
+			$.ajax({
+				url:"${pageContext.request.contextPath}/shoppingTrolley/addCommodity",
+				type:"post",
+				data:formStr,
+				success:function(data)
+				{
+					if(data=='1')
+					{
+						$.sendSuccessToTop('成功将该商品加入购物车', 3000, function() {
+							console.log('sendSuccessToTop closed')});
+					}else{
+						$.sendWarningToTop('出现未知错误请稍后重试!！', 3000, function() {
+							console.log('sendWarningToTop closed');
+						});
+					}
+				}
+			});
+		});
+		/**************立即购买**************/
+		$('.wrap_btn2').on('click',function() {
+			$('#submit').click();
+		});
+
+
+		/**************点击增加数量****************/
+		$(".btn-add").on("click",function() {
+			var num = $("#buy-num");//商品数量
+			num.val(parseInt(num.val())+parseInt(1));
+			var price = $("#ECS_SHOPPRICE").children("input").val();//价格
+			var sum=parseInt(num.val())*parseInt(price);
+			$("#ECS_SHOPPRICE").children("input").val(price)
+			$("#ECS_SHOPPRICE").html("<i>￥</i> <input type=\"hidden\" value=\"${commodity.commodityPrice}\" />"+sum);
+		});
+		/**************点击减少数量***************/
+		$(".btn-reduce").bind("click", function() {
+			var num=$("#buy-num");//数量
+
+			if(num.val() == 1){
+				$.sendWarningToTop('不能再减啦,再减就没了!!!', 3000, function() {
+					console.log('sendWarningToTop closed');
+				});
+			}else{
+				num.val(parseInt(num.val())-parseInt(1));
+				var price = $("#ECS_SHOPPRICE").children("input").val();//价格
+				var sum=parseInt(num.val())*parseInt(price);
+				$("#ECS_SHOPPRICE").children("input").val(price)
+				console.log(price);
+				$("#ECS_SHOPPRICE").html("<i>￥</i> <input type=\"hidden\" value=\"${commodity.commodityPrice}\" />"+sum);
+			}
+		})
+		/**************计算商品总价****************/
+		function compute() {
+			var val = $("#ECS_SHOPPRICE").children("input[type=hidden]").val();//商品单价
+			var count=$("#buy-num").val();//商品数量
+			var money=parseInt(val)*parseInt(count);//总价
+			$("input[name=count]").val(count);
+			console.log(count);
+			$("#ECS_SHOPPRICE").html("<i>￥</i> <input type=\"hidden\" value=\"${commodity.commodityPrice}\" />"+money);
+		}
+		setInterval(function(){
+			compute();
+		},500)
+
+	});
+</script>
 </html>

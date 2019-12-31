@@ -3,7 +3,12 @@ package cn.hyj.entity;
 import java.math.BigDecimal;
 import java.util.Date;
 
+
+/**
+ * 商品
+ */
 public class Commodity {
+
     private Integer commodityId;
 
     private String productName;

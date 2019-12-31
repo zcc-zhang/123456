@@ -4,10 +4,20 @@
     <resultMap id="BaseResultMap" type="cn.hyj.entity.CommodityType">
         <id column="commodity_type_Id" property="commodityTypeId" jdbcType="INTEGER"/>
         <result column="commodity_type" property="commodityType" jdbcType="VARCHAR"/>
+        <result column="type" property="type" jdbcType="INTEGER"/>
     </resultMap>
     <sql id="Base_Column_List">
-    commodity_type_Id, commodity_type
+    commodity_type_Id, commodity_type,type
   </sql>
+
+    <!-- 查询所有类型-->
+    <select id="queryCommodityType" resultMap="BaseResultMap">
+        select
+             <include refid="Base_Column_List"/>
+        from
+            t_commodity_type
+    </select>
+
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
         <include refid="Base_Column_List"/>

@@ -4,14 +4,29 @@
     <resultMap id="BaseResultMap" type="cn.hyj.entity.Administrator">
         <result column="Id" property="id" jdbcType="INTEGER"/>
         <result column="head_portrait" property="headPortrait" jdbcType="VARCHAR"/>
-        <result column="username" property="username" jdbcType="VARCHAR"/>
+        <result column="admin_name" property="adminName" jdbcType="VARCHAR"/>
         <result column="PASSWORD" property="password" jdbcType="VARCHAR"/>
         <result column="email" property="email" jdbcType="VARCHAR"/>
     </resultMap>
+
+    <!-- 登录验证-->
+    <select id="queryAdmin" resultMap="BaseResultMap">
+        select id,head_portrait,admin_name,PASSWORD,email
+        from t_administrator
+        where admin_name=#{adminName} and password=#{password}
+    </select>
+
+    <!-- 修改密码-->
+    <update id="changePassword">
+        update t_administrator
+        set password=#{password}
+        where id=#{id}
+    </update>
+
     <insert id="insert" parameterType="cn.hyj.entity.Administrator">
-    insert into t_administrator (Id, head_portrait, username, 
+    insert into t_administrator (Id, head_portrait, username,
       PASSWORD, email)
-    values (#{id,jdbcType=INTEGER}, #{headPortrait,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=INTEGER}, #{headPortrait,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR},
       #{password,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR})
   </insert>
     <insert id="insertSelective" parameterType="cn.hyj.entity.Administrator">
