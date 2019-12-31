@@ -2,6 +2,9 @@ package cn.hyj.entity;
 
 import java.util.Date;
 
+/**
+ * 用户
+ */
 public class User {
     private Integer userId;
 

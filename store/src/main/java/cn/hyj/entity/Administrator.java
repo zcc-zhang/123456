@@ -1,11 +1,15 @@
 package cn.hyj.entity;
 
+/**
+ * 管理员实体类
+ */
 public class Administrator {
+
     private Integer id;
 
     private String headPortrait;
 
-    private String username;
+    private String adminName;
 
     private String password;
 
@@ -27,12 +31,12 @@ public class Administrator {
         this.headPortrait = headPortrait == null ? null : headPortrait.trim();
     }
 
-    public String getUsername() {
-        return username;
+    public String getAdminName() {
+        return adminName;
     }
 
-    public void setUsername(String username) {
-        this.username = username == null ? null : username.trim();
+    public void setAdminName(String adminName) {
+        this.adminName = adminName;
     }
 
     public String getPassword() {

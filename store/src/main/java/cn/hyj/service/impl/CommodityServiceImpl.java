@@ -78,4 +78,21 @@ public class CommodityServiceImpl implements CommodityService {
         });
         return commodities;
     }
+
+    @Override
+    public int insertSelective(Commodity commodity) {
+        return commodityMapper.insertSelective(commodity);
+    }
+
+    @Override
+    public List<Commodity> queryByCommodityType(Integer commodityTypeId,String productName) {
+        return commodityMapper.queryByCommodityType(commodityTypeId,productName);
+    }
+
+    @Override
+    public void updateByPrimaryKeySelective(Commodity record) {
+         commodityMapper.updateByPrimaryKeySelective(record);
+    }
+
+
 }

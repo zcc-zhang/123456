@@ -21,7 +21,12 @@ public interface CommodityMapper {
 
     Commodity selectByPrimaryKey(Integer commodityId);
 
-    int updateByPrimaryKeySelective(Commodity record);
+    /**
+     * 修改商品个别字段
+     * @param record
+     * @return
+     */
+    void updateByPrimaryKeySelective(Commodity record);
 
     int updateByPrimaryKeyWithBLOBs(Commodity record);
 
@@ -32,4 +37,12 @@ public interface CommodityMapper {
                               @Param("min")Integer minNumber);
 
     List<Commodity> selectRandomGeneration(Integer nums);
+
+    /**
+     * 类型id查询商品
+     * @param commodityTypeId
+     * @param productName
+     * @return
+     */
+    List<Commodity> queryByCommodityType(@Param("commodityTypeId") Integer commodityTypeId,@Param("productName") String productName);
 }

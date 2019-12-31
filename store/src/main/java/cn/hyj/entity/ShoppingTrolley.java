@@ -3,6 +3,9 @@ package cn.hyj.entity;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * 购物车
+ */
 public class ShoppingTrolley {
     private Integer shoppingTrolleyId;//逻辑主键
 

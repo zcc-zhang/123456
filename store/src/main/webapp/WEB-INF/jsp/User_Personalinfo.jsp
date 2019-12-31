@@ -568,7 +568,7 @@
                     </div>
                     <form enctype="multipart/form-data">
                         <ul class="xinxi">
-                            <li><label>注册日期：</label> <span class="time"><fmt:formatdate value="${user.register}"
+                            <li><label>注册日期：</label> <span class="time"><fmt:formatDate value="${user.register}"
                                                                                         pattern="yyyy-mm-dd hh:mm:ss"
                                                                                         var="date"/>${date} </span>
                             </li>
@@ -598,7 +598,7 @@
                         </ul>
                         <ul class="head_portrait">
                             <li class="user_avatar"><img id="headimg"
-                                                         src="${user.headportrait}" width="200" height="200"/></li>
+                                                         src="${user.headPortrait}" width="200" height="200"/></li>
                             <li><input type="file" name="filefield" class="a-upload"
                                        id="filefield" style="display: none" value="请选择头像"/></li>
                             <li><input name="headimgpath" type="hidden" value=""/></li>

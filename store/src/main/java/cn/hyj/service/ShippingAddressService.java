@@ -17,8 +17,10 @@ public interface ShippingAddressService {
 
     //id查询收货地址列表
     List<ShippingAddress> queryByUserID(Integer shippingAddressId);
+
     //id查询一个收货地址
     ShippingAddress queryById(Integer id);
+
     //删除
     int deleteByPrimaryKey(Integer shippingAddressId);
 

@@ -24,6 +24,7 @@ import java.util.List;
  */
 @RequestMapping("/shoppingTrolley")
 @Controller
+@SessionAttributes(value = {"shoppingTrolleys","commodityID","count","change","user"})
 public class ShoppingTrolleyController {
 
     @Autowired
