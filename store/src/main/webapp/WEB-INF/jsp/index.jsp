@@ -1313,7 +1313,7 @@
 <!--右侧菜单栏购物车样式-->
 <div class="fixedBox">
 	<ul class="fixedBoxList">
-		<li class="fixeBoxLi user"><a href="${pageContext.request.contextPath}/profile"> <span
+		<li class="fixeBoxLi user"><a href="${pageContext.request.contextPath}/user_Center"> <span
 				class="fixeBoxSpan iconfont icon-yonghu"></span> <strong>用户</strong></a>
 		</li>
 		<li class="fixeBoxLi cart_bd" style="display:block;" id="cartboxs">
@@ -1391,11 +1391,8 @@
 				var length = $(this).find("span").text().length;
 				var spanText=$(this).find("span").text();
 				var num=$(this).find("span").attr("limit");
-				console.log(num);
-				console.log($(this).find("span"));
 				if(length>num){
 					spanText=spanText.substring(0,num);
-					console.log(spanText)
 					$(this).find("span").text(spanText+"...");
 				}
 
