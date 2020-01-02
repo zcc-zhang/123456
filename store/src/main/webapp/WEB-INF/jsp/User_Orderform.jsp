@@ -356,7 +356,7 @@
 										<td>
 											<div class="product_name clearfix">
 												<a href="#" class="product_img"><img src="${order.commodityImg }" width="80px" height="80px"></a>
-												<a href="product_name">${order.productName}</a>
+												<a href="${pageContext.request.contextPath}/commodity/particularsView?commodityId=${order.commodityId}">${order.productName}</a>
 												<p class="specification">${order.commodityAttribute}</p>
 											</div>
 										</td>

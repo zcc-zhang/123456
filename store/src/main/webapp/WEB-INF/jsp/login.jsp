@@ -63,7 +63,7 @@
               </tr>
               <tr height="70">
                 <td>用户名</td>
-                <td><input type="text" value="" class="l_user" name ="username"></td>
+                <td><input type="text" value="" class="l_user" name ="username" /></td>
               </tr>
               <tr height="70">
                 <td>密&nbsp; &nbsp; 码</td>

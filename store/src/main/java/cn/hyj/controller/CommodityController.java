@@ -188,6 +188,20 @@ public class CommodityController {
         }
     }
 
+    /**
+     *
+     * @param productName
+     * @return
+     */
+    @RequestMapping("fuzzyQueryName")
+    @ResponseBody
+    public String fuzzyQueryProductName(String productName){
+
+
+
+        return "";
+    }
+
 
     @ResponseBody
     @RequestMapping("/queryByID")

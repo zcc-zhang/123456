@@ -7,6 +7,7 @@ import java.util.Date;
  * 订单
  */
 public class OrderInformation {
+
     private Integer orderFormId;
 
     private Integer id;

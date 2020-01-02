@@ -108,8 +108,8 @@
 		<!--结束图层-->
 		<div class="Search">
 			<p>
-				<input name="" type="text" class="text" /><input name=""
-																 type="submit" value="搜 索" class="Search_btn" />
+				<input name="productName" type="text" class="text"/>
+				<input name="submit" type="submit" value="搜 索" class="Search_btn" />
 			</p>
 			<p class="Words">
 				<a href="#">苹果</a><a href="#">香蕉</a><a href="#">菠萝</a><a href="#">西红柿</a><a
@@ -1383,20 +1383,37 @@
 </html>
 <script type="text/javascript">
 	$(function () {
+		//循环li标签
 		$(".p_t_list li").each(function () {
-			var dom=$(this).children("a").html();
-			if(dom===undefined){
+			var dom=$(this).children("a").html();//获取this的孩子a标签
+			if(dom===undefined){//如果为空，就移除
 				$(this).remove();
 			}else {
-				var length = $(this).find("span").text().length;
-				var spanText=$(this).find("span").text();
-				var num=$(this).find("span").attr("limit");
+				var length = $(this).find("span").text().length;//获取字符的长度
+				var spanText=$(this).find("span").text();//获取字符的文本
+				var num=$(this).find("span").attr("limit");//获取limit的限制字符长度
 				if(length>num){
-					spanText=spanText.substring(0,num);
-					$(this).find("span").text(spanText+"...");
+					spanText=spanText.substring(0,num);//截取
+					$(this).find("span").text(spanText+"...");//多余的用.....代替
 				}
-
 			}
+		});
+		//搜索框操作
+		$(function () {
+			$(".Search_btn").on('click',function () {
+				var productName = $(this).prev().val();//商品名称
+				$.ajax({
+					url:"${pageContext.request.contextPath}/",
+					type:"post",
+					data:productName,
+					success:function (data) {
+
+					}
+				});
+
+			});
+
+
 		});
 
 	});

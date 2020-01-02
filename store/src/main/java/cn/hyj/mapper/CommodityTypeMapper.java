@@ -9,6 +9,9 @@ public interface CommodityTypeMapper {
     //查询所有商品类型
     List<CommodityType> queryCommodityType();
 
+    //查询商品类型名称
+    List<CommodityType> queryCommodityTypeName();
+
     int deleteByPrimaryKey(Integer commodityTypeId);
 
     int insert(CommodityType record);
