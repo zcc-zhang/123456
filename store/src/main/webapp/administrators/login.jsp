@@ -25,7 +25,6 @@
 
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/administrators/css/login1.css">
 		<script type="text/javascript" src="${pageContext.request.contextPath}/administrators/js/login1.js"></script>
-		<script type="text/javascript" src="${pageContext.request.contextPath}/administrators/js/vue.js"></script>
 	</head>
 
 	<body>
@@ -35,7 +34,7 @@
 				<div class="left">
 				</div>
 				<div class="right">
-					<form class="layui-form layui-form-pane" action="frame.jsp">
+					<form class="layui-form layui-form-pane" action="${pageContext.request.contextPath}/manage/login" method="post">
 						<div class="layui-form-item">
 							<label class="layui-form-label login_title"><i class="iconfont icon-gerenzhongxin-denglu"></i></label>
 							<div class="layui-input-block login_input">
@@ -49,7 +48,7 @@
 							</div>
 						</div>
 						<div class="layui-form-item">
-							<button class="layui-btn layui-btn-fluid login_but" lay-submit lay-filter="loginBut">登 录</button>
+							<button class="layui-btn layui-btn-fluid login_but" lay-submit lay-filter="loginBut" @click="login">登 录</button>
 						</div>
 						<div class="layui-form-item">
 
@@ -58,6 +57,8 @@
 				</div>
 			</div>
 		</div>
+		<script>
+		</script>
 		<script>
 			layui.use('form', function() {
 				var form = layui.form;
@@ -68,15 +69,15 @@
 				});
 				//监听用户类型，改变风格
 				function Carousel(data) {
-					if(data == 1) {
+					if(data === 1) {
 						$(".loginBg").css("background", "url('${pageContext.request.contextPath}/images/login_admin_bg.jpg')");
 						$(".login_but").css("cssText", "background-color:#57c201 !important");
 					}
-					if(data == 2) {
+					if(data === 2) {
 						$(".loginBg").css("background", "url('${pageContext.request.contextPath}/administrators/images/login_sh_bg.jpg')");
 						$(".login_but").css("cssText", "background-color:#16c6f9 !important");
 					}
-					if(data == 3) {
+					if(data === 3) {
 						$(".loginBg").css("background", "url('${pageContext.request.contextPath}/administrators/images/login_fj_bg.jpg')");
 						$(".login_but").css("cssText", "background-color:#ffd205 !important");
 					}
@@ -88,7 +89,7 @@
 					}
 					i++;
 					Carousel(i);
-				}, 1500);
+				},2500);
 			});
 		</script>
 	</body>

@@ -94,5 +94,10 @@ public class CommodityServiceImpl implements CommodityService {
          commodityMapper.updateByPrimaryKeySelective(record);
     }
 
+    @Override
+    public Integer queryCount() {
+        return commodityMapper.selectCount();
+    }
+
 
 }

@@ -18,23 +18,21 @@
 		<meta name="description" content="网站简介" />
 		<!-- 网站简介 -->
 		<meta name="keywords" content="搜索关键字，以半角英文逗号隔开" />
-		<title>穷在闹市出品</title>
-
 		<!-- 公共样式 开始 -->
-		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/base.css">
-		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/iconfont.css">
-		<script type="text/javascript" src="${pageContext.request.contextPath}/framework/jquery-1.11.3.min.js"></script>
-		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/layui/css/layui.css">
-		<script type="text/javascript" src="${pageContext.request.contextPath}/layui/layui.js"></script>
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/administrators/css/base.css">
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/administrators/css/iconfont.css">
+		<script type="text/javascript" src="${pageContext.request.contextPath}/administrators/framework/jquery-1.11.3.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/administrators/layui/css/layui.css">
+		<script type="text/javascript" src="${pageContext.request.contextPath}/administrators/layui/layui.js"></script>
 		<!-- 滚动条插件 -->
-		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/jquery.mCustomScrollbar.css">
-		<script src="${pageContext.request.contextPath}/framework/jquery-ui-1.10.4.min.js"></script>
-		<script src="${pageContext.request.contextPath}/framework/jquery.mousewheel.min.js"></script>
-		<script src="${pageContext.request.contextPath}/framework/jquery.mCustomScrollbar.min.js"></script>
-		<script src="${pageContext.request.contextPath}/framework/cframe.js"></script><!-- 仅供所有子页面使用 -->
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/administrators/css/jquery.mCustomScrollbar.css">
+		<script src="${pageContext.request.contextPath}/administrators/framework/jquery-ui-1.10.4.min.js"></script>
+		<script src="${pageContext.request.contextPath}/administrators/framework/jquery.mousewheel.min.js"></script>
+		<script src="${pageContext.request.contextPath}/administrators/framework/jquery.mCustomScrollbar.min.js"></script>
+		<script src="${pageContext.request.contextPath}/administrators/framework/cframe.js"></script><!-- 仅供所有子页面使用 -->
 		<!-- 公共样式 结束 -->
 		
-		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reportForm.css">
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/administrators/css/reportForm.css">
 
 	</head>
 
@@ -124,7 +122,7 @@
 							</div>
 		                </div>
 		                <div id="myReport" style="width: 100%; height: 400px;"></div>
-		                <script src="${pageContext.request.contextPath}/framework/echarts.min.js"></script>
+		                <script src="${pageContext.request.contextPath}/administrators/framework/echarts.min.js"></script>
 		                <script type="text/javascript">
 					        // 基于准备好的dom，初始化echarts实例
 					        var myChart = echarts.init(document.getElementById('myReport'));

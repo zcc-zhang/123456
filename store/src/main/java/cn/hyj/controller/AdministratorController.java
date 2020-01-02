@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
  * 管理员的Controller
  */
 @Controller
-@RequestMapping("/admin")
+@RequestMapping("/manage")
 @SessionAttributes(value = {"admin"})
 public class AdministratorController {
 
@@ -26,21 +26,17 @@ public class AdministratorController {
      * @return 字符串
      */
     @RequestMapping("/login")
-    @ResponseBody
-    public Administrator login(@RequestParam("adminName") String adminName,@RequestParam("password") String password, Model model){
+    public String login(@RequestParam("name") String adminName,@RequestParam("password") String password, Model model){
 
         Administrator administrator = administratorService.queryAdmin(adminName,password);
 
         if (adminName.trim().equals("") || password.trim().equals("")){
            // return "1"; //1:管理员名名或密码为空
-        }else if (adminName.equals(administrator.getAdminName()) || password.equals(administrator.getPassword())){
-            //return "2";//2:管理员名或密码不正确
-        }else{
-            //登录成功
-            System.out.println(administrator);
-
+        }else if(administrator!=null){
+            model.addAttribute("administrator",administrator);
+            return "forward:/administrators/frame.jsp";
         }
-        return administrator;
+        return "";
     }
 
     /**

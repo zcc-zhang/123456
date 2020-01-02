@@ -24,7 +24,6 @@ import java.util.*;
 /**
  * 商品controller
  */
-<<<<<<< HEAD
 @SessionAttributes(value = {"user","shoppingTrolleys"})
 @RequestMapping("/commodity")
 @Controller
@@ -148,10 +147,10 @@ public class CommodityController {
      */
     @RequestMapping("/queryByTypeId")
     @ResponseBody
-    public List<Commodity> queryByIdCommodityType(Integer commodityTypeId,String productName
-                                            ,@RequestParam(defaultValue = "1",value = "currentPage") Integer pageCode){
-
-            PageHelper.startPage(pageCode,16);//分页，每页16条数据
+    public Map<String,Object> queryByIdCommodityType(Integer commodityTypeId,String productName
+                                            ,@RequestParam(defaultValue = "1") Integer pageCode
+                                            ,@RequestParam(defaultValue = "10") Integer pageSize){
+            PageHelper.startPage(pageCode,pageSize);//分页，默认每页10条数据
             List<Commodity> commodityList = commodityService.queryByCommodityType(commodityTypeId,productName);//查询全部数据
             //分割字符串
             commodityList.forEach(commodity -> {
@@ -160,9 +159,11 @@ public class CommodityController {
             PageInfo<Commodity> pageInfo = new PageInfo<Commodity>(commodityList);
             commodityList = pageInfo.getList();//重新赋值给集合-
             Integer totalPage = pageInfo.getPages();//总页数
-
-
-            return commodityList;
+            Map<String,Object> map=new HashMap<String,Object>();
+            map.put("count",commodityService.queryCount());
+            map.put("goodsList",commodityList);
+            map.put("totalPage",totalPage);
+            return  map;
     }
 
     /**
@@ -185,6 +186,13 @@ public class CommodityController {
             e.printStackTrace();
             return "0";//异常
         }
+    }
+
+
+    @ResponseBody
+    @RequestMapping("/queryByID")
+    public Commodity queryByID(Integer commodityId){
+        return  commodityService.queryByPrimaryKey(commodityId);
     }
 
 
