@@ -1383,20 +1383,18 @@
 </html>
 <script type="text/javascript">
 	$(function () {
+		//循环li标签
 		$(".p_t_list li").each(function () {
-			var dom=$(this).children("a").html();
-			if(dom===undefined){
+			var dom=$(this).children("a").html();//获取this的孩子a标签
+			if(dom===undefined){//如果为空，就移除
 				$(this).remove();
 			}else {
-				var length = $(this).find("span").text().length;
-				var spanText=$(this).find("span").text();
-				var num=$(this).find("span").attr("limit");
-				console.log(num);
-				console.log($(this).find("span"));
+				var length = $(this).find("span").text().length;//获取字符的长度
+				var spanText=$(this).find("span").text();//获取字符的文本
+				var num=$(this).find("span").attr("limit");//获取limit的限制字符长度
 				if(length>num){
-					spanText=spanText.substring(0,num);
-					console.log(spanText)
-					$(this).find("span").text(spanText+"...");
+					spanText=spanText.substring(0,num);//截取
+					$(this).find("span").text(spanText+"...");//多余的用.....代替
 				}
 
 			}

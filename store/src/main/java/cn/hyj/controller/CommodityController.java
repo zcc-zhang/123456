@@ -24,7 +24,6 @@ import java.util.*;
 /**
  * 商品controller
  */
-<<<<<<< HEAD
 @SessionAttributes(value = {"user","shoppingTrolleys"})
 @RequestMapping("/commodity")
 @Controller

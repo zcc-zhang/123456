@@ -39,7 +39,16 @@ public class Commodity {
 
     private String commodityImg;
 
+    private CommodityType commodityType;   //商品类型类
 
+
+    public CommodityType getCommodityType() {
+        return commodityType;
+    }
+
+    public void setCommodityType(CommodityType commodityType) {
+        this.commodityType = commodityType;
+    }
 
     public Integer getCommodityId() {
         return commodityId;

@@ -51,13 +51,13 @@
 						<c:if test="${empty user.username}">
 							新用户
 						</c:if>
-						<a href="${pageContext.request.contextPath }/registered.jsp"class="red" id='registered'>[免费注册]</a>
+						<a href="${pageContext.request.contextPath }/registered"class="red" id='registered'>[免费注册]</a>
 					</li>
 					<li class="hd_menu_tit" data-addclass="hd_menu_hover">
-						<a href="${pageContext.request.contextPath }/orderInformationServlet">我的订单</a>
+						<a href="${pageContext.request.contextPath }/orderInformation/orderList">我的订单</a>
 					</li>
 					<li class="hd_menu_tit" data-addclass="hd_menu_hover">
-						<a href="${pageContext.request.contextPath }/Cart">购物车</a>
+						<a href="${pageContext.request.contextPath }/shoppingTrolley/queryShoppingTrolley">购物车</a>
 					</li>
 					<li class="hd_menu_tit" data-addclass="hd_menu_hover">
 						<a href="#">联系我们</a></li>
@@ -602,8 +602,8 @@
 									</ul>
 									<div class="btn">
 										<input name="submit" type="submit" value="提交订单"
-											   class="submit_btn" /> <input name="" type="button"
-																			value="返回购物车" class="return_btn" />
+											   class="submit_btn" /> <a href="${pageContext.request.contextPath}/shoppingTrolley/queryShoppingTrolley"><input name="button" type="button"
+																			value="返回购物车" class="return_btn" /></a>
 									</div>
 								</div>
 							</div>

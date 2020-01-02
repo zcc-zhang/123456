@@ -39,7 +39,7 @@ public interface CommodityMapper {
     List<Commodity> selectRandomGeneration(Integer nums);
 
     /**
-     * 类型id查询商品
+     * 根据类型，模糊名称查询商品
      * @param commodityTypeId
      * @param productName
      * @return
