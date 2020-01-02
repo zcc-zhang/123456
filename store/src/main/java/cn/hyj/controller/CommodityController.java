@@ -185,9 +185,19 @@ public class CommodityController {
             return "0";//异常
         }
     }
-        
-    public String fuzzyQueryProductName(){
 
+    /**
+     *
+     * @param productName
+     * @return
+     */
+    @RequestMapping("fuzzyQueryName")
+    @ResponseBody
+    public String fuzzyQueryProductName(String productName){
+
+
+
+        return "";
     }
 
 
