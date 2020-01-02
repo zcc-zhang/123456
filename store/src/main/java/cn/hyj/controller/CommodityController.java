@@ -185,6 +185,10 @@ public class CommodityController {
             return "0";//异常
         }
     }
+        
+    public String fuzzyQueryProductName(){
+
+    }
 
 
 }
