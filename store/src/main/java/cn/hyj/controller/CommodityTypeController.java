@@ -35,7 +35,33 @@ public class CommodityTypeController {
         return list;
     }
 
+    /**
+     * 添加
+     * @param commodityType
+     * @return
+     */
+    @RequestMapping("/insert")
+    @ResponseBody
+    public String insertCommodityType(CommodityType commodityType){
 
+        commodityTypeService.insertSelective(commodityType);
+
+        return "1";
+    }
+
+    /**
+     * 删除
+     * @param commodityTypeId
+     * @return
+     */
+    @RequestMapping("/delete")
+    @ResponseBody
+    public String delete(Integer commodityTypeId){
+
+        commodityTypeService.deleteByPrimaryKey(commodityTypeId);
+
+        return "1";
+    }
 
 
 

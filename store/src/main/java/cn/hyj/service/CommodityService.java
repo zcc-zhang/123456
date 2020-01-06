@@ -17,7 +17,12 @@ public interface CommodityService {
      * 查询全部
      * @return
      */
-    List<Commodity> queryAll(String commodityPrice,  Integer maxNumber, Integer minNumber);
+    List<Commodity> queryAll(String commodityPrice,String productName,Integer maxNumber, Integer minNumber);
+
+    /**
+     * 查询商品名称
+     */
+    List<Commodity> selectProductName();
 
     Commodity queryByPrimaryKey(Integer primaryKey);
 

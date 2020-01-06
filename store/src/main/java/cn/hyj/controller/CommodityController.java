@@ -48,13 +48,14 @@ public class CommodityController {
     @RequestMapping("/toPage")
     public String commodityList(Map<String, Object> map
             , @RequestParam(defaultValue = "1", value = "currentPage") Integer pageCode
-            , String commodityAttribute
+            ,String commodityAttribute
+            ,String productName
             ,Integer min
             ,Integer max
             ,HttpServletRequest request) {
 
         PageHelper.startPage(pageCode, 16);//设置分页 每页16条数据
-        List<Commodity> commodities = commodityService.queryAll(commodityAttribute,max,min);//全部数据
+        List<Commodity> commodities = commodityService.queryAll(commodityAttribute,productName,max,min);//全部数据
         commodities.forEach(commodity -> {
             List<String> strings = SplitString.splitStringToList(commodity.getCommodityImg());//根据,号分割字符串
             commodity.setCommodityImg(strings.get(0));//取出第一张图片
@@ -68,12 +69,19 @@ public class CommodityController {
         if(historyList!=null && !historyList.isEmpty()){
             historyList.forEach(commodity -> commodity.setCommodityImg(SplitString.splitString(commodity.getCommodityImg())[0]));
         }
-        request.setAttribute("historyList", historyList);
-        map.put("pageCode", pageCode);//当前页
-        map.put("total", totalPage);//总页数
-        map.put("CommodityList", commodities);//商品集合
-        map.put("list",this.salesRanking());
-        return "product_list";
+        if (commodities != null){
+            try{
+                request.setAttribute("historyList", historyList);
+                map.put("pageCode", pageCode);//当前页
+                map.put("total", totalPage);//总页数
+                map.put("CommodityList", commodities);//商品集合
+                map.put("list",this.salesRanking());
+                return "product_list";
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+         return "index";
     }
 
     StringBuffer buffer=new StringBuffer();
@@ -186,18 +194,15 @@ public class CommodityController {
         }
     }
 
-    /**
-     *
-     * @param productName
-     * @return
-     */
-    @RequestMapping("fuzzyQueryName")
+
+    @RequestMapping("/fuzzyQueryName")
     @ResponseBody
-    public String fuzzyQueryProductName(String productName){
+    public String fuzzyQueryProductName(String productName,Model model){
 
+        List<Commodity> commodityList = commodityService.queryByCommodityType(null,productName);
 
-
-        return "";
+        model.addAttribute("commodityList",commodityList);
+        return "product_list";
     }
 
 

@@ -127,7 +127,7 @@
 							});
 							return false;
 						}
-						$.sendSuccessToTop('密码校验成功', 3000, function() {
+						$.sendSuccessToTop('密码校验成功！', 3000, function() {
 							console.log('sendSuccessToTop closed');
 						});
 						return true;

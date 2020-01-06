@@ -24,4 +24,14 @@ public class CommodityTypeServiceImpl implements CommodityTypeService {
     public List<CommodityType> queryCommodityType() {
         return commodityTypeMapper.queryCommodityType();
     }
+
+    @Override
+    public void insertSelective(CommodityType record) {
+        commodityTypeMapper.insertSelective(record);
+    }
+
+    @Override
+    public void deleteByPrimaryKey(Integer commodityTypeId) {
+        commodityTypeMapper.deleteByPrimaryKey(commodityTypeId);
+    }
 }

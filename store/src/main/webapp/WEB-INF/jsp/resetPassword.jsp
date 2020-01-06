@@ -14,7 +14,7 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/reset.css" type="text/css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/src/css/dialog.css" type="text/css">
 	<script src="${pageContext.request.contextPath}/js/jquery.min.1.8.2.js"></script>
-	<script src="${pageContext.request.contextPath}/src/jquery.dialog.min.js"></script>]
+	<script src="${pageContext.request.contextPath}/src/jquery.dialog.min.js"></script>
 	<script src="${pageContext.request.contextPath}/js/date.js" type="text/javascript"></script>
 </head>
 <script type="text/javascript">

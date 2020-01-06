@@ -8,10 +8,12 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link href="${pageContext.request.contextPath}/css/common.css" rel="stylesheet" type="text/css" />
 	<link href="${pageContext.request.contextPath}/fonts/iconfont.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/src/css/dialog.css" type="text/css">
 	<link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet" type="text/css" />
 	<script src="${pageContext.request.contextPath}/js/jquery-1.9.1.min.js" type="text/javascript"></script>
 	<script src="${pageContext.request.contextPath}/js/jquery.SuperSlide.2.1.1.js" type="text/javascript"></script>
 	<script src="${pageContext.request.contextPath}/js/common_js.js" type="text/javascript"></script>
+	<script src="${pageContext.request.contextPath}/src/jquery.dialog.min.js"></script>
 	<script src="${pageContext.request.contextPath}/js/footer.js" type="text/javascript"></script>
 	<title>商城首页</title>
 </head>
@@ -107,10 +109,18 @@
 		</div>
 		<!--结束图层-->
 		<div class="Search">
-			<p>
-				<input name="productName" type="text" class="text"/>
-				<input name="submit" type="submit" value="搜 索" class="Search_btn" />
-			</p>
+			<form action="${pageContext.request.contextPath}/commodity/toPage" method="post" id="commodityForm">
+				<p>
+					<input name="productName" type="search" class="text" id="text" />
+					<input type="submit" value="搜 索" class="Search_btn" id="submit" />
+
+				<ul id="ulList" style="border: 1px solid black; ">
+					<c:forEach items="${productNames}" var="productNames">
+						<a href="#"><li class="productName"> </li></a>
+					</c:forEach>
+				</ul>
+				</p>
+			</form>
 			<p class="Words">
 				<a href="#">苹果</a><a href="#">香蕉</a><a href="#">菠萝</a><a href="#">西红柿</a><a
 					href="#">橙子</a><a href="#">苹果</a>
@@ -119,7 +129,7 @@
 		<!--购物车样式-->
 		<div class="hd_Shopping_list" id="Shopping_list">
 			<div class="s_cart">
-				<em class="iconfont icon-cart2"></em><a href="${paheContext.request.contextPath}/shoppingTrolley/queryShoppingTrolley">我的购物车</a> <i
+				<em class="iconfont icon-cart2"></em><a href="${pageCode.request.contextPath}/shoppingTrolley/queryShoppingTrolley">我的购物车</a> <i
 					class="ci-right">&gt;</i><i class="ci-count" id="shopping-amount">${shoppingTrolleys.stream().count()}</i>
 			</div>
 			<div class="dorpdown-layer">
@@ -1381,7 +1391,9 @@
 </div>
 </body>
 </html>
+
 <script type="text/javascript">
+
 	$(function () {
 		//循环li标签
 		$(".p_t_list li").each(function () {
@@ -1397,23 +1409,6 @@
 					$(this).find("span").text(spanText+"...");//多余的用.....代替
 				}
 			}
-		});
-		//搜索框操作
-		$(function () {
-			$(".Search_btn").on('click',function () {
-				var productName = $(this).prev().val();//商品名称
-				$.ajax({
-					url:"${pageContext.request.contextPath}/",
-					type:"post",
-					data:productName,
-					success:function (data) {
-
-					}
-				});
-
-			});
-
-
 		});
 
 	});
@@ -1452,4 +1447,5 @@
 	}
 	float_nav('#float');
 	float_nav('#left_nav');
+
 </script>

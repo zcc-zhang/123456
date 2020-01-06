@@ -12,10 +12,10 @@ public interface CommodityTypeMapper {
     //查询商品类型名称
     List<CommodityType> queryCommodityTypeName();
 
-    int deleteByPrimaryKey(Integer commodityTypeId);
+    //删除
+    void deleteByPrimaryKey(Integer commodityTypeId);
 
-    int insert(CommodityType record);
-
+    //添加
     int insertSelective(CommodityType record);
 
     CommodityType selectByPrimaryKey(Integer commodityTypeId);

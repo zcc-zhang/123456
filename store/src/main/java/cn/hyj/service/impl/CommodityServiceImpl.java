@@ -27,8 +27,13 @@ public class CommodityServiceImpl implements CommodityService {
     private CommodityMapper commodityMapper;
 
     @Override
-    public List<Commodity> queryAll( String commodityAttribute, Integer max,Integer min) {
-        return commodityMapper.selectAll(commodityAttribute,max,min);
+    public List<Commodity> queryAll( String commodityAttribute,String pruductName,Integer max,Integer min) {
+        return commodityMapper.selectAll(commodityAttribute,pruductName,max,min);
+    }
+
+    @Override
+    public List<Commodity> selectProductName() {
+        return commodityMapper.selectProductName();
     }
 
     @Override

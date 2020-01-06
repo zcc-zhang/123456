@@ -80,7 +80,13 @@
         from t_commodity
             ORDER BY RAND() LIMIT #{xxx}
     </select>
-    
+
+    <!-- 查询商品名称【单独的】-->
+    <select id="selectProductName" resultMap="ResultMapWithBLOBs">
+        select product_Name
+        from t_commodity
+    </select>
+
     <!--销量排行-->
     <select id="selectByCommodityEvaluation" resultMap="ResultMapWithBLOBs">
         select <include refid="Base_Column_List"/> ,<include refid="Blob_Column_List"/>
@@ -296,17 +302,22 @@
     where commodity_ID = #{commodityId,jdbcType=INTEGER}
   </update>
     <select id="selectAll" resultMap="ResultMapWithBLOBs">
-
         select
          <include refid="Base_Column_List"/>
         ,<include refid="Blob_Column_List"/>
         from t_commodity
         <trim prefix="where" suffixOverrides="and">
+            <!-- 商品价格-->
             <if test="min!=null  and max !=null  ">
                 commodity_price between #{min} and  #{max}
             </if>
+            <!-- 商品属性-->
             <if test="commodityAttribute != null and commodityAttribute!=''">
               and commodity_attribute=#{commodityAttribute}
+            </if>
+            <!-- 商品名称-->
+            <if test="productName != null and productName != '' ">
+               product_Name like concat('%',#{productName},'%')
             </if>
             <if test="max != null and min == null">
         <![CDATA[
