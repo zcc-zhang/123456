@@ -77,4 +77,6 @@ public interface CommodityService {
      */
     void updateByPrimaryKeySelective(Commodity record);
 
+    Integer queryCount();
+
 }

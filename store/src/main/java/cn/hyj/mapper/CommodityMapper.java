@@ -52,4 +52,6 @@ public interface CommodityMapper {
      * @return
      */
     List<Commodity> queryByCommodityType(@Param("commodityTypeId") Integer commodityTypeId,@Param("productName") String productName);
+
+    int selectCount();
 }

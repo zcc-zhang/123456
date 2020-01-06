@@ -15,7 +15,7 @@
 		<script type="text/javascript" src="${pageContext.request.contextPath}/administrators/framework/jquery-1.11.3.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/administrators/layui/css/layui.css">
 		<!--[if lt IE 9]>
-		<script src="${pageContext.request.contextPath}/administrators/framework/html5shiv.min.js"></script>
+		<script src="${pageContext.request.contextPath}/administrators/framework/html5shiv.min.js" ></script>
 		<script src="${pageContext.request.contextPath}/administrators/framework/respond.min.js"></script>
 	    <![endif]-->
 		<script type="text/javascript" src="${pageContext.request.contextPath}/administrators/layui/layui.js"></script>
@@ -46,14 +46,14 @@
 						<a class="menuFA" href="javascript:void(0)"><i class="iconfont icon-shangpin left"></i>商品管理<i class="iconfont icon-dajiantouyou right"></i></a>
 						<dl>
 							<dt><a href="javascript:void(0)" onclick="menuCAClick('${pageContext.request.contextPath}/administrators/tgls/goodsManage/goodsType_list.jsp',this)">分类列表</a></dt>
-							<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/goodsManage/goods_list.jsp',this)">基本商品库</a></dt>
-							<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/goodsManage/goods_add.jsp',this)">添加商品</a></dt>
+							<dt><a href="javascript:void(0)" onclick="menuCAClick('${pageContext.request.contextPath}/administrators/tgls/goodsManage/goods_list.jsp',this)">基本商品库</a></dt>
+							<dt><a href="javascript:void(0)" onclick="menuCAClick('${pageContext.request.contextPath}/administrators/tgls/goodsManage/goods_add.jsp',this)">添加商品</a></dt>
 						</dl>
 					</li>
 					<li>
 						<a class="menuFA" href="javascript:void(0)"><i class="iconfont icon-icon left"></i>报表模块<i class="iconfont icon-dajiantouyou right"></i></a>
 						<dl>
-							<dt><a href="javascript:void(0)" onclick="menuCAClick('tgls/reportForm/reportForm1.jsp',this)">订单统计报表</a></dt>
+							<dt><a href="javascript:void(0)" onclick="menuCAClick('${pageContext.request.contextPath}/administrators/tgls/reportForm/reportForm1.jsp',this)">订单统计报表</a></dt>
 						</dl>
 					</li>
 				</ul>
@@ -64,7 +64,6 @@
 		<div class="main">
 			<!-- 头部栏 - 开始 -->
 			<div class="frameTop">
-				<img class="jt" src="images/top_jt.png" />
 				<div class="topMenu">
 					<ul>
 						<li>
@@ -87,7 +86,7 @@
 					<span><i class="iconfont icon-xianshiqi"></i>后台首页</span>
 				</div>
 				<div class="con">
-					<iframe id="mainIframe" src="tgls/goodsManage/goods_list.jsp" scrolling="no"></iframe>
+					<iframe id="mainIframe" src="${pageContext.request.contextPath}/administrators/tgls/goodsManage/goods_list.jsp" scrolling="no"></iframe>
 				</div>
 			</div>
 			<!-- 核心区域 - 结束 -->

@@ -41,7 +41,7 @@
 				<form class="layui-form" action="">
 					<div class="layui-form-item">
 						<div class="layui-input-inline">
-							<input type="text" name="name" required lay-verify="required" placeholder="输入分管名称" autocomplete="off" class="layui-input">
+							<input type="text" name="name" required lay-verify="required" placeholder="输入分类名称" autocomplete="off" class="layui-input">
 						</div>
 						<button class="layui-btn" lay-submit lay-filter="formDemo">检索</button>
 					</div>
@@ -101,6 +101,11 @@
 			
 			<!-- layUI 分页模块 -->
 			<div id="pages"></div>
+			<script>
+				const app = new Vue({
+
+				});
+			</script>
 			<script>
 				layui.use(['laypage', 'layer'], function() {
 					var laypage = layui.laypage,
