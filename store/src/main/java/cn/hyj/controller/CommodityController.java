@@ -9,16 +9,20 @@ import cn.hyj.utils.CookieUtil;
 import cn.hyj.utils.SplitString;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.omg.CORBA.INTERNAL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.math.BigDecimal;
 import java.util.*;
 
 /**
@@ -129,18 +133,57 @@ public class CommodityController {
     }
 
     /**
-     * 添加商品
+     * 上传商品图片
+     * @return
+     */
+    @RequestMapping("/uploads")
+    @ResponseBody
+    public Map<String,Object> insertCommodity(MultipartFile file[]){
+        String path="E:\\git\\commodityImg\\";//图片商品路径
+        Map<String,Object> map=new HashMap<String,Object>();
+        StringBuffer buffer=new StringBuffer();
+        String uuid=UUID.randomUUID().toString().substring(0,8);
+        try {
+            for (int i=0;i<file.length;i++){
+                String imgName=SplitString.subPath(new StringBuffer(uuid).append(".jpg").append(",").toString(),"upload");
+                buffer.append(imgName);
+                file[i].transferTo(new File(path,new StringBuffer(uuid.substring(0, 8)).append(".jpg").toString()));
+            }
+            map.put("imgName",buffer);
+            map.put("code",0);
+        } catch (Exception e) {
+            map.put("code",1);
+            e.printStackTrace();
+            throw new RuntimeException();
+        }
+        return  map;
+    }
+
+    /**
+     * 保存一条商品记录
      * @param commodity
      * @return
      */
-    @RequestMapping("insert")
-    public Commodity insertCommodity(Commodity commodity){
-
-        commodityService.insertSelective(commodity);
-
-        return commodity;
+    @ResponseBody
+    @RequestMapping("/save")
+    public Integer save(Commodity commodity,Integer oneCommodityTypeId,Integer twoCommodityTypeId){
+        Integer commodityId=twoCommodityTypeId==null ? oneCommodityTypeId : twoCommodityTypeId;
+        commodity.setCommodityTypeId(commodityId);
+        commodity.setCommodityFreight(new BigDecimal(0));
+        commodity.setMerchantId(1);
+        commodity.setShelfTime(new Date());
+        commodity.setCommodityEvaluation(0);
+        commodity.setCommodityNumber(1);
+        commodity.setCollectNumber(0);
+        int i=0;
+        try {
+            i= commodityService.insertSelective(commodity);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException();
+        }
+        return  i;
     }
-
     /**
      * 根据【类型,名称模糊】查询商品
      * @return
@@ -188,26 +231,39 @@ public class CommodityController {
         }
     }
 
-    /**
-     *
-     * @param productName
-     * @return
-     */
-    @RequestMapping("fuzzyQueryName")
-    @ResponseBody
-    public String fuzzyQueryProductName(String productName){
-
-
-
-        return "";
-    }
-
-
     @ResponseBody
     @RequestMapping("/queryByID")
     public Commodity queryByID(Integer commodityId){
         return  commodityService.queryByPrimaryKey(commodityId);
     }
 
+    /**
+     * 修改商品
+     * @param commodity
+     */
+    @RequestMapping("/changeCommodity")
+    @ResponseBody
+    public Map<String , Object> changeCommodity(Commodity commodity,Integer oneCommodityTypeId,Integer twoCommodityTypeId){
+        Integer commodityTypeID= twoCommodityTypeId == null ? oneCommodityTypeId :twoCommodityTypeId;
+        commodity.setCommodityTypeId(commodityTypeID);
+        commodity.setCommodityFreight(new BigDecimal(0));
+        commodity.setMerchantId(1);
+        commodity.setShelfTime(new Date());
+        commodity.setCommodityEvaluation(0);
+        commodity.setCommodityNumber(1);
+        commodity.setCollectNumber(0);
+        Map<String,Object> map = new HashMap<String,Object>();
+        try {
+            commodityService.updateByPrimaryKeySelective(commodity);
+            map.put("code",1);
+            commodity =commodityService.queryByPrimaryKey(commodity.getCommodityId());
+            map.put("goods",commodity);
+        } catch (Exception e) {
+            e.printStackTrace();
+            map.put("code",0);
+        }finally {
+            return  map;
+        }
+    }
 
 }

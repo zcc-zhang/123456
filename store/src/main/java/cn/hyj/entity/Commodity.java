@@ -209,6 +209,7 @@ public class Commodity {
                 ", inventory=" + inventory +
                 ", collectNumber=" + collectNumber +
                 ", commodityImg='" + commodityImg + '\'' +
+                ", commodityType=" + commodityType +
                 '}';
     }
 

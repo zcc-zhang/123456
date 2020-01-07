@@ -35,4 +35,13 @@ public class CommodityType {
     public void setType(Integer type) {
         this.type = type;
     }
+
+    @Override
+    public String toString() {
+        return "CommodityType{" +
+                "commodityTypeId=" + commodityTypeId +
+                ", commodityType='" + commodityType + '\'' +
+                ", type=" + type +
+                '}';
+    }
 }

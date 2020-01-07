@@ -15,4 +15,10 @@ public interface CommodityTypeService {
     //查询所有商品类型
     List<CommodityType> queryCommodityType();
 
+    void saveCommodityType(CommodityType commodityType);
+
+    CommodityType queryByPrimaryKey(Integer commodityTypeId);
+
+    void changeByID(CommodityType commodityType);
+
 }

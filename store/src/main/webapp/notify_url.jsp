@@ -35,9 +35,7 @@
 		valueStr = new String(valueStr.getBytes("ISO-8859-1"), "utf-8");
 		params.put(name, valueStr);
 	}
-	
 	boolean signVerified = AlipaySignature.rsaCheckV1(params, AlipayConfig.alipay_public_key, AlipayConfig.charset, AlipayConfig.sign_type); //调用SDK验证签名
-
 	//——请在这里编写您的程序（以下代码仅作参考）——
 	
 	/* 实际验证过程建议商户务必添加以下校验：

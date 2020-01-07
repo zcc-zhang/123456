@@ -33,6 +33,9 @@
     values (#{commodityTypeId,jdbcType=INTEGER}, #{commodityType,jdbcType=VARCHAR})
   </insert>
     <insert id="insertSelective" parameterType="cn.hyj.entity.CommodityType">
+        <selectKey keyColumn="commodity_type_ID" keyProperty="commodityTypeId" order="AFTER" resultType="int">
+          select   LAST_INSERT_ID();
+        </selectKey>
         insert into t_commodity_type
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="commodityTypeId != null">
@@ -40,6 +43,9 @@
             </if>
             <if test="commodityType != null">
                 commodity_type,
+            </if>
+            <if test="type != null">
+                type
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -49,6 +55,9 @@
             <if test="commodityType != null">
                 #{commodityType,jdbcType=VARCHAR},
             </if>
+            <if test="type != null ">
+                #{type}
+            </if>
         </trim>
     </insert>
     <update id="updateByPrimaryKeySelective" parameterType="cn.hyj.entity.CommodityType">
@@ -56,6 +65,9 @@
         <set>
             <if test="commodityType != null">
                 commodity_type = #{commodityType,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                type = #{type}
             </if>
         </set>
         where commodity_type_Id = #{commodityTypeId,jdbcType=INTEGER}

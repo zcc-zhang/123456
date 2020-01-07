@@ -78,7 +78,7 @@ public final class SplitString {
 		path = filterChinese(path);// 过滤字符串
 		if ("upload".equalsIgnoreCase(type.trim()))// 如果为文件上传
 		{
-			// -------------------------------------------->
+			path = "http://localhost:8080/commodityImg/" + path;
 		} else if ("jdbc".equalsIgnoreCase(type.trim()))// 如果为数据库更新
 		{
 			path = "http://localhost:8080/store/userHeadPortrait" + path;

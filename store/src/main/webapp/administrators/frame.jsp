@@ -86,7 +86,7 @@
 					<span><i class="iconfont icon-xianshiqi"></i>后台首页</span>
 				</div>
 				<div class="con">
-					<iframe id="mainIframe" src="${pageContext.request.contextPath}/administrators/tgls/goodsManage/goods_list.jsp" scrolling="no"></iframe>
+					<iframe id="mainIframe" src="${pageContext.request.contextPath}/administrators/tgls/goodsManage/goodsType_list.jsp" scrolling="no"></iframe>
 				</div>
 			</div>
 			<!-- 核心区域 - 结束 -->

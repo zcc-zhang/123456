@@ -19,11 +19,11 @@
         <result column="collect_number" property="collectNumber" jdbcType="INTEGER"/>
         <result column="commodity_img" property="commodityImg" jdbcType="LONGVARCHAR"/>
         <!-- 商品类型映射-->
-        <collection property="commodityType" javaType="cn.hyj.entity.CommodityType">
+        <association property="commodityType" javaType="cn.hyj.entity.CommodityType">
             <result column="commodity_type_ID" property="commodityTypeId" jdbcType="INTEGER"/>
             <result column="commodity_type" property="commodityType" jdbcType="VARCHAR"/>
             <result column="type" property="type" jdbcType="INTEGER"/>
-        </collection>
+        </association>
     </resultMap>
 
     <!-- 商品图片-->
@@ -41,7 +41,7 @@
     </sql>
     <!--查询总个数-->
     <select id="selectCount" resultType="int">
-        select count(commodity_ID) from t_commodity
+        select count(commodity_ID) from t_commodity where  commodity_status = 1
     </select>
 
     <!-- 根据【商品类型 || 商品名称（模糊）】查询商品-->
@@ -69,7 +69,7 @@
 
         from t_commodity,t_commodity_Type
       <trim prefix="where" suffixOverrides="and">
-          t_commodity.commodity_type_ID = t_commodity_Type.commodity_type_ID
+          t_commodity.commodity_type_ID = t_commodity_Type.commodity_type_ID and commodity_status = 1
           <if test="commodityTypeId != null and commodityTypeId != ''">
                and t_commodity_Type.commodity_type_ID=#{commodityTypeId}
           </if>
@@ -95,11 +95,27 @@
     
     <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer">
         select
-        <include refid="Base_Column_List"/>
-        ,
-        <include refid="Blob_Column_List"/>
-        from t_commodity
-        where commodity_ID = #{commodityId,jdbcType=INTEGER}
+        t_commodity.commodity_ID
+            , t_commodity.product_name
+            , t_commodity.commodity_type_ID
+            , t_commodity.commodity_attribute
+            , t_commodity.commodity_price
+            , t_commodity.commodity_freight
+            , t_commodity.merchant_id
+            , t_commodity.commodity_status
+            , t_commodity.shelf_time
+            , t_commodity.commodity_weight
+            , t_commodity.commodity_evaluation
+            , t_commodity.commodity_number
+            , t_commodity.inventory
+            , t_commodity.collect_number
+            , t_commodity.commodity_img
+            , t_commodity_Type.commodity_type_ID
+            , t_commodity_Type.commodity_type
+            , t_commodity_Type.type
+
+        from t_commodity , t_commodity_Type
+        where commodity_ID = #{commodityId,jdbcType=INTEGER} and    t_commodity.commodity_type_ID = t_commodity_Type.commodity_type_ID
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from t_commodity

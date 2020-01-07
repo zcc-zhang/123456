@@ -1,7 +1,6 @@
 <%@ page language="java" import="java.util.*" contentType="text/html;charset=UTF-8" %>
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -72,19 +71,20 @@
             </tr>
             </thead>
             <tbody>
-            <tr v-for="item in goodsList">
+            <tr v-for="(item,index) in goodsList">
                 <td>{{item.productName}}</td>
                 <td><img :src="item.commodityImg" width="20" height="20"
                          onmouseenter="imgBig(this)" onmouseleave="imgSmall(this)"/></td>
                 <td>{{item.commodityPrice}}</td>
                 <td>{{item.commodityWeight}}</td>
-                <td>{{}}</td>
-                <td>{{}}</td>
+                <td>{{item.commodityType | formatGoodsType}}</td>
+                <td v-if="item.commodityType.type === null">暂无二级分类</td>
+                <td v-else>{{item.commodityType.commodityType}}</td>
                 <td>
                     <input type="hidden" name="goodsID" :value="item.commodityId"/>
                     <button class="layui-btn layui-btn-xs" onclick="updateBut(this)">修改</button>
                     <button class="layui-btn layui-btn-xs" onclick="specificationsBut()">规格</button>
-                    <button class="layui-btn layui-btn-xs">删除</button>
+                    <button class="layui-btn layui-btn-xs layui-btn-danger" @click="delGoods($event)" :value="index">删除</button>
                 </td>
             </tr>
         </table>
@@ -106,6 +106,24 @@
         created() {
         },
         methods: {
+            delGoods(dom){
+                var obj=$(dom.currentTarget).parent().parent();
+                let commodityId = $(dom.currentTarget).parent().children(":first").val();
+                axios({
+                    url : "${pageContext.request.contextPath}/commodity/update",
+                    params : {
+                        commodityID : commodityId
+                    }
+                }).then(result=>{
+                    if (result.data === 1){
+                        layui.use("layer",()=>{
+                            layer.msg("删除成功");
+                        });
+                        obj.remove();//删除改行 和后台数据保持一致
+                    }
+                });
+
+            },
             baseDataInit(res) {
                 //基本数据请求
                 this.goodsList = res.data.goodsList;
@@ -139,14 +157,24 @@
                     var form = layui.form;
                     //填充下拉框
                     $.each(_this.goodsType, (index, dom) => {
-                        if (dom.type === null) $("select[name=quiz]").append(new Option(dom.commodityType, dom.commodityTypeId));
-                        else $("select[name=erji]").append(new Option(dom.commodityType, dom.type));
+                        /*if (dom.type === null) $("select[name=quiz]").append(new Option(dom.commodityType, dom.commodityTypeId));
+                        else $("select[name=erji]").append(new Option(dom.commodityType, dom.type));*/
+                        let elem=new Option(dom.commodityType, dom.commodityTypeId);
+                        if (!dom.type) {
+                            elem.setAttribute("data",dom.commodityTypeId);
+                            $("select[name=quiz]").append(elem);
+                        } else {
+                            elem.setAttribute("data",dom.type);
+                            $("select[name=erji]").append(elem);
+                        }
                     });
                     //实现联动
                     layui.form.on("select(numberOneType)", function (data) {
+                        let children = $(data.elem).children("option[value="+data.value+"]");
                         $("select[name=erji]").html('');
                         for (let i = 0; i < _this.goodsType.length; i++) {
-                            if (_this.goodsType[i].type === parseInt(data.value)) {
+
+                            if (_this.goodsType[i].type === parseInt(children.attr("data"))) {
 
                                 $("select[name=erji]").append(new Option(_this.goodsType[i].commodityType, _this.goodsType[i].commodityTypeId));
                             }
@@ -192,8 +220,22 @@
                 this.baseDataInit(baseData);
                 this.goodsTypeInit(goodsTypes);
             }));
+        },
+        filters : {
+            /*******显示一级分类********/
+            formatGoodsType(obj){
+                if(obj.type===null){
+                    return obj.commodityType;
+                }else{
+                    let ts = app.goodsType.filter(type =>{
+                        return type.commodityTypeId===obj.type;
+                    });
+                    return ts[0].commodityType;
+                }
+            },
+
         }
-    });
+    })
 </script>
 <script>
 
@@ -221,7 +263,6 @@
 
     function updateBut(obj) {
         let val = $(obj).prev().val();
-        console.log(val);
         window.PartitionId=val;//向子窗体传递数据
         layui.use('layer', function () {
             var layer = layui.layer;
@@ -235,7 +276,6 @@
                 content: 'goods_update.jsp'
             });
         });
-
     }
 </script>
 
