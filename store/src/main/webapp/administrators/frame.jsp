@@ -45,7 +45,7 @@
 					<li>
 						<a class="menuFA" href="javascript:void(0)"><i class="iconfont icon-shangpin left"></i>商品管理<i class="iconfont icon-dajiantouyou right"></i></a>
 						<dl>
-							<dt><a href="javascript:void(0)" onclick="menuCAClick('${pageContext.request.contextPath}/administrators/tgls/goodsManage/goodsType_list.jsp',this)">分类列表</a></dt>
+							<dt><a href="javascript:void(0)" onclick="menuCAClick('${pageContext.request.contextPath}/commodityType/queryCommodityType',this)">分类列表</a></dt>
 							<dt><a href="javascript:void(0)" onclick="menuCAClick('${pageContext.request.contextPath}/administrators/tgls/goodsManage/goods_list.jsp',this)">基本商品库</a></dt>
 							<dt><a href="javascript:void(0)" onclick="menuCAClick('${pageContext.request.contextPath}/administrators/tgls/goodsManage/goods_add.jsp',this)">添加商品</a></dt>
 						</dl>
@@ -67,10 +67,10 @@
 				<div class="topMenu">
 					<ul>
 						<li>
-							<a href="javascript:void(0)" onclick="menuCAClick('tgls/modify_password.jsp',this)"><i class="iconfont icon-yonghu1"></i>管理员</a>
+							<a href="javascript:void(0)" onclick="menuCAClick('${pageContext.request.contextPath}/administrators/tgls/modify_password.jsp',this)"><i class="iconfont icon-yonghu1"></i>管理员</a>
 						</li>
 						<li>
-							<a href="javascript:void(0)" onclick="menuCAClick('tgls/modify_password.jsp',this)"><i class="iconfont icon-xiugaimima"></i>修改密码</a>
+							<a href="javascript:void(0)" onclick="menuCAClick('${pageContext.request.contextPath}/administrators/tgls/modify_password.jsp',this)"><i class="iconfont icon-xiugaimima"></i>修改密码</a>
 						</li>
 						<li>
 							<a href="#"><i class="iconfont icon-084tuichu"></i>注销</a>

@@ -8,10 +8,6 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
 		<!-- Google Chrome Frame也可以让IE用上Chrome的引擎: -->
 		<meta name="renderer" content="webkit">
-		<!--国产浏览器高速模式-->
-		<!-- 作者 -->
-		<!-- 定义页面的最新版本 -->
-		<!-- 网站简介 -->
 
 		<!-- 公共样式 开始 -->
 		<link rel="shortcut icon" href="${pageContext.request.contextPath}/administrators/images/favicon.ico" />

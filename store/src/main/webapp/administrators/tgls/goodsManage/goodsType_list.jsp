@@ -1,4 +1,6 @@
 <%@ page language="java" import="java.util.*" contentType="text/html;charset=UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 
@@ -48,13 +50,25 @@
 				</form>
 
 				<script>
-					layui.use('form', function() {
+					layui.use(['form','jquery','layer'], function() {
 						var form = layui.form;
-				
+						var $ = layui.jquery;
+						var layer = layui.layer;
 						//监听提交
-						form.on('submit(formDemo)', function(data) {
-							layer.msg(JSON.stringify(data.field));
-							return false;
+						form.on('submit(*)', function(data) {
+							$.ajax({
+								url:'${pageContext.request.contextPath}/commodityType/likeTypeName',
+								type:'post',
+								async:false,
+								date:{'name':$('input[name=name]').val()},
+								success:function (data) {
+									if(data == 1){
+											//查询出来的数据
+									}else{
+										layer.msg('暂时没有此类型名称！',{time:2000,icon:5});
+									}
+								}
+							})
 						});
 					});
 				</script>
@@ -69,27 +83,9 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>前端</td>
-						<td>例：ES5、ES6、ES7</td>
-						<td>
-							<button class="layui-btn layui-btn-xs">修改</button>
-							<button class="layui-btn layui-btn-xs layui-btn-normal">添加二级分类</button>
-							<button class="layui-btn layui-btn-xs layui-btn-warm">查看二级分类</button>
-						</td>
-					</tr>
-					<tr>
-						<td>前端</td>
-						<td>例：ES5、ES6、ES7</td>
-						<td>
-							<button class="layui-btn layui-btn-xs">修改</button>
-							<button class="layui-btn layui-btn-xs layui-btn-normal">添加二级分类</button>
-							<button class="layui-btn layui-btn-xs layui-btn-warm">查看二级分类</button>
-						</td>
-					</tr>
-					<tr>
-						<td>前端</td>
-						<td>例：ES5、ES6、ES7</td>
+					<tr v-for="item in goodsList">
+						<td>${type.commodityType}</td>
+						<td>${type.type}</td>
 						<td>
 							<button class="layui-btn layui-btn-xs">修改</button>
 							<button class="layui-btn layui-btn-xs layui-btn-normal">添加二级分类</button>
@@ -103,7 +99,76 @@
 			<div id="pages"></div>
 			<script>
 				const app = new Vue({
-
+                    el: "#app",
+                    data: {
+                        goodsList: [],     //商品集合,
+                        totalPage: 0,      //总页数,
+                        count: 0,           //商品总数
+                        goodsType: []//商品类型
+                    },
+                    created() {
+                    },
+                    methods: {
+                        baseDataInit(res) {
+                            //基本数据请求
+                            this.goodsList = res.data.goodsList;
+                            this.totalPage = res.data.totalPage;
+                            this.count = res.data.count;
+                            let _this=this;
+                            layui.use('laypage', () => {
+                                let laypage = layui.laypage;
+                            laypage.render({
+                                elem: "pages",
+                                count: _this.count,
+                                layout: ['count', 'prev', 'page', 'next', 'limit', 'skip'],
+                                jump: (obj) => {
+                                axios({
+                                          url:"${pageContext.request.contextPath}/commodityType/queryCommodityType",
+                                          params: {
+                                              pageCode: obj.curr,
+                                              pageSize: obj.limit,
+                                          }
+                                      }).then(res => {
+                                    _this.goodsList = res.data.goodsList
+                                })
+                        }
+                        });
+                        });
+                            //点击查询按钮
+                            queryClick(){
+                                let name=$("input[name=name]").val();//类型名称
+                                axios({
+                                    url: "${pageContext.request.contextPath}/commodity/likeTypeName",
+                                    params: {
+                                        name : name,
+                                    }
+                                }).then(res=>{
+                                    let _this=this;
+                                layui.use('laypage', () => {
+                                    let laypage = layui.laypage;
+                                laypage.render({
+                                    elem: "pages",
+                                    count: res.data.goodsList.length,
+                                    layout: ['count', 'prev', 'page', 'next', 'limit', 'skip'],
+                                    jump: () => {
+                                    _this.goodsList=res.data.goodsList;
+                            }
+                            });
+                            });
+                            })
+                            }
+                        },
+                        mounted() {
+                            //发送并发请求 请求列表页的基本数据
+                            axios.all([axios({
+                                url: "${pageContext.request.contextPath}/commodity/likeTypeName"
+                            }), axios({
+                                url: "${pageContext.request.contextPath}/commodityType/queryCommodityType"
+                            })]).then(axios.spread((baseData, goodsTypes) => {
+                                this.baseDataInit(baseData);
+                            this.goodsTypeInit(goodsTypes);
+                        }));
+                        }
 				});
 			</script>
 			<script>

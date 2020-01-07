@@ -84,7 +84,7 @@
                     <input type="hidden" name="goodsID" :value="item.commodityId"/>
                     <button class="layui-btn layui-btn-xs" onclick="updateBut(this)">修改</button>
                     <button class="layui-btn layui-btn-xs" onclick="specificationsBut()">规格</button>
-                    <button class="layui-btn layui-btn-xs">删除</button>
+                    <button class="layui-btn layui-btn-xs" type="button">删除</button>
                 </td>
             </tr>
         </table>
@@ -195,9 +195,7 @@
         }
     });
 </script>
-<script>
 
-</script>
 <script>
     //修改规格
     function specificationsBut() {
@@ -235,8 +233,8 @@
                 content: 'goods_update.jsp'
             });
         });
-
     }
+
 </script>
 
 </body>

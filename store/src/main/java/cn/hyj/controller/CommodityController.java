@@ -141,7 +141,7 @@ public class CommodityController {
      * @param commodity
      * @return
      */
-    @RequestMapping("insert")
+    @RequestMapping("/insert")
     public Commodity insertCommodity(Commodity commodity){
 
         commodityService.insertSelective(commodity);

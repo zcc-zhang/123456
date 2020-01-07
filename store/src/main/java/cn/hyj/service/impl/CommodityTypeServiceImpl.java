@@ -21,8 +21,8 @@ public class CommodityTypeServiceImpl implements CommodityTypeService {
     private CommodityTypeMapper commodityTypeMapper;
 
     @Override
-    public List<CommodityType> queryCommodityType() {
-        return commodityTypeMapper.queryCommodityType();
+    public List<CommodityType> queryCommodityType(String commodityType) {
+        return commodityTypeMapper.queryCommodityType(commodityType);
     }
 
     @Override
