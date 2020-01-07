@@ -2,6 +2,7 @@ package cn.hyj.controller;
 
 import cn.hyj.entity.Administrator;
 import cn.hyj.service.AdministratorService;
+import org.bouncycastle.math.raw.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,51 +21,40 @@ public class AdministratorController {
 
     /**
      * 登录验证
-     * @param adminName 管理员名称
+     * @param name 管理员名称
      * @param password 密码
      * @param model
      * @return 字符串
      */
     @RequestMapping("/login")
-    public String login(@RequestParam("name") String adminName,@RequestParam("password") String password, Model model){
+    public String login(@RequestParam("name") String name,@RequestParam("password") String password, Model model){
 
-        Administrator administrator = administratorService.queryAdmin(adminName,password);
-
-        if (adminName.trim().equals("") || password.trim().equals("")){
-           // return "1"; //1:管理员名名或密码为空
-        }else if(administrator!=null){
-            model.addAttribute("administrator",administrator);
+        Administrator administrator = administratorService.queryAdmin(name,password);
+        System.out.println(administrator);
+        if(administrator!=null){
+            model.addAttribute("admin",administrator);
             return "forward:/administrators/frame.jsp";
+        }else if(administrator == null){
+            return "redirect:/manage/frame";
         }
         return "";
     }
 
     /**
      * 修改密码
-     * @param thisPassword 原密码
+     * @param oldPassword 原密码
      * @param password 要修改的密码
-     * @param admin 管理员对象
+     * @param admin
      * @return
      */
     @RequestMapping("/changePassword")
-    @ResponseBody
-    public String changePassword(String thisPassword,String password,@SessionAttribute("admin") Administrator admin){
+    public String changePassword(@RequestParam("oldPassword") String oldPassword,@RequestParam("password") String password, @SessionAttribute("admin") Administrator admin){
 
-        if (thisPassword.equals(admin.getPassword())){
-            try{
+        if (oldPassword.equals(admin.getPassword())){
                 administratorService.changePassword(admin.getId(),password);
-                return "1";//修改成功！
-            }catch (Exception e){
-                e.printStackTrace();
-                return "0";//出现错误！
-            }
-        }else{
-            return "2";//原密码不一致！
+                return "forward:/administrators/login.jsp";//修改成功！
         }
+        return "";
     }
-
-
-
-
 
 }

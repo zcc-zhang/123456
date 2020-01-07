@@ -19,28 +19,28 @@
 		<meta name="keywords" content="搜索关键字，以半角英文逗号隔开" />
 
 		<!-- 公共样式 开始 -->
-		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/base.css">
-		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/iconfont.css">
-		<script type="text/javascript" src="${pageContext.request.contextPath}/framework/jquery-1.11.3.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/administrators/css/base.css">
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/administrators/css/iconfont.css">
+		<script type="text/javascript" src="${pageContext.request.contextPath}/administrators/framework/jquery-1.11.3.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/layui/css/layui.css">
 		<script type="text/javascript" src="${pageContext.request.contextPath}/layui/layui.js"></script>
 		<!-- 滚动条插件 -->
-		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/jquery.mCustomScrollbar.css">
-		<script src="${pageContext.request.contextPath}/framework/jquery-ui-1.10.4.min.js"></script>
-		<script src="${pageContext.request.contextPath}/framework/jquery.mousewheel.min.js"></script>
-		<script src="${pageContext.request.contextPath}/framework/jquery.mCustomScrollbar.min.js"></script>
-		<script src="${pageContext.request.contextPath}/framework/cframe.js"></script><!-- 仅供所有子页面使用 -->
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/administrators/css/jquery.mCustomScrollbar.css">
+		<script src="${pageContext.request.contextPath}/administrators/framework/jquery-ui-1.10.4.min.js"></script>
+		<script src="${pageContext.request.contextPath}/administrators/framework/jquery.mousewheel.min.js"></script>
+		<script src="${pageContext.request.contextPath}/administrators/framework/jquery.mCustomScrollbar.min.js"></script>
+		<script src="${pageContext.request.contextPath}/administrators/framework/cframe.js"></script><!-- 仅供所有子页面使用 -->
 		<!-- 公共样式 结束 -->
 
 	</head>
 
 	<body>
 		<div class="cBody">
-			<form id="addForm" class="layui-form" action="">
+			<form id="addForm" class="layui-form" method="post" action="${pageContext.request.contextPath}/manage/changePassword">
 				<div class="layui-form-item">
 					<label class="layui-form-label">原始密码</label>
 					<div class="layui-input-inline shortInput">
-						<input type="password" name="oldpassword" required lay-verify="required" autocomplete="off" class="layui-input">
+						<input type="password" name="oldPassword" required lay-verify="required" autocomplete="off" class="layui-input">
 					</div>
 				</div>
 				<div class="layui-form-item">
@@ -63,16 +63,18 @@
 					</div>
 				</div>
 			</form>
-			
+
 			<script>
 				layui.use('form', function() {
 					var form = layui.form;
 					//监听提交
-					form.on('submit(submitBut)', function(data) {
+					form.on('submit(loginBut)', function (data) {
 						layer.msg(JSON.stringify(data.field));
-						return false;
+						return true;
 					});
+
 				});
+
 			</script>
 
 		</div>

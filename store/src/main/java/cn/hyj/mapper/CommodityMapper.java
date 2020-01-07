@@ -13,6 +13,12 @@ public interface CommodityMapper {
      */
     List<Commodity> selectByCommodityEvaluation();
 
+    /**
+     * 查询所有商品名称
+     * @return
+     */
+    List<Commodity> selectProductName();
+
     int deleteByPrimaryKey(Integer commodityId);
 
     int insert(Commodity record);
@@ -33,6 +39,7 @@ public interface CommodityMapper {
     int updateByPrimaryKey(Commodity record);
 
     List<Commodity> selectAll(@Param("commodityAttribute") String commodityAttribute,
+                              @Param("productName") String productName,
                               @Param("max")Integer maxNumber,
                               @Param("min")Integer minNumber);
 

@@ -52,13 +52,14 @@ public class CommodityController {
     @RequestMapping("/toPage")
     public String commodityList(Map<String, Object> map
             , @RequestParam(defaultValue = "1", value = "currentPage") Integer pageCode
-            , String commodityAttribute
+            ,String commodityAttribute
+            ,String productName
             ,Integer min
             ,Integer max
             ,HttpServletRequest request) {
 
         PageHelper.startPage(pageCode, 16);//设置分页 每页16条数据
-        List<Commodity> commodities = commodityService.queryAll(commodityAttribute,max,min);//全部数据
+        List<Commodity> commodities = commodityService.queryAll(commodityAttribute,productName,max,min);//全部数据
         commodities.forEach(commodity -> {
             List<String> strings = SplitString.splitStringToList(commodity.getCommodityImg());//根据,号分割字符串
             commodity.setCommodityImg(strings.get(0));//取出第一张图片
@@ -72,12 +73,19 @@ public class CommodityController {
         if(historyList!=null && !historyList.isEmpty()){
             historyList.forEach(commodity -> commodity.setCommodityImg(SplitString.splitString(commodity.getCommodityImg())[0]));
         }
-        request.setAttribute("historyList", historyList);
-        map.put("pageCode", pageCode);//当前页
-        map.put("total", totalPage);//总页数
-        map.put("CommodityList", commodities);//商品集合
-        map.put("list",this.salesRanking());
-        return "product_list";
+        if (commodities != null){
+            try{
+                request.setAttribute("historyList", historyList);
+                map.put("pageCode", pageCode);//当前页
+                map.put("total", totalPage);//总页数
+                map.put("CommodityList", commodities);//商品集合
+                map.put("list",this.salesRanking());
+                return "product_list";
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+         return "index";
     }
 
     StringBuffer buffer=new StringBuffer();
@@ -138,27 +146,26 @@ public class CommodityController {
      */
     @RequestMapping("/uploads")
     @ResponseBody
-    public Map<String,Object> insertCommodity(MultipartFile file[]){
-        String path="E:\\git\\commodityImg\\";//图片商品路径
-        Map<String,Object> map=new HashMap<String,Object>();
-        StringBuffer buffer=new StringBuffer();
-        String uuid=UUID.randomUUID().toString().substring(0,8);
+    public Map<String,Object> insertCommodity(MultipartFile file[]) {
+        String path = "E:\\git\\commodityImg\\";//图片商品路径
+        Map<String, Object> map = new HashMap<String, Object>();
+        StringBuffer buffer = new StringBuffer();
+        String uuid = UUID.randomUUID().toString().substring(0, 8);
         try {
-            for (int i=0;i<file.length;i++){
-                String imgName=SplitString.subPath(new StringBuffer(uuid).append(".jpg").append(",").toString(),"upload");
+            for (int i = 0; i < file.length; i++) {
+                String imgName = SplitString.subPath(new StringBuffer(uuid).append(".jpg").append(",").toString(), "upload");
                 buffer.append(imgName);
-                file[i].transferTo(new File(path,new StringBuffer(uuid.substring(0, 8)).append(".jpg").toString()));
+                file[i].transferTo(new File(path, new StringBuffer(uuid.substring(0, 8)).append(".jpg").toString()));
             }
-            map.put("imgName",buffer);
-            map.put("code",0);
+            map.put("imgName", buffer);
+            map.put("code", 0);
         } catch (Exception e) {
-            map.put("code",1);
+            map.put("code", 1);
             e.printStackTrace();
             throw new RuntimeException();
         }
-        return  map;
+        return map;
     }
-
     /**
      * 保存一条商品记录
      * @param commodity
@@ -230,6 +237,18 @@ public class CommodityController {
             return "0";//异常
         }
     }
+
+
+    @RequestMapping("/fuzzyQueryName")
+    @ResponseBody
+    public String fuzzyQueryProductName(String productName,Model model){
+
+        List<Commodity> commodityList = commodityService.queryByCommodityType(null,productName);
+
+        model.addAttribute("commodityList",commodityList);
+        return "product_list";
+    }
+
 
     @ResponseBody
     @RequestMapping("/queryByID")

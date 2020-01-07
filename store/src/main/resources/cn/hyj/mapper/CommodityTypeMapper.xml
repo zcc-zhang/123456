@@ -16,6 +16,11 @@
              <include refid="Base_Column_List"/>
         from
             t_commodity_type
+        <trim prefix="where" >
+            <if test="commodityType != null and commodityType !='' ">
+                commodity_type like concat('%',#{commodityType},'%')
+            </if>
+        </trim>
     </select>
 
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
@@ -33,30 +38,38 @@
     values (#{commodityTypeId,jdbcType=INTEGER}, #{commodityType,jdbcType=VARCHAR})
   </insert>
     <insert id="insertSelective" parameterType="cn.hyj.entity.CommodityType">
+<<<<<<< HEAD
         <selectKey keyColumn="commodity_type_ID" keyProperty="commodityTypeId" order="AFTER" resultType="int">
           select   LAST_INSERT_ID();
         </selectKey>
         insert into t_commodity_type
+=======
+        insert into t_commodity_type,type
+>>>>>>> c3522d114a02f71002fcc521dde7868be5a4262e
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="commodityTypeId != null">
-                commodity_type_Id,
-            </if>
             <if test="commodityType != null">
                 commodity_type,
             </if>
+<<<<<<< HEAD
             <if test="type != null">
                 type
+=======
+            <if test="type != null ">
+                type,
+>>>>>>> c3522d114a02f71002fcc521dde7868be5a4262e
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="commodityTypeId != null">
-                #{commodityTypeId,jdbcType=INTEGER},
-            </if>
             <if test="commodityType != null">
                 #{commodityType,jdbcType=VARCHAR},
             </if>
+<<<<<<< HEAD
             <if test="type != null ">
                 #{type}
+=======
+            <if test="type != null">
+                #{type,jdbcType=INTEGER},
+>>>>>>> c3522d114a02f71002fcc521dde7868be5a4262e
             </if>
         </trim>
     </insert>
