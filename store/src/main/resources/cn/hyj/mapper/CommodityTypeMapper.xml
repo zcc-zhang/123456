@@ -38,38 +38,25 @@
     values (#{commodityTypeId,jdbcType=INTEGER}, #{commodityType,jdbcType=VARCHAR})
   </insert>
     <insert id="insertSelective" parameterType="cn.hyj.entity.CommodityType">
-<<<<<<< HEAD
         <selectKey keyColumn="commodity_type_ID" keyProperty="commodityTypeId" order="AFTER" resultType="int">
           select   LAST_INSERT_ID();
         </selectKey>
         insert into t_commodity_type
-=======
         insert into t_commodity_type,type
->>>>>>> c3522d114a02f71002fcc521dde7868be5a4262e
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="commodityType != null">
                 commodity_type,
             </if>
-<<<<<<< HEAD
-            <if test="type != null">
-                type
-=======
             <if test="type != null ">
                 type,
->>>>>>> c3522d114a02f71002fcc521dde7868be5a4262e
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="commodityType != null">
                 #{commodityType,jdbcType=VARCHAR},
             </if>
-<<<<<<< HEAD
-            <if test="type != null ">
-                #{type}
-=======
             <if test="type != null">
                 #{type,jdbcType=INTEGER},
->>>>>>> c3522d114a02f71002fcc521dde7868be5a4262e
             </if>
         </trim>
     </insert>

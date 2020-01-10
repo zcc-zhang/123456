@@ -30,7 +30,6 @@ public class AdministratorController {
     public String login(@RequestParam("name") String name,@RequestParam("password") String password, Model model){
 
         Administrator administrator = administratorService.queryAdmin(name,password);
-        System.out.println(administrator);
         if(administrator!=null){
             model.addAttribute("admin",administrator);
             return "forward:/administrators/frame.jsp";
@@ -48,13 +47,15 @@ public class AdministratorController {
      * @return
      */
     @RequestMapping("/changePassword")
+    @ResponseBody
     public String changePassword(@RequestParam("oldPassword") String oldPassword,@RequestParam("password") String password, @SessionAttribute("admin") Administrator admin){
 
         if (oldPassword.equals(admin.getPassword())){
                 administratorService.changePassword(admin.getId(),password);
-                return "forward:/administrators/login.jsp";//修改成功！
+                return "0";//修改成功！
+        }else{
+            return "1";//密码输入错误
         }
-        return "";
     }
 
 }

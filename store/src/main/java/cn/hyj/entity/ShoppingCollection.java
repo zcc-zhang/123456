@@ -1,9 +1,11 @@
 package cn.hyj.entity;
 
+import java.io.Serializable;
+
 /**
  * 收藏
  */
-public class ShoppingCollection {
+public class ShoppingCollection  implements Serializable {
     private Integer shoppingCollectionId;
 
     private Integer commodityId;

@@ -1,9 +1,11 @@
 package cn.hyj.entity;
 
+import java.io.Serializable;
+
 /**
  * 管理员实体类
  */
-public class Administrator {
+public class Administrator implements Serializable {
 
     private Integer id;
 

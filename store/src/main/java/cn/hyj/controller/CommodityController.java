@@ -1,22 +1,18 @@
 package cn.hyj.controller;
 
-import cn.hyj.entity.Administrator;
 import cn.hyj.entity.Commodity;
-import cn.hyj.entity.CommodityType;
 import cn.hyj.entity.User;
 import cn.hyj.service.CommodityService;
 import cn.hyj.utils.CookieUtil;
 import cn.hyj.utils.SplitString;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import org.omg.CORBA.INTERNAL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;

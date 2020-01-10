@@ -62,16 +62,15 @@
             , t_commodity.inventory
             , t_commodity.collect_number
             , t_commodity.commodity_img
-            , t_commodity_Type.commodity_type_ID
-            , t_commodity_Type.commodity_type
-            , t_commodity_Type.type
+            , t_commodity_type.commodity_type_ID
+            , t_commodity_type.commodity_type
+            , t_commodity_type.type
 
-
-        from t_commodity,t_commodity_Type
+        from t_commodity,t_commodity_type
       <trim prefix="where" suffixOverrides="and">
-          t_commodity.commodity_type_ID = t_commodity_Type.commodity_type_ID and commodity_status = 1
+          t_commodity.commodity_type_ID = t_commodity_type.commodity_type_ID and commodity_status = 1
           <if test="commodityTypeId != null and commodityTypeId != ''">
-               and t_commodity_Type.commodity_type_ID=#{commodityTypeId}
+               and t_commodity_type.commodity_type_ID=#{commodityTypeId}
           </if>
           <if test="productName != null and productName != ''">
               and t_commodity.product_name like concat('%',#{productName},'%')
@@ -116,12 +115,12 @@
             , t_commodity.inventory
             , t_commodity.collect_number
             , t_commodity.commodity_img
-            , t_commodity_Type.commodity_type_ID
-            , t_commodity_Type.commodity_type
-            , t_commodity_Type.type
+            , t_commodity_type.commodity_type_ID
+            , t_commodity_type.commodity_type
+            , t_commodity_type.type
 
-        from t_commodity , t_commodity_Type
-        where commodity_ID = #{commodityId,jdbcType=INTEGER} and    t_commodity.commodity_type_ID = t_commodity_Type.commodity_type_ID
+        from t_commodity , t_commodity_type
+        where commodity_ID = #{commodityId,jdbcType=INTEGER} and    t_commodity.commodity_type_ID = t_commodity_type.commodity_type_ID
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from t_commodity

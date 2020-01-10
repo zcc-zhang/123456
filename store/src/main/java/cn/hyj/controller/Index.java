@@ -1,14 +1,10 @@
 package cn.hyj.controller;
 
-import cn.hyj.entity.Commodity;
 import cn.hyj.service.CommodityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.util.List;
-
 /**
  * 随机显示商品
  */

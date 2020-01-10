@@ -124,6 +124,21 @@
         margin-top: 30px;
         float: left;
     }
+
+    #shangchuan{
+        background-color: #fff;
+        height: 30px;
+        color: pink;
+        width: 100px;
+        margin-left: 550px;
+        font-size: 14px;
+        cursor: pointer;
+        -webkit-border-image: repeat;
+    }
+    #shangchuanli{
+        display: inline-block;
+        margin-top: -182px;
+    }
 </style>
 <body>
 <!--顶部图层-->
@@ -597,12 +612,12 @@
                             </div>
                         </ul>
                         <ul class="head_portrait">
-                            <li class="user_avatar"><img id="headimg"
+                            <li class="user_avatar"><img id="headImg"
                                                          src="${user.headPortrait}" width="200" height="200"/></li>
-                            <li><input type="file" name="filefield" class="a-upload"
-                                       id="filefield" style="display: none" value="请选择头像"/></li>
-                            <li><input name="headimgpath" type="hidden" value=""/></li>
-                            <li> <input name="uploadimg" id="shangchuan" type="button"
+                            <li><input type="file" name="fileField" class="a-upload"
+                                       id="fileField" style="display: none" value="请选择头像"/></li>
+                            <li><input name="headImgPath" type="hidden" value=""/></li>
+                            <li id="shangchuanli"> <input name="uploadimg" id="shangchuan" type="button"
                                        value="上传头像" class="submit"/></li>
                         </ul>
                     </form>

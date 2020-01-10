@@ -1,10 +1,12 @@
 package cn.hyj.entity;
 
 
+import java.io.Serializable;
+
 /**
  * 商品类型
  */
-public class CommodityType {
+public class CommodityType implements Serializable {
 
     private Integer commodityTypeId;
 

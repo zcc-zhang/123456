@@ -34,8 +34,6 @@ public class UserController {
     @Autowired
     private ShoppingTrolleyService shoppingTrolleyService;
 
-    @Autowired
-    private CommodityService commodityService;
 
     /**
      * 登录
@@ -56,6 +54,9 @@ public class UserController {
         }else{
             model.addAttribute("user",user);
             List<ShoppingTrolley> shoppingTrolleys = shoppingTrolleyService.selectByUserId(user.getUserId());//购物车商品集合
+            shoppingTrolleys.forEach(shoppingTrolley -> {
+                shoppingTrolley.getCommodity().setCommodityImg(SplitString.splitString(shoppingTrolley.getCommodity().getCommodityImg())[0]);
+            });
             model.addAttribute("shoppingTrolleys",shoppingTrolleys);
             //登录成功
             return "redirect:/index";

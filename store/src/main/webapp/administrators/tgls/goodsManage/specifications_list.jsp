@@ -1,7 +1,6 @@
 <%@ page language="java" import="java.util.*" contentType="text/html;charset=UTF-8"%>
 <!DOCTYPE html>
 <html>
-
 	<head>
 		<meta charset="UTF-8">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -20,15 +19,15 @@
 		<title>穷在闹市出品</title>
 
 		<!-- 公共样式 开始 -->
-		<script type="text/javascript" src="${pageContext.request.contextPath}/framework/jquery-1.11.3.min.js"></script>
-		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/layui/css/layui.css">
-		<script type="text/javascript" src="${pageContext.request.contextPath}/layui/layui.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/administrators/framework/jquery-1.11.3.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/administrators/layui/css/layui.css">
+		<script type="text/javascript" src="${pageContext.request.contextPath}/administrators/layui/layui.js"></script>
 		<!-- 滚动条插件 -->
-		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/jquery.mCustomScrollbar.css">
-		<script src="${pageContext.request.contextPath}/framework/jquery-ui-1.10.4.min.js"></script>
-		<script src="${pageContext.request.contextPath}/framework/jquery.mousewheel.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/administrators/css/jquery.mCustomScrollbar.css">
+		<script src="${pageContext.request.contextPath}/administrators/framework/jquery-ui-1.10.4.min.js"></script>
+		<script src="${pageContext.request.contextPath}/administrators/framework/jquery.mousewheel.min.js"></script>
 		<!--<script src="${pageContext.request.contextPath}/framework/jquery.mCustomScrollbar.min.js"></script>-->
-		<script src="${pageContext.request.contextPath}/framework/cframe.js"></script><!-- 仅供所有子页面使用 -->
+		<script src="${pageContext.request.contextPath}/administrators/framework/cframe.js"></script><!-- 仅供所有子页面使用 -->
 		<!-- 公共样式 结束 -->
 
 	</head>

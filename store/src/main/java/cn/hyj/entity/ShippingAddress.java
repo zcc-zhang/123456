@@ -1,10 +1,12 @@
 package cn.hyj.entity;
 
 
+import java.io.Serializable;
+
 /**
  * 收货地址
  */
-public class ShippingAddress {
+public class ShippingAddress implements Serializable {
     private Integer shippingAddressId;//逻辑主键
 
     private String name;//姓名

@@ -1,11 +1,12 @@
 package cn.hyj.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * 用户
  */
-public class User {
+public class User  implements Serializable {
     private Integer userId;
 
     private String headPortrait;

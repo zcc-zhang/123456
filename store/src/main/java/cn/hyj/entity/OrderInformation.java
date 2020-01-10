@@ -1,12 +1,13 @@
 package cn.hyj.entity;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
 /**
  * 订单
  */
-public class OrderInformation {
+public class OrderInformation  implements Serializable {
 
     private Integer orderFormId;
 

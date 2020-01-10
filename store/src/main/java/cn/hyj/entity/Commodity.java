@@ -1,5 +1,6 @@
 package cn.hyj.entity;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -7,7 +8,7 @@ import java.util.Date;
 /**
  * 商品
  */
-public class Commodity {
+public class Commodity implements Serializable {
 
     private Integer commodityId;
 

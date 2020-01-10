@@ -84,11 +84,7 @@
                     <input type="hidden" name="goodsID" :value="item.commodityId"/>
                     <button class="layui-btn layui-btn-xs" onclick="updateBut(this)">修改</button>
                     <button class="layui-btn layui-btn-xs" onclick="specificationsBut()">规格</button>
-<<<<<<< HEAD
                     <button class="layui-btn layui-btn-xs layui-btn-danger" @click="delGoods($event)" :value="index">删除</button>
-=======
-                    <button class="layui-btn layui-btn-xs" type="button">删除</button>
->>>>>>> c3522d114a02f71002fcc521dde7868be5a4262e
                 </td>
             </tr>
         </table>

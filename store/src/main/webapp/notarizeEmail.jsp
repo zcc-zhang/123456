@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html class="p_AFMaximized" dir="ltr" lang="zh-CN">
-<script src="js/jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/js/jquery-1.9.1.min.js" type="text/javascript"></script>
 <head>
 <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
 
@@ -26,9 +26,9 @@ body {
 	background-size: cover;
 }
 </style>
-<link rel="stylesheet" href="css/reset.css" type="text/css">
-<link rel="stylesheet" href="src/css/dialog.css" type="text/css">
-<script src="src/jquery.dialog.min.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/reset.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/src/css/dialog.css" type="text/css">
+<script src="${pageContext.request.contextPath}/src/jquery.dialog.min.js"></script>
 </head>
 
 <body class="x288 x13d p_AFMaximized">
@@ -93,9 +93,7 @@ body {
 				console.log('sendSuccessToTop closed')
 			});
 			setTimeout(function(){frm.submit()}, 3000);
-			
 		}
-
 	}
 	submitForm();
 </script>

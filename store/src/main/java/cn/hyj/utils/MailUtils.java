@@ -1,7 +1,7 @@
 package cn.hyj.utils;
 
+import com.sun.mail.util.MailSSLSocketFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Component;
 
@@ -9,6 +9,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Properties;
 
 /**
  * 邮箱工具类
@@ -26,6 +27,12 @@ public class MailUtils {
      */
     public void sendActiveMail(String receiveMailAccount, String mailActiveCode,String type) throws Exception{
 
+        MailSSLSocketFactory sslSocketFactory=new MailSSLSocketFactory();
+        sslSocketFactory.setTrustAllHosts(true);
+        Properties props=new Properties();
+        props.put("mail.smtp.ssl.enable", "true");
+        props.put("mail.smtp.ssl.socketFactory", sslSocketFactory);
+        this.mailSender.setJavaMailProperties(props);
         MimeMessage simpleMailMessage=designMail(receiveMailAccount,mailActiveCode,type);
         try {
             mailSender.send(simpleMailMessage);

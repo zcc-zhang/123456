@@ -23,7 +23,7 @@
     <!--发送邮件-->
     <bean class="org.springframework.mail.javamail.JavaMailSenderImpl" id="mailSender">
         <property name="host" value="smtp.163.com"></property> <!--发件人邮箱的 SMTP-->
-        <property name="port" value="25"></property><!--服务器端口-->
+        <property name="port" value="465"></property><!--服务器端口-->
         <property name="defaultEncoding" value="UTF-8"></property><!--指定邮件编码-->
         <property name="protocol" value="smtp"></property><!--使用协议(JavaMail规范)-->
         <property name="username" value="y13839052142@163.com"></property><!--用户账号-->

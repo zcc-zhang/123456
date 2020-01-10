@@ -30,13 +30,14 @@
 		<script src="${pageContext.request.contextPath}/administrators/framework/jquery.mousewheel.min.js"></script>
 		<script src="${pageContext.request.contextPath}/administrators/framework/jquery.mCustomScrollbar.min.js"></script>
 		<script src="${pageContext.request.contextPath}/administrators/framework/cframe.js"></script><!-- 仅供所有子页面使用 -->
+		<script src="${pageContext.request.contextPath}/administrators/js/axios.js"></script>
 		<!-- 公共样式 结束 -->
 
 	</head>
 
 	<body>
 		<div class="cBody">
-			<form id="addForm" class="layui-form" method="post" action="${pageContext.request.contextPath}/manage/changePassword">
+			<form id="addForm" class="layui-form" >
 				<div class="layui-form-item">
 					<label class="layui-form-label">原始密码</label>
 					<div class="layui-input-inline shortInput">
@@ -58,19 +59,39 @@
 				
 				<div class="layui-form-item">
 					<div class="layui-input-block">
-						<button class="layui-btn" lay-submit lay-filter="submitBut">确认修改</button>
+						<button class="layui-btn" lay-submit lay-filter="loginBut">确认修改</button>
 						<button type="reset" class="layui-btn layui-btn-primary">重置</button>
 					</div>
 				</div>
 			</form>
 
 			<script>
-				layui.use('form', function() {
+				layui.use(['form',"layer"], function() {
 					var form = layui.form;
+					var layer=layui.layer;
 					//监听提交
 					form.on('submit(loginBut)', function (data) {
-						layer.msg(JSON.stringify(data.field));
-						return true;
+						console.log(data.field);
+						if(data.field.password === data.field.password2){
+							axios({
+								url : "${pageContext.request.contextPath}/manage/changePassword",
+								params : data.field
+							}).then(res=>{
+								console.log(typeof res.data);
+								if(res.data === 1){
+									layer.msg("原密码输入错误");
+								}else if(res.data === 0){
+									layer.alert('修改成功', {
+										icon: 1,
+									});
+									parent.location.href="${pageContext.request.contextPath}/manage/frame"
+								}
+							})
+						}else{
+							layer.msg("两次输入的密码不一致");
+						}
+
+						return false;
 					});
 
 				});

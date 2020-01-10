@@ -1,12 +1,13 @@
 package cn.hyj.entity;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
 /**
  * 购物车
  */
-public class ShoppingTrolley {
+public class ShoppingTrolley implements Serializable {
     private Integer shoppingTrolleyId;//逻辑主键
 
     private Integer commodityId;//商品id
